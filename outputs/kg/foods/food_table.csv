@@ -1,0 +1,1258 @@
+,orig_name,scientific_name,ncbi_taxon_id,itis_id,fdc_id,foodb_id,food_group,food_subgroup
+0,"Hummus, commercial",,3827,,321358.0,,Legumes and Legume Products,
+1,"Tomatoes, grape, raw",,4081,,321360.0,,Vegetables and Vegetable Products,
+2,"Beans, snap, green, canned, regular pack, drained solids",,3885,,321611.0,,Vegetables and Vegetable Products,
+3,"Frankfurter, beef, unheated",,,,323121.0,,Sausages and Luncheon Meats,
+4,"Nuts, almonds, dry roasted, with salt added",,3755,,323294.0,,Nut and Seed Products,
+5,"Kale, raw",,3712,,323505.0,,Vegetables and Vegetable Products,
+6,"Egg, whole, raw, frozen, pasteurized",,9031,,323604.0,,Dairy and Egg Products,
+7,"Egg, white, raw, frozen, pasteurized",,9031,,323697.0,,Dairy and Egg Products,
+8,"Egg, white, dried",,9031,,323793.0,,Dairy and Egg Products,
+9,"Onion rings, breaded, par fried, frozen, prepared, heated in oven",,4679,,324317.0,,Vegetables and Vegetable Products,
+10,"Pickles, cucumber, dill or kosher dill",,3659,,324653.0,,Vegetables and Vegetable Products,
+11,"Cheese, parmesan, grated",,9913,,325036.0,,Dairy and Egg Products,
+12,"Cheese, pasteurized process, American, vitamin D fortified",,9913,,325198.0,,Dairy and Egg Products,
+13,"Grapefruit juice, white, canned or bottled, unsweetened",,37656,,325287.0,,Fruits and Fruit Juices,
+14,"Peaches, yellow, raw",,3760,,325430.0,,Fruits and Fruit Juices,
+15,"Seeds, sunflower seed kernels, dry roasted, with salt added",,4231,,325524.0,,Nut and Seed Products,
+16,"Bread, white, commercially prepared",,4564,,325871.0,,Baked Products,
+17,"Kale, frozen, cooked, boiled, drained, without salt",,3712,,326196.0,,Vegetables and Vegetable Products,
+18,"Mustard, prepared, yellow",,,,326698.0,,Spices and Herbs,
+19,"Kiwifruit, green, raw",,3627,,327046.0,,Fruits and Fruit Juices,
+20,"Nectarines, raw",,3760,,327357.0,,Fruits and Fruit Juices,
+21,"Cheese, cheddar",,9913,,328637.0,,Dairy and Egg Products,
+22,"Cheese, cottage, lowfat, 2% milkfat",,9913,,328841.0,,Dairy and Egg Products,
+23,"Cheese, mozzarella, low moisture, part-skim",,9913,,329370.0,,Dairy and Egg Products,
+24,"Egg, whole, dried",,9031,,329490.0,,Dairy and Egg Products,
+25,"Egg, yolk, raw, frozen, pasteurized",,9031,,329596.0,,Dairy and Egg Products,
+26,"Egg, yolk, dried",,9031,,329716.0,,Dairy and Egg Products,
+27,"Yogurt, Greek, plain, nonfat",,9913,,330137.0,,Dairy and Egg Products,
+28,"Yogurt, Greek, strawberry, nonfat",,9913,,330415.0,,Dairy and Egg Products,
+29,"Oil, coconut",,13894,,330458.0,,Fats and Oils,
+30,"Chicken, broilers or fryers, drumstick, meat only, cooked, braised",,9031,,331897.0,,Poultry Products,
+31,"Chicken, broiler or fryers, breast, skinless, boneless, meat only, cooked, braised",,9031,,331960.0,,Poultry Products,
+32,"Sauce, pasta, spaghetti/marinara, ready-to-serve",,,,332282.0,,"Soups, Sauces, and Gravies",
+33,"Ham, sliced, pre-packaged, deli meat (96%fat free, water added)",,9822,,332397.0,,Sausages and Luncheon Meats,
+34,"Olives, green, Manzanilla, stuffed with pimiento",,4146,,332791.0,,Fruits and Fruit Juices,
+35,"Cookies, oatmeal, soft, with raisins",,9031,,333008.0,,Baked Products,
+36,"Tomatoes, canned, red, ripe, diced",,4081,,333281.0,,Vegetables and Vegetable Products,
+37,"Fish, haddock, raw",,8056,,333374.0,,Finfish and Shellfish Products,
+38,"Fish, pollock, raw",,8059,,333476.0,,Finfish and Shellfish Products,
+39,"Fish, tuna, light, canned in water, drained solids",,186749,,334194.0,,Finfish and Shellfish Products,
+40,"Restaurant, Chinese, fried rice, without meat",,,,334536.0,,Restaurant Foods,
+41,"Restaurant, Latino, tamale, pork",,,,334628.0,,Restaurant Foods,
+42,"Restaurant, Latino, pupusas con frijoles (pupusas, bean)",,,,334720.0,,Restaurant Foods,
+43,"Bread, whole-wheat, commercially prepared",,4564,,335240.0,,Baked Products,
+44,"Beef, loin, tenderloin roast, separable lean only, boneless, trimmed to 0"" fat, select, cooked, roasted",,9913,,746758.0,,Beef Products,
+45,"Beef, loin, top loin steak, boneless, lip-on, separable lean only, trimmed to 1/8"" fat, choice, raw",,9913,,746759.0,,Beef Products,
+46,"Beef, round, eye of round roast, boneless, separable lean only, trimmed to 0"" fat, select, raw",,9913,,746760.0,,Beef Products,
+47,"Beef, round, top round roast, boneless, separable lean only, trimmed to 0"" fat, select, raw",,9913,,746761.0,,Beef Products,
+48,"Beef, short loin, porterhouse steak, separable lean only, trimmed to 1/8"" fat, select, raw",,9913,,746762.0,,Beef Products,
+49,"Beef, short loin, t-bone steak, bone-in, separable lean only, trimmed to 1/8"" fat, choice, cooked, grilled",,9913,,746763.0,,Beef Products,
+50,"Carrots, frozen, unprepared",,4039,,746764.0,,Vegetables and Vegetable Products,
+51,"Cheese, dry white, queso seco",,9913,,746765.0,,Dairy and Egg Products,
+52,"Cheese, ricotta, whole milk",,9913,,746766.0,,Dairy and Egg Products,
+53,"Cheese, swiss",,9913,,746767.0,,Dairy and Egg Products,
+54,"Figs, dried, uncooked",,3494,,746768.0,,Fruits and Fruit Juices,
+55,"Lettuce, cos or romaine, raw",,4236,,746769.0,,Vegetables and Vegetable Products,
+56,"Melons, cantaloupe, raw",,3656,,746770.0,,Fruits and Fruit Juices,
+57,"Oranges, raw, navels",,2711,,746771.0,,Fruits and Fruit Juices,
+58,"Milk, lowfat, fluid, 1% milkfat, with added vitamin A and vitamin D",,9913,,746772.0,,Dairy and Egg Products,
+59,"Pears, raw, bartlett",,23211,,746773.0,,Fruits and Fruit Juices,
+60,"Restaurant, Chinese, sweet and sour pork",,9822,,746774.0,,Restaurant Foods,
+61,"Salt, table, iodized",,,,746775.0,,Spices and Herbs,
+62,"Milk, nonfat, fluid, with added vitamin A and vitamin D (fat free or skim)",,9913,,746776.0,,Dairy and Egg Products,
+63,"Sauce, salsa, ready-to-serve",,,,746777.0,,"Soups, Sauces, and Gravies",
+64,"Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D",,9913,,746778.0,,Dairy and Egg Products,
+65,"Sausage, breakfast sausage, beef, pre-cooked, unprepared",,9913,,746779.0,,Sausages and Luncheon Meats,
+66,"Sausage, Italian, pork, mild, cooked, pan-fried",,9822,,746780.0,,Sausages and Luncheon Meats,
+67,"Sausage, pork, chorizo, link or ground, cooked, pan-fried",,9822,,746781.0,,Sausages and Luncheon Meats,
+68,"Milk, whole, 3.25% milkfat, with added vitamin D",,9913,,746782.0,,Dairy and Egg Products,
+69,"Sausage, turkey, breakfast links, mild, raw",,9102,,746783.0,,Sausages and Luncheon Meats,
+70,"Sugars, granulated",,,,746784.0,,Sweets,
+71,"Turkey, ground, 93% lean, 7% fat, pan-broiled crumbles",,9102,,746785.0,,Poultry Products,
+72,"Ham, sliced, restaurant",,9822,,746952.0,,Pork Products,
+73,"Cheese, American, restaurant",,9913,,747429.0,,Dairy and Egg Products,
+74,"Beans, Dry, Medium Red (0% moisture)",,3885,,747430.0,,Legumes and Legume Products,
+75,"Beans, Dry, Red (0% moisture)",,3885,,747431.0,,Legumes and Legume Products,
+76,"Beans, Dry, Flor de Mayo (0% moisture)",,3885,,747432.0,,Legumes and Legume Products,
+77,"Beans, Dry, Brown (0% moisture)",,3885,,747433.0,,Legumes and Legume Products,
+78,"Beans, Dry, Tan (0% moisture)",,3885,,747434.0,,Legumes and Legume Products,
+79,"Beans, Dry, Light Tan (0% moisture)",,3885,,747435.0,,Legumes and Legume Products,
+80,"Beans, Dry, Carioca (0% moisture)",,3885,,747436.0,,Legumes and Legume Products,
+81,"Beans, Dry, Cranberry (0% moisture)",,3885,,747437.0,,Legumes and Legume Products,
+82,"Beans, Dry, Light Red Kidney (0% moisture)",,3885,,747438.0,,Legumes and Legume Products,
+83,"Beans, Dry, Pink (0% moisture)",,3885,,747439.0,,Legumes and Legume Products,
+84,"Beans, Dry, Dark Red Kidney (0% moisture)",,3885,,747440.0,,Legumes and Legume Products,
+85,"Beans, Dry, Navy (0% moisture)",,3885,,747441.0,,Legumes and Legume Products,
+86,"Beans, Dry, Small White (0% moisture)",,3885,,747442.0,,Legumes and Legume Products,
+87,"Beans, Dry, Small Red (0% moisture)",,3885,,747443.0,,Legumes and Legume Products,
+88,"Beans, Dry, Black (0% moisture)",,3885,,747444.0,,Legumes and Legume Products,
+89,"Beans, Dry, Pinto (0% moisture)",,3885,,747445.0,,Legumes and Legume Products,
+90,"Beans, Dry, Great Northern (0% moisture)",,3885,,747446.0,,Legumes and Legume Products,
+91,"Broccoli, raw",,3712,,747447.0,,Vegetables and Vegetable Products,
+92,"Ketchup, restaurant",,,,747693.0,,Vegetables and Vegetable Products,
+93,"Eggs, Grade A, Large, egg white",,9031,,747997.0,,Dairy and Egg Products,
+94,"Eggs, Grade A, Large, egg yolk",,9031,,748236.0,,Dairy and Egg Products,
+95,"Oil, canola",,3708,,748278.0,,Fats and Oils,
+96,"Oil, corn",,4577,,748323.0,,Fats and Oils,
+97,"Oil, soybean",,3847,,748366.0,,Fats and Oils,
+98,"Oil, olive, extra virgin",,4146,,748608.0,,Fats and Oils,
+99,"Eggs, Grade A, Large, egg whole",,9031,,748967.0,,Dairy and Egg Products,
+100,"Pork, cured, bacon, cooked, restaurant",,9822,,749420.0,,Pork Products,
+101,"Butter, stick, unsalted",,9913,,789828.0,,Dairy and Egg Products,
+102,"Flour, wheat, all-purpose, enriched, bleached",,4564,,789890.0,,Cereal Grains and Pasta,
+103,"Flour, wheat, all-purpose, enriched, unbleached",,4564,,789951.0,,Cereal Grains and Pasta,
+104,"Flour, wheat, all-purpose, unenriched, unbleached",,4564,,790018.0,,Cereal Grains and Pasta,
+105,"Flour, whole wheat, unenriched",,4564,,790085.0,,Cereal Grains and Pasta,
+106,"Flour, bread, white, enriched, unbleached",,4564,,790146.0,,Cereal Grains and Pasta,
+107,"Flour, rice, white, unenriched",,4530,,790214.0,,Cereal Grains and Pasta,
+108,"Flour, corn, yellow, fine meal, enriched",,4577,,790276.0,,Cereal Grains and Pasta,
+109,"Butter, stick, salted",,9913,,790508.0,,Dairy and Egg Products,
+110,"Onions, red, raw",,4679,,790577.0,,Vegetables and Vegetable Products,
+111,"Onions, yellow, raw",,4679,,790646.0,,Vegetables and Vegetable Products,
+112,"Garlic, raw",,4682,,1104647.0,,Vegetables and Vegetable Products,
+113,"Flour, soy, defatted",,3847,,1104705.0,,Legumes and Legume Products,
+114,"Flour, soy, full-fat",,3847,,1104766.0,,Legumes and Legume Products,
+115,"Flour, rice, brown",,4530,,1104812.0,,Cereal Grains and Pasta,
+116,"Flour, rice, glutinous",,,,1104867.0,,Cereal Grains and Pasta,
+117,"Flour, pastry, unenriched, unbleached",,4564,,1104913.0,,Cereal Grains and Pasta,
+118,"Onions, white, raw",,4679,,1104962.0,,Vegetables and Vegetable Products,
+119,"Bananas, overripe, raw",,4640,,1105073.0,,Fruits and Fruit Juices,
+120,"Bananas, ripe and slightly ripe, raw",,4640,,1105314.0,,Fruits and Fruit Juices,
+121,"Apples, red delicious, with skin, raw",,3750,,1750339.0,,Fruits and Fruit Juices,
+122,"Apples, fuji, with skin, raw",,3750,,1750340.0,,Fruits and Fruit Juices,
+123,"Apples, gala, with skin, raw",,3750,,1750341.0,,Fruits and Fruit Juices,
+124,"Apples, granny smith, with skin, raw",,3750,,1750342.0,,Fruits and Fruit Juices,
+125,"Apples, honeycrisp, with skin, raw",,3750,,1750343.0,,Fruits and Fruit Juices,
+126,"Oil, peanut",,3818,,1750348.0,,Fats and Oils,
+127,"Oil, sunflower",,4231,,1750349.0,,Fats and Oils,
+128,"Oil, safflower",,4222,,1750350.0,,Fats and Oils,
+129,"Oil, olive, extra light",,4146,,1750351.0,,Fats and Oils,
+130,"Mushroom, lion's mane",,91752,,1999626.0,,Vegetables and Vegetable Products,
+131,"Mushroom, oyster",,5322,,1999627.0,,Vegetables and Vegetable Products,
+132,"Mushrooms, shiitake",,5353,,1999628.0,,Vegetables and Vegetable Products,
+133,"Mushrooms, white button",,5341,,1999629.0,,Vegetables and Vegetable Products,
+134,"Soy milk, unsweetened, plain, shelf stable",,3847,,1999630.0,,Legumes and Legume Products,
+135,"Almond milk, unsweetened, plain, shelf stable",,3755,,1999631.0,,Beverages,
+136,"Spinach, baby",,3562,,1999632.0,,Vegetables and Vegetable Products,
+137,"Spinach, mature",,3562,,1999633.0,,Vegetables and Vegetable Products,
+138,"Tomato, roma",,4081,,1999634.0,,Vegetables and Vegetable Products,
+139,"Flour, 00",,,,2003586.0,,Cereal Grains and Pasta,
+140,"Flour, spelt, whole grain",,,,2003587.0,,Cereal Grains and Pasta,
+141,"Flour, semolina, coarse and semi-coarse",,,,2003588.0,,Cereal Grains and Pasta,
+142,"Flour, semolina, fine",,,,2003589.0,,Cereal Grains and Pasta,
+143,"Apple juice, with added vitamin C, from concentrate, shelf stable",,,,2003590.0,,Fruits and Fruit Juices,
+144,"Orange juice, no pulp, not fortified, from concentrate, refrigerated",,,,2003591.0,,Fruits and Fruit Juices,
+145,"Grape juice, purple, with added vitamin C, from concentrate, shelf stable",,,,2003592.0,,Fruits and Fruit Juices,
+146,"Grape juice, white, with added vitamin C, from concentrate, shelf stable",,,,2003593.0,,Fruits and Fruit Juices,
+147,"Cranberry juice, not fortified, from concentrate, shelf stable",,,,2003594.0,,Fruits and Fruit Juices,
+148,"Grapefruit juice, red, not fortified, not from concentrate, refrigerated",,,,2003595.0,,Fruits and Fruit Juices,
+149,"Tomato juice, with added ingredients, from concentrate, shelf stable",,,,2003596.0,,Vegetables and Vegetable Products,
+150,"Orange juice, no pulp, not fortified, not from concentrate, refrigerated",,,,2003597.0,,Fruits and Fruit Juices,
+151,"Mushroom, portabella",,,,2003598.0,,Vegetables and Vegetable Products,
+152,"Mushroom, king oyster",,,,2003599.0,,Vegetables and Vegetable Products,
+153,"Mushroom, enoki",,,,2003600.0,,Vegetables and Vegetable Products,
+154,"Mushroom, crimini",,,,2003601.0,,Vegetables and Vegetable Products,
+155,"Mushroom, maitake",,,,2003602.0,,Vegetables and Vegetable Products,
+156,"Mushroom, beech",,,,2003603.0,,Vegetables and Vegetable Products,
+157,"Mushroom, pioppini",,,,2003604.0,,Vegetables and Vegetable Products,
+158,"Soy milk, sweetened, plain, refrigerated",,,,2257044.0,,Legumes and Legume Products,
+159,"Almond milk, unsweetened, plain, refrigerated",,,,2257045.0,,Beverages,
+160,"Oat milk, unsweetened, plain, refrigerated",,,,2257046.0,,Beverages,
+161,"Carrots, mature, raw",,,,2258586.0,,Vegetables and Vegetable Products,
+162,"Carrots, baby, raw",,,,2258587.0,,Vegetables and Vegetable Products,
+163,"Peppers, bell, green, raw",,,,2258588.0,,Vegetables and Vegetable Products,
+164,"Peppers, bell, yellow, raw",,,,2258589.0,,Vegetables and Vegetable Products,
+165,"Peppers, bell, red, raw",,,,2258590.0,,Vegetables and Vegetable Products,
+166,"Peppers, bell, orange, raw",,,,2258591.0,,Vegetables and Vegetable Products,
+167,"Buttermilk, low fat",,,,2259792.0,,Dairy and Egg Products,
+168,"Yogurt, plain, whole milk",,,,2259793.0,,Dairy and Egg Products,
+169,"Yogurt, Greek, plain, whole milk",,,,2259794.0,,Dairy and Egg Products,
+170,"Cheese, parmesan, grated, refrigerated",,,,2259795.0,,Dairy and Egg Products,
+171,"Cheese, feta, whole milk, crumbled",,,,2259796.0,,Dairy and Egg Products,
+172,"Flour, almond",,,,2261420.0,,Nut and Seed Products,
+173,"Flour, oat, whole grain",,,,2261421.0,,Cereal Grains and Pasta,
+174,"Flour, potato",,,,2261422.0,,Vegetables and Vegetable Products,
+175,"Peanut butter, creamy",,,,2262072.0,,Legumes and Legume Products,
+176,"Sesame butter, creamy",,,,2262073.0,,Nut and Seed Products,
+177,"Almond butter, creamy",,,,2262074.0,,Nut and Seed Products,
+178,"Flaxseed, ground",,,,2262075.0,,Nut and Seed Products,
+179,"Cottage cheese, full fat, large or small curd",,,,2346384.0,,Dairy and Egg Products,
+180,"Cream cheese, full fat, block",,,,2346385.0,,Dairy and Egg Products,
+181,"Cream, heavy",,,,2346386.0,,Dairy and Egg Products,
+182,"Cream, sour, full fat",,,,2346387.0,,Dairy and Egg Products,
+183,"Lettuce, iceberg, raw",,,,2346388.0,,Vegetables and Vegetable Products,
+184,"Lettuce, romaine, green, raw",,,,2346389.0,,Vegetables and Vegetable Products,
+185,"Lettuce, leaf, red, raw",,,,2346390.0,,Vegetables and Vegetable Products,
+186,"Lettuce, leaf, green, raw",,,,2346391.0,,Vegetables and Vegetable Products,
+187,"Nuts, pine nuts, raw",,,,2346392.0,,Nut and Seed Products,
+188,"Nuts, almonds, whole, raw",,,,2346393.0,,Nut and Seed Products,
+189,"Nuts, walnuts, English, halves, raw",,,,2346394.0,,Nut and Seed Products,
+190,"Nuts, pecans, halves, raw",,,,2346395.0,,Nut and Seed Products,
+191,"Oats, whole grain, rolled, old fashioned",,,,2346396.0,,Cereal Grains and Pasta,
+192,"Oats, whole grain, steel cut",,,,2346397.0,,Cereal Grains and Pasta,
+193,"Pineapple, raw",,,,2346398.0,,Fruits and Fruit Juices,
+194,"Cherries, sweet, dark red, raw",,,,2346399.0,,Fruits and Fruit Juices,
+195,"Beans, snap, green, raw",,,,2346400.0,,Vegetables and Vegetable Products,
+196,"Potatoes, russet, without skin, raw",,,,2346401.0,,Vegetables and Vegetable Products,
+197,"Potatoes, red, without skin, raw",,,,2346402.0,,Vegetables and Vegetable Products,
+198,"Potatoes, gold, without skin, raw",,,,2346403.0,,Vegetables and Vegetable Products,
+199,"Sweet potatoes, orange flesh, without skin, raw",,,,2346404.0,,Vegetables and Vegetable Products,
+200,"Celery, raw",,,,2346405.0,,Vegetables and Vegetable Products,
+201,"Cucumber, with peel, raw",,,,2346406.0,,Vegetables and Vegetable Products,
+202,"Cabbage, green, raw",,,,2346407.0,,Vegetables and Vegetable Products,
+203,"Cabbage, red, raw",,,,2346408.0,,Vegetables and Vegetable Products,
+204,"Strawberries, raw",,,,2346409.0,,Fruits and Fruit Juices,
+205,"Raspberries, raw",,,,2346410.0,,Fruits and Fruit Juices,
+206,"Blueberries, raw",,,,2346411.0,,Fruits and Fruit Juices,
+207,"Grapes, red, seedless, raw",,,,2346412.0,,Fruits and Fruit Juices,
+208,"Grapes, green, seedless, raw",,,,2346413.0,,Fruits and Fruit Juices,
+209,"Applesauce, unsweetened, with added vitamin C",,,,2346414.0,,Fruits and Fruit Juices,
+210,"Flour, amaranth",,,,2512371.0,,Cereal Grains and Pasta,
+211,"Flour, quinoa",,,,2512372.0,,Cereal Grains and Pasta,
+212,"Flour, sorghum",,,,2512373.0,,Cereal Grains and Pasta,
+213,"Flour, buckwheat",,,,2512374.0,,Cereal Grains and Pasta,
+214,"Flour, rye",,,,2512375.0,,Cereal Grains and Pasta,
+215,"Flour, barley",,,,2512376.0,,Cereal Grains and Pasta,
+216,"Flour, cassava",,,,2512377.0,,Vegetables and Vegetable Products,
+217,"Buckwheat, whole grain",,,,2512378.0,,Cereal Grains and Pasta,
+218,"Millet, whole grain",,,,2512379.0,,Cereal Grains and Pasta,
+219,"Rice, brown, long grain, unenriched, raw",,,,2512380.0,,Cereal Grains and Pasta,
+220,"Rice, white, long grain, unenriched, raw",,,,2512381.0,,Cereal Grains and Pasta,
+221,"Beef, ground, 90% lean meat / 10% fat, raw",,,,2514743.0,,Beef Products,
+222,"Beef, ground, 80% lean meat / 20% fat, raw",,,,2514744.0,,Beef Products,
+223,"Pork, ground, raw",,,,2514745.0,,Pork Products,
+224,"Chicken, ground, with additives, raw",,,,2514746.0,,Poultry Products,
+225,"Turkey, ground, 93% lean/ 7% fat, raw",,,,2514747.0,,Poultry Products,
+226,"Nuts, brazilnuts, raw",,,,2515373.0,,Nut and Seed Products,
+227,"Nuts, cashew nuts, raw",,,,2515374.0,,Nut and Seed Products,
+228,"Nuts, hazelnuts or filberts, raw",,,,2515375.0,,Nut and Seed Products,
+229,"Peanuts, raw",,,,2515376.0,,Legumes and Legume Products,
+230,"Flour, chestnut",,,,2515377.0,,Nut and Seed Products,
+231,"Nuts, macadamia nuts, raw",,,,2515378.0,,Nut and Seed Products,
+232,"Nuts, pistachio nuts, raw",,,,2515379.0,,Nut and Seed Products,
+233,"Seeds, pumpkin seeds (pepitas), raw",,,,2515380.0,,Nut and Seed Products,
+234,"Seeds, sunflower seed, kernel, raw",,,,2515381.0,,Nut and Seed Products,
+235,"Flour, coconut",,,,2515382.0,,Nut and Seed Products,
+236,"Beans, cannellini, dry",,,,2644281.0,,Legumes and Legume Products,
+237,"Chickpeas, (garbanzo beans, bengal gram), dry",,,,2644282.0,,Legumes and Legume Products,
+238,"Lentils, dry",,,,2644283.0,,Legumes and Legume Products,
+239,"Blackeye pea, dry",,,,2644284.0,,Legumes and Legume Products,
+240,"Beans, black, canned, sodium added, drained and rinsed",,,,2644285.0,,Legumes and Legume Products,
+241,"Beans, navy, canned, sodium added, drained and rinsed",,,,2644286.0,,Legumes and Legume Products,
+242,"Beans, cannellini, canned, sodium added, drained and rinsed",,,,2644287.0,,Legumes and Legume Products,
+243,"Chickpeas (garbanzo beans, bengal gram), canned, sodium added, drained and rinsed",,,,2644288.0,,Legumes and Legume Products,
+244,"Beans, kidney, dark red, canned, sodium added, sugar added, drained and rinsed",,,,2644289.0,,Legumes and Legume Products,
+245,"Beans, kidney, light red, canned, sodium added, sugar added, drained and rinsed",,,,2644290.0,,Legumes and Legume Products,
+246,"Peas, green, sweet, canned, sodium added, sugar added, drained and rinsed",,,,2644291.0,,Vegetables and Vegetable Products,
+247,"Beans, pinto, canned, sodium added, drained and rinsed",,,,2644292.0,,Legumes and Legume Products,
+248,"Blackeye pea, canned, sodium added, drained and rinsed",,,,2644293.0,,Legumes and Legume Products,
+249,"Beans, great northern, canned, sodium added, drained and rinsed",,,,2644294.0,,Legumes and Legume Products,
+250,"Pork, loin, boneless, raw",,,,2646168.0,,Pork Products,
+251,"Pork, loin, tenderloin, boneless, raw",,,,2646169.0,,Pork Products,
+252,"Chicken, breast, boneless, skinless, raw",,,,2646170.0,,Poultry Products,
+253,"Chicken, thigh, boneless, skinless, raw",,,,2646171.0,,Poultry Products,
+254,"Beef, ribeye, steak, boneless, choice, raw",,,,2646172.0,,Beef Products,
+255,"Beef, round, top round, boneless, choice, raw",,,,2646173.0,,Beef Products,
+256,"Beef, chuck, roast, boneless, choice, raw",,,,2646174.0,,Beef Products,
+257,"Beef, flank, steak, boneless, choice, raw",,,,2646175.0,,Beef Products,
+258,"Yogurt, plain, nonfat",,,,2647437.0,,Dairy and Egg Products,
+259,"Cheese, monterey jack, solid",,,,2647438.0,,Dairy and Egg Products,
+260,"Cheese, pasteurized process cheese food or product, American, singles",,,,2647439.0,,Dairy and Egg Products,
+261,"Cheese, provolone, sliced",,,,2647440.0,,Dairy and Egg Products,
+262,"Cheese, oaxaca, solid",,,,2647441.0,,Dairy and Egg Products,
+263,"Cheese, queso fresco, solid",,,,2647442.0,,Dairy and Egg Products,
+264,"Cheese, cotija, solid",,,,2647443.0,,Dairy and Egg Products,
+0,Angelica,Angelica keiskei,357850,,,FOOD00001,Herbs and Spices,Herbs
+1,Savoy cabbage,Brassica oleracea var. sabauda,1216010,,,FOOD00002,Vegetables,Cabbages
+2,Silver linden,Tilia argentea,,845789.0,,FOOD00003,Herbs and Spices,Herbs
+3,Kiwi,Actinidia chinensis,3625,506775.0,,FOOD00004,Fruits,Tropical fruits
+4,Allium,Allium,4678,42634.0,,FOOD00005,Vegetables,Onion-family vegetables
+5,Garden onion,Allium cepa,4679,42720.0,,FOOD00006,Vegetables,Onion-family vegetables
+6,Leek,Allium porrum,,42659.0,,FOOD00007,Vegetables,Onion-family vegetables
+7,Garlic,Allium sativum,4682,42652.0,,FOOD00008,Herbs and Spices,Herbs
+8,Chives,Allium schoenoprasum,74900,42636.0,,FOOD00009,Herbs and Spices,Herbs
+9,Lemon verbena,Aloysia triphylla,542672,32135.0,,FOOD00010,Herbs and Spices,Herbs
+10,Cashew nut,Anacardium occidentale,171929,28793.0,,FOOD00011,Nuts,Nuts
+11,Pineapple,Ananas comosus,4615,42335.0,,FOOD00012,Fruits,Tropical fruits
+12,Dill,Anethum graveolens,40922,29584.0,,FOOD00013,Herbs and Spices,Herbs
+13,Custard apple,Annona reticulata,301862,18099.0,,FOOD00014,Fruits,Tropical fruits
+14,Wild celery,Apium graveolens,4045,182184.0,,FOOD00015,Herbs and Spices,Spices
+15,Peanut,Arachis hypogaea,3818,26463.0,,FOOD00016,Nuts,Nuts
+16,Burdock,Arctium lappa,4217,36545.0,,FOOD00017,Vegetables,Root vegetables
+17,Horseradish,Armoracia rusticana,3704,23044.0,,FOOD00018,Herbs and Spices,Spices
+18,Tarragon,Artemisia dracunculus,72341,35462.0,,FOOD00019,Herbs and Spices,Herbs
+19,Mugwort,Artemisia vulgaris,4220,35505.0,,FOOD00020,Herbs and Spices,Herbs
+20,Asparagus,Asparagus officinalis,4686,42784.0,,FOOD00021,Vegetables,Shoot vegetables
+21,Oat,Avena sativa,4498,41459.0,,FOOD00022,Cereals and cereal products,Cereals
+22,Star fruit,Averrhoa carambola,28974,506371.0,,FOOD00023,Fruits,Tropical fruits
+23,Brazil nut,Bertholletia excelsa,3645,21989.0,,FOOD00024,Nuts,Nuts
+24,Common beet,Beta vulgaris,161934,20681.0,,FOOD00025,Vegetables,Leaf vegetables
+25,Borage,Borago officinalis,13363,31727.0,,FOOD00026,Herbs and Spices,Oilseed crops
+26,Chinese mustard,Brassica juncea,3707,23059.0,,FOOD00027,Vegetables,Cabbages
+27,Swede,Brassica napus,3708,23060.0,,FOOD00028,Vegetables,Root vegetables
+28,Rape,Brassica napus var. napus,138011,530955.0,,FOOD00029,Vegetables,Root vegetables
+29,Common cabbage,Brassica oleracea,3712,23062.0,,FOOD00030,Vegetables,Cabbages
+30,Cauliflower,Brassica oleracea var. botrytis,3715,530957.0,,FOOD00031,Vegetables,Cabbages
+31,Brussel sprouts,Brassica oleracea var. gemmifera,178616,530959.0,,FOOD00032,Vegetables,Cabbages
+32,Kohlrabi,Brassica oleracea var. gongylodes,109379,530960.0,,FOOD00033,Vegetables,Root vegetables
+33,Broccoli,Brassica oleracea var. italica,36774,530961.0,,FOOD00034,Vegetables,Cabbages
+34,Chinese cabbage,Brassica rapa,3711,23063.0,,FOOD00035,Vegetables,Cabbages
+35,Turnip,Brassica rapa var. rapa,51350,526965.0,,FOOD00036,Herbs and Spices,Herbs
+36,Pigeon pea,Cajanus cajan,3821,26516.0,,FOOD00037,Pulses,Peas
+37,Tea,Camellia sinensis,4442,506801.0,,FOOD00038,Teas,Teas
+38,Capers,Capparis spinosa,65558,505885.0,,FOOD00039,Herbs and Spices,Spices
+39,Pepper,Capsicum annuum,4072,30492.0,,FOOD00040,Vegetables,Fruit vegetables
+40,Papaya,Carica papaya,3649,22324.0,,FOOD00041,Fruits,Tropical fruits
+41,Safflower,Carthamus tinctorius,4222,501305.0,,FOOD00042,Herbs and Spices,Oilseed crops
+42,Caraway,Carum carvi,48032,29610.0,,FOOD00043,Herbs and Spices,Spices
+43,Pecan nut,Carya illinoinensis,32201,19234.0,,FOOD00044,Nuts,Nuts
+44,Chestnut,Castanea,21019,19451.0,,FOOD00045,Nuts,Nuts
+45,Roman camomile,Chamaemelum nobile,99037,501396.0,,FOOD00046,Herbs and Spices,Herbs
+46,Chickpea,Cicer arietinum,3827,26537.0,,FOOD00047,Pulses,Peas
+47,Endive,Cichorium endivia,114280,501522.0,,FOOD00048,Vegetables,Leaf vegetables
+48,Chicory,Cichorium intybus,13427,36763.0,,FOOD00049,Vegetables,Root vegetables
+49,Chinese cinnamon,Cinnamomum aromaticum,119260,506205.0,,FOOD00050,Herbs and Spices,Spices
+50,Ceylon cinnamon,Cinnamomum verum,128608,501529.0,,FOOD00051,Herbs and Spices,Spices
+51,Watermelon,Citrullus lanatus,3654,22356.0,,FOOD00052,Gourds,Gourds
+52,Lime,Citrus aurantiifolia,159033,506403.0,,FOOD00053,Fruits,Citrus
+53,Lemon,Citrus limon,2708,28885.0,,FOOD00054,Fruits,Citrus
+54,Pummelo,Citrus maxima,37334,501574.0,,FOOD00055,Fruits,Citrus
+55,"Mandarin orange (Clementine, Tangerine)",Citrus reticulata,85571,28888.0,,FOOD00056,Fruits,Citrus
+56,Sweet orange,Citrus sinensis,2711,28889.0,,FOOD00057,Fruits,Citrus
+57,Coffee,Coffea,13442,35189.0,,FOOD00058,Coffee and coffee products,Coffee
+58,Arabica coffee,Coffea arabica,13443,35190.0,,FOOD00059,Coffee and coffee products,Coffee
+59,Robusta coffee,Coffea canephora,49390,506060.0,,FOOD00060,Coffee and coffee products,Coffee
+60,Coriander,Coriandrum sativum,4047,29622.0,,FOOD00061,Herbs and Spices,Herbs
+61,Common hazelnut,Corylus avellana,13451,501642.0,,FOOD00062,Nuts,Nuts
+62,Saffron,Crocus sativus,82528,501794.0,,FOOD00063,Herbs and Spices,Spices
+63,Muskmelon,Cucumis melo,3656,22362.0,,FOOD00064,Gourds,Gourds
+64,Cucumber,Cucumis sativus,3659,22364.0,,FOOD00065,Gourds,Gourds
+65,Cucurbita,Cucurbita,3660,22365.0,,FOOD00066,Gourds,Gourds
+66,Cumin,Cuminum cyminum,52462,501839.0,,FOOD00067,Herbs and Spices,Spices
+67,Turmeric,Curcuma longa,136217,42394.0,,FOOD00068,Herbs and Spices,Spices
+68,Quince,Cydonia oblonga,36610,25159.0,,FOOD00069,Fruits,Pomes
+69,Lemon grass,Cymbopogon citratus,66014,41613.0,,FOOD00070,Herbs and Spices,Herbs
+70,Globe artichoke,Cynara scolymus,59895,37222.0,,FOOD00071,Vegetables,Shoot vegetables
+71,Wild carrot,Daucus carota,4039,29477.0,,FOOD00072,Vegetables,Root vegetables
+72,Japanese persimmon,Diospyros kaki,35925,505970.0,,FOOD00073,Fruits,Tropical fruits
+73,Cardamom,Elettaria cardamomum,105181,506505.0,,FOOD00074,Herbs and Spices,Spices
+74,Black crowberry,Empetrum nigrum,191066,23743.0,,FOOD00075,Fruits,Berries
+75,Loquat,Eriobotrya japonica,32224,502403.0,,FOOD00076,Fruits,Tropical fruits
+76,Rocket salad (ssp.),Eruca vesicaria ssp. sativa,29727,524057.0,,FOOD00077,Vegetables,Leaf vegetables
+77,Wax apple,Eugenia javanica,119950,27192.0,,FOOD00078,Fruits,Tropical fruits
+78,Common buckwheat,Fagopyrum esculentum,3617,502589.0,,FOOD00079,Cereals and cereal products,Cereals
+79,Tartary buckwheat,Fagopyrum tataricum,62330,21283.0,,FOOD00080,Cereals and cereal products,Cereals
+80,Fig,Ficus carica,3494,19093.0,,FOOD00081,Fruits,Other fruits
+81,Fennel,Foeniculum vulgare,48038,29509.0,,FOOD00082,Herbs and Spices,Herbs
+82,Strawberry,Fragaria X ananassa,3747,24630.0,,FOOD00083,Fruits,Berries
+83,Black huckleberry,Gaylussacia baccata,128893,23660.0,,FOOD00084,Fruits,Berries
+84,Soy bean,Glycine max,3847,26716.0,,FOOD00085,Soy,Soy
+85,Sunflower,Helianthus annuus,4232,36616.0,,FOOD00086,Herbs and Spices,Oilseed crops
+86,Sea-buckthornberry,Hippophae rhamnoides,193516,503044.0,,FOOD00087,Fruits,Berries
+87,Barley,Hordeum vulgare,4513,40874.0,,FOOD00088,Cereals and cereal products,Cereals
+88,Hyssop,Hyssopus officinalis,39324,32536.0,,FOOD00089,Herbs and Spices,Herbs
+89,Star anise,Illicium verum,124778,505892.0,,FOOD00090,Herbs and Spices,Spices
+90,Swamp cabbage,Ipomoea aquatica,89636,30759.0,,FOOD00091,Vegetables,Leaf vegetables
+91,Sweet potato,Ipomoea batatas,4120,30764.0,,FOOD00092,Vegetables,Tubers
+92,Black walnut,Juglans nigra,16719,19254.0,,FOOD00093,Nuts,Nuts
+93,Common walnut,Juglans regia,51240,503244.0,,FOOD00094,Nuts,Nuts
+94,Lettuce,Lactuca sativa,4236,36607.0,,FOOD00095,Vegetables,Leaf vegetables
+95,Grass pea,Lathyrus sativus,3860,25877.0,,FOOD00096,Pulses,Peas
+96,Sweet bay,Laurus nobilis,85223,503343.0,,FOOD00097,Herbs and Spices,Herbs
+97,Lentils,Lens culinaris,3864,503364.0,,FOOD00098,Pulses,Lentils
+98,Garden cress,Lepidium sativum,33125,22978.0,,FOOD00099,Vegetables,Leaf vegetables
+99,Lovage,Levisticum officinale,48042,29673.0,,FOOD00100,Herbs and Spices,Herbs
+100,Flaxseed,Linum usitatissimum,4006,29226.0,,FOOD00101,Herbs and Spices,Oilseed crops
+101,Mexican oregano,Lippia graveolens,,32068.0,,FOOD00102,Herbs and Spices,Herbs
+102,Lichee,Litchi chinensis,151069,503504.0,,FOOD00103,Fruits,Tropical fruits
+103,Lupine,Lupinus,3869,25916.0,,FOOD00104,Pulses,Other pulses
+104,Apple,Malus pumila,283210,25262.0,,FOOD00105,Fruits,Pomes
+105,Mango,Mangifera indica,29780,28803.0,,FOOD00106,Fruits,Tropical fruits
+106,German camomile,Matricaria recutita,127986,38079.0,,FOOD00107,Herbs and Spices,Herbs
+107,Lemon balm,Melissa officinalis,39338,32565.0,,FOOD00108,Herbs and Spices,Herbs
+108,Mentha,Mentha,21819,32264.0,,FOOD00109,Herbs and Spices,Herbs
+109,Orange mint,Mentha aquatica,190902,32268.0,,FOOD00110,Herbs and Spices,Herbs
+110,Cornmint,Mentha arvensis,292239,565302.0,,FOOD00111,Herbs and Spices,Herbs
+111,Spearmint,Mentha spicata,29719,32272.0,,FOOD00112,Herbs and Spices,Herbs
+112,Peppermint,Mentha X piperita,34256,32275.0,,FOOD00113,Herbs and Spices,Herbs
+113,Medlar,Mespilus germanica,36616,506235.0,,FOOD00114,Fruits,Pomes
+114,Bitter gourd,Momordica charantia,3673,22399.0,,FOOD00115,Gourds,Gourds
+115,Mulberry,Morus,3497,19064.0,,FOOD00116,Fruits,Berries
+116,Black mulberry,Morus nigra,85232,19069.0,,FOOD00117,Fruits,Berries
+117,Nutmeg,Myristica fragrans,51089,18125.0,,FOOD00118,Herbs and Spices,Spices
+118,Sweet basil,Ocimum basilicum,39350,32627.0,,FOOD00119,Herbs and Spices,Herbs
+119,Evening primrose,Oenothera biennis,3942,27368.0,,FOOD00120,Herbs and Spices,Oilseed crops
+120,Olive,Olea europaea,4146,32990.0,,FOOD00121,Vegetables,Fruit vegetables
+121,Sweet marjoram,Origanum majorana,268884,32631.0,,FOOD00122,Herbs and Spices,Herbs
+122,Pot marjoram,Origanum onites,452416,506029.0,,FOOD00123,Herbs and Spices,Herbs
+123,Common oregano,Origanum vulgare,39352,32632.0,,FOOD00124,Herbs and Spices,Herbs
+124,Rice,Oryza sativa,4530,41976.0,,FOOD00125,Cereals and cereal products,Cereals
+125,Millet,Panicum miliaceum,4540,40946.0,,FOOD00126,Cereals and cereal products,Cereals
+126,Poppy,Papaver,3468,18881.0,,FOOD00127,Herbs and Spices,Oilseed crops
+127,Passion fruit,Passiflora edulis,78168,22223.0,,FOOD00128,Fruits,Tropical fruits
+128,Parsnip,Pastinaca sativa,4041,29795.0,,FOOD00129,Vegetables,Root vegetables
+129,Avocado,Persea americana,3435,18154.0,,FOOD00130,Vegetables,Fruit vegetables
+130,Parsley,Petroselinum crispum,4043,29817.0,,FOOD00131,Herbs and Spices,Herbs
+131,Scarlet bean,Phaseolus coccineus,3886,26845.0,,FOOD00132,Pulses,Beans
+132,Lima bean,Phaseolus lunatus,3884,26850.0,,FOOD00133,Pulses,Beans
+133,Common bean,Phaseolus vulgaris,3885,26857.0,,FOOD00134,Pulses,Beans
+134,Date,Phoenix dactylifera,42345,42458.0,,FOOD00135,Fruits,Other fruits
+135,Black chokeberry,Photinia melanocarpa,661339,565397.0,,FOOD00136,Fruits,Berries
+136,Anise,Pimpinella anisum,271192,29822.0,,FOOD00137,Herbs and Spices,Herbs
+137,Pine nut,Pinus,3337,18035.0,,FOOD00138,Nuts,Nuts
+138,Pepper (Spice),Piper nigrum,13216,18310.0,,FOOD00139,Herbs and Spices,Spices
+139,Pistachio,Pistacia vera,55513,506470.0,,FOOD00140,Nuts,Nuts
+140,Common pea,Pisum sativum,3888,26867.0,,FOOD00141,Pulses,Peas
+141,Purslane,Portulaca oleracea,46147,20422.0,,FOOD00142,Herbs and Spices,Herbs
+142,"Prunus (Cherry, Plum)",Prunus,3754,24762.0,,FOOD00143,Fruits,Drupes
+143,Apricot,Prunus armeniaca,36596,24769.0,,FOOD00144,Fruits,Drupes
+144,Sweet cherry,Prunus avium,42229,24770.0,,FOOD00145,Fruits,Drupes
+145,Sour cherry,Prunus cerasus,140311,24773.0,,FOOD00146,Fruits,Drupes
+146,European plum,Prunus domestica,3758,24774.0,,FOOD00147,Fruits,Drupes
+147,Almond,Prunus dulcis,3755,24775.0,,FOOD00148,Nuts,Nuts
+148,Peach,Prunus persica,3760,24765.0,,FOOD00149,Fruits,Drupes
+149,Guava,Psidium guajava,120290,27240.0,,FOOD00150,Fruits,Tropical fruits
+150,Pomegranate,Punica granatum,22663,27278.0,,FOOD00151,Fruits,Tropical fruits
+151,Pear,Pyrus communis,23211,25295.0,,FOOD00152,Fruits,Pomes
+152,Radish,Raphanus sativus,3726,23290.0,,FOOD00153,Vegetables,Root vegetables
+153,Garden rhubarb,Rheum rhabarbarum,3621,504747.0,,FOOD00154,Vegetables,Stalk vegetables
+154,Blackcurrant,Ribes nigrum,78511,24488.0,,FOOD00155,Fruits,Berries
+155,Redcurrant,Ribes rubrum,175228,504798.0,,FOOD00156,Fruits,Berries
+156,Gooseberry,Ribes uva-crispa,135518,504800.0,,FOOD00157,Fruits,Berries
+157,Watercress,Rorippa nasturtium-aquaticum,135518,22993.0,,FOOD00158,Herbs and Spices,Herbs
+158,Rosemary,Rosmarinus officinalis,39367,32677.0,,FOOD00159,Herbs and Spices,Herbs
+159,"Rubus (Blackberry, Raspberry)",Rubus,23216,24848.0,,FOOD00160,Fruits,Berries
+160,Cloudberry,Rubus chamaemorus,57936,24850.0,,FOOD00161,Fruits,Berries
+161,Red raspberry,Rubus idaeus,32247,24947.0,,FOOD00162,Fruits,Berries
+162,Black raspberry,Rubus occidentalis,75079,24854.0,,FOOD00163,Fruits,Berries
+163,Sorrel,Rumex acetosa,41241,504901.0,,FOOD00164,Herbs and Spices,Herbs
+164,Common sage,Salvia officinalis,38868,32729.0,,FOOD00165,Herbs and Spices,Herbs
+165,Black elderberry,Sambucus nigra,4202,35324.0,,FOOD00166,Fruits,Berries
+166,Summer savory,Satureja hortensis,49987,32308.0,,FOOD00167,Herbs and Spices,Herbs
+167,Winter savory,Satureja montana,49988,505016.0,,FOOD00168,Herbs and Spices,Herbs
+168,Rye,Secale cereale,4550,42090.0,,FOOD00169,Cereals and cereal products,Cereals
+169,Sesame,Sesamum orientale,4182,505186.0,,FOOD00170,Herbs and Spices,Oilseed crops
+170,Garden tomato,Solanum lycopersicum,4081,521671.0,,FOOD00171,Vegetables,Fruit vegetables
+171,Cherry tomato,Solanum lycopersicum var. cerasiforme,195583,566309.0,,FOOD00172,Vegetables,Fruit vegetables
+172,Garden tomato (var.),Solanum lycopersicum var. lycopersicum,397755,566310.0,,FOOD00173,Vegetables,Fruit vegetables
+173,Eggplant,Solanum melongena,4111,30446.0,,FOOD00174,Vegetables,Fruit vegetables
+174,Potato,Solanum tuberosum,4113,505272.0,,FOOD00175,Vegetables,Tubers
+175,Rowanberry,Sorbus aucuparia,36599,25320.0,,FOOD00176,Fruits,Berries
+176,Sorghum,Sorghum bicolor,4558,42108.0,,FOOD00177,Cereals and cereal products,Cereals
+177,Spinach,Spinacia oleracea,3562,20709.0,,FOOD00178,Vegetables,Leaf vegetables
+178,Cloves,Syzygium aromaticum,219868,506167.0,,FOOD00179,Herbs and Spices,Spices
+179,Tamarind,Tamarindus indica,58860,26980.0,,FOOD00180,Fruits,Tropical fruits
+180,Dandelion,Taraxacum officinale,50225,36213.0,,FOOD00181,Herbs and Spices,Herbs
+181,Cocoa bean,Theobroma cacao,3641,505487.0,,FOOD00182,Cocoa and cocoa products,Cocoa
+182,Common thyme,Thymus vulgaris,49992,505501.0,,FOOD00183,Herbs and Spices,Herbs
+183,Linden,Tilia,64580,21535.0,,FOOD00184,Herbs and Spices,Herbs
+184,Small-leaf linden,Tilia cordata,172266,505507.0,,FOOD00185,Herbs and Spices,Herbs
+185,Fenugreek,Trigonella foenum-graecum,78534,505590.0,,FOOD00186,Herbs and Spices,Herbs
+186,Common wheat,Triticum aestivum,4565,42237.0,,FOOD00187,Cereals and cereal products,Cereals
+187,"Vaccinium (Blueberry, Cranberry, Huckleberry)",Vaccinium,13749,23571.0,,FOOD00188,Fruits,Berries
+188,Lowbush blueberry,Vaccinium angustifolium,472369,23579.0,,FOOD00189,Fruits,Berries
+189,Sparkleberry,Vaccinium arboreum,229201,23580.0,,FOOD00190,Fruits,Berries
+190,Highbush blueberry,Vaccinium corymbosum,69266,23573.0,,FOOD00191,Fruits,Berries
+191,American cranberry,Vaccinium macrocarpon,13750,23599.0,,FOOD00192,Fruits,Berries
+192,Bilberry,Vaccinium myrtillus,180763,23605.0,,FOOD00193,Fruits,Berries
+193,Lingonberry,Vaccinium vitis-idaea,180772,505637.0,,FOOD00194,Fruits,Berries
+194,Vanilla,Vanilla,51238,43714.0,,FOOD00195,Herbs and Spices,Spices
+195,Common verbena,Verbena officinalis,79772,32110.0,,FOOD00196,Herbs and Spices,Herbs
+196,Broad bean,Vicia faba,3906,26339.0,,FOOD00197,Pulses,Beans
+197,Adzuki bean,Vigna angularis,3914,505691.0,,FOOD00198,Pulses,Beans
+198,Gram bean,Vigna mungo,3915,506273.0,,FOOD00199,Pulses,Beans
+199,Mung bean,Vigna radiata,157791,506804.0,,FOOD00200,Pulses,Beans
+200,Climbing bean,Vigna umbellata,87088,506275.0,,FOOD00201,Pulses,Beans
+201,Cowpea,Vigna unguiculata,3917,27018.0,,FOOD00202,Pulses,Peas
+202,Muscadine grape,Vitis rotundifolia,103349,28609.0,,FOOD00203,Fruits,Berries
+203,Common grape,Vitis vinifera,29760,28629.0,,FOOD00204,Fruits,Berries
+204,Corn,Zea mays,4577,42269.0,,FOOD00205,Cereals and cereal products,Cereals
+205,Ginger,Zingiber officinale,94328,42402.0,,FOOD00206,Herbs and Spices,Spices
+206,Arctic blackberry,Rubus arcticus,70741,24849.0,,FOOD00207,Fruits,Berries
+207,Banana,Musa acuminata,4641,42390.0,,FOOD00208,Fruits,Tropical fruits
+208,Bayberry,Myrica,3509,19260.0,,FOOD00209,Fruits,Berries
+209,Elliott's blueberry,Vaccinium elliottii,283798,23592.0,,FOOD00210,Fruits,Berries
+210,Canada blueberry,Vaccinium myrtilloides,1503870,23604.0,,FOOD00211,Fruits,Berries
+211,Bog bilberry,Vaccinium uliginosum,190548,23574.0,,FOOD00212,Fruits,Berries
+212,Buffalo currant,Ribes aureum var. villosum,23283,530043.0,,FOOD00213,Fruits,Berries
+213,Celeriac,Apium graveolens var. rapaceum,278110,530941.0,,FOOD00214,Vegetables,Root vegetables
+214,Celery stalks,Apium graveolens var. dulce,117781,182185.0,,FOOD00215,Vegetables,Stalk vegetables
+215,Chinese chives,Allium tuberosum,4683,506483.0,,FOOD00216,Herbs and Spices,Herbs
+216,European cranberry,Vaccinium oxycoccos,516948,505635.0,,FOOD00217,Fruits,Berries
+217,Deerberry,Vaccinium stamineum,176259,23615.0,,FOOD00218,Fruits,Berries
+218,Ginseng,Panax,4054,29398.0,,FOOD00219,Herbs and Spices,Spices
+219,Cascade huckleberry,Vaccinium deliciosum,190531,23591.0,,FOOD00220,Fruits,Berries
+220,Oval-leaf huckleberry,Vaccinium ovalifolium,190544,23607.0,,FOOD00221,Fruits,Berries
+221,Evergreen huckleberry,Vaccinium ovatum,84019,23608.0,,FOOD00222,Fruits,Berries
+222,Red huckleberry,Vaccinium parvifolium,180766,23612.0,,FOOD00223,Fruits,Berries
+223,Longan,Dimocarpus longan,128017,506072.0,,FOOD00224,Fruits,Tropical fruits
+224,Macadamia nut (M. tetraphylla),Macadamia tetraphylla,512563,506560.0,,FOOD00225,Nuts,Nuts
+225,Garden onion (var.),Allium cepa var. cepa,4679,182638.0,,FOOD00226,Vegetables,Onion-family vegetables
+226,Summer grape,Vitis aestivalis,3605,28607.0,,FOOD00227,Fruits,Berries
+227,Fox grape,Vitis labrusca,103355,28608.0,,FOOD00228,Fruits,Berries
+228,Nectarine,Prunus persica var. nucipersica,323851,530965.0,,FOOD00229,Fruits,Drupes
+229,Peach (var.),Prunus persica var. persica,323852,530964.0,,FOOD00230,Fruits,Drupes
+230,Pepper (C. baccatum),Capsicum baccatum var. baccatum,165788,530932.0,,FOOD00231,Vegetables,Fruit vegetables
+231,Pepper (C. chinense),Capsicum chinense,80379,30494.0,,FOOD00232,Vegetables,Fruit vegetables
+232,Pepper (Capsicum),Capsicum,4071,30491.0,,FOOD00233,Vegetables,Fruit vegetables
+233,Rambutan,Nephelium lappaceum,151071,506073.0,,FOOD00234,Fruits,Tropical fruits
+234,Red rice,Oryza rufipogon,4529,504068.0,,FOOD00235,Cereals and cereal products,Cereals
+235,Annual wild rice,Zizania aquatica,75727,41319.0,,FOOD00236,Cereals and cereal products,Cereals
+236,Swiss chard,Beta vulgaris ssp. cicla,1527200,524868.0,,FOOD00237,Vegetables,Leaf vegetables
+237,Lemon thyme,Thymus pulegioides,751873,505500.0,,FOOD00238,Herbs and Spices,Herbs
+238,Tronchuda cabbage,Brassica oleracea var. costata,416546,530958.0,,FOOD00239,Vegetables,Cabbages
+239,Japanese walnut,Juglans ailanthifolia,91209,503241.0,,FOOD00240,Nuts,Nuts
+240,Welsh onion,Allium fistulosum,35875,185463.0,,FOOD00241,Herbs and Spices,Herbs
+241,Hard wheat,Triticum durum,4567,42240.0,,FOOD00242,Cereals and cereal products,Cereals
+242,Shallot,Allium ascalonicum,1476995,506481.0,,FOOD00243,Vegetables,Onion-family vegetables
+243,Rocket salad,Eruca vesicaria,180536,502429.0,,FOOD00244,Vegetables,Leaf vegetables
+244,Carrot,Daucus carota ssp. sativus,79200,524846.0,,FOOD00245,Vegetables,Root vegetables
+245,Triticale,X Triticosecale rimpaui,,506625.0,,FOOD00246,Cereals and cereal products,Cereals
+246,Black cabbage,Brassica oleracea var. viridis,3713,,,FOOD00247,Vegetables,Cabbages
+247,Half-highbush blueberry,Vaccinium angustifolium X Vaccinium corymbosum,934696,,,FOOD00248,Fruits,Berries
+248,Celery leaves,Apium graveolens var. secalinum,941588,,,FOOD00249,Herbs and Spices,Herbs
+249,Chicory leaves,Cichorium intybus var. foliosum,13427,781014.0,,FOOD00250,Vegetables,Leaf vegetables
+250,Komatsuna,Brassica rapa var. perviridis,344680,532656.0,,FOOD00251,Vegetables,Cabbages
+251,Pak choy,Brassica rapa var. chinensis,93385,,,FOOD00252,Vegetables,Cabbages
+252,Napa cabbage,Brassica rapa var. pekinensis,51351,,,FOOD00253,Vegetables,Cabbages
+253,Chicory roots,Cichorium intybus var. sativum,13427,781020.0,,FOOD00254,Vegetables,Root vegetables
+254,Grapefruit/Pummelo hybrid,Citrus paradisi X Citrus maxima,37656,,,FOOD00255,Fruits,Citrus
+255,Grapefruit,Citrus X paradisi,37656,28887.0,,FOOD00256,Fruits,Citrus
+256,Jostaberry,Ribes × nidigrolaria,,,,FOOD00257,Fruits,Berries
+257,Kai-lan,Brassica oleracea var. alboglabra,3714,532650.0,,FOOD00258,Vegetables,Cabbages
+258,Italian oregano,Origanum X majoricum,1384207,,,FOOD00259,Herbs and Spices,Herbs
+259,Oxheart cabbage,Brassica oleracea var. conica,,,,FOOD00260,Vegetables,Cabbages
+260,Daikon radish,Raphanus sativus var. longipinnatus,41679,,,FOOD00261,Vegetables,Root vegetables
+261,Black radish,Raphanus sativus var. niger,41679,,,FOOD00262,Vegetables,Root vegetables
+262,Radish (var.),Raphanus sativus var. sativus,240228,,,FOOD00263,Vegetables,Root vegetables
+263,Red beetroot,Beta vulgaris var. rubra,,,,FOOD00264,Vegetables,Root vegetables
+264,Sweet rowanberry,Grataegosorbus mitschurinii,,,,FOOD00265,Fruits,Berries
+265,Pineappple sage,Salvia elegans,888065,832880.0,,FOOD00266,Herbs and Spices,Herbs
+266,Skunk currant,Ribes glandulosum,175226,24466.0,,FOOD00267,Fruits,Berries
+267,Beer,,,,,FOOD00268,Beverages,Fermented beverages
+268,Other bread,,,,,FOOD00269,Cereals and cereal products,Other breads
+269,Breakfast cereal,,,,,FOOD00270,Cereals and cereal products,Cereal products
+270,Other soy product,,,,,FOOD00271,Soy,Soy products
+271,Other cereal product,,,,,FOOD00272,Cereals and cereal products,Cereal products
+272,Pasta,,,,,FOOD00273,Cereals and cereal products,Cereal products
+273,Biscuit,,,,,FOOD00274,Cereals and cereal products,Cereal products
+274,Sourdough,,,,,FOOD00275,Cereals and cereal products,Doughs
+275,Spirit,,,,,FOOD00276,Beverages,Distilled beverages
+276,Fortified wine,,,,,FOOD00277,Beverages,Fortified wines
+277,Other alcoholic beverage,,,,,FOOD00278,Beverages,Alcoholic beverages
+278,Abalone,Haliotis,6452,69493.0,,FOOD00279,Aquatic foods,Mollusks
+279,Abiyuch,Crateva religiosa,202634,505883.0,,FOOD00280,Fruits,Tropical fruits
+280,Acerola,Malpighia emarginata,151847,29280.0,,FOOD00281,Fruits,Tropical fruits
+281,Acorn,Quercus,3511,19276.0,,FOOD00282,Nuts,Nuts
+282,Winter squash,Cucurbita maxima,3661,22369.0,,FOOD00283,Gourds,Gourds
+283,Agar,Eucheuma,31444,11923.0,,FOOD00284,Aquatic foods,Seaweed
+284,Red king crab,Paralithodes camtschaticus,6741,97935.0,,FOOD00285,Aquatic foods,Crustaceans
+285,Alfalfa,Medicago sativa,3879,183623.0,,FOOD00286,Herbs and Spices,Herbs
+286,Allspice,Pimenta dioica,375272,27247.0,,FOOD00287,Herbs and Spices,Spices
+287,Amaranth,Amaranthus,3564,20715.0,,FOOD00288,Herbs and Spices,Herbs
+288,Arrowhead,Sagittaria latifolia,15008,38908.0,,FOOD00289,Vegetables,Tubers
+289,Arrowroot,Maranta arundinacea,210060,503694.0,,FOOD00290,Vegetables,Tubers
+290,Asian pear,Pyrus pyrifolia,3767,25296.0,,FOOD00291,Fruits,Pomes
+291,Atlantic herring,Clupea harengus harengus,7950,161724.0,,FOOD00292,Aquatic foods,Fishes
+292,Atlantic mackerel,Scomber scombrus,13677,172414.0,,FOOD00293,Aquatic foods,Fishes
+293,Painted comber,Serranus scriba,349661,167862.0,,FOOD00294,Aquatic foods,Fishes
+294,Atlantic pollock,Pollachius pollachius,185739,164728.0,,FOOD00295,Aquatic foods,Fishes
+295,Atlantic wolffish,Anarhichas lupus,8204,171341.0,,FOOD00296,Aquatic foods,Fishes
+296,Bamboo shoots,Phyllostachys edulis,38705,565400.0,,FOOD00297,Vegetables,Shoot vegetables
+297,Striped bass,Morone saxatilis,34816,167680.0,,FOOD00298,Aquatic foods,Fishes
+298,Beech nut,Fagus,21024,19461.0,,FOOD00299,Nuts,Nuts
+299,Beluga whale,Delphinapterus leucas,9749,180483.0,,FOOD00300,Aquatic foods,Cetaceans
+300,Bison,Bison bison,9901,180706.0,,FOOD00301,Animal foods,Bovines
+301,Alaska blackfish,Dallia pectoralis,75939,162159.0,,FOOD00302,Aquatic foods,Fishes
+302,Blue crab,Callinectes sapidus,6763,98696.0,,FOOD00303,Aquatic foods,Crustaceans
+303,Blue mussel,Mytilus edulis,6550,79454.0,,FOOD00304,Aquatic foods,Mollusks
+304,Northern bluefin tuna,Thunnus thynnus,8237,172421.0,,FOOD00305,Aquatic foods,Fishes
+305,Bluefish,Pomatomus saltatrix,75034,168559.0,,FOOD00306,Aquatic foods,Fishes
+306,Wild boar,Sus scrofa,9823,180722.0,,FOOD00307,Animal foods,Swine
+307,Bowhead whale,Balaena mysticetus,27602,180533.0,,FOOD00308,Aquatic foods,Cetaceans
+308,Breadfruit,Artocarpus altilis,194251,184181.0,,FOOD00309,Fruits,Tropical fruits
+309,Breadnut tree seed,Brosimum alicastrum,194253,19075.0,,FOOD00310,Herbs and Spices,Other seeds
+310,Rapini,Brassica ruvo,1204434,506216.0,,FOOD00311,Vegetables,Cabbages
+311,Buffalo,Bubalus bubalis,89462,552476.0,,FOOD00312,Animal foods,Bovines
+312,Burbot,Lota lota,69944,164725.0,,FOOD00313,Aquatic foods,Fishes
+313,Giant butterbur,Petasites japonicus,186965,36057.0,,FOOD00314,Vegetables,Other vegetables
+314,American butterfish,Peprilus triacanthus,183653,172567.0,,FOOD00315,Aquatic foods,Fishes
+315,Butternut,Juglans cinerea,91214,19250.0,,FOOD00316,Nuts,Nuts
+316,Butternut squash,Cucurbita moschata,3662,22370.0,,FOOD00317,Gourds,Gourds
+317,Calabash,Lagenaria siceraria,3668,22386.0,,FOOD00318,Gourds,Gourds
+318,Cardoon,Cynara cardunculus,4265,37221.0,,FOOD00319,Vegetables,Shoot vegetables
+319,Natal plum,Carissa macrocarpa,403101,501290.0,,FOOD00320,Fruits,Tropical fruits
+320,Carob,Ceratonia siliqua,20340,26531.0,,FOOD00321,Vegetables,Other vegetables
+321,Common carp,Cyprinus carpio,7962,163344.0,,FOOD00322,Aquatic foods,Fishes
+322,Cassava,Manihot esculenta,3983,503688.0,,FOOD00323,Vegetables,Tubers
+323,Channel catfish,Ictalurus punctatus,7998,163998.0,,FOOD00324,Aquatic foods,Fishes
+324,Chayote,Sechium edule,184140,22441.0,,FOOD00325,Gourds,Gourds
+325,Cherimoya,Annona cherimola,49314,506198.0,,FOOD00326,Fruits,Tropical fruits
+326,Chervil,Anthriscus cerefolium,40888,29587.0,,FOOD00327,Herbs and Spices,Spices
+327,Chia,Salvia hispanica,49212,32718.0,,FOOD00328,Herbs and Spices,Other seeds
+328,Chicken,Gallus gallus,9031,176086.0,,FOOD00329,Animal foods,Poultry
+329,Chinese broccoli,Brassica alboglabra,3714,506218.0,,FOOD00330,Vegetables,Cabbages
+330,Chinese chestnut,Castanea mollissima,60419,501318.0,,FOOD00331,Nuts,Nuts
+331,Chinese water chestnut,Eleocharis dulcis,110284,506699.0,,FOOD00332,Vegetables,Other vegetables
+332,Garland chrysanthemum,Chrysanthemum coronarium,99038,35796.0,,FOOD00333,Vegetables,Leaf vegetables
+333,Cisco,Coregonus artedi,36181,623384.0,,FOOD00334,Aquatic foods,Fishes
+334,Nuttall cockle,Clinocardium nuttallii,410350,80873.0,,FOOD00335,Aquatic foods,Mollusks
+335,Coconut,Cocos nucifera,13894,42451.0,,FOOD00336,Fruits,Tropical fruits
+336,Pacific cod,Gadus macrocephalus,80720,164711.0,,FOOD00337,Aquatic foods,Fishes
+337,Atlantic cod,Gadus morhua,8049,164712.0,,FOOD00338,Aquatic foods,Fishes
+338,Common octopus,Octopus vulgaris,6645,82603.0,,FOOD00339,Aquatic foods,Mollusks
+339,Corn salad,Valerianella locusta,59166,35392.0,,FOOD00340,Vegetables,Leaf vegetables
+340,Cottonseed,Gossypium,3633,21709.0,,FOOD00341,Herbs and Spices,Oilseed crops
+341,Catjang pea,Vigna unguiculata ssp. cylindrica,3840,524854.0,,FOOD00342,Pulses,Peas
+342,Malus (Crab apple),Malus,3749,25254.0,,FOOD00343,Fruits,Pomes
+343,Squashberry,Viburnum edule,237934,35261.0,,FOOD00344,Fruits,Berries
+344,Atlantic croaker,Micropogonias undulatus,29154,169283.0,,FOOD00345,Aquatic foods,Fishes
+345,Cusk,Brosme brosme,81638,164740.0,,FOOD00346,Aquatic foods,Fishes
+346,Cuttlefish,Sepiidae,6608,82360.0,,FOOD00347,Aquatic foods,Mollusks
+347,Mule deer,Odocoileus,9871,180697.0,,FOOD00348,Animal foods,Venison
+348,Devilfish,Myoxocephalus,8095,167311.0,,FOOD00349,Aquatic foods,Fishes
+349,Dock,Rumex,3618,20933.0,,FOOD00350,Herbs and Spices,Herbs
+350,Dolphin fish,Coryphaena hippurus,34814,168791.0,,FOOD00351,Aquatic foods,Fishes
+351,Freshwater drum,Aplodinotus grunniens,225389,169364.0,,FOOD00352,Aquatic foods,Fishes
+352,Mallard duck,Anas platyrhynchos,8839,175063.0,,FOOD00353,Animal foods,Poultry
+353,Dungeness crab,Cancer magister,29965,98675.0,,FOOD00354,Aquatic foods,Crustaceans
+354,Durian,Durio zibethinus,66656,506099.0,,FOOD00355,Fruits,Tropical fruits
+355,Eastern oyster,Crassostrea virginica,6565,79872.0,,FOOD00356,Aquatic foods,Mollusks
+356,Freshwater eel,Anguilla,7935,161126.0,,FOOD00357,Aquatic foods,Fishes
+357,Elderberry,Sambucus,4201,35315.0,,FOOD00358,Fruits,Berries
+358,Elk,Cervus canadensis,1574408,180695.0,,FOOD00359,Animal foods,Venison
+359,Emu,Dromaius novaehollandiae,8790,174385.0,,FOOD00360,Animal foods,Poultry
+360,Oregon yampah,Perideridia oregana,234866,29811.0,,FOOD00361,Vegetables,Root vegetables
+361,European anchovy,Engraulis encrasicolus,184585,161831.0,,FOOD00362,Aquatic foods,Fishes
+362,European chestnut,Castanea sativa,21020,506541.0,,FOOD00363,Nuts,Nuts
+363,Turbot,Scophthalmus maximus,52904,616195.0,,FOOD00364,Aquatic foods,Fishes
+364,Fireweed,Chamerion angustifolium,13055,510756.0,,FOOD00365,Herbs and Spices,Herbs
+365,Florida pompano,Trachinotus carolinus,173342,168708.0,,FOOD00366,Aquatic foods,Fishes
+366,Ginkgo nuts,Ginkgo biloba,3311,183269.0,,FOOD00367,Herbs and Spices,Other seeds
+367,Greylag goose,Anser anser,8843,175028.0,,FOOD00368,Animal foods,Poultry
+368,Grape,Vitis,3603,28606.0,,FOOD00369,Fruits,Berries
+369,Greenland halibut/turbot,Reinhardtius hippoglossoides,111784,172930.0,,FOOD00370,Aquatic foods,Fishes
+370,Groundcherry,Physalis,24663,30587.0,,FOOD00371,Vegetables,Fruit vegetables
+371,Grouper,Epinephelus,94231,167694.0,,FOOD00372,Aquatic foods,Fishes
+372,Guinea hen,Numida meleagris,8996,176126.0,,FOOD00373,Animal foods,Poultry
+373,Haddock,Melanogrammus aeglefinus,8056,164744.0,,FOOD00374,Aquatic foods,Fishes
+374,Hippoglossus (Common halibut),Hippoglossus,8266,172931.0,,FOOD00375,Aquatic foods,Fishes
+375,Hazelnut,Corylus,13450,19505.0,,FOOD00376,Nuts,Nuts
+376,Hickory nut,Carya,13402,19223.0,,FOOD00377,Nuts,Nuts
+377,Horse,Equus caballus,9796,180691.0,,FOOD00378,Animal foods,Equines
+378,Horseradish tree,Moringa oleifera,3735,503874.0,,FOOD00379,Vegetables,Other vegetables
+379,Alaska blueberry,Vaccinium alaskaense,190544,23576.0,,FOOD00380,Fruits,Berries
+380,Hyacinth bean,Lablab purpureus,35936,503300.0,,FOOD00381,Pulses,Beans
+381,Irish moss,Chondrus crispus,2769,12092.0,,FOOD00382,Aquatic foods,Seaweed
+382,Pacific jack mackerel,Trachurus symmetricus,271940,168586.0,,FOOD00383,Aquatic foods,Fishes
+383,Jackfruit,Artocarpus heterophyllus,3489,184183.0,,FOOD00384,Fruits,Tropical fruits
+384,Japanese chestnut,Castanea crenata,103480,506540.0,,FOOD00385,Nuts,Nuts
+385,Java plum,Syzygium cumini,260142,505419.0,,FOOD00386,Fruits,Tropical fruits
+386,Jerusalem artichoke,Helianthus tuberosus,4233,36691.0,,FOOD00387,Vegetables,Tubers
+387,Jujube,Ziziphus zizyphus,48393,28598.0,,FOOD00388,Fruits,Other fruits
+388,Jute,Corchorus olitorius,93759,21516.0,,FOOD00389,Vegetables,Leaf vegetables
+389,Kale,Brassica napus var. pabularia,,530956.0,,FOOD00390,Vegetables,Cabbages
+390,Kelp,Laminaria,33637,11217.0,,FOOD00391,Aquatic foods,Seaweed
+391,King mackerel,Scomberomorus cavalla,13679,172435.0,,FOOD00392,Aquatic foods,Fishes
+392,Kumquat,Fortunella,2706,500284.0,,FOOD00393,Fruits,Tropical fruits
+393,Lambsquarters,Chenopodium album,3559,20592.0,,FOOD00394,Vegetables,Leaf vegetables
+394,Leather chiton,Katharina tunicata,34587,78979.0,,FOOD00395,Aquatic foods,Mollusks
+395,Wild leek,Allium ampeloprasum,4681,42708.0,,FOOD00396,Vegetables,Onion-family vegetables
+396,Common ling,Molva molva,163112,164760.0,,FOOD00397,Aquatic foods,Fishes
+397,Lingcod,Ophiodon elongatus,225387,167116.0,,FOOD00398,Aquatic foods,Fishes
+398,American lobster,Homarus americanus,6706,97314.0,,FOOD00399,Aquatic foods,Crustaceans
+399,Loganberry,Rubus loganobaccus,,506229.0,,FOOD00400,Fruits,Berries
+400,Lotus,Nelumbo,4430,18397.0,,FOOD00401,Herbs and Spices,Other seeds
+401,Sacred lotus,Nelumbo nucifera,4432,18400.0,,FOOD00402,Vegetables,Other vegetables
+402,White lupine,Lupinus albus,3870,503572.0,,FOOD00403,Pulses,Other pulses
+403,Malabar spinach,Basella alba,3589,192210.0,,FOOD00404,Vegetables,Leaf vegetables
+404,Mammee apple,Mammea americana,198777,21492.0,,FOOD00405,Fruits,Tropical fruits
+405,Purple mangosteen,Garcinia mangostana,58228,21484.0,,FOOD00406,Fruits,Tropical fruits
+406,Alpine sweetvetch,Hedysarum alpinum,57576,26723.0,,FOOD00407,Vegetables,Root vegetables
+407,Milkfish,Chanos chanos,29144,162838.0,,FOOD00408,Aquatic foods,Fishes
+408,Monkfish,Lophius piscatorius,8074,164501.0,,FOOD00409,Aquatic foods,Fishes
+409,Moth bean,Vigna aconitifolia,3918,506271.0,,FOOD00410,Pulses,Beans
+410,Mountain yam,Dioscorea pentaphylla,167592,43379.0,,FOOD00411,Vegetables,Tubers
+411,Striped mullet,Mugil cephalus,48193,170335.0,,FOOD00412,Aquatic foods,Fishes
+412,White mustard,Sinapis alba,3728,23309.0,,FOOD00413,Herbs and Spices,Spices
+413,Mustard spinach,Brassica perviridis,,506223.0,,FOOD00414,Vegetables,Cabbages
+414,New Zealand spinach,Tetragonia tetragonioides,45318,19938.0,,FOOD00415,Vegetables,Leaf vegetables
+415,Nopal,Opuntia cochenillifera,338184,19699.0,,FOOD00416,Vegetables,Other vegetables
+416,Ocean pout,Zoarces americanus,8199,630979.0,,FOOD00417,Aquatic foods,Fishes
+417,North Pacific giant octopus,Enteroctopus dofleini,267067,557227.0,,FOOD00418,Aquatic foods,Mollusks
+418,Ohelo berry,Vaccinium reticulatum,180767,23622.0,,FOOD00419,Fruits,Berries
+419,Okra,Abelmoschus esculentus,455045,21770.0,,FOOD00420,Vegetables,Other vegetables
+420,Tunicate,Tunicata,7712,203347.0,,FOOD00421,Aquatic foods,Other aquatic foods
+421,Ostrich,Struthio camelus,8801,174375.0,,FOOD00422,Animal foods,Poultry
+422,Spotted seal,Phoca largha,39090,180642.0,,FOOD00423,Aquatic foods,Pinnipeds
+423,Pacific herring,Clupea pallasii,30724,551209.0,,FOOD00424,Aquatic foods,Fishes
+424,Pacific oyster,Crassostrea gigas,29159,79868.0,,FOOD00425,Aquatic foods,Mollusks
+425,Pacific rockfish,Sebastes,34820,166705.0,,FOOD00426,Aquatic foods,Fishes
+426,Velvet duck,Melanitta fusca,371864,175163.0,,FOOD00427,Animal foods,Poultry
+427,Pepper (C. frutescens),Capsicum annuum var. annuum,40321,527044.0,,FOOD00428,Vegetables,Fruit vegetables
+428,Common persimmon,Diospyros virginiana,13493,23855.0,,FOOD00429,Fruits,Tropical fruits
+429,Pheasant,Phasianus colchicus,9054,175905.0,,FOOD00430,Animal foods,Poultry
+430,Northern pike,Esox lucius,8010,162139.0,,FOOD00431,Aquatic foods,Fishes
+431,Pili nut,Canarium ovatum,43691,506413.0,,FOOD00432,Nuts,Nuts
+432,Colorado pinyon,Pinus edulis,3340,183336.0,,FOOD00433,Nuts,Nuts
+433,Pitanga,Eugenia uniflora,119951,27224.0,,FOOD00434,Fruits,Tropical fruits
+434,Plains prickly pear,Opuntia macrorhiza,1041245,19718.0,,FOOD00435,Fruits,Tropical fruits
+435,French plantain,Musa X paradisiaca,89151,42391.0,,FOOD00436,Fruits,Tropical fruits
+436,American pokeweed,Phytolacca americana,3527,19523.0,,FOOD00437,Vegetables,Shoot vegetables
+437,Opium poppy,Papaver somniferum,3469,18894.0,,FOOD00438,Herbs and Spices,Spices
+438,Prairie turnip,Pediomelum esculentum,458363,504177.0,,FOOD00439,Vegetables,Root vegetables
+439,Prickly pear,Opuntia,106975,19686.0,,FOOD00440,Fruits,Tropical fruits
+440,Quinoa,Chenopodium quinoa,63459,506567.0,,FOOD00441,Herbs and Spices,Other seeds
+441,European rabbit,Oryctolagus,9984,180128.0,,FOOD00442,Animal foods,Lagomorphs
+442,Rainbow smelt,Osmerus mordax,8014,162041.0,,FOOD00443,Aquatic foods,Fishes
+443,Rainbow trout,Oncorhynchus mykiss,8022,161989.0,,FOOD00444,Aquatic foods,Fishes
+444,Malabar plum,Syzygium jambos,334483,505420.0,,FOOD00445,Fruits,Tropical fruits
+445,Rose hip,Rosa,3764,24807.0,,FOOD00446,Herbs and Spices,Herbs
+446,Roselle,Hibiscus sabdariffa,183260,503001.0,,FOOD00447,Herbs and Spices,Herbs
+447,Orange roughy,Hoplostethus atlanticus,96778,166139.0,,FOOD00448,Aquatic foods,Fishes
+448,Sablefish,Anoplopoma fimbria,229290,167123.0,,FOOD00449,Aquatic foods,Fishes
+449,Pink salmon,Oncorhynchus gorbuscha,8017,161975.0,,FOOD00450,Aquatic foods,Fishes
+450,Chum salmon,Oncorhynchus keta,8018,161976.0,,FOOD00451,Aquatic foods,Fishes
+451,Coho salmon,Oncorhynchus kisutch,8019,161977.0,,FOOD00452,Aquatic foods,Fishes
+452,Sockeye salmon,Oncorhynchus nerka,8023,161979.0,,FOOD00453,Aquatic foods,Fishes
+453,Chinook salmon,Oncorhynchus tshawytscha,74940,161980.0,,FOOD00454,Aquatic foods,Fishes
+454,Atlantic salmon,Salmo salar,8030,161996.0,,FOOD00455,Aquatic foods,Fishes
+455,Salmonberry,Rubus spectabilis,59499,25051.0,,FOOD00456,Fruits,Berries
+456,Common salsify,Tragopogon porrifolius,13731,38568.0,,FOOD00457,Vegetables,Root vegetables
+457,Sapodilla,Manilkara zapota,3741,23823.0,,FOOD00458,Fruits,Tropical fruits
+458,Mamey sapote,Pouteria sapota,233744,23836.0,,FOOD00459,Fruits,Tropical fruits
+459,Spanish mackerel,Scomberomorus maculatus,99344,172436.0,,FOOD00460,Aquatic foods,Fishes
+460,Pacific sardine,Sardinops sagax,28381,161729.0,,FOOD00461,Aquatic foods,Fishes
+461,Scallop,Pectinidae,6566,79611.0,,FOOD00462,Aquatic foods,Mollusks
+462,Scup,Stenotomus chrysops,35579,169182.0,,FOOD00463,Aquatic foods,Fishes
+463,Sea cucumber,Parastichopus californicus,7689,158344.0,,FOOD00464,Aquatic foods,Other aquatic foods
+464,Steller sea lion,Eumetopias jubatus,34886,180625.0,,FOOD00465,Aquatic foods,Pinnipeds
+465,Bearded seal,Erignathus barbatus,39304,180655.0,,FOOD00466,Aquatic foods,Pinnipeds
+466,Ringed seal,Pusa hispida,9718,622018.0,,FOOD00467,Aquatic foods,Pinnipeds
+467,Sea trout,Salmo trutta forma trutta,13028,169238.0,,FOOD00468,Aquatic foods,Fishes
+468,Sesbania flower,Sesbania bispinosa,485725,505187.0,,FOOD00469,Vegetables,Other vegetables
+469,American shad,Alosa sapidissima,34773,161702.0,,FOOD00470,Aquatic foods,Fishes
+470,Shark,Squaliformes,282414,160602.0,,FOOD00471,Aquatic foods,Fishes
+471,Sheefish,Stenodus leucichthys,59296,162006.0,,FOOD00472,Aquatic foods,Fishes
+472,"Sheep (Mutton, Lamb)",Ovis aries,9940,552475.0,,FOOD00473,Animal foods,Ovis
+473,Sheepshead,Archosargus probatocephalus,119682,169189.0,,FOOD00474,Aquatic foods,Fishes
+474,Hedge mustard,Sisymbrium,3729,23311.0,,FOOD00475,Herbs and Spices,Other seeds
+475,Skipjack tuna,Katsuwonus pelamis,8226,172401.0,,FOOD00476,Aquatic foods,Fishes
+476,Snapper,Lutjanidae,30850,168845.0,,FOOD00477,Aquatic foods,Fishes
+477,Soursop,Annona muricata,13337,18098.0,,FOOD00478,Fruits,Tropical fruits
+478,Spelt,Triticum spelta,58933,42243.0,,FOOD00479,Cereals and cereal products,Cereals
+479,Spirulina,Spirulina,551299,1053.0,,FOOD00480,Aquatic foods,Seaweed
+480,Squab,Columba,8931,177062.0,,FOOD00481,Animal foods,Poultry
+481,Strawberry guava,Psidium cattleianum,375274,27239.0,,FOOD00482,Fruits,Berries
+482,Greater sturgeon,Acipenser,7901,161065.0,,FOOD00483,Aquatic foods,Fishes
+483,White sucker,Catostomus commersonii,7971,553273.0,,FOOD00484,Aquatic foods,Fishes
+484,Sugar apple,Annona squamosa,301693,18100.0,,FOOD00485,Fruits,Tropical fruits
+485,Pumpkinseed sunfish,Lepomis gibbosus,270329,168144.0,,FOOD00486,Aquatic foods,Fishes
+486,Swordfish,Xiphias gladius,8245,172482.0,,FOOD00487,Aquatic foods,Fishes
+487,Taro,Colocasia esculenta,4460,42549.0,,FOOD00488,Vegetables,Root vegetables
+488,Teff,Eragrostis tef,110835,40738.0,,FOOD00489,Herbs and Spices,Herbs
+489,Tilefish,Lopholatilus chamaeleonticeps,390349,168546.0,,FOOD00490,Aquatic foods,Fishes
+490,Mexican groundcherry,Physalis philadelphica var. immaculata,374021,529632.0,,FOOD00491,Vegetables,Fruit vegetables
+491,Towel gourd,Luffa aegyptiaca,3670,503570.0,,FOOD00492,Gourds,Gourds
+492,"Salmonidae (Salmon, Trout)",Salmonidae,8015,161931.0,,FOOD00493,Aquatic foods,Fishes
+493,Turkey,Meleagris gallopavo,9103,176136.0,,FOOD00494,Animal foods,Poultry
+494,"Cattle (Beef, Veal)",Bos taurus,9913,183838.0,,FOOD00495,Animal foods,Bovines
+495,Walleye,Sander vitreus,283036,650173.0,,FOOD00496,Aquatic foods,Fishes
+496,Alaska pollock,Theragra chalcogramma,1042646,164722.0,,FOOD00497,Aquatic foods,Fishes
+497,Wasabi,Wasabia japonica,75806,506210.0,,FOOD00498,Herbs and Spices,Spices
+498,Wax gourd,Benincasa hispida,102211,505894.0,,FOOD00499,Gourds,Gourds
+499,Whelk,Buccinidae,37796,73726.0,,FOOD00500,Aquatic foods,Mollusks
+500,Coalfish pollock,Pollachius virens,8060,164727.0,,FOOD00501,Aquatic foods,Fishes
+501,Broad whitefish,Coregonus nasus,348707,161936.0,,FOOD00502,Aquatic foods,Fishes
+502,Whitefish,Coregonus,27772,161932.0,,FOOD00503,Aquatic foods,Fishes
+503,Whiting,Merlangius merlangus,8058,164701.0,,FOOD00504,Aquatic foods,Fishes
+504,Wild rice,Zizania,15949,41318.0,,FOOD00505,Cereals and cereal products,Cereals
+505,Tea leaf willow,Salix pulchra,669814,22488.0,,FOOD00506,Herbs and Spices,Herbs
+506,Winged bean,Psophocarpus tetragonolobus,3891,506265.0,,FOOD00507,Pulses,Beans
+507,Yam,Dioscorea,4672,43366.0,,FOOD00508,Vegetables,Tubers
+508,Jicama,Pachyrhizus erosus,109171,26824.0,,FOOD00509,Vegetables,Root vegetables
+509,Yautia,Xanthosoma sagittifolium,28478,42586.0,,FOOD00510,Vegetables,Leaf vegetables
+510,Yellowfin tuna,Thunnus albacares,8236,172423.0,,FOOD00511,Aquatic foods,Fishes
+511,Yellowtail amberjack,Seriola lalandi,302047,168695.0,,FOOD00512,Aquatic foods,Fishes
+512,Pollock,Pollachius,8059,164726.0,,FOOD00513,Aquatic foods,Fishes
+513,Albacore tuna,Thunnus alalunga,8235,172419.0,,FOOD00514,Aquatic foods,Fishes
+514,Gadus (Common cod),Gadus,8048,164710.0,,FOOD00515,Aquatic foods,Fishes
+515,Atlantic halibut,Hippoglossus hippoglossus,8267,172933.0,,FOOD00516,Aquatic foods,Fishes
+516,Pacific halibut,Hippoglossus stenolepis,195615,172932.0,,FOOD00517,Aquatic foods,Fishes
+517,Pacific salmon,Oncorhynchus,8016,161974.0,,FOOD00518,Aquatic foods,Fishes
+518,Smelt,Osmeridae,8012,162028.0,,FOOD00519,Aquatic foods,Fishes
+519,"Clupeinae (Herring, Sardine, Sprat)",Clupeinae,7948,551153.0,,FOOD00520,Aquatic foods,Fishes
+520,Spiny lobster,Palinuridae,6731,97646.0,,FOOD00521,Aquatic foods,Crustaceans
+521,Snow crab,Chionoecetes opilio,41210,98428.0,,FOOD00522,Aquatic foods,Crustaceans
+522,Black-eyed pea,Vigna unguiculata ssp. unguiculata,3920,524855.0,,FOOD00523,Pulses,Peas
+523,Deer,Cervidae,9850,180693.0,,FOOD00524,Animal foods,Venison
+524,Macadamia nut,Macadamia,4329,27784.0,,FOOD00525,Nuts,Nuts
+525,Percoidei (Bass and others),Percoidei,8112,167641.0,,FOOD00526,Aquatic foods,Fishes
+526,Perciformes,Perciformes,8111,167640.0,,FOOD00527,Aquatic foods,Fishes
+527,Rabbit,Leporidae,9979,180110.0,,FOOD00528,Animal foods,Lagomorphs
+528,Domestic goat,Capra aegagrus hircus,9925,180715.0,,FOOD00529,Animal foods,Caprae
+529,Beefalo,Bos taurus X Bison bison,297284,,,FOOD00530,Animal foods,Bovines
+530,"Bivalvia (Clam, Mussel, Oyster)",Bivalvia,6544,79118.0,,FOOD00531,Aquatic foods,Mollusks
+531,Squid,Teuthida,551290,82367.0,,FOOD00532,Aquatic foods,Mollusks
+532,Shrimp,Caridea,6694,96106.0,,FOOD00533,Aquatic foods,Crustaceans
+533,Crayfish,Astacidea,6712,206931.0,,FOOD00534,Aquatic foods,Crustaceans
+534,Flatfish,Pleuronectiformes,8252,172702.0,,FOOD00535,Aquatic foods,Fishes
+535,Domestic pig,Sus scrofa domestica,9825,898917.0,,FOOD00536,Animal foods,Swine
+536,Walrus,Odobenus rosmarus,9707,180639.0,,FOOD00537,Aquatic foods,Pinnipeds
+537,Alaska wild rhubarb,Polygonum alpinum,125586,20870.0,,FOOD00538,Vegetables,Stalk vegetables
+538,Oriental wheat,Triticum turanicum,376534,506631.0,,FOOD00539,Cereals and cereal products,Cereals
+539,Yardlong bean,Vigna unguiculata ssp. sesquipedalis,138955,524853.0,,FOOD00540,Pulses,Peas
+540,Quail,Phasianidae,9005,175861.0,,FOOD00541,Animal foods,Poultry
+541,Boysenberry,Rubus ursinus X idaeus,,,,FOOD00542,Fruits,Berries
+542,Persian lime,Citrus latifolia,200541,,,FOOD00543,Fruits,Citrus
+543,Feijoa,Feijoa sellowiana,260130,506165.0,,FOOD00544,Fruits,Tropical fruits
+544,Rowal,Pangium edule,112823,837784.0,,FOOD00545,Herbs and Spices,Other seeds
+545,Jew's ear,Auricularia auricula-judae,29892,,,FOOD00546,Vegetables,Mushrooms
+546,Common mushroom,Agaricus bisporus,5341,,,FOOD00547,Vegetables,Mushrooms
+547,Shiitake,Lentinus edodes,5353,,,FOOD00548,Vegetables,Mushrooms
+548,Purple laver,Porphyra laciniata,,,,FOOD00549,Aquatic foods,Seaweed
+549,Wakame,Undaria pinnatifida,74381,,,FOOD00550,Aquatic foods,Seaweed
+550,Enokitake,Flammulina velutipes,38945,,,FOOD00551,Vegetables,Mushrooms
+551,Epazote,Dysphania ambrosioides,330163,822812.0,,FOOD00552,Herbs and Spices,Herbs
+552,Oyster mushroom,Pleurotus ostreatus,5322,,,FOOD00553,Vegetables,Mushrooms
+553,Cloud ear fungus,Auricularia polytricha,29893,,,FOOD00554,Vegetables,Mushrooms
+554,Maitake,Grifola frondosa,5627,,,FOOD00555,Vegetables,Mushrooms
+555,Ostrich fern,Matteuccia struthiopteris,3277,17596.0,,FOOD00556,Vegetables,Leaf vegetables
+556,Spot croaker,Leiostomus xanthurus,59837,169267.0,,FOOD00557,Aquatic foods,Fishes
+557,Sourdock,Rumex articus,395311,20935.0,,FOOD00558,Herbs and Spices,Herbs
+558,Tinda,Citrullus lanatus var. fistulosus,,,,FOOD00559,Gourds,Gourds
+559,Atlantic menhaden,Brevoortia tyrannus,224708,161732.0,,FOOD00560,Aquatic foods,Fishes
+560,Wheat,Triticum,4564,42236.0,,FOOD00561,Cereals and cereal products,Cereals
+561,Common chokecherry,Prunus virginiana,133204,24806.0,,FOOD00562,Fruits,Drupes
+562,Agave,Agave,39509,182659.0,,FOOD00563,Vegetables,Other vegetables
+563,Narrowleaf cattail,Typha angustifolia,59011,42325.0,,FOOD00564,Vegetables,Other vegetables
+564,Jellyfish,Scyphozoa,6142,51483.0,,FOOD00565,Aquatic foods,Other aquatic foods
+565,Anchovy,Engraulidae,43062,553173.0,,FOOD00566,Aquatic foods,Fishes
+566,Blue whiting,Micromesistius poutassou,81636,164774.0,,FOOD00567,Aquatic foods,Fishes
+567,Carp bream,Abramis brama,38527,163666.0,,FOOD00568,Aquatic foods,Fishes
+568,Chanterelle,Cantharellus cibarius,36066,,,FOOD00569,Vegetables,Mushrooms
+569,Sturgeon,Acipenseridae,7900,161064.0,,FOOD00570,Aquatic foods,Fishes
+570,Charr,Salvelinus,8033,161999.0,,FOOD00571,Aquatic foods,Fishes
+571,Cinnamon,Cinnamomum,13428,18174.0,,FOOD00572,Herbs and Spices,Spices
+572,Crab,Brachyura,6752,98276.0,,FOOD00573,Aquatic foods,Crustaceans
+573,Common dab,Limanda limanda,27771,172881.0,,FOOD00574,Aquatic foods,Fishes
+574,Spiny dogfish,Squalus acanthias,7797,160617.0,,FOOD00575,Aquatic foods,Fishes
+575,Anatidae,Anatidae,8830,174983.0,,FOOD00576,Animal foods,Poultry
+576,Anguilliformes,Anguilliformes,7933,161123.0,,FOOD00577,Aquatic foods,Fishes
+577,True frog,Ranidae,8397,173433.0,,FOOD00578,Aquatic foods,Amphibians
+578,Garfish,Belone belone,129037,165594.0,,FOOD00579,Aquatic foods,Fishes
+579,Gadiformes,Gadiformes,8043,164665.0,,FOOD00580,Aquatic foods,Fishes
+580,Mountain hare,Lepus timidus,62621,180113.0,,FOOD00581,Animal foods,Lagomorphs
+581,Lake trout,Salvelinus namaycush,8040,162002.0,,FOOD00582,Aquatic foods,Fishes
+582,Lemon sole,Microstomus kitt,106175,172888.0,,FOOD00583,Aquatic foods,Fishes
+583,Clawed lobster,Nephropidae,6704,97307.0,,FOOD00584,Aquatic foods,Crustaceans
+584,Lumpsucker,Cyclopteridae,8101,167483.0,,FOOD00585,Aquatic foods,Fishes
+585,"Scombridae (Bonito, Mackerel, Tuna)",Scombridae,8224,172398.0,,FOOD00586,Aquatic foods,Fishes
+586,Marine mussel,Mytilidae,6547,79451.0,,FOOD00587,Aquatic foods,Mollusks
+587,Norway haddock,Sebastes viviparus,394708,166779.0,,FOOD00588,Aquatic foods,Fishes
+588,Norway lobster,Nephrops norvegicus,6829,97317.0,,FOOD00589,Aquatic foods,Crustaceans
+589,Norway pout,Trisopterus esmarkii,80723,164756.0,,FOOD00590,Aquatic foods,Fishes
+590,Oil palm,Elaeis,51952,500805.0,,FOOD00591,Herbs and Spices,Oilseed crops
+591,True oyster,Ostreidae,6563,79866.0,,FOOD00592,Aquatic foods,Mollusks
+592,Sago palm,Metroxylon sagu,93297,506732.0,,FOOD00593,Herbs and Spices,Oilseed crops
+593,Persimmon,Diospyros,13492,23853.0,,FOOD00594,Fruits,Tropical fruits
+594,Pikeperch,Sander lucioperca,283035,650172.0,,FOOD00595,Aquatic foods,Fishes
+595,"Pleuronectidae (Dab, Halibut, Plaice)",Pleuronectidae,8256,172859.0,,FOOD00596,Aquatic foods,Fishes
+596,Rock ptarmigan,Lagopus muta,64668,677542.0,,FOOD00597,Animal foods,Poultry
+597,Pacific ocean perch,Sebastes alutus,72055,166707.0,,FOOD00598,Aquatic foods,Fishes
+598,Black salsify,Scorzonera hispanica,114289,505091.0,,FOOD00599,Vegetables,Root vegetables
+599,True seal,Phocidae,9709,180640.0,,FOOD00600,Aquatic foods,Pinnipeds
+600,Red algae,Rhodophyta,2763,660046.0,,FOOD00601,Aquatic foods,Seaweed
+601,Kombu,Saccharina japonica,88149,,,FOOD00602,Aquatic foods,Seaweed
+602,Snail,Gastropoda,6448,69459.0,,FOOD00603,Aquatic foods,Mollusks
+603,True sole,Soleidae,30948,172980.0,,FOOD00604,Aquatic foods,Fishes
+604,Catfish,Siluriformes,7995,163992.0,,FOOD00605,Aquatic foods,Fishes
+605,Thistle,Cirsium,41549,36334.0,,FOOD00606,Vegetables,Root vegetables
+606,Thunnus,Thunnus,8234,172418.0,,FOOD00607,Aquatic foods,Fishes
+607,Walnut,Juglans,16718,19248.0,,FOOD00608,Nuts,Nuts
+608,"Cetacea (Dolphin, Porpoise, Whale)",Cetacea,9721,180403.0,,FOOD00609,Aquatic foods,Cetaceans
+609,"Columbidae (Dove, Pigeon)",Columbidae,8930,177061.0,,FOOD00610,Animal foods,Poultry
+610,Conch,Strombidae,69694,72554.0,,FOOD00611,Aquatic foods,Mollusks
+611,Grape wine,,,,,FOOD00612,Beverages,Fermented beverages
+612,Berry wine,,,,,FOOD00613,Beverages,Fermented beverages
+613,Other wine,,,,,FOOD00614,Beverages,Fermented beverages
+614,Apple cider,,,,,FOOD00615,Beverages,Fermented beverages
+615,Liquor,,,,,FOOD00616,Beverages,Distilled beverages
+616,Cheese,,,,,FOOD00617,Milk and milk products,Fermented milk products
+617,Milk (Cow),,,,,FOOD00618,Milk and milk products,Unfermented milks
+618,Eggs,,,,,FOOD00619,Eggs,Eggs
+619,Yogurt,,,,,FOOD00620,Milk and milk products,Fermented milk products
+620,Bean,,,,,FOOD00621,Pulses,Beans
+621,Vodka,,,,,FOOD00622,Beverages,Distilled beverages
+622,Whisky,,,,,FOOD00623,Beverages,Distilled beverages
+623,Ice cream,,,,,FOOD00624,Confectioneries,Frozen desserts
+624,Gin,,,,,FOOD00625,Beverages,Distilled beverages
+625,Honey,,,,,FOOD00626,Confectioneries,Other confectioneries
+626,Liquorice,,,,,FOOD00627,Confectioneries,Candies
+627,Vinegar,,,,,FOOD00628,Baking goods,Seasonings
+628,Rum,,,,,FOOD00629,Beverages,Distilled beverages
+629,Port wine,,,,,FOOD00630,Beverages,Fortified wines
+630,Vermouth,,,,,FOOD00631,Beverages,Fortified wines
+631,Sherry,,,,,FOOD00632,Beverages,Fortified wines
+632,Madeira wine,,,,,FOOD00633,Beverages,Fortified wines
+633,Nougat,,,,,FOOD00634,Confectioneries,Other confectioneries
+634,Toffee,,,,,FOOD00635,Confectioneries,Other confectioneries
+635,Cake,,,,,FOOD00636,Confectioneries,Desserts
+636,Pizza,,,,,FOOD00637,Dishes,Other dishes
+637,Ymer,,,,,FOOD00638,Milk and milk products,Fermented milk products
+638,Other snack food,,,,,FOOD00639,Snack foods,Snack foods
+639,Crisp bread,,,,,FOOD00640,Cereals and cereal products,Flat breads
+640,Pastry,,,,,FOOD00641,Confectioneries,Desserts
+641,Dragée,,,,,FOOD00642,Confectioneries,Candies
+642,Chewing gum,,,,,FOOD00643,Confectioneries,Candies
+643,Marzipan,,,,,FOOD00644,Confectioneries,Other confectioneries
+644,Salad dressing,,,,,FOOD00645,Baking goods,Dressings
+645,Sauce,,,,,FOOD00646,Baking goods,Sauces
+646,Salt,,,,,FOOD00647,Baking goods,Seasonings
+647,Butter,,,,,FOOD00648,Milk and milk products,Other milk products
+648,Butter substitute,,,,,FOOD00649,Baking goods,Substitutes
+649,Cream,,,,,FOOD00650,Milk and milk products,Other milk products
+650,Sugar,,,,,FOOD00651,Baking goods,Sugars
+651,Sausage,,,,,FOOD00652,Dishes,Ground meat
+652,Meatball,,,,,FOOD00653,Dishes,Ground meat
+653,Mustard,,,,,FOOD00654,Baking goods,Condiments
+654,Pate,,,,,FOOD00655,Dishes,Ground meat
+655,Sugar substitute,,,,,FOOD00656,Baking goods,Substitutes
+656,Meat bouillon,,,,,FOOD00657,Baking goods,Baking goods
+657,Whey,,,,,FOOD00658,Milk and milk products,Other milk products
+658,Casein,,,,,FOOD00659,Milk and milk products,Other milk products
+659,Fruit preserve,,,,,FOOD00660,Fruits,Fruit products
+660,Leavening agent,,,,,FOOD00661,Baking goods,Baking goods
+661,Marshmallow,,,,,FOOD00662,Confectioneries,Candies
+662,Gelatin,,,,,FOOD00663,Baking goods,Baking goods
+663,Water,,,,,FOOD00664,Beverages,Waters
+664,Other fish product,,,,,FOOD00665,Aquatic foods,Fish products
+665,Milk (Human),,,,,FOOD00666,Milk and milk products,Unfermented milks
+666,Other beverage,,,,,FOOD00667,Beverages,Other beverages
+667,Baby food,,,,,FOOD00668,Baby foods,Baby foods
+668,Dumpling,,,,,FOOD00669,Dishes,Other dishes
+669,Soup,,,,,FOOD00670,Dishes,Other dishes
+670,Other vegetable product,,,,,FOOD00671,Vegetables,Vegetable products
+671,Unclassified food or beverage,,,,,FOOD00672,Unclassified,Unclassified
+672,Syrup,,,,,FOOD00673,Baking goods,Baking goods
+673,Tallow,,,,,FOOD00674,Fats and oils,Animal fats
+674,Remoulade,,,,,FOOD00675,Baking goods,Condiments
+675,Chocolate spread,,,,,FOOD00676,Confectioneries,Spreads
+676,Fruit gum,,,,,FOOD00677,Confectioneries,Candies
+677,Curry powder,,,,,FOOD00678,Herbs and Spices,Herb and spice mixtures
+678,Other candy,,,,,FOOD00679,Confectioneries,Candies
+679,Meringue,,,,,FOOD00680,Confectioneries,Other confectioneries
+680,Lard,,,,,FOOD00681,Fats and oils,Animal fats
+681,Other animal fat,,,,,FOOD00682,Fats and oils,Animal fats
+682,Other cocoa product,,,,,FOOD00683,Cocoa and cocoa products,Cocoa products
+683,Cocoa butter,,,,,FOOD00684,Cocoa and cocoa products,Cocoa products
+684,Cocoa powder,,,,,FOOD00685,Cocoa and cocoa products,Cocoa products
+685,Cocoa liquor,,,,,FOOD00686,Cocoa and cocoa products,Cocoa products
+686,Chocolate,,,,,FOOD00687,Cocoa and cocoa products,Cocoa products
+687,Hot chocolate,,,,,FOOD00688,Cocoa and cocoa products,Cocoa products
+688,Dried milk,,,,,FOOD00689,Milk and milk products,Other milk products
+689,Milk (Other mammals),,,,,FOOD00690,Milk and milk products,Unfermented milks
+690,Kefir,,,,,FOOD00691,Milk and milk products,Fermented milks
+691,Buttermilk,,,,,FOOD00692,Milk and milk products,Fermented milks
+692,Other fermented milk,,,,,FOOD00693,Milk and milk products,Fermented milks
+693,Soy sauce,,,,,FOOD00694,Soy,Soy products
+694,Miso,,,,,FOOD00695,Soy,Soy products
+695,Tofu,,,,,FOOD00696,Soy,Soy products
+696,Zwieback,,,,,FOOD00697,Cereals and cereal products,Leavened breads
+697,Roe,,,,,FOOD00698,Aquatic foods,Roe
+698,Cichlidae (Tilapia),Cichlidae,8113,169770.0,,FOOD00699,Aquatic foods,Fishes
+699,Icing,,,,,FOOD00700,Confectioneries,Other confectioneries
+700,Snack bar,,,,,FOOD00701,Snack foods,Snack foods
+701,Green turtle,Chelonia mydas,8469,173833.0,,FOOD00702,Aquatic foods,Other aquatic foods
+702,Energy drink,,,,,FOOD00703,Beverages,Nutritional beverages
+703,Burrito,,,,,FOOD00704,Dishes,Tex-Mex cuisine
+704,Hamburger,,,,,FOOD00705,Dishes,Sandwiches
+705,Baked beans,,,,,FOOD00706,Dishes,Other dishes
+706,Chili,,,,,FOOD00707,Dishes,Tex-Mex cuisine
+707,Taco,,,,,FOOD00708,Dishes,Tex-Mex cuisine
+708,Tortilla,,,,,FOOD00709,Cereals and cereal products,Flat breads
+709,Nachos,,,,,FOOD00710,Dishes,Tex-Mex cuisine
+710,Processed cheese,,,,,FOOD00711,Milk and milk products,Fermented milk products
+711,Salad,,,,,FOOD00712,Dishes,Other dishes
+712,Cream substitute,,,,,FOOD00713,Baking goods,Substitutes
+713,Dulce de leche,,,,,FOOD00714,Confectioneries,Spreads
+714,Topping,,,,,FOOD00715,Baking goods,Baking goods
+715,Sweet custard,,,,,FOOD00716,Confectioneries,Milk desserts
+716,Egg roll,,,,,FOOD00717,Dishes,Asian cuisine
+717,Heart of palm,,,,,FOOD00718,Vegetables,Other vegetables
+718,Popcorn,,,,,FOOD00719,Snack foods,Snack foods
+719,Potato chip,,,,,FOOD00720,Snack foods,Snack foods
+720,Tortilla chip,,,,,FOOD00721,Snack foods,Snack foods
+721,Corn chip,,,,,FOOD00722,Snack foods,Snack foods
+722,Hibiscus tea,Hibiscus sabbariffa,183260,21617.0,,FOOD00723,Teas,Herbal teas
+723,Stew,,,,,FOOD00724,Dishes,Other dishes
+724,Gelatin dessert,,,,,FOOD00725,Confectioneries,Desserts
+725,Junket,,,,,FOOD00726,Confectioneries,Milk desserts
+726,Falafel,,,,,FOOD00727,Dishes,Other dishes
+727,Frybread,,,,,FOOD00728,Dishes,Other dishes
+728,Other frozen dessert,,,,,FOOD00729,Confectioneries,Frozen desserts
+729,Lasagna,,,,,FOOD00730,Dishes,Pasta dishes
+730,Morchella (Morel),Morchellaceae,5192,612936.0,,FOOD00731,Vegetables,Mushrooms
+731,Pancake,,,,,FOOD00732,Dishes,Other dishes
+732,Pectin,,,,,FOOD00733,Baking goods,Baking goods
+733,Pudding,,,,,FOOD00734,Confectioneries,Desserts
+734,Waffle,,,,,FOOD00735,Dishes,Other dishes
+735,Soy milk,,,,,FOOD00736,Soy,Soy products
+736,Meatloaf,,,,,FOOD00737,Dishes,Ground meat
+737,Sake,,,,,FOOD00738,Beverages,Fermented beverages
+738,Cocktail,,,,,FOOD00739,Beverages,Alcoholic beverages
+739,Couscous,,,,,FOOD00740,Dishes,Berber cuisine
+740,Bulgur,,,,,FOOD00741,Cereals and cereal products,Cereal products
+741,Coffee substitute,,,,,FOOD00742,Baking goods,Substitutes
+742,Coffee mocha,,,,,FOOD00743,Coffee and coffee products,Coffee products
+743,Chimichanga,,,,,FOOD00744,Dishes,Mexican cuisine
+744,Semolina,,,,,FOOD00745,Cereals and cereal products,Cereal products
+745,Tapioca pearl,,,,,FOOD00746,Baking goods,Baking goods
+746,Tostada,,,,,FOOD00747,Dishes,Mexican cuisine
+747,Quesadilla,,,,,FOOD00748,Dishes,Mexican cuisine
+748,Baked potato,,,,,FOOD00749,Dishes,Potato dishes
+749,Hot dog,,,,,FOOD00750,Dishes,Sandwiches
+750,Spread,,,,,FOOD00751,Baking goods,Baking goods
+751,Enchilada,,,,,FOOD00752,Dishes,Mexican cuisine
+752,Egg substitute,,,,,FOOD00753,Baking goods,Substitutes
+753,Nutritional drink,,,,,FOOD00754,Beverages,Nutritional beverages
+754,Other sandwich,,,,,FOOD00755,Dishes,Sandwiches
+755,Ketchup,,,,,FOOD00756,Baking goods,Condiments
+756,Breakfast sandwich,,,,,FOOD00757,Dishes,Sandwiches
+757,Adobo,,,,,FOOD00758,Baking goods,Seasonings
+758,Macaroni and cheese,,,,,FOOD00759,Dishes,Pasta dishes
+759,Butterfat,,,,,FOOD00760,Milk and milk products,Other milk products
+760,Horned melon,Cucumis metuliferus,61886,501835.0,,FOOD00761,Gourds,Gourds
+761,Hushpuppy,,,,,FOOD00762,Dishes,American cuisine
+762,Fruit juice,,,,,FOOD00763,Beverages,Other beverages
+763,Relish,,,,,FOOD00764,Baking goods,Condiments
+764,Other fruit product,,,,,FOOD00765,Fruits,Fruit products
+765,Fruit salad,,,,,FOOD00766,Fruits,Fruit products
+766,Soy yogurt,,,,,FOOD00767,Soy,Soy products
+767,Vegetarian food,,,,,FOOD00768,Dishes,Other dishes
+768,Veggie burger,,,,,FOOD00769,Dishes,Sandwiches
+769,Cold cut,,,,,FOOD00770,Dishes,Ground meat
+770,Mixed nuts,,,,,FOOD00771,Nuts,Nuts
+771,Canola,,138011,,,FOOD00772,Herbs and spices,Oilseed crops
+772,Babassu palm,Attalea speciosa,145700,509373.0,,FOOD00773,Herbs and Spices,Oilseed crops
+773,Cupuaçu,Theobroma grandiflorum,108881,506108.0,,FOOD00774,Herbs and Spices,Oilseed crops
+774,Shea tree,Vitellaria paradoxa,292385,505960.0,,FOOD00775,Herbs and Spices,Oilseed crops
+775,Oil-seed Camellia,Camellia oleifera,385388,,,FOOD00776,Herbs and Spices,Oilseed crops
+776,Ucuhuba,Virola surinamensis,224910,18123.0,,FOOD00777,Herbs and Spices,Oilseed crops
+777,Phyllo dough,,,,,FOOD00778,Baking goods,Baking goods
+778,Cooking oil,,,,,FOOD00779,Baking goods,Baking goods
+779,Pie crust,,,,,FOOD00780,Baking goods,Wrappers
+780,Pie filling,,,,,FOOD00781,Baking goods,Baking goods
+781,Pie,,,,,FOOD00782,Confectioneries,Desserts
+782,Shortening,,,,,FOOD00783,Fats and oils,Vegetable fats
+783,Soy cream,,,,,FOOD00784,Soy,Soy products
+784,Ice cream cone,,,,,FOOD00785,Baking goods,Wrappers
+785,Molasses,,,,,FOOD00786,Baking goods,Baking goods
+786,Cracker,,,,,FOOD00787,Snack foods,Snack foods
+787,Nance,Byrsonima crassifolia,4270,29263.0,,FOOD00788,Fruits,Tropical fruits
+788,Naranjilla,Solanum quitoense,227725,30475.0,,FOOD00789,Fruits,Tropical fruits
+789,Natto,,,,,FOOD00790,Soy,Soy products
+790,Ravioli,,,,,FOOD00791,Dishes,Pasta dishes
+791,Scrapple,,,,,FOOD00792,Dishes,American cuisine
+792,Other pasta dish,,,,,FOOD00793,Dishes,Pasta dishes
+793,Succotash,,,,,FOOD00794,Dishes,American cuisine
+794,Tamale,,,,,FOOD00795,Dishes,Latin American cuisine
+795,Rice cake,,,,,FOOD00796,Dishes,Asian cuisine
+796,Tree fern,Cyathea,,17937.0,,FOOD00797,Vegetables,Other vegetables
+797,Evaporated milk,,,,,FOOD00798,Milk and milk products,Other milk products
+798,Flour,,,,,FOOD00799,Cereals and cereal products,Cereal products
+799,Akutaq,,,,,FOOD00800,Confectioneries,Desserts
+800,Dough,,,,,FOOD00801,Cereals and cereal products,Doughs
+801,Pita bread,,,,,FOOD00802,Cereals and cereal products,Flat breads
+802,Focaccia,,,,,FOOD00803,Cereals and cereal products,Flat breads
+803,Bagel,,,,,FOOD00804,Cereals and cereal products,Leavened breads
+804,Other bread product,,,,,FOOD00805,Cereals and cereal products,Bread products
+805,Piki bread,,,,,FOOD00806,Cereals and cereal products,Flat breads
+806,French toast,,,,,FOOD00807,Cereals and cereal products,Leavened breads
+807,Wheat bread,,,,,FOOD00808,Cereals and cereal products,Leavened breads
+808,Rye bread,,,,,FOOD00809,Cereals and cereal products,Leavened breads
+809,Oat bread,,,,,FOOD00810,Cereals and cereal products,Leavened breads
+810,Potato bread,,,,,FOOD00811,Cereals and cereal products,Other breads
+811,Cornbread,,,,,FOOD00812,Cereals and cereal products,Flat breads
+812,Corn grits,,,,,FOOD00813,Cereals and cereal products,Cereal products
+813,Multigrain bread,,,,,FOOD00814,Cereals and cereal products,Leavened breads
+814,Rice bread,,,,,FOOD00815,Cereals and cereal products,Leavened breads
+815,Pan dulce,,,,,FOOD00816,Cereals and cereal products,Leavened breads
+816,Raisin bread,,,,,FOOD00817,Cereals and cereal products,Sweet breads
+817,Wonton wrapper,,,,,FOOD00818,Baking goods,Wrappers
+818,Trail mix,,,,,FOOD00819,Snack foods,Snack foods
+819,Greenthread tea,Thelesperma,153159,38517.0,,FOOD00820,Teas,Herbal teas
+820,Fruit-flavor drink,,,,,FOOD00821,Beverages,Other beverages
+821,Vegetable juice,,,,,FOOD00822,Beverages,Other beverages
+822,Horchata,,,,,FOOD00823,Beverages,Other beverages
+823,Soft drink,,,,,FOOD00824,Beverages,Other beverages
+824,Frozen yogurt,,,,,FOOD00825,Confectioneries,Frozen desserts
+825,Milkshake,,,,,FOOD00826,Confectioneries,Frozen desserts
+826,Chocolate mousse,,,,,FOOD00827,Confectioneries,Desserts
+827,Dripping,,,,,FOOD00828,Fats and oils,Animal fats
+828,Pupusa,,,,,FOOD00829,Dishes,Latin American cuisine
+829,Empanada,,,,,FOOD00830,Dishes,Latin American cuisine
+830,Arepa,,,,,FOOD00831,Dishes,Latin American cuisine
+831,Ascidians,Ascidiacea,7713,158854.0,,FOOD00832,Aquatic foods,Other aquatic foods
+832,Gefilte fish,,,,,FOOD00833,Dishes,Jewish cuisine
+833,Yellow pond-lily,Nuphar lutea,77113,503968.0,,FOOD00834,Herbs and Spices,Herbs
+834,Fish burger,,,,,FOOD00835,Dishes,Sandwiches
+835,Other dish,,,,,FOOD00836,Dishes,Other dishes
+836,Pot pie,,,,,FOOD00837,Dishes,Other dishes
+837,Stuffing,,,,,FOOD00838,Baking goods,Baking goods
+838,Edible shell,,,,,FOOD00839,Baking goods,Wrappers
+839,Fudge,,,,,FOOD00840,Confectioneries,Candies
+840,Candy bar,,,,,FOOD00841,Confectioneries,Candies
+841,Condensed milk,,,,,FOOD00842,Milk and milk products,Other milk products
+842,Margarine,,,,,FOOD00843,Fats and oils,Vegetable fats
+843,Margarine-like spread,,,,,FOOD00844,Fats and oils,Vegetable fats
+844,Hummus,,,,,FOOD00845,Dishes,Levantine cuisine
+845,Potato puffs,,,,,FOOD00846,Dishes,Potato dishes
+846,Potato gratin,,,,,FOOD00847,Dishes,Potato dishes
+847,Milk substitute,,,,,FOOD00848,Baking goods,Substitutes
+848,Pepper (C. pubescens),Capsicum pubescens,113210,505855.0,,FOOD00849,Vegetables,Fruit vegetables
+849,Soft-necked garlic,Allium sativum L. var. sativum,4682,,,FOOD00850,Herbs and Spices,Herbs
+850,Cabbage,Brassica oleracea var. capitata,3716,526962.0,,FOOD00851,Vegetables,Cabbages
+851,Chinese bayberry,Myrica rubra,262757,845180.0,,FOOD00852,Fruits,Berries
+852,Mushrooms,,,,,FOOD00853,Vegetables,Mushrooms
+853,Alcoholic beverages,,,,,FOOD00854,Beverages,Alcoholic beverages
+854,Onion-family vegetables,,,,,FOOD00855,Vegetables,Onion-family vegetables
+855,Pomes,,,,,FOOD00856,Fruits,Pomes
+856,Brassicas,,3705,,,FOOD00857,Vegetables,Brassicas
+857,Cereals and cereal products,,,,,FOOD00858,Cereals and cereal products,Cereals and cereal products
+858,Citrus,,,28882.0,,FOOD00859,Fruits,Citrus
+859,Cocoa and cocoa products,,,,,FOOD00860,Cocoa and cocoa products,Cocoa and cocoa products
+860,Coffee and coffee products,,,,,FOOD00861,Coffee and coffee products,Coffee and coffee products
+861,Crustaceans,,6657,83677.0,,FOOD00862,Aquatic foods,Crustaceans
+862,Milk and milk products,,,,,FOOD00863,Milk and milk products,Milk and milk products
+863,Fats and oils,,,,,FOOD00864,Fats and oils,Fats and oils
+864,Fishes,,,,,FOOD00865,Aquatic foods,Fishes
+865,Herbs and Spices,,,,,FOOD00866,Herbs and Spices,Herbs and Spices
+866,Pulses,,,,,FOOD00867,Pulses,Pulses
+867,Mollusks,,6447,69458.0,,FOOD00868,Aquatic foods,Mollusks
+868,Nuts,,,,,FOOD00869,Nuts,Nuts
+869,Beverages,,,,,FOOD00870,Beverages,Beverages
+870,Fruits,,,,,FOOD00871,Fruits,Fruits
+871,Green vegetables,,,,,FOOD00872,Vegetables,Green vegetables
+872,Root vegetables,,,,,FOOD00873,Vegetables,Root vegetables
+873,Sunburst squash (pattypan squash),Cucurbita pepo var. clypeata,,,,FOOD00874,Gourds,Gourds
+874,Green zucchini,Cucurbita pepo var. cylindrica,,,,FOOD00875,Gourds,Gourds
+875,Yellow zucchini,Cucurbita pepo var. cylindrica,,,,FOOD00876,Gourds,Gourds
+876,Green bell pepper,Capsicum annuum,4072,30492.0,,FOOD00877,Vegetables,Fruit vegetables
+877,Yellow bell pepper,Capsicum annuum,4072,30492.0,,FOOD00878,Vegetables,Fruit vegetables
+878,Orange bell pepper,Capsicum annuum,4072,30492.0,,FOOD00879,Vegetables,Fruit vegetables
+879,Red bell pepper,Capsicum annuum,4072,30492.0,,FOOD00880,Vegetables,Fruit vegetables
+880,Italian sweet red pepper,Capsicum annuum,4072,30492.0,,FOOD00881,Vegetables,Fruit vegetables
+881,Yellow wax bean,Phaseolus vulgaris,3885,26857.0,,FOOD00882,Pulses,Beans
+882,Green bean,Phaseolus vulgaris,3885,26857.0,,FOOD00883,Pulses,Beans
+883,Saskatoon berry,Amelanchier alnifolia,32219,25109.0,,FOOD00884,Fruits,Berries
+884,Nanking cherry,Prunus tomentosa,105667,504627.0,,FOOD00885,Fruits,Berries
+885,Japanese pumpkin,Cucurbita maxima,3661,22369.0,,FOOD00886,Gourds,Gourds
+886,White cabbage,Brassica oleracea L. var. capitata L. f. alba DC.,,526962.0,,FOOD00887,Vegetables,Cabbages
+887,Romaine lettuce,Lactuca sativa L. var. longifolia,,,,FOOD00888,Vegetables,Leaf vegetables
+888,"Cow milk, pasteurized, vitamin A + D added, 0% fat",,,,,FOOD00889,Milk and milk products,Unfermented milks
+889,"Cow milk, pasteurized, vitamin A + D added, 1% fat",,,,,FOOD00890,Milk and milk products,Unfermented milks
+890,"Cow milk, pasteurized, vitamin A + D added, 2% fat",,,,,FOOD00891,Milk and milk products,Unfermented milks
+891,"Cow milk, pasteurized, vitamin D added, 3.25% fat",,,,,FOOD00892,Milk and milk products,Unfermented milks
+892,Castanospermum australe,Castanospermum australe,,,,FOOD00893,Vegetables,
+893,Gentiana lutea,Gentiana lutea,,505985.0,,FOOD00894,Vegetables,
+894,Juniperus communis,Juniperus communis,,194820.0,,FOOD00895,Vegetables,
+895,Albizia gummifera,Albizia gummifera,,820328.0,,FOOD00896,Vegetables,
+896,Mundu,Garcinia dulcis,,506128.0,,FOOD00897,Fruits,Tropical fruits
+897,Rabbiteye blueberry,Vaccinium virgatum,,505636.0,,FOOD00898,Fruits,Berries
+898,Yali pear,Pyrus × bretschneideri,,,,FOOD00899,Fruits,Pomes
+899,Asparagus racemosus,Asparagus racemosus,,,,FOOD00900,Vegetables,Shoot vegetables
+900,Evergreen blackberry,Rubus laciniatus,,24853.0,,FOOD00901,Fruits,Berries
+901,Asparagus fern,Asparagus setaceus,,193453.0,,FOOD00902,Herbs and Spices,Herbs
+902,Thornless blackberry,Rubus ulmifolius,,530155.0,,FOOD00903,Fruits,Berries
+903,Tropical highland blackberry,Rubus adenotrichos,,,,FOOD00904,Fruits,Berries
+904,Andean blackberry,Rubus glaucus,,506228.0,,FOOD00905,Fruits,Berries
+905,Blackberry,Rubus,,,,FOOD00906,Fruits,Berries
+906,Black tea,,,,,FOOD00907,Teas,Teas
+907,Green tea,,,,,FOOD00908,Teas,Teas
+908,Olive oil,,,,,FOOD00909,Herbs and Spices,Oilseed crops
+909,Macroalgae,,,,,FOOD00910,Aquatic foods,Seaweed
+910,Red wine,,,,,FOOD00911,Beverages,Fermented beverages
+911,linseed oil,,,,,FOOD00912,Herbs and Spices,Oilseed crops
+912,Rapeseed oil,,,,,FOOD00913,Herbs and Spices,Oilseed crops
+913,Soybean oil,,,,,FOOD00914,Herbs and Spices,Oilseed crops
+914,Guarana,Paullinia cupana,,,,FOOD00915,Herbs and Spices,Herbs
+915,Mate,Ilex paraguariensis,,,,FOOD00916,Herbs and Spices,Herbs
+916,White wine,,,,,FOOD00917,Beverages,Fermented beverages
+917,Sour orange,Citrus × aurantium,,,,FOOD00918,Fruits,Citrus
+918,Egg yolk,,,,,FOOD00919,Eggs,Eggs
+919,Rosé wine,,,,,FOOD00920,Beverages,Fermented beverages
+920,White mulberry,Morus alba,,,,FOOD00921,Herbs and Spices,Herbs
+921,Canola oil,,,,,FOOD00922,Herbs and Spices,Oilseed crops
+922,Dessert wine,,,,,FOOD00923,Beverages,Fermented beverages
+923,Red champagne,,,,,FOOD00924,Beverages,Alcoholic beverages
+924,Red tea,,,,,FOOD00925,Teas,Teas
+925,White champagne,,,,,FOOD00926,Beverages,Alcoholic beverages
+926,Red grape juice,,,,,FOOD00927,Beverages,Beverages
+927,White grape juice,,,,,FOOD00928,Beverages,Beverages
+928,Crosne,Stachys affinis,,,,FOOD00929,Vegetables,Root vegetables
+929,Red clover,Trifolium pratense,,,,FOOD00930,Herbs and Spices,Herbs
+930,Partridge berry,Mitchella repens,,,,FOOD00931,Fruits,Berries
+931,Mikan,Citrus unshiu,,,,FOOD00932,Fruits,Citrus
+932,Mozzarella cheese,,,,,FOOD00933,Milk and milk products,Fermented milk products
+933,Plain cream cheese,,,,,FOOD00934,Milk and milk products,Fermented milk products
+934,Cheddar Cheese,Cheddar Cheese,,,,FOOD00935,Milk and milk products,Fermented milk products
+935,Parmesan cheese,,,,,FOOD00936,Milk and milk products,Fermented milk products
+936,Almond milk,,,,,FOOD00937,Milk and milk products,Other milk products
+937,Coconut milk,,,,,FOOD00938,Milk and milk products,Other milk products
+938,Salted butter,,,,,FOOD00939,Milk and milk products,Other milk products
+939,Sunflower oil,,,,,FOOD00940,Herbs and Spices,Oilseed crops
+940,Coconut oil,,,,,FOOD00941,Herbs and Spices,Oilseed crops
+941,Peanut oil,,,,,FOOD00942,Herbs and Spices,Oilseed crops
+942,Cottonseed oil,,,,,FOOD00943,Herbs and Spices,Oilseed crops
+943,Corn oil,,,,,FOOD00944,Herbs and Spices,Oilseed crops
+944,Avocado oil,,,,,FOOD00945,Herbs and Spices,Oilseed crops
+945,Grapeseed oil,,,,,FOOD00946,Herbs and Spices,Oilseed crops
+946,Sesame oil,,,,,FOOD00947,Herbs and Spices,Oilseed crops
+947,Monterey Jack cheese,,,,,FOOD00948,Milk and milk products,Fermented milk products
+948,Swiss cheese,,,,,FOOD00949,Milk and milk products,Fermented milk products
+949,Cottage cheese,,,,,FOOD00950,Milk and milk products,Fermented milk products
+950,Blue cheese,,,,,FOOD00951,Milk and milk products,Fermented milk products
+951,Clam,,,,,FOOD00952,Aquatic foods,Bivalvia
+952,Sour cream,,,,,FOOD00953,Milk and milk products,Other milk products
+953,Whole wheat bread,,,,,FOOD00954,Cereals and cereal products,Cereals
+954,Jalapeno pepper,Capsicum annuum 'Jalapeño',,,,FOOD00955,Vegetables,Fruit vegetables
+955,Greek feta cheese,,,,,FOOD00956,Milk and milk products,Fermented milk products
+956,Eddoe,Colocasia antiquorum,,,,FOOD00957,Vegetables,Root vegetables
+957,Plantain,Musa × paradisiaca,,,,FOOD00958,Fruits,Tropical fruits
+958,Clementine,Citrus × clementina,,,,FOOD00959,Fruits,Citrus
+959,Green apple,,,,,FOOD00960,Fruits,Pomes
+960,White onion,,,,,FOOD00961,Vegetables,Onion-family vegetables
+961,Red onion,,,,,FOOD00962,Vegetables,Onion-family vegetables
+962,Green onion,,,,,FOOD00963,Vegetables,Onion-family vegetables
+963,Green grape,,,,,FOOD00964,Fruits,Berries
+964,Red grape,,,,,FOOD00965,Fruits,Berries
+965,Black plum,Syzygium cumini,,,,FOOD00966,Fruits,Berries
+966,Green cabbage,Brassica oleracea var. sabauda L.,,,,FOOD00967,Vegetables,Cabbages
+967,Black raisin,,,,,FOOD00968,Fruits,Berries
+968,Cannellini bean,,,,,FOOD00969,Pulses,Beans
+969,Green lentil,Lens culinaris,,,,FOOD00970,Pulses,Pulses
+970,Cubanelle pepper,,,,,FOOD00971,Vegetables,Fruit vegetables
+971,Acorn squash,Cucurbita pepo var. turbinata,,,,FOOD00972,Gourds,Gourds
+972,Iceberg lettuce,,,,,FOOD00973,Vegetables,Leaf vegetables
+973,Japanese sea bass,Lateolabrax japonicus,,,,FOOD00974,Aquatic foods,Fishes
+974,Pea shoots,,,,,FOOD00975,Vegetables,Leaf vegetables
+975,Yau choy,,,,,FOOD00976,Vegetables,Leaf vegetables
+976,Water spinach,Ipomoea aquatica,,,,FOOD00977,Vegetables,Leaf vegetables
+977,Chineese plum,,,,,FOOD00978,Fruits,Berries
+978,Green plum,,,,,FOOD00979,Fruits,Berries
+979,Wampee,Clausena lansium,,,,FOOD00980,Fruits,Berries
+980,Pitaya,Hylocereus undatus,,,,FOOD00981,Fruits,Tropical fruits
+981,Goji,,,,,FOOD00982,Fruits,Berries
+982,Monk fruit,Siraitia grosvenorii,,,,FOOD00983,Fruits,Berries
+983,Cantaloupe melon,Cucumis melo var. cantalupensis,,,,FOOD00984,Gourds,Gourds
+984,Hawthorn,Crataegus,,,,FOOD00985,Fruits,Berries
+985,Lantern fruit,Physalis alkekengi,,,,FOOD00986,Fruits,Berries
+986,White bread,,,,,FOOD00987,Cereals and cereal products,Cereals
+987,Cape gooseberry,Physalis peruviana,,,,FOOD00988,Fruits,Berries
+988,Herbal tea,,,,,FOOD00989,Teas,Teas
+989,Fish oil,,,,,FOOD00990,,
+990,Taco shell,,,,,FOOD00991,,
+991,Tostada shell,,,,,FOOD00992,,

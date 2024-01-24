@@ -1,0 +1,266 @@
+,fdc_id,orig_name,food_group,ncbi_taxon_id
+651,321358,"Hummus, commercial",Legumes and Legume Products,3827
+653,321360,"Tomatoes, grape, raw",Vegetables and Vegetable Products,4081
+904,321611,"Beans, snap, green, canned, regular pack, drained solids",Vegetables and Vegetable Products,3885
+2414,323121,"Frankfurter, beef, unheated",Sausages and Luncheon Meats,
+2587,323294,"Nuts, almonds, dry roasted, with salt added",Nut and Seed Products,3755
+2798,323505,"Kale, raw",Vegetables and Vegetable Products,3712
+2897,323604,"Egg, whole, raw, frozen, pasteurized",Dairy and Egg Products,9031
+2990,323697,"Egg, white, raw, frozen, pasteurized",Dairy and Egg Products,9031
+3086,323793,"Egg, white, dried",Dairy and Egg Products,9031
+3610,324317,"Onion rings, breaded, par fried, frozen, prepared, heated in oven",Vegetables and Vegetable Products,4679
+3946,324653,"Pickles, cucumber, dill or kosher dill",Vegetables and Vegetable Products,3659
+4329,325036,"Cheese, parmesan, grated",Dairy and Egg Products,9913
+4491,325198,"Cheese, pasteurized process, American, vitamin D fortified",Dairy and Egg Products,9913
+4580,325287,"Grapefruit juice, white, canned or bottled, unsweetened",Fruits and Fruit Juices,37656
+4723,325430,"Peaches, yellow, raw",Fruits and Fruit Juices,3760
+4817,325524,"Seeds, sunflower seed kernels, dry roasted, with salt added",Nut and Seed Products,4231
+5164,325871,"Bread, white, commercially prepared",Baked Products,4564
+5489,326196,"Kale, frozen, cooked, boiled, drained, without salt",Vegetables and Vegetable Products,3712
+5991,326698,"Mustard, prepared, yellow",Spices and Herbs,
+6339,327046,"Kiwifruit, green, raw",Fruits and Fruit Juices,3627
+6650,327357,"Nectarines, raw",Fruits and Fruit Juices,3760
+7930,328637,"Cheese, cheddar",Dairy and Egg Products,9913
+8134,328841,"Cheese, cottage, lowfat, 2% milkfat",Dairy and Egg Products,9913
+8663,329370,"Cheese, mozzarella, low moisture, part-skim",Dairy and Egg Products,9913
+8783,329490,"Egg, whole, dried",Dairy and Egg Products,9031
+8889,329596,"Egg, yolk, raw, frozen, pasteurized",Dairy and Egg Products,9031
+9009,329716,"Egg, yolk, dried",Dairy and Egg Products,9031
+9430,330137,"Yogurt, Greek, plain, nonfat",Dairy and Egg Products,9913
+9708,330415,"Yogurt, Greek, strawberry, nonfat",Dairy and Egg Products,9913
+9751,330458,"Oil, coconut",Fats and Oils,13894
+11190,331897,"Chicken, broilers or fryers, drumstick, meat only, cooked, braised",Poultry Products,9031
+11253,331960,"Chicken, broiler or fryers, breast, skinless, boneless, meat only, cooked, braised",Poultry Products,9031
+11575,332282,"Sauce, pasta, spaghetti/marinara, ready-to-serve","Soups, Sauces, and Gravies",
+11690,332397,"Ham, sliced, pre-packaged, deli meat (96%fat free, water added)",Sausages and Luncheon Meats,9822
+12084,332791,"Olives, green, Manzanilla, stuffed with pimiento",Fruits and Fruit Juices,4146
+12301,333008,"Cookies, oatmeal, soft, with raisins",Baked Products,9031
+12574,333281,"Tomatoes, canned, red, ripe, diced",Vegetables and Vegetable Products,4081
+12667,333374,"Fish, haddock, raw",Finfish and Shellfish Products,8056
+12769,333476,"Fish, pollock, raw",Finfish and Shellfish Products,8059
+13487,334194,"Fish, tuna, light, canned in water, drained solids",Finfish and Shellfish Products,186749
+13829,334536,"Restaurant, Chinese, fried rice, without meat",Restaurant Foods,
+13921,334628,"Restaurant, Latino, tamale, pork",Restaurant Foods,
+14013,334720,"Restaurant, Latino, pupusas con frijoles (pupusas, bean)",Restaurant Foods,
+14533,335240,"Bread, whole-wheat, commercially prepared",Baked Products,4564
+15361,746758,"Beef, loin, tenderloin roast, separable lean only, boneless, trimmed to 0"" fat, select, cooked, roasted",Beef Products,9913
+15362,746759,"Beef, loin, top loin steak, boneless, lip-on, separable lean only, trimmed to 1/8"" fat, choice, raw",Beef Products,9913
+15363,746760,"Beef, round, eye of round roast, boneless, separable lean only, trimmed to 0"" fat, select, raw",Beef Products,9913
+15364,746761,"Beef, round, top round roast, boneless, separable lean only, trimmed to 0"" fat, select, raw",Beef Products,9913
+15365,746762,"Beef, short loin, porterhouse steak, separable lean only, trimmed to 1/8"" fat, select, raw",Beef Products,9913
+15366,746763,"Beef, short loin, t-bone steak, bone-in, separable lean only, trimmed to 1/8"" fat, choice, cooked, grilled",Beef Products,9913
+15367,746764,"Carrots, frozen, unprepared",Vegetables and Vegetable Products,4039
+15368,746765,"Cheese, dry white, queso seco",Dairy and Egg Products,9913
+15369,746766,"Cheese, ricotta, whole milk",Dairy and Egg Products,9913
+15370,746767,"Cheese, swiss",Dairy and Egg Products,9913
+15371,746768,"Figs, dried, uncooked",Fruits and Fruit Juices,3494
+15372,746769,"Lettuce, cos or romaine, raw",Vegetables and Vegetable Products,4236
+15373,746770,"Melons, cantaloupe, raw",Fruits and Fruit Juices,3656
+15374,746771,"Oranges, raw, navels",Fruits and Fruit Juices,2711
+15375,746772,"Milk, lowfat, fluid, 1% milkfat, with added vitamin A and vitamin D",Dairy and Egg Products,9913
+15376,746773,"Pears, raw, bartlett",Fruits and Fruit Juices,23211
+15377,746774,"Restaurant, Chinese, sweet and sour pork",Restaurant Foods,9822
+15378,746775,"Salt, table, iodized",Spices and Herbs,
+15379,746776,"Milk, nonfat, fluid, with added vitamin A and vitamin D (fat free or skim)",Dairy and Egg Products,9913
+15380,746777,"Sauce, salsa, ready-to-serve","Soups, Sauces, and Gravies",
+15381,746778,"Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D",Dairy and Egg Products,9913
+15382,746779,"Sausage, breakfast sausage, beef, pre-cooked, unprepared",Sausages and Luncheon Meats,9913
+15383,746780,"Sausage, Italian, pork, mild, cooked, pan-fried",Sausages and Luncheon Meats,9822
+15384,746781,"Sausage, pork, chorizo, link or ground, cooked, pan-fried",Sausages and Luncheon Meats,9822
+15385,746782,"Milk, whole, 3.25% milkfat, with added vitamin D",Dairy and Egg Products,9913
+15386,746783,"Sausage, turkey, breakfast links, mild, raw",Sausages and Luncheon Meats,9102
+15387,746784,"Sugars, granulated",Sweets,
+15388,746785,"Turkey, ground, 93% lean, 7% fat, pan-broiled crumbles",Poultry Products,9102
+15555,746952,"Ham, sliced, restaurant",Pork Products,9822
+16032,747429,"Cheese, American, restaurant",Dairy and Egg Products,9913
+16033,747430,"Beans, Dry, Medium Red (0% moisture)",Legumes and Legume Products,3885
+16034,747431,"Beans, Dry, Red (0% moisture)",Legumes and Legume Products,3885
+16035,747432,"Beans, Dry, Flor de Mayo (0% moisture)",Legumes and Legume Products,3885
+16036,747433,"Beans, Dry, Brown (0% moisture)",Legumes and Legume Products,3885
+16037,747434,"Beans, Dry, Tan (0% moisture)",Legumes and Legume Products,3885
+16038,747435,"Beans, Dry, Light Tan (0% moisture)",Legumes and Legume Products,3885
+16039,747436,"Beans, Dry, Carioca (0% moisture)",Legumes and Legume Products,3885
+16040,747437,"Beans, Dry, Cranberry (0% moisture)",Legumes and Legume Products,3885
+16041,747438,"Beans, Dry, Light Red Kidney (0% moisture)",Legumes and Legume Products,3885
+16042,747439,"Beans, Dry, Pink (0% moisture)",Legumes and Legume Products,3885
+16043,747440,"Beans, Dry, Dark Red Kidney (0% moisture)",Legumes and Legume Products,3885
+16044,747441,"Beans, Dry, Navy (0% moisture)",Legumes and Legume Products,3885
+16045,747442,"Beans, Dry, Small White (0% moisture)",Legumes and Legume Products,3885
+16046,747443,"Beans, Dry, Small Red (0% moisture)",Legumes and Legume Products,3885
+16047,747444,"Beans, Dry, Black (0% moisture)",Legumes and Legume Products,3885
+16048,747445,"Beans, Dry, Pinto (0% moisture)",Legumes and Legume Products,3885
+16049,747446,"Beans, Dry, Great Northern (0% moisture)",Legumes and Legume Products,3885
+16050,747447,"Broccoli, raw",Vegetables and Vegetable Products,3712
+16296,747693,"Ketchup, restaurant",Vegetables and Vegetable Products,
+16600,747997,"Eggs, Grade A, Large, egg white",Dairy and Egg Products,9031
+16839,748236,"Eggs, Grade A, Large, egg yolk",Dairy and Egg Products,9031
+16881,748278,"Oil, canola",Fats and Oils,3708
+16926,748323,"Oil, corn",Fats and Oils,4577
+16969,748366,"Oil, soybean",Fats and Oils,3847
+17211,748608,"Oil, olive, extra virgin",Fats and Oils,4146
+17570,748967,"Eggs, Grade A, Large, egg whole",Dairy and Egg Products,9031
+18023,749420,"Pork, cured, bacon, cooked, restaurant",Pork Products,9822
+18080,789828,"Butter, stick, unsalted",Dairy and Egg Products,9913
+18142,789890,"Flour, wheat, all-purpose, enriched, bleached",Cereal Grains and Pasta,4564
+18203,789951,"Flour, wheat, all-purpose, enriched, unbleached",Cereal Grains and Pasta,4564
+18270,790018,"Flour, wheat, all-purpose, unenriched, unbleached",Cereal Grains and Pasta,4564
+18337,790085,"Flour, whole wheat, unenriched",Cereal Grains and Pasta,4564
+18398,790146,"Flour, bread, white, enriched, unbleached",Cereal Grains and Pasta,4564
+18466,790214,"Flour, rice, white, unenriched",Cereal Grains and Pasta,4530
+18528,790276,"Flour, corn, yellow, fine meal, enriched",Cereal Grains and Pasta,4577
+18760,790508,"Butter, stick, salted",Dairy and Egg Products,9913
+18829,790577,"Onions, red, raw",Vegetables and Vegetable Products,4679
+18898,790646,"Onions, yellow, raw",Vegetables and Vegetable Products,4679
+19298,1104647,"Garlic, raw",Vegetables and Vegetable Products,4682
+19356,1104705,"Flour, soy, defatted",Legumes and Legume Products,3847
+19417,1104766,"Flour, soy, full-fat",Legumes and Legume Products,3847
+19456,1104812,"Flour, rice, brown",Cereal Grains and Pasta,4530
+19511,1104867,"Flour, rice, glutinous",Cereal Grains and Pasta,
+19557,1104913,"Flour, pastry, unenriched, unbleached",Cereal Grains and Pasta,4564
+19606,1104962,"Onions, white, raw",Vegetables and Vegetable Products,4679
+19717,1105073,"Bananas, overripe, raw",Fruits and Fruit Juices,4640
+19958,1105314,"Bananas, ripe and slightly ripe, raw",Fruits and Fruit Juices,4640
+20543,1750339,"Apples, red delicious, with skin, raw",Fruits and Fruit Juices,3750
+20544,1750340,"Apples, fuji, with skin, raw",Fruits and Fruit Juices,3750
+20545,1750341,"Apples, gala, with skin, raw",Fruits and Fruit Juices,3750
+20546,1750342,"Apples, granny smith, with skin, raw",Fruits and Fruit Juices,3750
+20547,1750343,"Apples, honeycrisp, with skin, raw",Fruits and Fruit Juices,3750
+20552,1750348,"Oil, peanut",Fats and Oils,3818
+20553,1750349,"Oil, sunflower",Fats and Oils,4231
+20554,1750350,"Oil, safflower",Fats and Oils,4222
+20555,1750351,"Oil, olive, extra light",Fats and Oils,4146
+27561,1999626,"Mushroom, lion's mane",Vegetables and Vegetable Products,91752
+27562,1999627,"Mushroom, oyster",Vegetables and Vegetable Products,5322
+27563,1999628,"Mushrooms, shiitake",Vegetables and Vegetable Products,5353
+27564,1999629,"Mushrooms, white button",Vegetables and Vegetable Products,5341
+27565,1999630,"Soy milk, unsweetened, plain, shelf stable",Legumes and Legume Products,3847
+27566,1999631,"Almond milk, unsweetened, plain, shelf stable",Beverages,3755
+27567,1999632,"Spinach, baby",Vegetables and Vegetable Products,3562
+27568,1999633,"Spinach, mature",Vegetables and Vegetable Products,3562
+27569,1999634,"Tomato, roma",Vegetables and Vegetable Products,4081
+31520,2003586,"Flour, 00",Cereal Grains and Pasta,
+31521,2003587,"Flour, spelt, whole grain",Cereal Grains and Pasta,
+31522,2003588,"Flour, semolina, coarse and semi-coarse",Cereal Grains and Pasta,
+31523,2003589,"Flour, semolina, fine",Cereal Grains and Pasta,
+31524,2003590,"Apple juice, with added vitamin C, from concentrate, shelf stable",Fruits and Fruit Juices,
+31525,2003591,"Orange juice, no pulp, not fortified, from concentrate, refrigerated",Fruits and Fruit Juices,
+31526,2003592,"Grape juice, purple, with added vitamin C, from concentrate, shelf stable",Fruits and Fruit Juices,
+31527,2003593,"Grape juice, white, with added vitamin C, from concentrate, shelf stable",Fruits and Fruit Juices,
+31528,2003594,"Cranberry juice, not fortified, from concentrate, shelf stable",Fruits and Fruit Juices,
+31529,2003595,"Grapefruit juice, red, not fortified, not from concentrate, refrigerated",Fruits and Fruit Juices,
+31530,2003596,"Tomato juice, with added ingredients, from concentrate, shelf stable",Vegetables and Vegetable Products,
+31531,2003597,"Orange juice, no pulp, not fortified, not from concentrate, refrigerated",Fruits and Fruit Juices,
+31532,2003598,"Mushroom, portabella",Vegetables and Vegetable Products,
+31533,2003599,"Mushroom, king oyster",Vegetables and Vegetable Products,
+31534,2003600,"Mushroom, enoki",Vegetables and Vegetable Products,
+31535,2003601,"Mushroom, crimini",Vegetables and Vegetable Products,
+31536,2003602,"Mushroom, maitake",Vegetables and Vegetable Products,
+31537,2003603,"Mushroom, beech",Vegetables and Vegetable Products,
+31538,2003604,"Mushroom, pioppini",Vegetables and Vegetable Products,
+35346,2257044,"Soy milk, sweetened, plain, refrigerated",Legumes and Legume Products,
+35347,2257045,"Almond milk, unsweetened, plain, refrigerated",Beverages,
+35348,2257046,"Oat milk, unsweetened, plain, refrigerated",Beverages,
+36887,2258586,"Carrots, mature, raw",Vegetables and Vegetable Products,
+36888,2258587,"Carrots, baby, raw",Vegetables and Vegetable Products,
+36889,2258588,"Peppers, bell, green, raw",Vegetables and Vegetable Products,
+36890,2258589,"Peppers, bell, yellow, raw",Vegetables and Vegetable Products,
+36891,2258590,"Peppers, bell, red, raw",Vegetables and Vegetable Products,
+36892,2258591,"Peppers, bell, orange, raw",Vegetables and Vegetable Products,
+38092,2259792,"Buttermilk, low fat",Dairy and Egg Products,
+38093,2259793,"Yogurt, plain, whole milk",Dairy and Egg Products,
+38094,2259794,"Yogurt, Greek, plain, whole milk",Dairy and Egg Products,
+38095,2259795,"Cheese, parmesan, grated, refrigerated",Dairy and Egg Products,
+38096,2259796,"Cheese, feta, whole milk, crumbled",Dairy and Egg Products,
+39719,2261420,"Flour, almond",Nut and Seed Products,
+39720,2261421,"Flour, oat, whole grain",Cereal Grains and Pasta,
+39721,2261422,"Flour, potato",Vegetables and Vegetable Products,
+40370,2262072,"Peanut butter, creamy",Legumes and Legume Products,
+40371,2262073,"Sesame butter, creamy",Nut and Seed Products,
+40372,2262074,"Almond butter, creamy",Nut and Seed Products,
+40373,2262075,"Flaxseed, ground",Nut and Seed Products,
+43414,2346384,"Cottage cheese, full fat, large or small curd",Dairy and Egg Products,
+43415,2346385,"Cream cheese, full fat, block",Dairy and Egg Products,
+43416,2346386,"Cream, heavy",Dairy and Egg Products,
+43417,2346387,"Cream, sour, full fat",Dairy and Egg Products,
+43418,2346388,"Lettuce, iceberg, raw",Vegetables and Vegetable Products,
+43419,2346389,"Lettuce, romaine, green, raw",Vegetables and Vegetable Products,
+43420,2346390,"Lettuce, leaf, red, raw",Vegetables and Vegetable Products,
+43421,2346391,"Lettuce, leaf, green, raw",Vegetables and Vegetable Products,
+43422,2346392,"Nuts, pine nuts, raw",Nut and Seed Products,
+43423,2346393,"Nuts, almonds, whole, raw",Nut and Seed Products,
+43424,2346394,"Nuts, walnuts, English, halves, raw",Nut and Seed Products,
+43425,2346395,"Nuts, pecans, halves, raw",Nut and Seed Products,
+43426,2346396,"Oats, whole grain, rolled, old fashioned",Cereal Grains and Pasta,
+43427,2346397,"Oats, whole grain, steel cut",Cereal Grains and Pasta,
+43428,2346398,"Pineapple, raw",Fruits and Fruit Juices,
+43429,2346399,"Cherries, sweet, dark red, raw",Fruits and Fruit Juices,
+43430,2346400,"Beans, snap, green, raw",Vegetables and Vegetable Products,
+43431,2346401,"Potatoes, russet, without skin, raw",Vegetables and Vegetable Products,
+43432,2346402,"Potatoes, red, without skin, raw",Vegetables and Vegetable Products,
+43433,2346403,"Potatoes, gold, without skin, raw",Vegetables and Vegetable Products,
+43434,2346404,"Sweet potatoes, orange flesh, without skin, raw",Vegetables and Vegetable Products,
+43435,2346405,"Celery, raw",Vegetables and Vegetable Products,
+43436,2346406,"Cucumber, with peel, raw",Vegetables and Vegetable Products,
+43437,2346407,"Cabbage, green, raw",Vegetables and Vegetable Products,
+43438,2346408,"Cabbage, red, raw",Vegetables and Vegetable Products,
+43439,2346409,"Strawberries, raw",Fruits and Fruit Juices,
+43440,2346410,"Raspberries, raw",Fruits and Fruit Juices,
+43441,2346411,"Blueberries, raw",Fruits and Fruit Juices,
+43442,2346412,"Grapes, red, seedless, raw",Fruits and Fruit Juices,
+43443,2346413,"Grapes, green, seedless, raw",Fruits and Fruit Juices,
+43444,2346414,"Applesauce, unsweetened, with added vitamin C",Fruits and Fruit Juices,
+50582,2512371,"Flour, amaranth",Cereal Grains and Pasta,
+50583,2512372,"Flour, quinoa",Cereal Grains and Pasta,
+50584,2512373,"Flour, sorghum",Cereal Grains and Pasta,
+50585,2512374,"Flour, buckwheat",Cereal Grains and Pasta,
+50586,2512375,"Flour, rye",Cereal Grains and Pasta,
+50587,2512376,"Flour, barley",Cereal Grains and Pasta,
+50588,2512377,"Flour, cassava",Vegetables and Vegetable Products,
+50589,2512378,"Buckwheat, whole grain",Cereal Grains and Pasta,
+50590,2512379,"Millet, whole grain",Cereal Grains and Pasta,
+50591,2512380,"Rice, brown, long grain, unenriched, raw",Cereal Grains and Pasta,
+50592,2512381,"Rice, white, long grain, unenriched, raw",Cereal Grains and Pasta,
+52953,2514743,"Beef, ground, 90% lean meat / 10% fat, raw",Beef Products,
+52954,2514744,"Beef, ground, 80% lean meat / 20% fat, raw",Beef Products,
+52955,2514745,"Pork, ground, raw",Pork Products,
+52956,2514746,"Chicken, ground, with additives, raw",Poultry Products,
+52957,2514747,"Turkey, ground, 93% lean/ 7% fat, raw",Poultry Products,
+53582,2515373,"Nuts, brazilnuts, raw",Nut and Seed Products,
+53583,2515374,"Nuts, cashew nuts, raw",Nut and Seed Products,
+53584,2515375,"Nuts, hazelnuts or filberts, raw",Nut and Seed Products,
+53585,2515376,"Peanuts, raw",Legumes and Legume Products,
+53586,2515377,"Flour, chestnut",Nut and Seed Products,
+53587,2515378,"Nuts, macadamia nuts, raw",Nut and Seed Products,
+53588,2515379,"Nuts, pistachio nuts, raw",Nut and Seed Products,
+53589,2515380,"Seeds, pumpkin seeds (pepitas), raw",Nut and Seed Products,
+53590,2515381,"Seeds, sunflower seed, kernel, raw",Nut and Seed Products,
+53591,2515382,"Flour, coconut",Nut and Seed Products,
+55842,2644281,"Beans, cannellini, dry",Legumes and Legume Products,
+55843,2644282,"Chickpeas, (garbanzo beans, bengal gram), dry",Legumes and Legume Products,
+55844,2644283,"Lentils, dry",Legumes and Legume Products,
+55845,2644284,"Blackeye pea, dry",Legumes and Legume Products,
+55846,2644285,"Beans, black, canned, sodium added, drained and rinsed",Legumes and Legume Products,
+55847,2644286,"Beans, navy, canned, sodium added, drained and rinsed",Legumes and Legume Products,
+55848,2644287,"Beans, cannellini, canned, sodium added, drained and rinsed",Legumes and Legume Products,
+55849,2644288,"Chickpeas (garbanzo beans, bengal gram), canned, sodium added, drained and rinsed",Legumes and Legume Products,
+55850,2644289,"Beans, kidney, dark red, canned, sodium added, sugar added, drained and rinsed",Legumes and Legume Products,
+55851,2644290,"Beans, kidney, light red, canned, sodium added, sugar added, drained and rinsed",Legumes and Legume Products,
+55852,2644291,"Peas, green, sweet, canned, sodium added, sugar added, drained and rinsed",Vegetables and Vegetable Products,
+55853,2644292,"Beans, pinto, canned, sodium added, drained and rinsed",Legumes and Legume Products,
+55854,2644293,"Blackeye pea, canned, sodium added, drained and rinsed",Legumes and Legume Products,
+55855,2644294,"Beans, great northern, canned, sodium added, drained and rinsed",Legumes and Legume Products,
+57728,2646168,"Pork, loin, boneless, raw",Pork Products,
+57729,2646169,"Pork, loin, tenderloin, boneless, raw",Pork Products,
+57730,2646170,"Chicken, breast, boneless, skinless, raw",Poultry Products,
+57731,2646171,"Chicken, thigh, boneless, skinless, raw",Poultry Products,
+57732,2646172,"Beef, ribeye, steak, boneless, choice, raw",Beef Products,
+57733,2646173,"Beef, round, top round, boneless, choice, raw",Beef Products,
+57734,2646174,"Beef, chuck, roast, boneless, choice, raw",Beef Products,
+57735,2646175,"Beef, flank, steak, boneless, choice, raw",Beef Products,
+58996,2647437,"Yogurt, plain, nonfat",Dairy and Egg Products,
+58997,2647438,"Cheese, monterey jack, solid",Dairy and Egg Products,
+58998,2647439,"Cheese, pasteurized process cheese food or product, American, singles",Dairy and Egg Products,
+58999,2647440,"Cheese, provolone, sliced",Dairy and Egg Products,
+59000,2647441,"Cheese, oaxaca, solid",Dairy and Egg Products,
+59001,2647442,"Cheese, queso fresco, solid",Dairy and Egg Products,
+59002,2647443,"Cheese, cotija, solid",Dairy and Egg Products,
