@@ -84,8 +84,10 @@ if __name__ == '__main__':
     # data['food_processing'] = 'UNCATEGORIZED'
     # data['food_category'] = 'UNCATEGORIZED'
     data['foodatlas_id'] = [f"e{i}" for i in range(1, len(data) + 1)]
+    data['entity_type'] = 'food'
     data = data[[
         'foodatlas_id',
+        'entity_type'
         'common_name',
         'scientific_name',
         'synonyms',
@@ -93,7 +95,6 @@ if __name__ == '__main__':
         # 'food_part',
         # 'food_processing',
         # 'food_category',
-        # 'ambiguous',
     ]]
 
-    data.to_csv("outputs/kg/food_entities.tsv", sep='\t', index=False)
+    data.to_csv("outputs/kg/entities.tsv", sep='\t', index=False)

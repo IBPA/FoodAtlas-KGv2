@@ -96,6 +96,7 @@ if __name__ == '__main__':
 
         entities_new_rows += [{
             'foodatlas_id': f"e{foodatlas_id_curr}",
+            'entity_type': 'food',
             'common_name': row['name'].lower(),
             'scientific_name': '',
             'synonyms': [row['name'].lower()],
@@ -115,7 +116,7 @@ if __name__ == '__main__':
     entities = entities.drop(columns=['ncbi_taxon_id'])
 
     # Save the results.
-    entities.to_csv("outputs/kg/food_entities.tsv", sep='\t', index=False)
+    entities.to_csv("outputs/kg/entities.tsv", sep='\t', index=False)
     pd.DataFrame(lut.items(), columns=['name', 'foodatlas_id']).to_csv(
         "outputs/kg/food_lookup_table.tsv", sep='\t', index=False
     )
