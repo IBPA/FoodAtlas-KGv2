@@ -1,7 +1,7 @@
 import pandas as pd
 from Bio import Entrez
 
-with open("food_atlas/kg/initialization/get_ids/api_key.txt") as f:
+with open("food_atlas/kg/initialization/get_primary_ids/api_key.txt") as f:
     Entrez.email = f.readline().strip()
     Entrez.api_key = f.readline().strip()
 
