@@ -1,0 +1,226 @@
+Energy (Atwater General Factors)
+Energy (Atwater Specific Factors)
+Nitrogen
+Protein
+Total lipid (fat)
+"Carbohydrate, by difference"
+Ash
+Energy
+Starch
+Sucrose
+Glucose
+Fructose
+Lactose
+Maltose
+Specific Gravity
+Citric acid
+Malic acid
+Oxalic acid
+Pyruvic acid
+Quinic acid
+"Carbohydrate, by summation"
+Water
+Energy
+"Sugars, Total"
+Galactose
+Raffinose
+Stachyose
+"Fiber, total dietary"
+"Fiber, soluble"
+"Fiber, insoluble"
+Total fat (NLEA)
+"Calcium, Ca"
+"Iron, Fe"
+"Magnesium, Mg"
+"Phosphorus, P"
+"Potassium, K"
+"Sodium, Na"
+"Sulfur, S"
+"Zinc, Zn"
+"Cobalt, Co"
+"Copper, Cu"
+"Iodine, I"
+"Manganese, Mn"
+"Molybdenum, Mo"
+"Selenium, Se"
+Retinol
+"Vitamin A, RAE"
+"Carotene, beta"
+"Carotene, alpha"
+Vitamin E (alpha-tocopherol)
+"Vitamin D (D2 + D3), International Units"
+Vitamin D2 (ergocalciferol)
+Vitamin D3 (cholecalciferol)
+25-hydroxycholecalciferol
+Vitamin D (D2 + D3)
+Phytoene
+Phytofluene
+"Carotene, gamma"
+Zeaxanthin
+"Cryptoxanthin, beta"
+Lutein
+Lycopene
+Lutein + zeaxanthin
+"Tocopherol, beta"
+"Tocopherol, gamma"
+"Tocopherol, delta"
+"Tocotrienol, alpha"
+"Tocotrienol, beta"
+"Tocotrienol, gamma"
+"Tocotrienol, delta"
+"Boron, B"
+"Nickel, Ni"
+cis-beta-Carotene
+cis-Lycopene
+cis-Lutein/Zeaxanthin
+"Vitamin C, total ascorbic acid"
+Thiamin
+Riboflavin
+Niacin
+Pantothenic acid
+Vitamin B-6
+Biotin
+"Folate, total"
+Vitamin B-12
+"Choline, total"
+Vitamin K (Menaquinone-4)
+Vitamin K (Dihydrophylloquinone)
+Vitamin K (phylloquinone)
+5-methyl tetrahydrofolate (5-MTHF)
+10-Formyl folic acid (10HCOFA)
+5-Formyltetrahydrofolic acid (5-HCOH4
+"Choline, free"
+"Choline, from phosphocholine"
+"Choline, from phosphotidyl choline"
+"Choline, from glycerophosphocholine"
+Betaine
+"Choline, from sphingomyelin"
+Tryptophan
+Threonine
+Isoleucine
+Leucine
+Lysine
+Methionine
+Cystine
+Phenylalanine
+Tyrosine
+Valine
+Arginine
+Histidine
+Alanine
+Aspartic acid
+Glutamic acid
+Glycine
+Proline
+Serine
+Hydroxyproline
+Cysteine
+Cholesterol
+"Fatty acids, total trans"
+"Fatty acids, total saturated"
+SFA 4:0
+SFA 6:0
+SFA 8:0
+SFA 10:0
+SFA 12:0
+SFA 14:0
+SFA 16:0
+SFA 18:0
+SFA 20:0
+MUFA 18:1
+PUFA 18:2
+PUFA 18:3
+PUFA 20:4
+PUFA 22:6 n-3 (DHA)
+SFA 22:0
+PUFA 18:4
+MUFA 20:1
+PUFA 20:5 n-3 (EPA)
+MUFA 22:1
+PUFA 22:5 n-3 (DPA)
+TFA 14:1 t
+Ergosterol
+Stigmasterol
+Campesterol
+Brassicasterol
+Beta-sitosterol
+Campestanol
+"Fatty acids, total monounsaturated"
+"Fatty acids, total polyunsaturated"
+Beta-sitostanol
+Delta-5-avenasterol
+"Phytosterols, other"
+SFA 15:0
+SFA 17:0
+SFA 24:0
+TFA 16:1 t
+TFA 18:1 t
+TFA 22:1 t
+TFA 18:2 t not further defined
+PUFA 18:2 CLAs
+MUFA 24:1 c
+"PUFA 20:2 n-6 c,c"
+MUFA 16:1 c
+MUFA 18:1 c
+"PUFA 18:2 n-6 c,c"
+MUFA 22:1 c
+"PUFA 18:3 n-6 c,c,c"
+MUFA 17:1
+PUFA 20:3
+"Fatty acids, total trans-monoenoic"
+"Fatty acids, total trans-dienoic"
+"Fatty acids, total trans-polyenoic"
+MUFA 15:1
+PUFA 22:2
+SFA 11:0
+Daidzein
+Genistein
+"PUFA 18:3 n-3 c,c,c (ALA)"
+PUFA 20:3 n-3
+PUFA 20:3 n-6
+PUFA 18:3i
+PUFA 22:4
+PUFA 20:3 n-9
+"Sugars, total including NLEA"
+SFA 5:0
+SFA 7:0
+SFA 9:0
+SFA 21:0
+SFA 23:0
+MUFA 12:1
+MUFA 14:1 c
+MUFA 17:1 c
+MUFA 20:1 c
+TFA 20:1 t
+MUFA 22:1 n-9
+MUFA 22:1 n-11
+PUFA 18:2 c
+TFA 18:2 t
+PUFA 18:3 c
+TFA 18:3 t
+PUFA 20:3 c
+PUFA 22:3
+PUFA 20:4c
+PUFA 20:5c
+PUFA 22:5 c
+PUFA 22:6 c
+PUFA 20:2 c
+trans-beta-Carotene
+trans-Lycopene
+"Cryptoxanthin, alpha"
+Total dietary fiber (AOAC 2011.25)
+High Molecular Weight Dietary Fiber (HMWDF)
+Stigmastadiene
+Delta-7-Stigmastenol
+Daidzin
+Genistin
+Glycitin
+Ergothioneine
+Beta-glucan
+Vitamin D4
+Ergosta-7-enol
+" Ergosta-7,22-dienol"
+" Ergosta-5,7-dienol"
+Verbascose
+Low Molecular Weight Dietary Fiber (LMWDF)
+Glutathione
