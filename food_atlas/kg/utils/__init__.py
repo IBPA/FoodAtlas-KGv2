@@ -1,7 +1,7 @@
-from ._load import load_food_lookup_table, load_food_entities
+from ._load import load_lookup_tables, load_entities
 
 
 __all__ = [
-    'load_food_lookup_table',
-    'load_food_entities',
+    'load_lookup_tables',
+    'load_entities',
 ]

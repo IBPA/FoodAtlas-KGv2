@@ -3,20 +3,25 @@ from ast import literal_eval
 import pandas as pd
 
 
-def load_food_lookup_table():
-    lut_df = pd.read_csv(
-        "outputs/kg/food_lookup_table.tsv",
-        sep='\t',
-        converters={'foodatlas_id': literal_eval},
-    )
-    lut = dict(zip(lut_df['name'], lut_df['foodatlas_id']))
+def load_lookup_tables():
+    luts = []
+    for suffix in ['food', 'chemical']:
+        lut_df = pd.read_csv(
+            f"outputs/kg/lookup_table_{suffix}.tsv",
+            sep='\t',
+            converters={'foodatlas_id': literal_eval},
+        )
+        lut = dict(zip(lut_df['name'], lut_df['foodatlas_id']))
+        luts += [lut]
 
-    return lut
+    return luts
 
 
-def load_food_entities():
+def load_entities(
+    path_file: str = "outputs/kg/entities.tsv"
+):
     return pd.read_csv(
-        "outputs/kg/food_entities.tsv",
+        path_file,
         sep='\t',
         converters={
             'synonyms': literal_eval,
