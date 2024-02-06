@@ -108,9 +108,9 @@ def append_entities_from_fdc(entities, lut):
             entity = entities.loc[foodatlas_id]
 
             # Expand the external IDs.
-            if 'fdc_nutrient_id' not in entity['external_ids']:
-                entity['external_ids']['fdc_nutrient_id'] = []
-            entity['external_ids']['fdc_nutrient_id'] += [row['id']]
+            if 'fdc_nutrient_ids' not in entity['external_ids']:
+                entity['external_ids']['fdc_nutrient_ids'] = []
+            entity['external_ids']['fdc_nutrient_ids'] += [row['id']]
 
             # Expand the synonyms
             if row['name'] in entity['synonyms']:
@@ -139,7 +139,7 @@ def append_entities_from_fdc(entities, lut):
             'common_name': row['name'],
             'scientific_name': row['name'],
             'synonyms': [row['name']],
-            'external_ids': {'fdc_nutrient_id': [row['id']]},
+            'external_ids': {'fdc_nutrient_ids': [row['id']]},
         }]
         lut[row['name']] += [f"e{foodatlas_id_curr}"]
         foodatlas_id_curr += 1
