@@ -171,7 +171,7 @@ def append_entities_from_foodb(entities, lut):
             'common_name': row['name'].strip().lower(),
             'scientific_name': '',
             'synonyms': [row['name'].strip().lower()],
-            'external_ids': {'foodb_id': [row['public_id']]},
+            'external_ids': {'foodb_ids': [row['public_id']]},
         }]
         lut[row['name'].strip().lower()] = [f"e{foodatlas_id_curr}"]
         foodatlas_id_curr += 1
@@ -327,7 +327,7 @@ def append_entities_from_fdc(entities, lut):
             'common_name': row['description'].strip().lower(),
             'scientific_name': '',
             'synonyms': [row['description'].strip().lower()],
-            'external_ids': {'fdc_id': [row['fdc_id']]},
+            'external_ids': {'fdc_ids': [row['fdc_id']]},
         }]
         lut[row['description'].strip().lower()] = [f"e{foodatlas_id_curr}"]
         foodatlas_id_curr += 1
