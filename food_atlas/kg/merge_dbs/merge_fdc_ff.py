@@ -82,7 +82,7 @@ def get_triplets():
     containing = pd.DataFrame(containing)
 
     triplets.to_csv('outputs/kg/triplets.tsv', sep='\t', index=False)
-    containing.to_csv('outputs/kg/containing.tsv', sep='\t', index=False)
+    containing.to_csv('outputs/kg/metadata_contains.tsv', sep='\t', index=False)
 
 if __name__ == '__main__':
     get_triplets()
