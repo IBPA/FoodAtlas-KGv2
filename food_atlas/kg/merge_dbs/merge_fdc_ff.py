@@ -32,7 +32,7 @@ def get_triplets():
     lut_food, lut_chem = load_lookup_tables()
 
     def _get_triplet(row):
-        nonlocal triplets, containing, foodatlas_tid_curr
+        nonlocal triplets, containing, foodatlas_tid_curr, foodatlas_mid_curr
 
         fdc_id = row['fdc_id']
         fdc_nutrient_id = row['nutrient_id']
@@ -44,6 +44,20 @@ def get_triplets():
 
         conc_value = row['amount']
         conc_unit = f"{nutrient.loc[fdc_nutrient_id, 'unit_name'].lower()}/100g"
+        containing_ = {
+            'foodatlas_id': f"mc{foodatlas_mid_curr}",
+            'tids': [],
+            'food_name': food.loc[fdc_id, 'description'].strip().lower(),
+            'chemical_name': nutrient.loc[fdc_nutrient_id, 'name'].strip().lower(),
+            'conc_value': conc_value,
+            'conc_unit': conc_unit,
+            'food_part': None,
+            'food_processing': None,
+            'source': 'fdc',
+            'reference': "https://fdc.nal.usda.gov/fdc-app.html#/food-details/"
+                f"{fdc_id}/nutrients",
+            'quality_score': None,
+        }
         for head_id, tail_id in product(lut_food[key_food], lut_chem[key_chem]):
             if (head_id, tail_id) not in triplets_ht:
                 triplets_ht[(head_id, tail_id)] = f"t{foodatlas_tid_curr}"
@@ -54,22 +68,12 @@ def get_triplets():
                     'tail_id': tail_id,
                 }]
                 foodatlas_tid_curr += 1
-
-            containing += [{
-                'tid': triplets_ht[(head_id, tail_id)],
-                'food_name': food.loc[fdc_id, 'description'].strip().lower(),
-                'chemical_name': nutrient.loc[fdc_nutrient_id, 'name'].strip().lower(),
-                'conc_value': conc_value,
-                'conc_unit': conc_unit,
-                'food_part': None,
-                'food_processing': None,
-                'source': 'fdc',
-                'reference': "https://fdc.nal.usda.gov/fdc-app.html#/food-details/"
-                    f"{fdc_id}/nutrients",
-                'quality_score': None,
-            }]
+            containing_['tids'] += [triplets_ht[(head_id, tail_id)]]
+        containing += [containing_]
+        foodatlas_mid_curr += 1
 
     foodatlas_tid_curr = 1
+    foodatlas_mid_curr = 1
     triplets_ht = {}
     triplets = []
     containing = []
