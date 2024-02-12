@@ -57,6 +57,8 @@ def get_triplets():
             'reference': "https://fdc.nal.usda.gov/fdc-app.html#/food-details/"
                 f"{fdc_id}/nutrients",
             'quality_score': None,
+            '_extracted_conc': None,
+            '_extracted_food_part': None,
         }
         for head_id, tail_id in product(lut_food[key_food], lut_chem[key_chem]):
             if (head_id, tail_id) not in triplets_ht:
@@ -82,7 +84,7 @@ def get_triplets():
     containing = pd.DataFrame(containing)
 
     triplets.to_csv('outputs/kg/triplets.tsv', sep='\t', index=False)
-    containing.to_csv('outputs/kg/metadata_contains.tsv', sep='\t', index=False)
+    containing.to_csv('outputs/kg/mdata_contains.tsv', sep='\t', index=False)
 
 if __name__ == '__main__':
     get_triplets()
