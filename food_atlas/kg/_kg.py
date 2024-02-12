@@ -1,9 +1,10 @@
+import os
 from itertools import product
 
 import pandas as pd
 from pympler import asizeof
 
-from .utils import load_entities, load_lookup_tables
+from .utils import load_entities, load_lookup_tables, load_mdata
 
 
 class KnowledgeGraph:
@@ -15,13 +16,22 @@ class KnowledgeGraph:
         self.path_kg = path_kg
         self._load_kg()
 
+        # Create a new directory to store the current KG.
+        self._timestamp = pd.Timestamp.now()
+        os.makedirs(f"{self.path_kg}/{self._timestamp}")
+        print(
+            f"Created a new directory at {self.path_kg}/{self._timestamp} for the "
+            "new KG."
+        )
+
     def _load_kg(self):
         # Load the knowledge graph data.
         self._entities = load_entities(f"{self.path_kg}/entities.tsv")
         self._relations = pd.read_csv(f"{self.path_kg}/relationships.tsv", sep='\t')
         self._triplets = pd.read_csv(f"{self.path_kg}/triplets.tsv", sep='\t')
-        self._mdata_contains \
-            = pd.read_csv(f"{self.path_kg}/mdata_contains.tsv", sep='\t')
+
+        # Load the metadata.
+        self._mdata_contains = load_mdata()[0]
 
         # Load the lookup tables.
         self._lut_food, self._lut_chemical = load_lookup_tables()
@@ -51,13 +61,13 @@ class KnowledgeGraph:
     def _create_entity(self, entity_new):
         pass
 
-    def _update_triplets(
-            self,
-            head_ids: list[str],
-            relationship_id: str,
-            tail_id: list[str],
-            row: pd.Series,
-            ) -> tuple[list[dict], dict]:
+    def _get_updated_triplets(
+        self,
+        head_ids: list[str],
+        relationship_id: str,
+        tail_id: list[str],
+        row: pd.Series,
+    ) -> tuple[list[dict], dict]:
         """
         """
         triplets_new_rows = []
@@ -103,12 +113,6 @@ class KnowledgeGraph:
             raise NotImplementedError
 
         return triplets_new_rows, mdata_new_row
-        # self._triplets = pd.concat([
-        #     self._triplets, pd.DataFrame(triplets_new_rows)
-        # ], ignore_index=True)
-        # self._mdata_contains = pd.concat([
-        #     self._mdata_contains, pd.DataFrame([mdata_new_row])
-        # ], ignore_index=True)
 
     def _link_name_to_entities(
             self,
@@ -143,38 +147,101 @@ class KnowledgeGraph:
             ):
         """
         """
+        # Sanity checks.
         for col in ['head', 'relationship', 'tail']:
             if col not in triplets.columns:
                 raise ValueError(f"Column '{col}' not found in triplets")
 
-        def _add_triplet(row):
-            nonlocal triplets_not_added, triplets_new_rows, mdata_new_rows
+        def _add_triplets(row):
+            nonlocal idxs_triplet_not_added, names_not_in_lut
+            nonlocal triplets_new_rows, mdata_new_rows
 
             if row['relationship'] == 'contains':
-                head_ids = self._link_name_to_entities(row['head'], 'food')
-                tail_ids = self._link_name_to_entities(row['tail'], 'chemical')
+                head_type = 'food'
+                tail_type = 'chemical'
+                head_ids = self._link_name_to_entities(row['head'], head_type)
+                tail_ids = self._link_name_to_entities(row['tail'], tail_type)
                 if not head_ids or not tail_ids:
-                    triplets_not_added += [row.name]
+                    idxs_triplet_not_added += [row.name]
+                    for prefix in ['head', 'tail']:
+                        if not eval(f"{prefix}_ids"):
+                            names_not_in_lut += [{
+                                'entity_type': eval(f"{prefix}_type"),
+                                'entity_name': row[prefix]
+                            }]
                     return
                 triplets_new_rows_, mdata_new_row_ \
-                    = self._update_triplets(head_ids, 'r1', tail_ids, row)
+                    = self._get_updated_triplets(head_ids, 'r1', tail_ids, row)
                 triplets_new_rows += triplets_new_rows_
                 mdata_new_rows += [mdata_new_row_]
             else:
                 raise NotImplementedError
 
-        triplets_not_added = []
+        # Keep track on the triplet adding outcome.
+        idxs_triplet_not_added = []
+        names_not_in_lut = []
         triplets_new_rows = []
         mdata_new_rows = []
-        triplets.apply(_add_triplet, axis=1)
-        triplets_new = pd.DataFrame(triplets_new_rows)
-        mdata_new = pd.DataFrame(mdata_new_rows)
+        triplets.apply(_add_triplets, axis=1)
 
-        print(triplets_new)
-        print(mdata_new)
-        # print(triplets_not_added)
+        def _expand_mdata(group):
+            if group['_rid'].iloc[0] == 'r1':
+                self._mdata_contains = pd.concat(
+                    [
+                        self._mdata_contains.astype('object'),
+                        group.drop(columns=['_rid']).astype('object'),
+                    ],
+                    ignore_index=True,
+                )
+            else:
+                raise NotImplementedError
 
-        # self._triplets.to_csv(
-        #     f"{self.path_kg}/triplets.tsv", sep='\t', index=False)
-        # self._mdata_contains.to_csv(
-        #     f"{self.path_kg}/mdata_contains.tsv", sep='\t', index=False)
+        # Update the knowledge graph using the "hit" (found in lut) triplets.
+        if triplets_new_rows:
+            triplets_new = pd.DataFrame(triplets_new_rows)
+            mdata_new = pd.DataFrame(mdata_new_rows)
+            self._triplets = pd.concat(
+                [self._triplets, triplets_new],
+                ignore_index=True,
+            )
+            mdata_new.groupby('_rid').apply(_expand_mdata)
+
+            self._triplets.to_csv(
+                f"{self.path_kg}/{self._timestamp}/triplets.tsv",
+                sep='\t',
+                index=False,
+            )
+            self._mdata_contains.to_csv(
+                f"{self.path_kg}/{self._timestamp}/mdata_contains.tsv",
+                sep='\t',
+                index=False,
+            )
+            print(
+                f"{len(triplets_new)} triplets added by hitting the lookup tables. "
+                f"{len(mdata_new)} metadata entries added."
+            )
+
+        # Deal with the "miss" triplets.
+        if idxs_triplet_not_added:
+            triplets_not_added = triplets.loc[idxs_triplet_not_added]
+            names_not_in_lut = pd.DataFrame(names_not_in_lut).drop_duplicates()
+
+            triplets_not_added.to_csv(
+                f"{self.path_kg}/{self._timestamp}/triplets_not_added.tsv",
+                sep='\t',
+                index=False,
+            )
+            names_not_in_lut.groupby('entity_type').apply(
+                lambda group: group.to_csv(
+                    f"{self.path_kg}/{self._timestamp}/"
+                    f"{group['entity_type'].iloc[0]}_names_not_in_lut.tsv",
+                    sep='\t',
+                    index=False,
+                )
+            )
+            print(
+                f"{len(triplets_not_added)} triplets not added due to missing "
+                f"entities in the lookup tables. The file stored at {self.path_kg}/"
+                f"{self._timestamp}. Please retrieve the corresponding primary IDs to "
+                "proceed."
+            )
