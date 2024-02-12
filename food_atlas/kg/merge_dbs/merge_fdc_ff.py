@@ -57,8 +57,8 @@ def get_triplets():
             'reference': "https://fdc.nal.usda.gov/fdc-app.html#/food-details/"
                 f"{fdc_id}/nutrients",
             'quality_score': None,
-            '_extracted_conc': None,
-            '_extracted_food_part': None,
+            '_extracted_conc': '',
+            '_extracted_food_part': '',
         }
         for head_id, tail_id in product(lut_food[key_food], lut_chem[key_chem]):
             if (head_id, tail_id) not in triplets_ht:
