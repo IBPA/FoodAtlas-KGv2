@@ -39,14 +39,14 @@ def load_pilot_triplets():
     triplets[['head', 'food_part', 'tail', 'conc']] = pd.DataFrame(
         triplets['triplets'].tolist(), index=triplets.index
     ).apply(lambda col: col.str.strip().str.lower())
+    triplets = triplets.query("head != '' and tail != ''").copy()
     triplets['_extracted_conc'] = triplets['conc']
     triplets['_extracted_food_part'] = triplets['food_part']
-
     triplets['conc_value'] = None
     triplets['conc_unit'] = None
     triplets['food_part'] = None
     triplets['food_processing'] = None
-    triplets['source'] = 'PILOT'
+    triplets['source'] = 'lit2kg:gpt-4'
     triplets['quality_score'] = None
     triplets['relationship'] = 'contains'
     triplets = triplets[[
