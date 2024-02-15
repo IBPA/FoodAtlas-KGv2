@@ -1,5 +1,6 @@
 # Customized ignored folder.
 __old/
+api_key.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
