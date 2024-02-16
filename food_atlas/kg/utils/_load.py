@@ -33,6 +33,7 @@ def load_mdata(
             sep='\t',
             converters={
                 'tids': literal_eval,
+                'reference': literal_eval,
                 '_extracted_conc': lambda x: '' if pd.isna(x) else x,
                 '_extracted_food_part': lambda x: '' if pd.isna(x) else x,
             },

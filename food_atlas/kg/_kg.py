@@ -39,6 +39,7 @@ class KnowledgeGraph:
         # Load the lookup tables.
         self._lut_food, self._lut_chemical = load_lookup_tables()
         self._load_lut_triplets()
+        self._load_lut_mdata()
 
         # Keep track of the current maximum entity IDs.
         self._curr_tid \
@@ -58,6 +59,17 @@ class KnowledgeGraph:
             self._triplets['foodatlas_id'],
         ))
 
+    def _load_lut_mdata(self):
+        self._lut_mdata = {}
+
+        def _update_lut(row):
+            for tid in row['tids']:
+                if tid not in self._lut_mdata:
+                    self._lut_mdata[tid] = []
+                self._lut_mdata[tid] += [row['foodatlas_id']]
+
+        self._mdata_contains.apply(_update_lut, axis=1)
+
     def _print_statistics(self):
         print(f"KG space consumption: {asizeof.asizeof(self) / 1024 / 1024:.2f} MB")
         print(f"# of entities: {len(self._entities)}")
@@ -67,8 +79,18 @@ class KnowledgeGraph:
         """
         """
         eids = self._lut_food[food_name]
-        print(self._triplets.loc[self._triplets['head_id'].isin(eids)])
-        return self._triplets.loc[self._triplets['head_id'].isin(eids)]
+        tids = self._triplets.loc[
+            self._triplets['head_id'].isin(eids), 'foodatlas_id'
+        ].tolist()
+
+        mcids = []
+        for tid in tids:
+            mcids += self._lut_mdata[tid]
+        mcids = list(set(mcids))
+
+        mdata = self._mdata_contains.set_index('foodatlas_id').loc[mcids]
+
+        return mdata
 
     def get_triplets(
         self,
