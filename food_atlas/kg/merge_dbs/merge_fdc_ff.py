@@ -54,8 +54,10 @@ def get_triplets():
             'food_part': None,
             'food_processing': None,
             'source': 'fdc',
-            'reference': "https://fdc.nal.usda.gov/fdc-app.html#/food-details/"
+            'reference': {
+                'url': "https://fdc.nal.usda.gov/fdc-app.html#/food-details/"
                 f"{fdc_id}/nutrients",
+            },
             'quality_score': None,
             '_extracted_conc': '',
             '_extracted_food_part': '',
