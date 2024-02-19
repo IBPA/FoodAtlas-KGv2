@@ -35,5 +35,14 @@ if __name__ == '__main__':
     assert kg._triplets['foodatlas_id'].nunique() == len(kg._triplets)
 
     # Test 4. Use food to retrieve existing triplets and metadata.
-    food = "apple"
-    kg.get_triplets_by_food_name(food)
+    food = "milk"
+    mdata = kg.get_triplets_by_food_name(food)
+    print(mdata)
+    mdata.to_csv("milk.csv")
+
+    # Test 5. All foods that contain "milk" in their names.
+    foods = [x for x in list(kg._lut_food.keys()) if 'milk' in x]
+    print(foods)
+    for food in foods:
+        mdata = kg.get_triplets_by_food_name(food)
+        print(mdata)
