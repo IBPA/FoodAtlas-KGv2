@@ -113,24 +113,6 @@ class KnowledgeGraph:
             tids += [self._lut_triplets[f"{head_id}_r1_{tail_id}"]]
 
         return tids
-    #         # if not head_ids or not tail_ids:
-    #         #     idxs_triplet_not_added += [row.name]
-    #         #     for prefix in ['head', 'tail']:
-    #         #         if not eval(f"{prefix}_ids"):
-    #         #             names_not_in_lut += [{
-    #         #                 'entity_type': eval(f"{prefix}_type"),
-    #         #                 'entity_name': row[prefix]
-    #         #             }]
-    #         #     return
-    #         # triplets_new_rows_, mdata_new_row_ \
-    #         #     = self._get_updated_triplets(head_ids, 'r1', tail_ids, row)
-    #         # triplets_new_rows += triplets_new_rows_
-    #         # mdata_new_rows += [mdata_new_row_]
-
-    #     return list(product(head_ids, tail_ids))
-
-    # def _merge_entity(self, entity_new, entity_id):
-    #     pass
 
     def _update_lookup_table_food(
         self,
@@ -293,8 +275,16 @@ class KnowledgeGraph:
         self._entities = pd.concat([self._entities, entities], ignore_index=True)
         names_not_in_lut_food = self._update_lookup_table_food(entities)
 
+        # Remove duplicates.
+        # TODO: Optimize: maybe as part of the process when updating the lookup table.
+        names_not_in_lut_food = [sorted(names) for names in names_not_in_lut_food]
+        names_not_in_lut_food = ['@SEP@'.join(names) for names in names_not_in_lut_food]
+        visited = {}
         entities_new_rows = []
-        for names_bundle in names_not_in_lut_food:
+        for names_bundle_str in names_not_in_lut_food:
+            if names_bundle_str in visited:
+                continue
+            names_bundle = names_bundle_str.split('@SEP@')
             entities_new_rows += [{
                 'foodatlas_id': f"e{self._curr_eid}",
                 'entity_type': 'food',
@@ -303,7 +293,9 @@ class KnowledgeGraph:
                 'synonyms': names_bundle,
                 'external_ids': {},
             }]
+            visited[names_bundle_str] = True
             self._curr_eid += 1
+
         entities_new = pd.DataFrame(entities_new_rows)
 
         def _update_lut(row):
@@ -534,6 +526,7 @@ class KnowledgeGraph:
         """
         # Step 0. Group the names such that they will be always added together when
         # updating the lookup table.
+        # ht = {}
         names = triplets['head'].unique()
         names_bundled = [
             list(set([name, singularize(name), pluralize(name)])) for name in names
@@ -546,8 +539,8 @@ class KnowledgeGraph:
             sep='\t',
         )
 
-        # Step 1. Get all food names and apply singularize and pluralize. Store the ones
-        # not found in the lookup table.
+        # Step 1. Get all food names and apply singularize and pluralize.
+        # Store the ones not found in the lookup table.
         names_all_food = set()
         for name in triplets['head'].unique():
             names_all_food |= set([name, singularize(name), pluralize(name)])
@@ -631,6 +624,8 @@ class KnowledgeGraph:
                 head_ids = self._link_name_to_entities(row['head'], head_type)
                 tail_ids = self._link_name_to_entities(row['tail'], tail_type)
                 if not head_ids or not tail_ids:
+                    print(row['head'])
+                    print(row['tail'])
                     # idxs_triplet_not_added += [row.name]
                     # for prefix in ['head', 'tail']:
                     #     if not eval(f"{prefix}_ids"):
