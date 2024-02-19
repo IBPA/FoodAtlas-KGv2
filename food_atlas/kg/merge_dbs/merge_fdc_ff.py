@@ -36,8 +36,8 @@ def get_triplets():
 
         fdc_id = row['fdc_id']
         fdc_nutrient_id = row['nutrient_id']
-        key_food = constants.LOOKUP_BY_ID.format("fdc_ids", fdc_id)
-        key_chem = constants.LOOKUP_BY_ID.format("fdc_nutrient_ids", fdc_nutrient_id)
+        key_food = constants.get_lookup_key_by_id("fdc_ids", fdc_id)
+        key_chem = constants.get_lookup_key_by_id("fdc_nutrient_ids", fdc_nutrient_id)
         if key_chem not in lut_chem:
             print(f"Chemical not found: {key_chem}")
             return
