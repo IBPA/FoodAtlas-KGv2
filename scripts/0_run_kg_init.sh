@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PATH_WORKSPACE=outputs/kg/initialization
+
 # python -m food_atlas.kg.initialization.get_primary_ids.get_ncbi_taxon_ids
 # python -m food_atlas.kg.initialization.get_primary_ids.get_pubchem_cids
 

@@ -12,10 +12,11 @@ def create_entities_from_pubchem_compound():
     data = pd.read_csv(
         "outputs/kg/initialization/pubchem_compound.tsv",
         sep='\t',
-        converters={'synonyms': literal_eval},
+        converters={'SynonymList': literal_eval},
     )
-    data['iupac_name'] = data['iupac_name'].str.strip().str.lower()
-    data['synonyms'] = data['synonyms'].apply(lambda x: [s.strip().lower() for s in x])
+    data['iupac_name'] = data['IUPACName'].str.strip().str.lower()
+    data['synonyms'] \
+        = data['SynonymList'].apply(lambda x: [s.strip().lower() for s in x])
 
     # Create new entities for the rest of the foods.
     def _merge_entity(row):
@@ -37,7 +38,7 @@ def create_entities_from_pubchem_compound():
             'common_name': common_name,
             'scientific_name': row['iupac_name'],
             'synonyms': list(set(row['synonyms'] + [row['iupac_name']])),
-            'external_ids': {'pubchem_cid': row['pubchem_cid']},
+            'external_ids': {'pubchem_cid': row['CID']},
         }]
         foodatlas_id_curr += 1
 
