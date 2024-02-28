@@ -6,7 +6,7 @@ import pandas as pd
 
 def create_entities_from_ncbi_taxonomy():
     data = pd.read_csv(
-        "outputs/kg/initialization/ncbi_taxonomy.tsv",
+        "outputs/kg/initialization/_ncbi_taxonomy.tsv",
         sep='\t',
         converters={
             'OtherNames': lambda x: literal_eval(x) if x != '' else None,

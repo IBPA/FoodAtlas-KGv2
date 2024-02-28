@@ -29,7 +29,7 @@ def get_pubchem_cid_from_fdc():
     chemicals['pubchem_cid_from_kay'] \
         = chemicals.apply(_get_pubchem_cid, axis=1).astype('Int64')
     chemicals['name'].to_csv(
-        "outputs/kg/initialization/chemical_names_for_PIES_fdc_1.txt",
+        "outputs/kg/initialization/_chemical_names_for_PIES_fdc_1.txt",
         index=False,
         header=False,
     )
@@ -40,7 +40,7 @@ def get_pubchem_cid_from_fdc():
 
     # Use the PubChem Identifier Exchange Service to get the PubChem CID from the name.
     pubchem_cids = pd.read_csv(
-        "outputs/kg/initialization/PIES_fdc_1.txt",
+        "outputs/kg/initialization/_PIES_fdc_1.txt",
         header=None,
         sep='\t',
         names=['name', 'pubchem_cid'],
@@ -85,7 +85,7 @@ def get_pubchem_cid_from_fdc():
     chemicals['name_formatted'] = chemicals.apply(
         _get_name_formatted, axis=1
     )
-    with open("outputs/kg/initialization/chemical_names_for_PIES_fdc_2.txt", 'w') as f:
+    with open("outputs/kg/initialization/_chemical_names_for_PIES_fdc_2.txt", 'w') as f:
         f.write(
             '\n'.join(
                 [
@@ -97,7 +97,7 @@ def get_pubchem_cid_from_fdc():
 
     # Use the PubChem Identifier Exchange Service to get the PubChem CID from the name.
     pubchem_cids_for_not_found = pd.read_csv(
-        "outputs/kg/initialization/PIES_fdc_2.txt",
+        "outputs/kg/initialization/_PIES_fdc_2.txt",
         header=None,
         sep='\t',
         names=['name', 'pubchem_cid'],
@@ -108,7 +108,7 @@ def get_pubchem_cid_from_fdc():
     chemicals.loc[pubchem_cids_for_not_found.index, 'pubchem_cid_from_query'] \
         = pubchem_cids_for_not_found['pubchem_cid']
     chemicals = chemicals.reset_index().set_index('id')
-    chemicals.to_csv('outputs/kg/initialization/pubchem_cids_fdc.tsv', sep='\t')
+    chemicals.to_csv('outputs/kg/initialization/_pubchem_cids_fdc.tsv', sep='\t')
 
     # Manually get PubChem CIDs for SKIP_MANUAL, and save the file as
     # `pubchem_cids_fdc_manual.tsv`.

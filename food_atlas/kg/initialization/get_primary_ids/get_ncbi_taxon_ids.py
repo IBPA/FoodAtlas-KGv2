@@ -83,6 +83,6 @@ if __name__ == '__main__':
     ncbi_taxon_ids_fdc = get_ncbi_taxon_ids_from_fdc()
     ncbi_taxon_ids_foodb = get_ncbi_taxon_ids_from_foodb()
 
-    with open('outputs/kg/initialization/ncbi_taxon_ids.txt', 'w') as f:
+    with open('outputs/kg/initialization/_ncbi_taxon_ids.txt', 'w') as f:
         for id_ in list(set(ncbi_taxon_ids_fdc + ncbi_taxon_ids_foodb)):
             f.write(f"{id_}\n")
