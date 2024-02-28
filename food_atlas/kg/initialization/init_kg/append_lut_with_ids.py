@@ -6,8 +6,8 @@ from ...utils import load_entities, load_lookup_tables
 
 
 if __name__ == '__main__':
-    entities = load_entities()
-    lut_food, lut_chem = load_lookup_tables()
+    entities = load_entities("outputs/kg/initialization/entities.tsv")
+    lut_food, lut_chem = load_lookup_tables("outputs/kg/initialization")
 
 
     def _append_lut(row):
@@ -43,9 +43,9 @@ if __name__ == '__main__':
         lut_chem[k] = v
 
     pd.DataFrame(lut_food.items(), columns=['name', 'foodatlas_id']).to_csv(
-        "outputs/kg/lookup_table_food.tsv", sep='\t', index=False
+        "outputs/kg/initialization/lookup_table_food.tsv", sep='\t', index=False
     )
 
     pd.DataFrame(lut_chem.items(), columns=['name', 'foodatlas_id']).to_csv(
-        "outputs/kg/lookup_table_chemical.tsv", sep='\t', index=False
+        "outputs/kg/initialization/lookup_table_chemical.tsv", sep='\t', index=False
     )

@@ -8,7 +8,7 @@ from ...utils import load_entities
 
 
 def create_entities_from_pubchem_compound():
-    entities = load_entities()
+    entities = load_entities("outputs/kg/initialization/entities.tsv")
     data = pd.read_csv(
         "outputs/kg/initialization/pubchem_compound.tsv",
         sep='\t',
@@ -163,7 +163,7 @@ if __name__ == '__main__':
     entities, lut = append_entities_from_fdc(entities, lut)
 
     # Save the results.
-    entities.to_csv("outputs/kg/entities.tsv", sep='\t', index=False)
+    entities.to_csv("outputs/kg/initialization/entities.tsv", sep='\t', index=False)
     pd.DataFrame(lut.items(), columns=['name', 'foodatlas_id']).to_csv(
-        "outputs/kg/lookup_table_chemical.tsv", sep='\t', index=False
+        "outputs/kg/initialization/lookup_table_chemical.tsv", sep='\t', index=False
     )
