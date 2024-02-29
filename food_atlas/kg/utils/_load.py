@@ -13,7 +13,10 @@ def load_lookup_tables(
         lut_df = pd.read_csv(
             f"{path_dir}/lookup_table_{suffix}.tsv",
             sep='\t',
-            converters={'foodatlas_id': literal_eval},
+            converters={
+                'foodatlas_id': literal_eval,
+                'name': str,
+            },
         )
         lut = dict(zip(lut_df['name'], lut_df['foodatlas_id']))
         luts += [lut]

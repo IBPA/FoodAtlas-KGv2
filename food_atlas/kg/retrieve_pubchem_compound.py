@@ -1,20 +1,24 @@
 import os
 
 import pandas as pd
-import pubchempy as pcp
-from tqdm import tqdm
+from Bio import Entrez
 import click
 
 from .utils import load_lookup_tables, constants
 
+with open("food_atlas/kg/api_key.txt") as f:
+    Entrez.email = f.readline().strip()
+    Entrez.api_key = f.readline().strip()
 
-def get_pubchem_compound(cid):
-    c = pcp.Compound.from_cid(cid)
-    return {
-        'pubchem_cid': c.cid,
-        'iupac_name': c.iupac_name,
-        'synonyms': c.synonyms,
-    }
+
+# def get_pubchem_compound(cid):
+#     c = pcp.Compound.from_cid(cid)
+
+#     return {
+#         'pubchem_cid': c.cid,
+#         'iupac_name': c.iupac_name,
+#         'synonyms': c.synonyms,
+#     }
 
 
 @click.command()
@@ -57,14 +61,16 @@ def main(
         x for x in cids
         if constants.get_lookup_key_by_id('pubchem_cid', x) not in lut_chem
     ]
-    print(f"Retrieving {len(cids)} new NCBI Taxonomy IDs.")
+    print(f"Retrieving {len(cids)} new PubChem CIDs.")
 
-    records = []
-    for cid in tqdm(cids):
-        records += [get_pubchem_compound(cid)]
-    data = pd.DataFrame(records)
-
-    data.to_csv(f"{path_output_dir}/_id_pubchem_compound.tsv", sep='\t')
+    cids_str = ','.join([str(x) for x in cids])
+    handler = Entrez.esummary(db='pccompound', id=cids_str)
+    records = Entrez.read(handler)
+    pd.DataFrame(records).to_csv(
+        f"{path_output_dir}/_id_pubchem_compound.tsv",
+        sep='\t',
+        index=False,
+    )
 
 
 if __name__ == '__main__':

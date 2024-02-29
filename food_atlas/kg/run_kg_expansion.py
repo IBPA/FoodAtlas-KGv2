@@ -21,15 +21,19 @@ from . import KnowledgeGraph
 
 @click.command()
 @click.argument('path-output-dir', type=click.Path(exists=True))
-def main(path_output_dir: str):
+def main(
+    path_output_dir: str
+):
     kg = KnowledgeGraph(path_output_dir=path_output_dir)
-    triplets = pd.read_csv(
-        f"{path_output_dir}/triplets_cleaned.tsv",
+
+    metadata = pd.read_csv(
+        f"{path_output_dir}/_metadata_new.tsv",
         sep='\t',
     )
-    triplets['_extracted_conc'] = triplets['_extracted_conc'].fillna('')
-    triplets['_extracted_food_part'] = triplets['_extracted_food_part'].fillna('')
-    kg.add_triplets(triplets)
+    metadata['_conc'] = metadata['_conc'].fillna('')
+    metadata['_food_part'] = metadata['_food_part'].fillna('')
+
+    kg.add_triplets_from_metadata(metadata)
 
 
 if __name__ == '__main__':
