@@ -23,7 +23,7 @@ if __name__ == '__main__':
             '_food_name', '_chemical_name', '_conc', '_food_part',
         ]
     ).to_csv(
-        "outputs/kg/initialization/mdata_contains.tsv",
+        "outputs/kg/initialization/metadata_contains.tsv",
         sep='\t',
         index=False
     )
