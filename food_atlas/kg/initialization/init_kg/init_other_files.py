@@ -18,9 +18,9 @@ if __name__ == '__main__':
     pd.DataFrame(
         [],
         columns=[
-            'foodatlas_id', 'food_name', 'chemical_name', 'conc_value', 'conc_unit',
-            'food_part', 'food_processing', 'source', 'reference', 'quality_score',
-            '_extracted_conc', '_extracted_food_part',
+            'foodatlas_id', 'conc_value', 'conc_unit', 'food_part', 'food_processing',
+            'source', 'reference', 'quality_score',
+            '_food_name', '_chemical_name', '_conc', '_food_part',
         ]
     ).to_csv(
         "outputs/kg/initialization/mdata_contains.tsv",
