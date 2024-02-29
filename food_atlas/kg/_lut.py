@@ -67,9 +67,13 @@ import pandas as pd
 
 
 class LookupTables:
-    """
-    """
+    """Class definition for Lookup tables for the FoodAtlas.
 
+    Args:
+        path_lut_food (str): Path to the lookup table for food.
+        path_lut_chemical (str): Path to the lookup table for chemical.
+
+    """
     def __init__(
         self,
         path_lut_food: str,
@@ -81,7 +85,8 @@ class LookupTables:
         self._load()
 
     def _load(self):
-        """
+        """Helper for loading the lookup tables.
+
         """
         luts = []
         for path_lut in [self.path_lut_food, self.path_lut_chemical]:
@@ -99,8 +104,12 @@ class LookupTables:
         self._lut_food = luts[0]
         self._lut_chemical = luts[1]
 
-    def _save(self, path_output_dir):
-        """
+    def _save(self, path_output_dir: str | None):
+        """Helper for saving the lookup tables.
+
+        Args:
+            path_output_dir (str): Path to the output directory.
+
         """
         pd.DataFrame(self._lut_food.items(), columns=['name', 'foodatlas_id']).to_csv(
             f"{path_output_dir}/lookup_table_food.tsv", sep='\t', index=False
@@ -122,7 +131,15 @@ class LookupTables:
         entity_type: str,
         entity_name: str,
     ) -> list[str]:
-        """
+        """Get FAID for an entity with a name.
+
+        Args:
+            entity_type (str): Type of the entity.
+            entity_name (str): Name of the entity.
+
+        Returns:
+            list[str]: List of FAIDs.
+
         """
         if entity_type == 'food':
             lut = self._lut_food

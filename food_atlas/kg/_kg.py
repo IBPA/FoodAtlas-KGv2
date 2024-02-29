@@ -26,7 +26,7 @@ class KnowledgeGraph:
         self.path_kg = path_kg
         self.path_output_dir = path_output_dir
         self._load()
-        # self.print_stats()
+        self.print_stats()
 
     def _load(self):
         """Load the knowledge graph data from the `self.path_kg`.
@@ -63,16 +63,6 @@ class KnowledgeGraph:
         self.metadata._save(self.path_output_dir)
         self.triplets._save(self.path_output_dir)
 
-    # def _load_lut_triplets(self):
-    #     self._lut_triplets = dict(zip(
-    #         self._triplets.apply(
-    #             lambda row:
-    #                 f"{row['head_id']}_{row['relationship_id']}_{row['tail_id']}",
-    #             axis=1,
-    #         ),
-    #         self._triplets['metadata_ids'],
-    #     ))
-
     # def _load_lut_mdata(self):
     #     self._lut_mdata = {}
 
@@ -84,10 +74,8 @@ class KnowledgeGraph:
 
     #     self._mdata_contains.apply(_update_lut, axis=1)
 
-    # def print_stats(self):
-    #     print(f"KG space consumption: {asizeof.asizeof(self) / 1024 / 1024:.2f} MB")
-    #     print(f"# of entities: {len(self._entities)}")
-    #     print(f"# of triplets: {len(self._triplets)}")
+    def print_stats(self):
+        print(f"KG space consumption: {asizeof.asizeof(self) / 1024 / 1024:.2f} MB")
 
     # def get_triplets_by_food_name(self, food_name):
     #     """

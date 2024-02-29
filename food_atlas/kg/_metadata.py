@@ -4,7 +4,15 @@ import pandas as pd
 
 
 class Metadata:
-    """
+    """Class definition for Metadata for the food atlas.
+
+    Args:
+        path_metadata_contains (str): Path to the metadata file for contains.
+
+    Attributes:
+        COLUMNS (list): List of column names for the metadata file.
+        FAID_PREFIX (str): Prefix for the foodatlas_id.
+
     """
 
     COLUMNS = [
@@ -32,7 +40,8 @@ class Metadata:
         self._load()
 
     def _load(self):
-        """
+        """Helper for loading the metadata.
+
         """
         self._metadata_contains = pd.read_csv(
             self.path_metadata_contains,
@@ -47,7 +56,13 @@ class Metadata:
         mcid = self._metadata_contains['foodatlas_id'].str.slice(2).astype(int).max()
         self._curr_mcid = mcid + 1 if pd.notna(mcid) else 1
 
-    def _save(self, path_output_dir):
+    def _save(self, path_output_dir: str):
+        """Helper for saving the metadata.
+
+        Args:
+            path_output_dir (str): Path to the output directory.
+
+        """
         self._metadata_contains.to_csv(
             f"{path_output_dir}/metadata_contains.tsv",
             sep='\t',
@@ -69,7 +84,14 @@ class Metadata:
         self,
         metadata: pd.DataFrame,
     ):
-        """
+        """Create new metadata entries.
+
+        Args:
+            metadata (pd.DataFrame): Metadata to be added.
+
+        Returns:
+            pd.DataFrame: Metadata added with foodatlas_id.
+
         """
         metadata = metadata.reset_index(drop=True)
         metadata['foodatlas_id'] \

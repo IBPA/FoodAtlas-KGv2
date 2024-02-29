@@ -4,9 +4,16 @@ import pandas as pd
 
 
 class Triplets:
-    """
-    """
+    """Class definition for Triplets for the food atlas.
 
+    Args:
+        path_triplets (str): Path to the triplets file.
+
+    Attributes:
+        COLUMNS (list): List of column names for the triplets file.
+        FAID_PREFIX (str): Prefix for the foodatlas_id.
+
+    """
     COLUMNS = [
         'foodatlas_id',
         'head_id',
@@ -14,6 +21,7 @@ class Triplets:
         'tail_id',
         'metadata_ids',
     ]
+    FAID_PREFIX = 't'
 
     def __init__(
         self,
@@ -24,7 +32,8 @@ class Triplets:
         self._load()
 
     def _load(self):
-        """
+        """Helper for loading the triplets.
+
         """
         self._triplets = pd.read_csv(
             self.path_triplets,
@@ -39,15 +48,19 @@ class Triplets:
         # Create a hash table for existing triplets.
         self._ht_t2m = {}
         self._triplets.apply(
-            lambda row: self._ht.update({
+            lambda row: self._ht_t2m.update({
                 f"{row['head_id']}_{row['relationship_id']}_{row['tail_id']}":
                     row['metadata_ids']
             }),
             axis=1,
         )
 
-    def _save(self, path_output_dir):
-        """
+    def _save(self, path_output_dir: str):
+        """Helper for saving the triplets.
+
+        Args:
+            path_output_dir (str): Path to the output directory.
+
         """
         self._triplets.to_csv(
             f"{path_output_dir}/triplets.tsv",
@@ -59,7 +72,14 @@ class Triplets:
         self,
         metadata: pd.DataFrame,
     ):
-        """
+        """Create new triplet entries.
+
+        Args:
+            metadata (pd.DataFrame): Metadata for the new triplets.
+
+        Returns:
+            pd.Series: Added triplets.
+
         """
         head_ids = metadata['head_id'].tolist()
         relationship_ids = metadata['relationship_id'].tolist()
@@ -76,7 +96,7 @@ class Triplets:
                 self._ht_t2m[f"{head_id}_{relationship_id}_{tail_id}"] += [metadata_id]
                 continue
             triplets_new_rows += [{
-                'foodatlas_id': f't{self._curr_tid}',
+                'foodatlas_id': f"{self.FAID_PREFIX}{self._curr_tid}",
                 'head_id': head_id,
                 'relationship_id': relationship_id,
                 'tail_id': tail_id,
