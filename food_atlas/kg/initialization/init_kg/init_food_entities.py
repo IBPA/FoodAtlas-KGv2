@@ -2,6 +2,7 @@ from ast import literal_eval
 from collections import defaultdict
 
 import pandas as pd
+from inflection import singularize, pluralize
 
 
 def create_entities_from_ncbi_taxonomy():
@@ -13,43 +14,62 @@ def create_entities_from_ncbi_taxonomy():
         },
     )
 
-    def _parse_other_names(other_names):
-        if other_names is None:
-            return []
+    def _parse_names(row):
+        scientific_name = row['ScientificName']
+        other_names = row['OtherNames']
 
-        synonyms = []
-        synonyms += other_names['Synonym']
-        synonyms += other_names['EquivalentName']
-        synonyms += other_names['CommonName']
-        synonyms += other_names['Includes']
-        if 'GenbankCommonName' in other_names:
-            synonyms += [other_names['GenbankCommonName']]
-        if 'BlastName' in other_names:
-            synonyms += [other_names['BlastName']]
-        if other_names['Name']:
-            for name in other_names['Name']:
-                if name['ClassCDE'] == 'misspelling':
-                    synonyms += [name['DispName']]
-        synonyms = [synonym.strip().lower() for synonym in synonyms]
+        synonyms_scientific = [scientific_name]
+        synonyms_common = []
+        synonyms_others = []
+        if row['OtherNames'] is not None:
+            synonyms_scientific += other_names['Synonym']
+            synonyms_scientific += other_names['EquivalentName']
+            if other_names['Name']:
+                for name in other_names['Name']:
+                    if name['ClassCDE'] in ['misspelling', 'authority']:
+                        synonyms_scientific += [name['DispName']]
 
-        return synonyms
+            synonyms_common += other_names['CommonName']
+            if 'GenbankCommonName' in other_names:
+                synonyms_common += [other_names['GenbankCommonName']]
+            if 'BlastName' in other_names:
+                synonyms_common += [other_names['BlastName']]
 
-    data['synonyms'] = data['OtherNames'].apply(_parse_other_names)
+            synonyms_others += other_names['Includes']
+
+        row['scientific_name'] = scientific_name.strip().lower()
+
+        if synonyms_common:
+            synonyms_common_sp = []
+            for name in synonyms_common:
+                synonyms_common_sp += [singularize(name), pluralize(name)]
+            synonyms_common += synonyms_common_sp
+            row['common_name'] = min(synonyms_common, key=len)
+        else:
+            row['common_name'] = row['scientific_name']
+
+        # Include abbreviations for scientific names.
+        if len(scientific_name.split(' ')) > 1:
+            # Consider only species or lower.
+            synonyms_scientific_abbr = []
+            for name in synonyms_scientific:
+                terms = name.split(' ')
+                terms[0] = terms[0][0] + '.'
+                synonyms_scientific_abbr += [' '.join(terms)]
+            synonyms_scientific += synonyms_scientific_abbr
+
+        synonyms = list(set(synonyms_common + synonyms_others + synonyms_scientific))
+        synonyms = [x.strip().lower() for x in synonyms]
+        row['synonyms'] = synonyms
+
+        return row
+
+    data[['scientific_name', 'common_name', 'synonyms']] = None
+    data = data.apply(_parse_names, axis=1)
     data = data.rename(columns={
         'TaxId': 'ncbi_taxon_id',
-        'ScientificName': 'scientific_name',
     })
-    data['scientific_name'] = data['scientific_name'].str.strip().str.lower()
-    data['synonyms'] = data.apply(
-        lambda row: list(set(row['synonyms'] + [row['scientific_name']])),
-        axis=1,
-    )
-    # Default common name is the shortest synonym. If there are no synonyms, the
-    # common name is the scientific name.
-    data['common_name'] = data.apply(
-        lambda row: min(row['synonyms'], key=len),
-        axis=1,
-    )
+
     data['external_ids'] \
         = data['ncbi_taxon_id'].apply(lambda x: {'ncbi_taxon_id': x})
     data['foodatlas_id'] = [f"e{i}" for i in range(1, len(data) + 1)]
