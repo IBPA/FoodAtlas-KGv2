@@ -10,7 +10,7 @@ from ...utils import load_entities
 def create_entities_from_pubchem_compound():
     entities = load_entities("outputs/kg/initialization/entities.tsv")
     data = pd.read_csv(
-        "outputs/kg/initialization/pubchem_compound.tsv",
+        "outputs/kg/initialization/_pubchem_compound.tsv",
         sep='\t',
         converters={'SynonymList': literal_eval},
     )
@@ -76,7 +76,7 @@ def create_entities_from_pubchem_compound():
 
 def append_entities_from_fdc(entities, lut):
     data = pd.read_csv(
-        "outputs/kg/initialization/pubchem_cids_fdc_manual.tsv", sep='\t',
+        "outputs/kg/initialization/_pubchem_cids_fdc_manual.tsv", sep='\t',
     )
 
     def _parse_pubchem_cids(cids):

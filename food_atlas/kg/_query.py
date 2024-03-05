@@ -6,7 +6,7 @@ import pandas as pd
 from Bio import Entrez
 from tqdm import tqdm
 
-from .utils import load_lookup_tables, constants
+from .utils import constants
 
 if os.path.exists("food_atlas/kg/api_key.txt"):
     with open("food_atlas/kg/api_key.txt") as f:
@@ -19,11 +19,48 @@ else:
     )
 
 
+def load_lookup_tables(
+    path_dir: str = "outputs/kg"
+) -> list[dict]:
+    """Load the lookup tables.
+
+    Args:
+        path_dir (str, optional): The path to the directory having the lookup tables.
+            Defaults to "outputs/kg".
+
+    Returns:
+        list[dict]: The list of lookup tables.
+
+    """
+    luts = []
+    for suffix in ['food', 'chemical']:
+        lut_df = pd.read_csv(
+            f"{path_dir}/lookup_table_{suffix}.tsv",
+            sep='\t',
+            converters={
+                'foodatlas_id': literal_eval,
+                'name': str,
+            },
+        )
+        lut = dict(zip(lut_df['name'], lut_df['foodatlas_id']))
+        luts += [lut]
+
+    return luts
+
+
 def query_ncbi_taxonomy(
     food_names: list[str],
     path_cache_dir: str,
-):
-    """
+) -> pd.DataFrame:
+    """Query the NCBI taxonomy database.
+
+    Args:
+        food_names (list[str]): The list of food names.
+        path_cache_dir (str): The path to the cache directory.
+
+    Returns:
+        pd.DataFrame: The retrieved NCBI taxonomy entries.
+
     """
     # Step 1: Retrieve NCBI taxon IDs.
     if os.path.exists(f"{path_cache_dir}/_cached_search_ncbi_taxonomy.tsv"):
@@ -111,8 +148,16 @@ def query_ncbi_taxonomy(
 def query_pubchem_compound(
     chemical_names: list[str],
     path_cache_dir: str,
-):
-    """
+) -> pd.DataFrame:
+    """Query the PubChem compound database.
+
+    Args:
+        chemical_names (list[str]): The list of chemical names.
+        path_cache_dir (str): The path to the cache directory.
+
+    Returns:
+        pd.DataFrame: The retrieved PubChem compound entries.
+
     """
     # Step 1: Retrieve PubChem compound IDs.
     if not os.path.exists(f"{path_cache_dir}/_cached_search_pubchem_compound.txt"):
