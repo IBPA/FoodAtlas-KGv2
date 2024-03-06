@@ -48,21 +48,12 @@ def load_lookup_tables(
     return luts
 
 
-def query_ncbi_taxonomy(
+def _search_ncbi_taxonomy(
     food_names: list[str],
-    path_cache_dir: str,
-) -> pd.DataFrame:
-    """Query the NCBI taxonomy database.
-
-    Args:
-        food_names (list[str]): The list of food names.
-        path_cache_dir (str): The path to the cache directory.
-
-    Returns:
-        pd.DataFrame: The retrieved NCBI taxonomy entries.
-
+    path_cache_dir: str = "outputs/kg/_cache",
+):
     """
-    # Step 1: Retrieve NCBI taxon IDs.
+    """
     if os.path.exists(f"{path_cache_dir}/_cached_search_ncbi_taxonomy.tsv"):
         records_search = pd.read_csv(
             f"{path_cache_dir}/_cached_search_ncbi_taxonomy.tsv",
@@ -97,23 +88,22 @@ def query_ncbi_taxonomy(
                 )
                 records_search_new_rows = []
 
+    return records_search
+
+
+def _fetch_ncbi_taxonomy(
+    ncbi_taxon_ids: list[int],
+    path_cache_dir: str = "outputs/kg/_cache",
+):
+    """
+    """
     # Skip the NCBI taxon IDs already in the knowledge graph.
-    # # This is done because the API will automatically change the queries to the
-    # # closest match. However, we only want to keep the exact matches to avoid any
-    # # potential issues.
-    # records_search_matched = records_search.query("WarningList.isna()")
-    ncbi_taxon_ids = list(set([
-        item
-        for items in records_search['IdList'].tolist()
-        for item in items
-    ]))
     lut_food, _ = load_lookup_tables()
     ncbi_taxon_ids = [
         int(x) for x in ncbi_taxon_ids
         if constants.get_lookup_key_by_id('ncbi_taxon_id', x) not in lut_food
     ]
 
-    # Step 2: Retrieve NCBI entries.
     if os.path.exists(f"{path_cache_dir}/_cached_fetch_ncbi_taxonomy.tsv"):
         records_fetch = pd.read_csv(
             f"{path_cache_dir}/_cached_fetch_ncbi_taxonomy.tsv",
@@ -145,9 +135,38 @@ def query_ncbi_taxonomy(
     return records_fetch
 
 
+def query_ncbi_taxonomy(
+    food_names: list[str],
+    path_cache_dir: str = "outputs/kg/_cache",
+) -> pd.DataFrame:
+    """Query the NCBI taxonomy database.
+
+    Args:
+        food_names (list[str]): The list of food names.
+        path_cache_dir (str): The path to the cache directory.
+
+    Returns:
+        pd.DataFrame: The retrieved NCBI taxonomy entries.
+
+    """
+    # Step 1: Retrieve NCBI taxon IDs.
+    records_search = _search_ncbi_taxonomy(food_names, path_cache_dir)
+
+    ncbi_taxon_ids = list(set([
+        item
+        for items in records_search['IdList'].tolist()
+        for item in items
+    ]))
+
+    # Step 2: Retrieve NCBI entries.
+    records_fetch = _fetch_ncbi_taxonomy(ncbi_taxon_ids, path_cache_dir)
+
+    return records_fetch
+
+
 def query_pubchem_compound(
     chemical_names: list[str],
-    path_cache_dir: str,
+    path_cache_dir: str = "outputs/kg/_cache",
 ) -> pd.DataFrame:
     """Query the PubChem compound database.
 

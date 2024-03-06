@@ -280,9 +280,7 @@ class Entities:
             = list(set([name for names in entity_synonyms for name in names]))
 
         # Step 1. Query NCBI Taxonomy to see if there is an ID.
-        records_ncbi_taxonomy = query_ncbi_taxonomy(
-            entity_names_all, path_cache_dir=self.path_cache_dir
-        )
+        records_ncbi_taxonomy = query_ncbi_taxonomy(entity_names_all)
         self._create_food_entities_from_ncbi_taxonomy(records_ncbi_taxonomy)
 
         # Step 2. Create entities that are still new to the KG.
@@ -389,9 +387,7 @@ class Entities:
 
         """
         # Step 1. Query PubChem Compound to see if there is an ID.
-        records_pubchem_compound = query_pubchem_compound(
-            entity_names_new, path_cache_dir=self.path_cache_dir
-        )
+        records_pubchem_compound = query_pubchem_compound(entity_names_new)
         self._create_chemical_entities_from_pubchem_compound(records_pubchem_compound)
 
         # Step 2. Create entities that are still new to the KG.
