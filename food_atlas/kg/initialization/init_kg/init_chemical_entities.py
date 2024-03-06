@@ -138,7 +138,7 @@ def append_entities_from_fdc(entities, lut):
             'foodatlas_id': f"e{foodatlas_id_curr}",
             'entity_type': 'chemical',
             'common_name': row['name'],
-            'scientific_name': row['name'],
+            'scientific_name': '',
             'synonyms': [row['name']],
             'external_ids': {'fdc_nutrient_ids': [row['id']]},
         }]
