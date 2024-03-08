@@ -151,3 +151,38 @@ class KnowledgeGraph:
         # Dump new files.
         if self.path_output_dir:
             self._save()
+
+    def get_triplets(
+        self,
+        head_id: str = None,
+        tail_id: str = None,
+    ) -> pd.DataFrame:
+        """Get triplets.
+
+        Args:
+            head_id (str, optional): The head id. None is considered as wildcart.
+                Defaults to None.
+            tail_id (str, optional): The head id. None is considered as wildcart.
+                Defaults to None.
+
+        Returns:
+            pd.DataFrame: Triplets.
+
+        """
+        _triplets = self.triplets._triplets
+        if head_id is not None:
+            _triplets = _triplets[_triplets['head_id'] == head_id]
+        if tail_id is not None:
+            _triplets = _triplets[_triplets['tail_id'] == tail_id]
+
+        def _get_metadata_df(row):
+            nonlocal _metadata_dfs
+
+            metadata_df = self.metadata.get(row['metadata_ids']).copy()
+            metadata_df['triple_id'] = row['foodatlas_id']
+            _metadata_dfs += [metadata_df]
+
+        _metadata_dfs = []
+        _triplets.apply(_get_metadata_df, axis=1)
+
+        return pd.concat(_metadata_dfs)
