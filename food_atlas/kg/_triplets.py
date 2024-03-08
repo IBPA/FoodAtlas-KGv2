@@ -111,9 +111,9 @@ class Triplets:
             [self._triplets.reset_index(), triplets_new], ignore_index=True
         )
         self._triplets['metadata_ids'] = self._triplets.apply(
-            lambda row: self._ht_t2m[
+            lambda row: list(set(self._ht_t2m[
                 f"{row['head_id']}_{row['relationship_id']}_{row['tail_id']}"
-            ],
+            ])),
             axis=1,
         )
 
