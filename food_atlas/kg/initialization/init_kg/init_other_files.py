@@ -27,3 +27,15 @@ if __name__ == '__main__':
         sep='\t',
         index=False
     )
+
+    # Empty retired file.
+    pd.DataFrame(
+        [],
+        columns=[
+            'foodatlas_id', 'action', 'timestamp',
+        ]
+    ).to_csv(
+        "outputs/kg/initialization/retired.tsv",
+        sep='\t',
+        index=False
+    )
