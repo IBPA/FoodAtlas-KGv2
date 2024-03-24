@@ -445,6 +445,7 @@ class Entities:
                 if synonym not in lut:
                     lut[synonym] = []
                 lut[synonym] += [row.name]
+                lut[synonym] = list(set(lut[synonym]))
 
             # Add external IDs to the lookup table.
             if row['external_ids']:
