@@ -71,6 +71,7 @@ class Entities:
         'common_name',
         'scientific_name',
         'synonyms',
+        # 'synonyms_ambiguous',
         'external_ids',
     ]
     FAID_PREFIX = 'e'
@@ -137,7 +138,9 @@ class Entities:
         self._entities.to_csv(
             f"{path_output_dir}/entities.tsv", sep='\t',
         )
-        pd.DataFrame(self._lut_food.items(), columns=['name', 'foodatlas_id']).to_csv(
+        pd.DataFrame(
+            self._lut_food.items(), columns=['name', 'foodatlas_id']
+        ).to_csv(
             f"{path_output_dir}/lookup_table_food.tsv", sep='\t', index=False
         )
         pd.DataFrame(
@@ -280,7 +283,10 @@ class Entities:
             = list(set([name for names in entity_synonyms for name in names]))
 
         # Step 1. Query NCBI Taxonomy to see if there is an ID.
-        records_ncbi_taxonomy = query_ncbi_taxonomy(entity_names_all)
+        records_ncbi_taxonomy = query_ncbi_taxonomy(
+            entity_names_all,
+            self.path_cache_dir,
+        )
         self._create_food_entities_from_ncbi_taxonomy(records_ncbi_taxonomy)
 
         # Step 2. Create entities that are still new to the KG.
@@ -387,7 +393,10 @@ class Entities:
 
         """
         # Step 1. Query PubChem Compound to see if there is an ID.
-        records_pubchem_compound = query_pubchem_compound(entity_names_new)
+        records_pubchem_compound = query_pubchem_compound(
+            entity_names_new,
+            self.path_cache_dir,
+        )
         self._create_chemical_entities_from_pubchem_compound(records_pubchem_compound)
 
         # Step 2. Create entities that are still new to the KG.

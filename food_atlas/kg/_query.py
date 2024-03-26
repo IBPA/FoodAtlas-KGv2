@@ -50,7 +50,7 @@ def load_lookup_tables(
 
 def _search_ncbi_taxonomy(
     food_names: list[str],
-    path_cache_dir: str = "outputs/kg/_cache",
+    path_cache_dir: str,
 ):
     """
     """
@@ -93,7 +93,7 @@ def _search_ncbi_taxonomy(
 
 def _fetch_ncbi_taxonomy(
     ncbi_taxon_ids: list[int],
-    path_cache_dir: str = "outputs/kg/_cache",
+    path_cache_dir: str,
 ):
     """
     """
@@ -137,7 +137,7 @@ def _fetch_ncbi_taxonomy(
 
 def query_ncbi_taxonomy(
     food_names: list[str],
-    path_cache_dir: str = "outputs/kg/_cache",
+    path_cache_dir: str,
 ) -> pd.DataFrame:
     """Query the NCBI taxonomy database.
 
@@ -166,7 +166,7 @@ def query_ncbi_taxonomy(
 
 def query_pubchem_compound(
     chemical_names: list[str],
-    path_cache_dir: str = "outputs/kg/_cache",
+    path_cache_dir: str,
 ) -> pd.DataFrame:
     """Query the PubChem compound database.
 

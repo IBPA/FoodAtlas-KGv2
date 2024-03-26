@@ -20,10 +20,10 @@ class KnowledgeGraph:
     def __init__(
         self,
         path_kg="outputs/kg",
-        path_output_dir=None,
+        path_cache_dir="outputs/kg/_cache",
     ):
         self.path_kg = path_kg
-        self.path_output_dir = path_output_dir
+        self.path_cache_dir = path_cache_dir
         self._load()
         self.print_stats()
 
@@ -41,16 +41,16 @@ class KnowledgeGraph:
             path_entities=f"{self.path_kg}/entities.tsv",
             path_lut_food=f"{self.path_kg}/lookup_table_food.tsv",
             path_lut_chemical=f"{self.path_kg}/lookup_table_chemical.tsv",
-            path_cache_dir=self.path_output_dir,
+            path_cache_dir=self.path_cache_dir,
         )
 
-    def _save(self):
+    def save(self, path_output_dir=None):
         """Helper function to save the knowledge graph data.
 
         """
-        self.metadata._save(self.path_output_dir)
-        self.triplets._save(self.path_output_dir)
-        self.entities._save(self.path_output_dir)
+        self.metadata._save(path_output_dir)
+        self.triplets._save(path_output_dir)
+        self.entities._save(path_output_dir)
 
     def print_stats(self):
         """Print the statistics of the knowledge graph.
@@ -147,10 +147,6 @@ class KnowledgeGraph:
             self._add_triplets_from_metadata_contains(metadata)
         else:
             raise NotImplementedError
-
-        # Dump new files.
-        if self.path_output_dir:
-            self._save()
 
     def get_triplets(
         self,
