@@ -1,4 +1,5 @@
 from ast import literal_eval
+from collections import OrderedDict
 import re
 
 import pandas as pd
@@ -71,7 +72,6 @@ class Entities:
         'common_name',
         'scientific_name',
         'synonyms',
-        # 'synonyms_ambiguous',
         'external_ids',
     ]
     FAID_PREFIX = 'e'
@@ -81,11 +81,13 @@ class Entities:
         path_entities: str,
         path_lut_food: str,
         path_lut_chemical: str,
+        path_kg: str = None,
         path_cache_dir: str = None,
     ):
         self.path_entities = path_entities
         self.path_lut_food = path_lut_food
         self.path_lut_chemical = path_lut_chemical
+        self.path_kg = path_kg
         self.path_cache_dir = path_cache_dir
 
         self._load()
@@ -122,8 +124,8 @@ class Entities:
         self._lut_chemical = luts[1]
 
         # Get the current entity ID.
-        self._curr_eid \
-            = self._entities.index.str.slice(1).astype(int).max() + 1
+        eid = self._entities.index.str.slice(1).astype(int).max()
+        self._curr_eid = eid + 1 if pd.notna(eid) else 1
 
     def _save(
         self,
@@ -203,10 +205,12 @@ class Entities:
                     synonyms_scientific_abbr += [' '.join(terms)]
                 synonyms_scientific += synonyms_scientific_abbr
 
-            synonyms \
-                = list(set(synonyms_common + synonyms_others + synonyms_scientific))
+            synonyms = synonyms_common + synonyms_others + synonyms_scientific
+            synonyms = list(OrderedDict.fromkeys(synonyms).keys())
             synonyms = [x.strip().lower() for x in synonyms]
-            row['synonyms'] = synonyms
+            row['synonyms'] = synonyms + [constants.get_lookup_key_by_id(
+                'ncbi_taxon_id', row['TaxId']
+            )]
 
             return row
 
@@ -285,6 +289,7 @@ class Entities:
         # Step 1. Query NCBI Taxonomy to see if there is an ID.
         records_ncbi_taxonomy = query_ncbi_taxonomy(
             entity_names_all,
+            self.path_kg,
             self.path_cache_dir,
         )
         self._create_food_entities_from_ncbi_taxonomy(records_ncbi_taxonomy)
@@ -316,22 +321,28 @@ class Entities:
 
         """
         def _parse_names(row):
-            row['scientific_name'] \
-                = row['IUPACName'].strip().lower() \
-                    if not pd.isna(row['IUPACName']) else None
+            row['scientific_name'] = row['IUPACName'].strip().lower() \
+                if not pd.isna(row['IUPACName']) else None
 
             row['synonyms'] = [s.strip().lower() for s in row['SynonymList']]
-            if row['scientific_name'] and row['scientific_name'] not in row['synonyms']:
-                row['synonyms'] += [row['scientific_name']]
-
-            # Pick a common name that is not all digits.
-            synonyms_all_digits = [
-                True if re.match('[\d-]+$', s) else False for s in row['synonyms']
-            ]
-            if all(synonyms_all_digits):
-                row['common_name'] = row['scientific_name']
-            else:
-                row['common_name'] = row['synonyms'][synonyms_all_digits.index(False)]
+            row['synonyms'] += [row['scientific_name']] \
+                if (
+                    row['scientific_name']
+                    and row['scientific_name'] not in row['synonyms']
+                ) \
+                else []
+            row['synonyms'] += [constants.get_lookup_key_by_id(
+                'pubchem_cid', row['CID']
+            )]
+            row['common_name'] = row['synonyms'][0]
+            # # Pick a common name that is not all digits.
+            # synonyms_all_digits = [
+            #     True if re.match('[\d-]+$', s) else False for s in row['synonyms']
+            # ]
+            # if all(synonyms_all_digits):
+            #     row['common_name'] = row['scientific_name']
+            # else:
+            #     row['common_name'] = row['synonyms'][synonyms_all_digits.index(False)]
 
             return row
 
@@ -395,6 +406,7 @@ class Entities:
         # Step 1. Query PubChem Compound to see if there is an ID.
         records_pubchem_compound = query_pubchem_compound(
             entity_names_new,
+            self.path_kg,
             self.path_cache_dir,
         )
         self._create_chemical_entities_from_pubchem_compound(records_pubchem_compound)
@@ -456,17 +468,17 @@ class Entities:
                 lut[synonym] += [row.name]
                 lut[synonym] = list(set(lut[synonym]))
 
-            # Add external IDs to the lookup table.
-            if row['external_ids']:
-                for name, ids in row['external_ids'].items():
-                    if not isinstance(ids, list):
-                        ids = [ids]
-                    for id_ in ids:
-                        key_lut = constants.get_lookup_key_by_id(name, id_)
+            # # Add external IDs to the lookup table.
+            # if row['external_ids']:
+            #     for name, ids in row['external_ids'].items():
+            #         if not isinstance(ids, list):
+            #             ids = [ids]
+            #         for id_ in ids:
+            #             key_lut = constants.get_lookup_key_by_id(name, id_)
 
-                        if key_lut not in lut:
-                            lut[key_lut] = []
-                        lut[key_lut] += [row.name]
+            #             if key_lut not in lut:
+            #                 lut[key_lut] = []
+            #             lut[key_lut] += [row.name]
 
         entities.apply(_add_to_lut, axis=1)
 

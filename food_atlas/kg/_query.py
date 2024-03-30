@@ -20,12 +20,12 @@ else:
 
 
 def load_lookup_tables(
-    path_dir: str = "outputs/kg"
+    path_kg: str = "outputs/kg"
 ) -> list[dict]:
     """Load the lookup tables.
 
     Args:
-        path_dir (str, optional): The path to the directory having the lookup tables.
+        path_kg (str, optional): The path to the directory having the lookup tables.
             Defaults to "outputs/kg".
 
     Returns:
@@ -35,7 +35,7 @@ def load_lookup_tables(
     luts = []
     for suffix in ['food', 'chemical']:
         lut_df = pd.read_csv(
-            f"{path_dir}/lookup_table_{suffix}.tsv",
+            f"{path_kg}/lookup_table_{suffix}.tsv",
             sep='\t',
             converters={
                 'foodatlas_id': literal_eval,
@@ -93,13 +93,14 @@ def _search_ncbi_taxonomy(
 
 def _fetch_ncbi_taxonomy(
     ncbi_taxon_ids: list[int],
+    path_kg: str,
     path_cache_dir: str,
 ):
     """
     """
     # Skip the NCBI taxon IDs already in the knowledge graph.
-    lut_food, _ = load_lookup_tables()
-    ncbi_taxon_ids = [
+    lut_food, _ = load_lookup_tables(path_kg)
+    ncbi_taxon_ids_new = [
         int(x) for x in ncbi_taxon_ids
         if constants.get_lookup_key_by_id('ncbi_taxon_id', x) not in lut_food
     ]
@@ -113,11 +114,15 @@ def _fetch_ncbi_taxonomy(
             },
         )
         ncbi_taxon_ids_fetched = records_fetch['TaxId'].tolist()
-        ncbi_taxon_ids = [x for x in ncbi_taxon_ids if x not in ncbi_taxon_ids_fetched]
+        ncbi_taxon_ids_not_fetched = [
+            x for x in ncbi_taxon_ids_new if x not in ncbi_taxon_ids_fetched
+        ]
 
-    if ncbi_taxon_ids:
-        print(f"Retrieving {len(ncbi_taxon_ids)} new NCBI Taxonomy IDs.")
-        handle_fetch = Entrez.efetch(db='taxonomy', id=ncbi_taxon_ids, retmode='xml')
+    if ncbi_taxon_ids_not_fetched:
+        print(f"Retrieving {len(ncbi_taxon_ids_not_fetched)} new NCBI Taxonomy IDs.")
+        handle_fetch = Entrez.efetch(
+            db='taxonomy', id=ncbi_taxon_ids_not_fetched, retmode='xml'
+        )
         records_fetch_new = Entrez.read(handle_fetch)
         records_fetch_new = pd.DataFrame(records_fetch_new)
         records_fetch = pd.concat([records_fetch, records_fetch_new])
@@ -129,7 +134,8 @@ def _fetch_ncbi_taxonomy(
 
     # Drop bacteria and viruses.
     records_fetch = records_fetch.query(
-        "Division not in ['Bacteria', 'Viruses', 'Unassigned']"
+        f"TaxId in {ncbi_taxon_ids_new} "
+        "& Division not in ['Bacteria', 'Viruses', 'Unassigned']"
     )
 
     return records_fetch
@@ -137,6 +143,7 @@ def _fetch_ncbi_taxonomy(
 
 def query_ncbi_taxonomy(
     food_names: list[str],
+    path_kg: str,
     path_cache_dir: str,
 ) -> pd.DataFrame:
     """Query the NCBI taxonomy database.
@@ -159,13 +166,14 @@ def query_ncbi_taxonomy(
     ]))
 
     # Step 2: Retrieve NCBI entries.
-    records_fetch = _fetch_ncbi_taxonomy(ncbi_taxon_ids, path_cache_dir)
+    records_fetch = _fetch_ncbi_taxonomy(ncbi_taxon_ids, path_kg, path_cache_dir)
 
     return records_fetch
 
 
 def query_pubchem_compound(
     chemical_names: list[str],
+    path_kg: str,
     path_cache_dir: str,
 ) -> pd.DataFrame:
     """Query the PubChem compound database.
@@ -178,16 +186,29 @@ def query_pubchem_compound(
         pd.DataFrame: The retrieved PubChem compound entries.
 
     """
+    if not os.path.exists(f"{path_cache_dir}/_cached_chemical_terms.txt"):
+        chemical_names_searched = pd.DataFrame([], columns=['name', 'cid'])
+    else:
+        chemical_names_searched = pd.read_csv(
+            f"{path_cache_dir}/_cached_chemical_terms.txt",
+            header=None,
+            names=['name', 'cid'],
+        )
+
+    chemical_names_new = [
+        x for x in chemical_names if x not in chemical_names_searched['name'].tolist()
+    ]
+
     # Step 1: Retrieve PubChem compound IDs.
-    if not os.path.exists(f"{path_cache_dir}/_cached_search_pubchem_compound.txt"):
-        with open("chemical_names_for_pies.txt", 'w') as f:
+    if chemical_names_new:
+        with open("new_chemical_names_for_pies.txt", 'w') as f:
             f.write('\n'.join(chemical_names))
 
         print(
-            f"WARNING: The file `{path_cache_dir}/_cached_search_pubchem_compound.txt`"
-            "could not be found. Please follow the instruction below:\n"
+            "WARNING: There are new chemical names not found in the search history.\n"
+            "Please follow the instruction below:\n"
             "1. Go to https://pubchem.ncbi.nlm.nih.gov/idexchange/.\n"
-            f"2. Upload the file `./chemical_names_for_pies.txt`.\n"
+            "2. Upload the file `./new_chemical_names_for_pies.txt`.\n"
             "3. Make sure the following fields are correct and click `Submit Job`:\n"
             "   - `Input ID List`: `Synonyms`\n"
             "   - `Operator Type`: `Same CID`\n"
@@ -195,21 +216,29 @@ def query_pubchem_compound(
             "   - `Output Method`: `Two column file...`\n"
             "   - `Compression`: `No compression`\n"
             "4. Once the download is finished, rename the file and move to "
-            f"`{path_cache_dir}/_cached_search_pubchem_compound.txt`.\n"
+            "`new_pubchem_compound_from_pies.txt`.\n"
             "5. Click `Enter` to continue once all steps are finished..."
         )
         input()
 
-    records_search = pd.read_csv(
-        f"{path_cache_dir}/_cached_search_pubchem_compound.txt",
-        sep='\t',
-        header=None,
-        names=['name', 'cid'],
-        dtype={'cid': 'Int64'},
-    )
-    _, lut_chemical = load_lookup_tables()
-    cids = records_search['cid'].dropna().unique().tolist()
-    cids = [
+        new_search = pd.read_csv(
+            "new_pubchem_compound_from_pies.txt",
+            sep='\t',
+            header=None,
+            names=['name', 'cid'],
+            dtype={'cid': 'Int64'},
+        )
+        chemical_names_searched = pd.concat(
+            [chemical_names_searched, new_search],
+            ignore_index=True,
+        )
+
+    cids = chemical_names_searched.query(
+        f"name in {chemical_names}"
+    )['cid'].dropna().unique().tolist()
+
+    _, lut_chemical = load_lookup_tables(path_kg)
+    cids_new = [
         x for x in cids
         if constants.get_lookup_key_by_id('pubchem_cid', x) not in lut_chemical
     ]
@@ -224,13 +253,17 @@ def query_pubchem_compound(
             },
         )
         cids_fetched = records_fetch['CID'].tolist()
-        cids = [x for x in cids if x not in cids_fetched]
+        cids_not_fetched = [
+            x for x in cids_new if x not in cids_fetched
+        ]
     else:
         records_fetch = pd.DataFrame()
+        cids_fetched = []
+        cids_not_fetched = cids_new
 
-    if cids:
-        print(f"Retrieving {len(cids)} new PubChem CIDs.")
-        cids_str = ','.join([str(x) for x in cids])
+    if cids_not_fetched:
+        print(f"Retrieving {len(cids_not_fetched)} new PubChem CIDs.")
+        cids_str = ','.join([str(x) for x in cids_not_fetched])
         handler = Entrez.esummary(db='pccompound', id=cids_str)
         records_fetch_new = Entrez.read(handler)
         records_fetch_new = pd.DataFrame(records_fetch_new)
@@ -240,5 +273,16 @@ def query_pubchem_compound(
             sep='\t',
             index=False,
         )
+
+    chemical_names_searched.to_csv(
+        f"{path_cache_dir}/_cached_chemical_terms.txt",
+        sep='\t',
+        header=False,
+        index=False,
+    )
+
+    records_fetch = records_fetch.query(
+        f"CID in {cids_new}"
+    )
 
     return records_fetch

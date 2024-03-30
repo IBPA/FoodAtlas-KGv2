@@ -84,7 +84,7 @@ class Triplets:
         head_ids = metadata['head_id'].tolist()
         relationship_ids = metadata['relationship_id'].tolist()
         tail_ids = metadata['tail_id'].tolist()
-        metadata_ids = metadata['foodatlas_id'].tolist()
+        metadata_ids = metadata.index.tolist()
 
         self._triplets = self._triplets.set_index('foodatlas_id')
 

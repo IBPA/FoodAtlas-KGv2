@@ -24,7 +24,7 @@ from . import KnowledgeGraph
 def main(
     path_output_dir: str
 ):
-    kg = KnowledgeGraph(path_output_dir=path_output_dir)
+    kg = KnowledgeGraph()
 
     metadata = pd.read_csv(
         f"{path_output_dir}/_metadata_new.tsv",
@@ -34,6 +34,7 @@ def main(
     metadata['_food_part'] = metadata['_food_part'].fillna('')
 
     kg.add_triplets_from_metadata(metadata)
+    kg.save(path_output_dir)
 
 
 if __name__ == '__main__':

@@ -1,9 +1,15 @@
+import warnings
+
 import pandas as pd
 from pympler import asizeof
+from tqdm import tqdm
 
 from ._metadata import Metadata
 from ._triplets import Triplets
 from ._entities import Entities
+from ..tests import unit_test_kg
+
+tqdm.pandas()
 
 
 class KnowledgeGraph:
@@ -41,6 +47,7 @@ class KnowledgeGraph:
             path_entities=f"{self.path_kg}/entities.tsv",
             path_lut_food=f"{self.path_kg}/lookup_table_food.tsv",
             path_lut_chemical=f"{self.path_kg}/lookup_table_chemical.tsv",
+            path_kg=self.path_kg,
             path_cache_dir=self.path_cache_dir,
         )
 
@@ -111,6 +118,8 @@ class KnowledgeGraph:
         if chemical_names_not_in_lut:
             self.entities.create('chemical', chemical_names_not_in_lut)
 
+        self._disambiguate_synonyms()
+
         # Create new metadata.
         metadata = self.metadata.create(metadata)
 
@@ -128,6 +137,72 @@ class KnowledgeGraph:
 
         print(f"# metadata entries added: {len(metadata)}")
         print(f"# triplets added: {len(triplets)}")
+
+    def _disambiguate_synonyms(self):
+        """
+        """
+        placeholders_rows = []
+        for entity_type in ['food', 'chemical']:
+            lut = eval(f"self.entities._lut_{entity_type}")
+            for name, eids, in lut.items():
+                if len(eids) > 1:
+                    placeholders_rows += [{
+                        'foodatlas_id': f"e{self.entities._curr_eid}",
+                        'entity_type': entity_type,
+                        'common_name': name,
+                        'synonyms': [name],
+                        'external_ids': {'_placeholder_to': eids},
+                    }]
+                    self.entities._curr_eid += 1
+
+        if not placeholders_rows:
+            return
+
+        placeholders = pd.DataFrame(
+            placeholders_rows
+        ).set_index('foodatlas_id', drop=True)
+        self.entities._entities = pd.concat(
+            [self.entities._entities, placeholders]
+        )
+
+        def _update_entity_synonyms(row):
+            eids_to_update = row['external_ids']['_placeholder_to']
+
+            for eid in eids_to_update:
+                entities = self.entities._entities
+                entities.at[eid, 'synonyms'] = [
+                    x for x in entities.loc[eid, 'synonyms'] if x not in row['synonyms']
+                ]
+
+                if not entities.at[eid, 'synonyms']:
+                    warnings.warn(
+                        f"{entities.loc[eid]}: Synonyms are empty."
+                    )
+                else:
+                    if entities.at[eid, 'common_name'] \
+                            not in entities.at[eid, 'synonyms']:
+                        entities.at[eid, 'common_name'] \
+                            = entities.at[eid, 'synonyms'][0]
+
+                    if entities.at[eid, 'scientific_name'] \
+                            not in entities.at[eid, 'synonyms']:
+                        entities.at[eid, 'scientific_name'] = ''
+
+                if '_placeholder_from' not in entities.at[eid, 'external_ids']:
+                    entities.at[eid, 'external_ids']['_placeholder_from'] = []
+                entities.at[eid, 'external_ids']['_placeholder_from'] += [row.name]
+
+        placeholders.apply(_update_entity_synonyms, axis=1)
+
+        def _update_lut_placeholders(row):
+            nonlocal self
+
+            lut = eval(f"self.entities._lut_{row['entity_type']}")
+            synonyms = row['synonyms']
+            for synonym in synonyms:
+                lut[synonym] = [row.name]
+
+        placeholders.apply(_update_lut_placeholders, axis=1)
 
     def add_triplets_from_metadata(
         self,
@@ -147,6 +222,8 @@ class KnowledgeGraph:
             self._add_triplets_from_metadata_contains(metadata)
         else:
             raise NotImplementedError
+
+        unit_test_kg.test_all(self)
 
     def get_triplets(
         self,
