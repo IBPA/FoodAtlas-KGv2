@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+"""One line summary.
+
+More detailed description.
+
+Attributes:
+    attr1 (type): Description of attr1.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+Todo:
+    * disambiguate function can be improved.
+
+"""
 import warnings
 
 import pandas as pd
@@ -139,13 +154,53 @@ class KnowledgeGraph:
         print(f"# triplets added: {len(triplets)}")
 
     def _disambiguate_synonyms(self):
+        """Make sure every synonym is uniquely linked one entity.
+
         """
-        """
+        def _remove_entity_synonyms(eid: str, synonyms_to_remove: list[str]):
+            entities.at[eid, 'synonyms'] = [
+                x for x in entities.loc[eid, 'synonyms'] if x not in synonyms_to_remove
+            ]
+            synonyms = entities.loc[eid, 'synonyms']
+
+            if not synonyms:
+                warnings.warn(
+                    f"{entities.loc[eid]}: Synonyms are empty."
+                )
+            else:
+                if entities.at[eid, 'common_name'] not in synonyms:
+                    entities.at[eid, 'common_name'] = synonyms[0]
+
+                if entities.at[eid, 'scientific_name'] not in synonyms:
+                    entities.at[eid, 'scientific_name'] = ''
+
+        entities = self.entities._entities
+
         placeholders_rows = []
         for entity_type in ['food', 'chemical']:
             lut = eval(f"self.entities._lut_{entity_type}")
             for name, eids, in lut.items():
-                if len(eids) > 1:
+                if len(eids) == 1:
+                    continue
+
+                if '_placeholder_to' in entities.at[eids[0], 'external_ids']:
+                    # Already a placeholder entity.
+                    # 1. Add the eids to the existing placeholder entity.
+                    entities.at[eids[0], 'external_ids']['_placeholder_to'] += eids
+                    # 2. Update the corresponding non-placeholders.
+                    for eid in eids[1:]:
+                        _remove_entity_synonyms(eid, [name])
+                        if '_placeholder_from' not in entities.at[eid, 'external_ids']:
+                            entities.at[eid, 'external_ids']['_placeholder_from'] = []
+                        entities.at[eid, 'external_ids']['_placeholder_from'] \
+                            += [eids[0]]
+                        entities.at[eid, 'external_ids']['_placeholder_from'] \
+                            = list(set(
+                                entities.at[eid, 'external_ids']['_placeholder_from']
+                            ))
+                    lut[name] = [eids[0]]
+                else:
+                    # Create a new placeholder entity.
                     placeholders_rows += [{
                         'foodatlas_id': f"e{self.entities._curr_eid}",
                         'entity_type': entity_type,

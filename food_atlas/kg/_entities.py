@@ -1,17 +1,18 @@
 from ast import literal_eval
 from collections import OrderedDict
-import re
 
 import pandas as pd
 from inflection import singularize, pluralize
-from tqdm import tqdm
 
-from .utils import constants
+from .utils import constants, merge_sets
 from ._query import query_ncbi_taxonomy, query_pubchem_compound
+
 
 def group_synonyms(synonyms_groups: list[list[str]]):
     """A list of synonym groups, each representing singluar and plural forms of a word.
-    This function groups the synonyms no group is a subset is another group.
+    This function groups the synonyms no group is a subset is another group, and
+    overlaps are merged.
+
     For example:
     ```
     INPUT = [
@@ -19,37 +20,24 @@ def group_synonyms(synonyms_groups: list[list[str]]):
         ['apples', 'apple'],
         ['person', 'people', 'peoples'],
         ['people', 'peoples'],
+        ['olive', 'olives'],
+        ['olives', 'olife'],
     ]
 
     OUTPUT = [
         ['apple', 'apples'],
         ['person', 'people', 'peoples'],
+        ['olive', 'olives', 'olife'],
     ]
     ```
-
-    TODO: Currently O(n^2 * k) where n is the number of groups and k is the number of
-    synonyms in a group. Potential optimization?
 
     """
     print("Grouping synonyms...")
     synonyms_groups = [set(synonyms) for synonyms in synonyms_groups]
-    synonyms_groups = sorted(synonyms_groups, key=lambda x: len(x))
+    synonyms_groups = merge_sets(synonyms_groups)
+    synonyms_groups = [list(synonyms) for synonyms in synonyms_groups]
 
-    to_remove = [False for _ in range(len(synonyms_groups))]
-    for i in tqdm(range(len(synonyms_groups)), total=len(synonyms_groups)):
-        if to_remove[i]:
-            continue
-        for j in range(i + 1, len(synonyms_groups)):
-            if synonyms_groups[i].issubset(synonyms_groups[j]):
-                to_remove[i] = True
-                break
-
-    result = []
-    for i in range(len(synonyms_groups)):
-        if not to_remove[i]:
-            result += [list(synonyms_groups[i])]
-
-    return result
+    return synonyms_groups
 
 
 class Entities:
@@ -309,7 +297,6 @@ class Entities:
             if not found:
                 raise ValueError(f"Entity not found for synonyms: {synonyms}")
 
-
     def _create_chemical_entities_from_pubchem_compound(
         self,
         records: pd.DataFrame,
@@ -465,8 +452,7 @@ class Entities:
             for synonym in row['synonyms']:
                 if synonym not in lut:
                     lut[synonym] = []
-                lut[synonym] += [row.name]
-                lut[synonym] = list(set(lut[synonym]))
+                lut[synonym] += [row.name] if row.name not in lut[synonym] else []
 
             # # Add external IDs to the lookup table.
             # if row['external_ids']:
