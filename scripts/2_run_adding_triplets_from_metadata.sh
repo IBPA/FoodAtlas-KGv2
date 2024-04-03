@@ -6,7 +6,7 @@
 
 # PATH_WORKSPACE=outputs/kg/$CURR_TIME
 
-PATH_OUTPUT_DIR=outputs/kg/20240315
+PATH_OUTPUT_DIR=outputs/kg/20240401
 
 python -m food_atlas.kg.run_kg_expansion \
     $PATH_OUTPUT_DIR
