@@ -4,6 +4,8 @@ import pandas as pd
 from pandarallel import pandarallel
 import click
 
+from .preprocessing import standardize_chemical_conc
+
 pandarallel.initialize(progress_bar=True)
 
 
@@ -43,10 +45,6 @@ CHAR_REPLACE = {
     '’': "'",
     '′': "'",
 }
-
-# TODO: Standardization should happen in this file.
-def standardize_conc():
-    pass
 
 
 def standardize_food_part():
@@ -142,6 +140,10 @@ def main(
     metadata[columns] = None
     metadata = metadata.parallel_apply(format_tuple, axis=1)
     metadata = metadata[columns]
+
+    # Stndardize the chemical concentration.
+    metadata = standardize_chemical_conc(metadata)
+
     metadata.to_csv(
         f"{path_output_dir}/_metadata_new.tsv",
         sep='\t',
