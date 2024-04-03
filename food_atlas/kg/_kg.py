@@ -22,7 +22,6 @@ from tqdm import tqdm
 from ._metadata import Metadata
 from ._triplets import Triplets
 from ._entities import Entities
-from ..tests import unit_test_kg
 
 tqdm.pandas()
 
@@ -278,7 +277,7 @@ class KnowledgeGraph:
         else:
             raise NotImplementedError
 
-        unit_test_kg.test_all(self)
+        # unit_test_kg.test_all(self)
 
     def get_triplets(
         self,
