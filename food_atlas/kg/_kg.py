@@ -79,36 +79,6 @@ class KnowledgeGraph:
         """
         print(f"KG space consumption: {asizeof.asizeof(self) / 1024 / 1024:.2f} MB")
 
-    def _get_new_names(
-        self,
-        entity_type: str,
-        names: list[str],
-    ) -> list[str]:
-        """Helper function to get the names that are not in the lookup table.
-
-        Args:
-            entity_type (str): The entity type.
-            names (list[str]): The list of names.
-
-        Returns:
-            list[str]: The list of names that are not in the lookup table.
-
-        """
-        n_found = 0
-        names_not_in_lut = []
-        for name in names:
-            if not self.entities.get_entity_ids(entity_type, name):
-                names_not_in_lut += [name]
-            else:
-                n_found += 1
-
-        print(
-            f"# of unique {entity_type} name existing/new: "
-            f"{n_found}/{len(names_not_in_lut)}"
-        )
-
-        return names_not_in_lut
-
     def _add_triplets_from_metadata_contains(
         self,
         metadata: pd.DataFrame,
@@ -119,10 +89,10 @@ class KnowledgeGraph:
             metadata (pd.DataFrame): The metadata dataframe.
 
         """
-        food_names_not_in_lut = self._get_new_names(
+        food_names_not_in_lut = self.entities.get_new_names(
             'food', metadata['_food_name'].unique()
         )
-        chemical_names_not_in_lut = self._get_new_names(
+        chemical_names_not_in_lut = self.entities.get_new_names(
             'chemical', metadata['_chemical_name'].unique()
         )
 
@@ -258,6 +228,12 @@ class KnowledgeGraph:
 
         placeholders.apply(_update_lut_placeholders, axis=1)
 
+    def merge_entities(self):
+        pass
+
+    def remove_entities(self):
+        pass
+
     def add_triplets_from_metadata(
         self,
         metadata: pd.DataFrame,
@@ -276,8 +252,6 @@ class KnowledgeGraph:
             self._add_triplets_from_metadata_contains(metadata)
         else:
             raise NotImplementedError
-
-        # unit_test_kg.test_all(self)
 
     def get_triplets(
         self,
@@ -306,10 +280,10 @@ class KnowledgeGraph:
             nonlocal _metadata_dfs
 
             metadata_df = self.metadata.get(row['metadata_ids']).copy()
-            metadata_df['triple_id'] = row['foodatlas_id']
+            metadata_df['triplet_id'] = row.name
             _metadata_dfs += [metadata_df]
 
         _metadata_dfs = []
         _triplets.apply(_get_metadata_df, axis=1)
 
-        return pd.concat(_metadata_dfs)
+        return pd.concat(_metadata_dfs) if _metadata_dfs else pd.DataFrame()

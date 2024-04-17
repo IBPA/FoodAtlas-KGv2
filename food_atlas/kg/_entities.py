@@ -525,3 +525,33 @@ class Entities:
 
         """
         return self._entities.loc[entity_id]
+
+    def get_new_names(
+        self,
+        entity_type: str,
+        names: list[str],
+    ) -> list[str]:
+        """Get the names that are not in the lookup table.
+
+        Args:
+            entity_type (str): The entity type.
+            names (list[str]): The list of names.
+
+        Returns:
+            list[str]: The list of names that are not in the lookup table.
+
+        """
+        n_found = 0
+        names_not_in_lut = []
+        for name in names:
+            if not self.get_entity_ids(entity_type, name):
+                names_not_in_lut += [name]
+            else:
+                n_found += 1
+
+        print(
+            f"# of unique {entity_type} name existing/new: "
+            f"{n_found}/{len(names_not_in_lut)}"
+        )
+
+        return names_not_in_lut

@@ -20,11 +20,17 @@ from . import KnowledgeGraph
 
 
 @click.command()
-@click.argument('path-output-dir', type=click.Path(exists=True))
+@click.argument(
+    'path-output-dir', type=click.Path(exists=True)
+)
+@click.option(
+    '--path-kg', type=click.Path(exists=True), default="outputs/kg"
+)
 def main(
+    path_kg: str,
     path_output_dir: str
 ):
-    kg = KnowledgeGraph()
+    kg = KnowledgeGraph(path_kg=path_kg)
 
     metadata = pd.read_csv(
         f"{path_output_dir}/_metadata_new.tsv",
