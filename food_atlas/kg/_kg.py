@@ -19,12 +19,12 @@ import pandas as pd
 from pympler import asizeof
 from tqdm import tqdm
 
+from .utils import logger
+from .entities import Entities
 from ._metadata import Metadata
 from ._triplets import Triplets
-from ._entities import Entities
 
 tqdm.pandas()
-
 
 class KnowledgeGraph:
     """Class to represent the knowledge graph.
@@ -51,6 +51,8 @@ class KnowledgeGraph:
         """Load the knowledge graph data from the `self.path_kg`.
 
         """
+        logger.info("Start loading the knowledge graph...")
+
         self.metadata = Metadata(
             path_metadata_contains=f"{self.path_kg}/metadata_contains.tsv",
         )
@@ -65,6 +67,8 @@ class KnowledgeGraph:
             path_cache_dir=self.path_cache_dir,
         )
 
+        logger.info("Completed loading the knowledge graph!")
+
     def save(self, path_output_dir=None):
         """Helper function to save the knowledge graph data.
 
@@ -77,7 +81,9 @@ class KnowledgeGraph:
         """Print the statistics of the knowledge graph.
 
         """
-        print(f"KG space consumption: {asizeof.asizeof(self) / 1024 / 1024:.2f} MB")
+        logger.info(
+            f"KG space consumption: {asizeof.asizeof(self) / 1024 / 1024:.2f} MB"
+        )
 
     def _add_triplets_from_metadata_contains(
         self,
@@ -119,13 +125,15 @@ class KnowledgeGraph:
         metadata_exploded['relationship_id'] = 'r1'
         triplets = self.triplets.create(metadata_exploded)
 
-        print(f"# metadata entries added: {len(metadata)}")
-        print(f"# triplets added: {len(triplets)}")
+        logger.info(f"# metadata entries added: {len(metadata)}")
+        logger.info(f"# triplets added: {len(triplets)}")
 
     def _disambiguate_synonyms(self):
         """Make sure every synonym is uniquely linked one entity.
 
         """
+        logger.info("Start disambiguating synonyms...")
+
         def _remove_entity_synonyms(eid: str, synonyms_to_remove: list[str]):
             entities.at[eid, 'synonyms'] = [
                 x for x in entities.loc[eid, 'synonyms'] if x not in synonyms_to_remove
@@ -164,7 +172,7 @@ class KnowledgeGraph:
                         entities.at[eid, 'external_ids']['_placeholder_from'] \
                             += [eids[0]]
                         entities.at[eid, 'external_ids']['_placeholder_from'] \
-                            = list(set(
+                            = sorted(set(
                                 entities.at[eid, 'external_ids']['_placeholder_from']
                             ))
                     lut[name] = [eids[0]]
@@ -227,6 +235,8 @@ class KnowledgeGraph:
                 lut[synonym] = [row.name]
 
         placeholders.apply(_update_lut_placeholders, axis=1)
+
+        logger.info("Completed disambiguating synonyms!")
 
     def merge_entities(self):
         pass

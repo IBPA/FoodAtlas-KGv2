@@ -6,14 +6,14 @@ import pandas as pd
 from Bio import Entrez
 from tqdm import tqdm
 
-from .utils import constants
+from .utils import constants, logger
 
 if os.path.exists("food_atlas/kg/api_key.txt"):
     with open("food_atlas/kg/api_key.txt") as f:
         Entrez.email = f.readline().strip()
         Entrez.api_key = f.readline().strip()
 else:
-    print(
+    logger.warning(
         "NCBI API key not found. Please create a file named 'api_key.txt' in the"
         "'food_atlas/kg' directory."
     )
@@ -119,7 +119,10 @@ def _fetch_ncbi_taxonomy(
         ]
 
     if ncbi_taxon_ids_not_fetched:
-        print(f"Retrieving {len(ncbi_taxon_ids_not_fetched)} new NCBI Taxonomy IDs.")
+        logger.info(
+            f"Retrieving {len(ncbi_taxon_ids_not_fetched)} new NCBI Taxonomy IDs."
+        )
+
         handle_fetch = Entrez.efetch(
             db='taxonomy', id=ncbi_taxon_ids_not_fetched, retmode='xml'
         )
@@ -204,8 +207,8 @@ def query_pubchem_compound(
         with open("new_chemical_names_for_pies.txt", 'w') as f:
             f.write('\n'.join(chemical_names))
 
-        print(
-            "WARNING: There are new chemical names not found in the search history.\n"
+        logger.warning(
+            "There are new chemical names not found in the search history.\n"
             "Please follow the instruction below:\n"
             "1. Go to https://pubchem.ncbi.nlm.nih.gov/idexchange/.\n"
             "2. Upload the file `./new_chemical_names_for_pies.txt`.\n"
@@ -262,7 +265,8 @@ def query_pubchem_compound(
         cids_not_fetched = cids_new
 
     if cids_not_fetched:
-        print(f"Retrieving {len(cids_not_fetched)} new PubChem CIDs.")
+        logger.info(f"Retrieving {len(cids_not_fetched)} new PubChem CIDs.")
+
         cids_str = ','.join([str(x) for x in cids_not_fetched])
         handler = Entrez.esummary(db='pccompound', id=cids_str)
         records_fetch_new = Entrez.read(handler)
