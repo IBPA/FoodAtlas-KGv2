@@ -1,6 +1,3 @@
-from ..kg import KnowledgeGraph
-
-
 def test_entities(kg):
     # Test 1: Each lookup table entry should only have one entity.
     lut_food = kg.entities._lut_food
@@ -29,7 +26,7 @@ def test_triplets(kg):
     triplets = kg.triplets._triplets
 
     # Test 1. Triplets should be unique.
-    assert triplets['foodatlas_id'].nunique() == len(triplets)
+    assert triplets.index.nunique() == len(triplets)
     assert len(triplets.groupby(['head_id', 'relationship_id', 'tail_id']).size()) \
         == len(triplets)
 
@@ -54,9 +51,3 @@ def test_all(kg):
     test_entities(kg)
     test_triplets(kg)
     # test_metadata(kg)
-
-
-if __name__ == '__main__':
-    kg = KnowledgeGraph("outputs/kg/20240401")
-    test_all(kg)
-    print('All tests passed.')

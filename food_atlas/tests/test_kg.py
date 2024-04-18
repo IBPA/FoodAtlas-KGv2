@@ -1,8 +1,18 @@
+import click
+
 from .unit_test_kg import test_all
 from ..kg import KnowledgeGraph
 
 
-if __name__ == '__main__':
-    kg = KnowledgeGraph(path_kg="outputs/kg/20240329")
+@click.command()
+@click.argument(
+    'path_kg',
+    type=str,
+)
+def main(path_kg: str):
+    kg = KnowledgeGraph(path_kg=path_kg)
     test_all(kg)
     print('All tests passed.')
+
+if __name__ == '__main__':
+    main()
