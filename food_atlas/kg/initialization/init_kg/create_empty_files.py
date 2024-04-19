@@ -1,6 +1,6 @@
 import pandas as pd
 
-from food_atlas.kg._entities import Entities
+from ...entities import Entities
 from food_atlas.kg._triplets import Triplets
 from food_atlas.kg._metadata import Metadata
 

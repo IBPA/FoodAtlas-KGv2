@@ -3,6 +3,7 @@ from ast import literal_eval
 import pandas as pd
 
 from ... import KnowledgeGraph
+from ...entities._food import _create_food_entities_from_ncbi_taxonomy
 from ....tests import unit_test_kg
 
 
@@ -93,7 +94,7 @@ def init_food_entities_from_ncbi_taxonomy(kg):
         },
     )
 
-    kg.entities._create_food_entities_from_ncbi_taxonomy(records)
+    _create_food_entities_from_ncbi_taxonomy(kg.entities, records)
 
 
 if __name__ == '__main__':
