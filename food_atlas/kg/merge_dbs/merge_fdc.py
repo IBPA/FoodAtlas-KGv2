@@ -173,7 +173,9 @@ if __name__ == '__main__':
         "data/FDC/FoodData_Central_foundation_food_csv_2023-10-26/nutrient.csv",
         usecols=['id', 'name', 'unit_name'],
     ).set_index('id')
-
+    # print(foods)
+    # print(chemicals)
+    # exit()
     # Update entities.
     def _update_entities_food(row):
         global entities_new_rows
@@ -215,10 +217,16 @@ if __name__ == '__main__':
             kg.entities._curr_eid += 1
 
     def _update_entities_chemical(row):
-        global entities_new_rows
+        global entities_new_rows, entities
 
         if row['_chemical_name'] in kg.entities._lut_chemical:
             entity_id = kg.entities._lut_chemical[row['_chemical_name']][0]
+
+            if entity_id not in entities.index:
+                entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
+                kg.entities._entities = pd.concat([entities, entities_new])
+                entities = kg.entities._entities
+                entities_new_rows = []
 
             # Add external IDs.
             if 'fdc_nutrient_ids' not in entities.at[entity_id, 'external_ids']:
@@ -258,6 +266,7 @@ if __name__ == '__main__':
     chemicals.apply(_update_entities_chemical, axis=1)
     entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
     kg.entities._entities = pd.concat([entities, entities_new])
+    print(kg.entities._entities)
 
     def _get_metadatum(row):
         global metadata_rows
@@ -286,7 +295,7 @@ if __name__ == '__main__':
             'source': 'fdc',
             'reference': {
                 'url': "https://fdc.nal.usda.gov/fdc-app.html#/food-details/"
-                f"{fdc_id}/nutrients",
+                f"{int(fdc_id)}/nutrients",
             },
             'quality_score': None,
             '_food_name': _food_name,
@@ -304,4 +313,4 @@ if __name__ == '__main__':
 
     kg.add_triplets_from_metadata(metadata)
     test_all(kg)
-    kg.save("outputs/kg/20240403_merged_fdc")
+    kg.save("outputs/kg")
