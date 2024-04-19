@@ -1,11 +1,13 @@
+import logging
 from ast import literal_eval
 from collections import OrderedDict
 
 import pandas as pd
 
-from ..utils import logger
 from ._food import create_food_entities
 from ._chemical import create_chemical_entities
+
+logger = logging.getLogger(__name__)
 
 
 class Entities:

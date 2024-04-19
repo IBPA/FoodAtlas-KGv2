@@ -13,17 +13,18 @@ Todo:
     * disambiguate function can be improved.
 
 """
+import logging
 import warnings
 
 import pandas as pd
 from pympler import asizeof
 from tqdm import tqdm
 
-from .utils import logger
 from .entities import Entities
 from ._metadata import Metadata
 from ._triplets import Triplets
 
+logger = logging.getLogger(__name__)
 tqdm.pandas()
 
 class KnowledgeGraph:
@@ -32,8 +33,8 @@ class KnowledgeGraph:
     Args:
         path_kg (str, optional): The path to the knowledge graph. Defaults to
             "outputs/kg".
-        path_output_dir ([type], optional): The path to the output directory. Defaults
-            to None.
+        path_cache_dir ([type], optional): The path to the cached directory. Defaults
+            to "outputs/kg/_cache".
 
     """
 

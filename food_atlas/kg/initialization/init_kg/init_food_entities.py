@@ -99,11 +99,11 @@ def init_food_entities_from_ncbi_taxonomy(kg):
 
 if __name__ == '__main__':
     kg = KnowledgeGraph(
-        path_kg="outputs/kg/initialization",
+        path_kg="outputs/kg",
     )
 
     init_food_entities_from_ncbi_taxonomy(kg)
     kg._disambiguate_synonyms()
-    kg.save("outputs/kg/initialization")
+    kg.save("outputs/kg")
 
     unit_test_kg.test_all(kg)

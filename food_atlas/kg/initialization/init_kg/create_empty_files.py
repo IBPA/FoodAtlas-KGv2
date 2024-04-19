@@ -10,7 +10,7 @@ def create_empty_files():
     pd.DataFrame(
         [], columns=Entities.COLUMNS,
     ).to_csv(
-        "outputs/kg/initialization/entities.tsv",
+        "outputs/kg/entities.tsv",
         sep='\t',
         index=False,
     )
@@ -23,7 +23,7 @@ def create_empty_files():
             'foodatlas_id',
         ]
     ).to_csv(
-        "outputs/kg/initialization/lookup_table_food.tsv",
+        "outputs/kg/lookup_table_food.tsv",
         sep='\t',
         index=False,
     )
@@ -36,7 +36,7 @@ def create_empty_files():
             'foodatlas_id',
         ]
     ).to_csv(
-        "outputs/kg/initialization/lookup_table_chemical.tsv",
+        "outputs/kg/lookup_table_chemical.tsv",
         sep='\t',
         index=False,
     )
@@ -45,7 +45,7 @@ def create_empty_files():
     pd.DataFrame(
         [], columns=Triplets.COLUMNS,
     ).to_csv(
-        "outputs/kg/initialization/triplets.tsv",
+        "outputs/kg/triplets.tsv",
         sep='\t',
         index=False,
     )
@@ -54,7 +54,7 @@ def create_empty_files():
     pd.DataFrame(
         [], columns=Metadata.COLUMNS,
     ).to_csv(
-        "outputs/kg/initialization/metadata_contains.tsv",
+        "outputs/kg/metadata_contains.tsv",
         sep='\t',
         index=False,
     )
@@ -68,7 +68,7 @@ def create_empty_files():
             'destination',
         ]
     ).to_csv(
-        "outputs/kg/initialization/retired.tsv",
+        "outputs/kg/retired.tsv",
         sep='\t',
         index=False,
     )

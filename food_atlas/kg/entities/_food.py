@@ -1,10 +1,14 @@
+import logging
 from collections import OrderedDict
 
 import pandas as pd
 from inflection import singularize, pluralize
+from tqdm import tqdm
 
-from ..utils import constants, merge_sets, logger
+from ..utils import constants, merge_sets
 from .._query import query_ncbi_taxonomy
+
+logger = logging.getLogger(__name__)
 
 
 def _group_synonyms(synonyms_groups: list[list[str]]):

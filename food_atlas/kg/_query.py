@@ -1,4 +1,5 @@
 import os
+import logging
 from ast import literal_eval
 
 import numpy as np
@@ -6,7 +7,9 @@ import pandas as pd
 from Bio import Entrez
 from tqdm import tqdm
 
-from .utils import constants, logger
+from .utils import constants
+
+logger = logging.getLogger(__name__)
 
 if os.path.exists("food_atlas/kg/api_key.txt"):
     with open("food_atlas/kg/api_key.txt") as f:
@@ -194,13 +197,20 @@ def query_pubchem_compound(
     else:
         chemical_names_searched = pd.read_csv(
             f"{path_cache_dir}/_cached_chemical_terms.txt",
+            sep='\t',
             header=None,
             names=['name', 'cid'],
         )
 
+    logger.info("Filtering searched chemical names...")
+
+    chemical_names_searched_set = set(chemical_names_searched['name'].tolist())
     chemical_names_new = [
-        x for x in chemical_names if x not in chemical_names_searched['name'].tolist()
+        x for x in tqdm(chemical_names)
+        if x not in chemical_names_searched_set
     ]
+
+    logger.info("Completed!")
 
     # Step 1: Retrieve PubChem compound IDs.
     if chemical_names_new:

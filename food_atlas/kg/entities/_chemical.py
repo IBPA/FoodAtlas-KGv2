@@ -1,8 +1,11 @@
+import logging
+
 import pandas as pd
 
-# from ._base import Entities
 from ..utils import constants
 from .._query import query_pubchem_compound
+
+logger = logging.getLogger(__name__)
 
 
 def _create_chemical_entities_from_pubchem_compound(
@@ -16,6 +19,8 @@ def _create_chemical_entities_from_pubchem_compound(
         records (pd.DataFrame): Records from PubChem Compound.
 
     """
+    logger.info("Start creating entities with PubChem CIDs...")
+
     def _parse_names(row):
         row['scientific_name'] = row['IUPACName'].strip().lower() \
             if not pd.isna(row['IUPACName']) else None
@@ -53,6 +58,7 @@ def _create_chemical_entities_from_pubchem_compound(
     entities._entities = pd.concat([entities._entities, entities_new])
     entities._update_lut(entities_new)
 
+    logger.info("Completed!")
 
 def _create_chemical_entities_from_names(
     entities,
@@ -65,6 +71,8 @@ def _create_chemical_entities_from_names(
         names (list[str]): Names of the entities.
 
     """
+    logger.info("Start creating entities without PubChem CIDs...")
+
     entities_new_rows = []
     for name in names:
         if not entities.get_entity_ids('chemical', name):
@@ -81,6 +89,8 @@ def _create_chemical_entities_from_names(
     entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
     entities._entities = pd.concat([entities._entities, entities_new])
     entities._update_lut(entities_new)
+
+    logger.info("Completed!")
 
 
 def create_chemical_entities(
