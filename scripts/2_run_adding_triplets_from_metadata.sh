@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# CURR_TIME=$(date "+%Y%m%d%H%M%S")
-# mkdir -p outputs/kg/$CURR_TIME
-# echo "Created directory: outputs/kg/$CURR_TIME"
-
-# PATH_WORKSPACE=outputs/kg/$CURR_TIME
-
-PATH_OUTPUT_DIR=outputs/kg/20240401
+PATH_INPUT=outputs/kg/20240418/_metadata_new.tsv
+PATH_INPUT_KG=outputs/kg
+PATH_OUTPUT_DIR=outputs/kg
 
 python -m food_atlas.kg.run_kg_expansion \
+    $PATH_INPUT \
+    --path-input-kg $PATH_INPUT_KG \
+    --path-output-dir $PATH_OUTPUT_DIR \
+
+python -m food_atlas.tests.test_kg \
     $PATH_OUTPUT_DIR
