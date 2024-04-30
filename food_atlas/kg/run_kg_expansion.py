@@ -20,20 +20,31 @@ from . import KnowledgeGraph
 
 
 @click.command()
-@click.argument('path-output-dir', type=click.Path(exists=True))
+@click.argument(
+    'path-input-metadata', type=click.Path(exists=True)
+)
+@click.option(
+    '--path-input-kg', type=click.Path(exists=True), default="outputs/kg"
+)
+@click.option(
+    '--path-output-dir', type=click.Path(exists=True), default="outputs/kg"
+)
 def main(
-    path_output_dir: str
+    path_input_metadata: str,
+    path_input_kg: str,
+    path_output_dir: str,
 ):
-    kg = KnowledgeGraph(path_output_dir=path_output_dir)
+    kg = KnowledgeGraph(path_kg=path_input_kg)
 
     metadata = pd.read_csv(
-        f"{path_output_dir}/_metadata_new.tsv",
+        path_input_metadata,
         sep='\t',
     )
     metadata['_conc'] = metadata['_conc'].fillna('')
     metadata['_food_part'] = metadata['_food_part'].fillna('')
 
     kg.add_triplets_from_metadata(metadata)
+    kg.save(path_output_dir)
 
 
 if __name__ == '__main__':

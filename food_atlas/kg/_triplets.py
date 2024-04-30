@@ -39,10 +39,10 @@ class Triplets:
             self.path_triplets,
             sep='\t',
             converters={'metadata_ids': literal_eval},
-        )
+        ).set_index('foodatlas_id')
 
         # Record the current maximum foodatlas_id.
-        tid = self._triplets['foodatlas_id'].str.slice(1).astype(int).max()
+        tid = self._triplets.index.str.slice(1).astype(int).max()
         self._curr_tid = tid + 1 if pd.notna(tid) else 1
 
         # Create a hash table for existing triplets.
@@ -65,8 +65,31 @@ class Triplets:
         self._triplets.to_csv(
             f"{path_output_dir}/triplets.tsv",
             sep='\t',
-            index=False,
         )
+
+    # def get(
+    #     self,
+    #     triplet_ids: str|list[str] = None,
+    # ) -> pd.DataFrame:
+    #     """Get triplets.
+
+    #     Args:
+    #         triplet_ids (str|list[str], optional): Triplet IDs to retrieve.
+    #         Defaults to None, which returns all triplets.
+
+    #     Returns:
+    #         pd.DataFrame: Triplets.
+
+    #     """
+    #     if triplet_ids is None:
+    #         return self._triplets
+
+    #     if isinstance(triplet_ids, str):
+    #         triplet_ids = [triplet_ids]
+
+    #     return self._triplets[
+    #         self._triplets['foodatlas_id'].isin(triplet_ids)
+    #     ]
 
     def create(
         self,
@@ -84,9 +107,7 @@ class Triplets:
         head_ids = metadata['head_id'].tolist()
         relationship_ids = metadata['relationship_id'].tolist()
         tail_ids = metadata['tail_id'].tolist()
-        metadata_ids = metadata['foodatlas_id'].tolist()
-
-        self._triplets = self._triplets.set_index('foodatlas_id')
+        metadata_ids = metadata.index.tolist()
 
         triplets_new_rows = []
         for head_id, relationship_id, tail_id, metadata_id in zip(
@@ -105,15 +126,15 @@ class Triplets:
             self._curr_tid += 1
             self._ht_t2m[f"{head_id}_{relationship_id}_{tail_id}"] = [metadata_id]
 
-        triplets_new = pd.DataFrame(triplets_new_rows)
+        triplets_new = pd.DataFrame(triplets_new_rows).set_index('foodatlas_id')
 
         self._triplets = pd.concat(
-            [self._triplets.reset_index(), triplets_new], ignore_index=True
+            [self._triplets, triplets_new]
         )
         self._triplets['metadata_ids'] = self._triplets.apply(
-            lambda row: self._ht_t2m[
+            lambda row: list(set(self._ht_t2m[
                 f"{row['head_id']}_{row['relationship_id']}_{row['tail_id']}"
-            ],
+            ])),
             axis=1,
         )
 
