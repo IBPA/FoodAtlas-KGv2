@@ -23,7 +23,6 @@ def initialize_chemical_entities_from_pubchem_compound(kg):
 
 if __name__ == '__main__':
     kg = KnowledgeGraph(path_kg="outputs/kg")
-
     initialize_chemical_entities_from_pubchem_compound(kg)
     kg._disambiguate_synonyms()
     kg.save("outputs/kg")

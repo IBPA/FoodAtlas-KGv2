@@ -1,6 +1,6 @@
 import pandas as pd
 
-from ...entities import Entities
+from ..entities import Entities
 from food_atlas.kg._triplets import Triplets
 from food_atlas.kg._metadata import Metadata
 
@@ -11,6 +11,17 @@ def create_empty_files():
         [], columns=Entities.COLUMNS,
     ).to_csv(
         "outputs/kg/entities.tsv",
+        sep='\t',
+        index=False,
+    )
+
+    pd.DataFrame(
+        [
+            {'foodatlas_id': 'r1', 'name': 'contains'},
+            {'foodatlas_id': 'r2', 'name': 'is_a'},
+        ],
+    ).to_csv(
+        "outputs/kg/relationships.tsv",
         sep='\t',
         index=False,
     )
