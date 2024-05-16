@@ -208,60 +208,63 @@ if __name__ == '__main__':
     entities_new_rows = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
     entities = pd.concat([entities, entities_new_rows])
 
-    # # Update entities.
-    # def _update_entities_food(row):
-    #     synonyms_new = [
-    #         row['description'],
-    #         constants.get_lookup_key_by_id('fdc_ids', row.name),
-    #     ]
+    # Update entities.
+    def _update_entities_food(row):
+        synonyms_new = [
+            row['description'],
+            constants.get_lookup_key_by_id('fdc_ids', row.name),
+        ]
 
-    #     foodon_id = row['foodon_url']
+        foodon_id = row['foodon_url']
 
-    #     # Use FoodOn IDs to identify entities.
-    #     if constants.get_lookup_key_by_id('foodon_id', foodon_id) in lut_food:
-    #         entity_id = lut_food[
-    #             constants.get_lookup_key_by_id('foodon_id', foodon_id)
-    #         ][0]
+        # Use FoodOn IDs to identify entities.
+        if constants.get_lookup_key_by_id('foodon_id', foodon_id) in lut_food:
+            entity_id = lut_food[
+                constants.get_lookup_key_by_id('foodon_id', foodon_id)
+            ][0]
 
-    #         # Add external IDs.
-    #         if 'fdc_ids' not in entities.at[entity_id, 'external_ids']:
-    #             entities.at[entity_id, 'external_ids']['fdc_ids'] = []
-    #         entities.at[entity_id, 'external_ids']['fdc_ids'] += [row.name]
+            # Add external IDs.
+            if 'fdc_ids' not in entities.at[entity_id, 'external_ids']:
+                entities.at[entity_id, 'external_ids']['fdc_ids'] = []
+            if row.name not in entities.at[entity_id, 'external_ids']['fdc_ids']:
+                entities.at[entity_id, 'external_ids']['fdc_ids'] += [row.name]
 
-    #         # Add synonyms.
-    #         entities.at[entity_id, 'synonyms'] += synonyms_new
-    #         entities.at[entity_id, 'synonyms'] \
-    #             = list(OrderedDict.fromkeys(entities.at[entity_id, 'synonyms']).keys())
+            # Add synonyms.
+            entities.at[entity_id, 'synonyms'] += synonyms_new
+            entities.at[entity_id, 'synonyms'] \
+                = list(OrderedDict.fromkeys(entities.at[entity_id, 'synonyms']).keys())
 
-    #         # Update the lookup table.
-    #         for synonym in synonyms_new:
-    #             if synonym in lut_food:
-    #                 raise ValueError(f"Duplicate synonym: {synonym}")
-    #             lut_food[synonym] = [entity_id]
-    #     else:
-    #         raise ValueError("This should not happen.")
-    #         synonyms_new += [constants.get_lookup_key_by_id('foodon_id', foodon_id)]
-    #         entity_new = pd.DataFrame([{
-    #             'foodatlas_id': f"e{kg.entities._curr_eid}",
-    #             'entity_type': 'food',
-    #             'common_name': row['description'],
-    #             'scientific_name': '',
-    #             'synonyms': synonyms_new,
-    #             'external_ids': {'foodon_id': foodon_id, 'fdc_ids': [row.name]},
-    #         }])
-    #         kg.entities._entities = pd.concat([
-    #             entities,
-    #             entity_new.set_index('foodatlas_id'),
-    #         ])
-    #         print(kg.entities._entities)
-    #         # if foodon_id == 'http://purl.obolibrary.org/obo/FOODON_00003364':
-    #         #     print("Here")
-    #         #     print(f"e{kg.entities._curr_eid}")
-    #         for synonym in synonyms_new:
-    #             if synonym in lut_food:
-    #                 raise ValueError(f"Duplicate synonym: {synonym}")
-    #             lut_food[synonym] = [f"e{kg.entities._curr_eid}"]
-    #         kg.entities._curr_eid += 1
+            # Update the lookup table.
+            for synonym in synonyms_new:
+                if synonym in lut_food:
+                    assert len(lut_food[synonym]) == 1 \
+                        and entity_id in lut_food[synonym][0] == entity_id
+                else:
+                    lut_food[synonym] = [entity_id]
+        else:
+            raise ValueError("This should not happen.")
+            # synonyms_new += [constants.get_lookup_key_by_id('foodon_id', foodon_id)]
+            # entity_new = pd.DataFrame([{
+            #     'foodatlas_id': f"e{kg.entities._curr_eid}",
+            #     'entity_type': 'food',
+            #     'common_name': row['description'],
+            #     'scientific_name': '',
+            #     'synonyms': synonyms_new,
+            #     'external_ids': {'foodon_id': foodon_id, 'fdc_ids': [row.name]},
+            # }])
+            # kg.entities._entities = pd.concat([
+            #     entities,
+            #     entity_new.set_index('foodatlas_id'),
+            # ])
+            # print(kg.entities._entities)
+            # # if foodon_id == 'http://purl.obolibrary.org/obo/FOODON_00003364':
+            # #     print("Here")
+            # #     print(f"e{kg.entities._curr_eid}")
+            # for synonym in synonyms_new:
+            #     if synonym in lut_food:
+            #         raise ValueError(f"Duplicate synonym: {synonym}")
+            #     lut_food[synonym] = [f"e{kg.entities._curr_eid}"]
+            # kg.entities._curr_eid += 1
 
     def _update_entities_chemical(row):
         global entities_new_rows, entities
@@ -309,7 +312,7 @@ if __name__ == '__main__':
             kg.entities._curr_eid += 1
 
     entities_new_rows = []
-    # foods.apply(_update_entities_food, axis=1)
+    foods.apply(_update_entities_food, axis=1)
     chemicals.apply(_update_entities_chemical, axis=1)
     entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
     kg.entities._entities = pd.concat([entities, entities_new])
