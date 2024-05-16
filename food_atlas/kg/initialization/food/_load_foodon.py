@@ -38,7 +38,7 @@ def _clean(foodon_synonyms):
             'synonym': [],
             'synonym (narrow)': [],
             'synonym (broad)': [],
-            'taxon': [],
+            # 'taxon': [],
         }
         group.dropna(subset=['?type']).apply(
             lambda row: synonyms[row['?type']].append(_remove_suffix(row['?label'])),
@@ -300,7 +300,7 @@ def load_lut_food(
         'synonym',
         'synonym (narrow)',
         'synonym (broad)',
-        'taxon',
+        # 'taxon',
     ]:
         foodon.apply(lambda row: _update_lut_for_food(row, syn_level), axis=1)
 
@@ -328,7 +328,7 @@ def load_lut_food(
             'synonym',
             'synonym (narrow)',
             'synonym (broad)',
-            'taxon',
+            # 'taxon',
         ]:
             foodon.apply(lambda row: _update_lut_for_organism(row, syn_level), axis=1)
 
