@@ -1,14 +1,15 @@
 ID_PREFIX_MAPPER = {
-    'ncbi_taxon_id': 'NCBI_Taxonomy_ID',
+    'foodon_id': 'FOODON_ID',
     'pubchem_cid': 'PubChem_Compound_ID',
     'fdc_nutrient_ids': 'FDC_Nutrient_ID',
-    'foodb_ids': 'FooDB_Food_ID',
     'fdc_ids': 'FDC_ID',
+    # 'ncbi_taxon_id': 'NCBI_Taxonomy_ID',
+    # 'foodb_ids': 'FooDB_Food_ID',
 }
 
 
 def get_lookup_key_by_id(id_type: str, id_value: str | int) -> str:
-    LOOKUP_BY_ID = "{}:{}"
+    LOOKUP_BY_ID = "_{}:{}"
 
     if id_type not in ID_PREFIX_MAPPER:
         raise ValueError(f"Unknown ID type: {id_type}")
