@@ -142,5 +142,5 @@ def generate_chemical_groups():
 
 
 if __name__ == '__main__':
-    generate_food_groups()
+    # generate_food_groups()
     generate_chemical_groups()
