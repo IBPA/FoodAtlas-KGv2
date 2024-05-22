@@ -21,6 +21,19 @@ def test_entities(kg):
             and '_placeholder_from' in row['external_ids']
         ) is False
 
+    # Test 3: Each food and chemical should have at most one unique primary ID.
+    entities_food = entities[entities['entity_type'] == 'food'].copy()
+    entities_food['primary_id'] = entities_food['external_ids'].apply(
+        lambda x: x['foodon_id'] if 'foodon_id' in x else None
+    )
+    entities_chemical = entities[entities['entity_type'] == 'chemical'].copy()
+    entities_chemical['primary_id'] = entities_chemical['external_ids'].apply(
+        lambda x: x['pubchem_cid'] if 'pubchem_cid' in x else None
+    )
+
+    assert entities_food['primary_id'].value_counts().max() <= 1
+    assert entities_chemical['primary_id'].value_counts().max() <= 1
+
 
 def test_triplets(kg):
     triplets = kg.triplets._triplets

@@ -42,6 +42,26 @@ def _create_chemical_entities_from_pubchem_compound(
     entities_new = records.copy()
     entities_new[entities.COLUMNS] = None
     entities_new = entities_new.apply(_parse_names, axis=1)
+
+    # If CID already exists in the KG, just update the entity and skip.
+    entities_skip = []
+    for _, row in entities_new.iterrows():
+        if constants.get_lookup_key_by_id('pubchem_cid', row['CID']) \
+                in entities._lut_chemical:
+            entities_skip += [row['CID']]
+            eid = entities._lut_chemical[
+                constants.get_lookup_key_by_id('pubchem_cid', row['CID'])
+            ][0]
+            for synonym in row['synonyms']:
+                if synonym not in entities._entities.at[eid, 'synonyms']:
+                    entities._entities.at[eid, 'synonyms'] += [synonym]
+                    if synonym not in entities._lut_chemical:
+                        entities._lut_chemical[synonym] = []
+                    if eid not in entities._lut_chemical[synonym]:
+                        entities._lut_chemical[synonym] += [eid]
+
+    entities_new = entities_new[~entities_new['CID'].isin(entities_skip)]
+
     entities_new['external_ids'] \
         = entities_new['CID'].apply(
             lambda x: {'pubchem_cid': x}

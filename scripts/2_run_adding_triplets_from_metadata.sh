@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH_INPUT=outputs/kg/20240418/_metadata_new.tsv
+PATH_INPUT=outputs/kg/20240516/_metadata_new.tsv
 PATH_INPUT_KG=outputs/kg
 PATH_OUTPUT_DIR=outputs/kg
 
