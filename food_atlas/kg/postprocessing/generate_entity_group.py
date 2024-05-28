@@ -1,5 +1,4 @@
 from ast import literal_eval
-from pprint import pprint
 
 import pandas as pd
 from tqdm import tqdm
@@ -43,17 +42,17 @@ def generate_food_groups(kg):
     map_food_groups = {
         'dairy food product': 'dairy',
 
-        'plant fruit food product': 'fruit food product',
-        'plant seed or nut food product': 'plant seed or nut food product',
-        'legume food product': 'legume food product',
-        'vegetable food product': 'vegetable food product',
-        'plant food product': 'other plant food product',
+        'plant fruit food product': 'fruit',
+        'plant seed or nut food product': 'plant seed or nut',
+        'legume food product': 'legume',
+        'vegetable food product': 'vegetable',
+        'plant food product': 'other plant',
 
-        'mammalian meat food product': 'mammalian meat food product',
-        'avian food product': 'avian food product',
-        'animal seafood product': 'seafood product',
-        'fish food product': 'seafood product',
-        'animal food product': 'other animal food product',
+        'mammalian meat food product': 'mammalian meat',
+        'avian food product': 'avian',
+        'animal seafood product': 'seafood',
+        'fish food product': 'seafood',
+        'animal food product': 'other animal',
 
         # 'animal food product': 'animal food product',
         # 'plant food product': 'plant food product',
@@ -88,42 +87,42 @@ def generate_food_groups(kg):
     traverse()
 
     def clean_groups(groups):
-        if 'other plant food product' in groups \
+        if 'other plant' in groups \
                 and (
-                    'fruit food product' in groups
-                    or 'legume food product' in groups
-                    or 'plant seed or nut food product' in groups
-                    or 'vegetable food product' in groups
+                    'fruit' in groups
+                    or 'legume' in groups
+                    or 'plant seed or nut' in groups
+                    or 'vegetable' in groups
                 ):
-            groups.remove('other plant food product')
+            groups.remove('other plant')
 
-        if 'other animal food product' in groups \
+        if 'other animal' in groups \
                 and (
-                    'seafood product' in groups
-                    or 'avian food product' in groups
-                    or 'mammalian meat food product' in groups
+                    'seafood' in groups
+                    or 'avian' in groups
+                    or 'mammalian meat' in groups
                     or 'dairy' in groups
                 ):
-            groups.remove('other animal food product')
+            groups.remove('other animal')
 
-        if 'vegetable food product' in groups \
+        if 'vegetable' in groups \
                 and (
-                    'fruit food product' in groups
-                    or 'legume food product' in groups
-                    or 'plant seed or nut food product' in groups
+                    'fruit' in groups
+                    or 'legume' in groups
+                    or 'plant seed or nut' in groups
                 ):
-            groups.remove('vegetable food product')
+            groups.remove('vegetable')
 
-        if 'legume food product' in groups \
-                and 'plant seed or nut food product' in groups:
-            groups.remove('plant seed or nut food product')
+        if 'legume' in groups \
+                and 'plant seed or nut' in groups:
+            groups.remove('plant seed or nut')
 
-        if 'mammalian meat food product' in groups \
+        if 'mammalian meat' in groups \
                 and (
-                    'avian food product' in groups
-                    or 'seafood product' in groups
+                    'avian' in groups
+                    or 'seafood' in groups
                 ):
-            groups.remove('mammalian meat food product')
+            groups.remove('mammalian meat')
 
         if len(groups) != 1:
             return 'unclassified'
