@@ -19,6 +19,9 @@ def create_empty_files():
         [
             {'foodatlas_id': 'r1', 'name': 'contains'},
             {'foodatlas_id': 'r2', 'name': 'is_a'},
+            {'foodatlas_id': 'r3', 'name': 'positively_correlates_with'},
+            {'foodatlas_id': 'r4', 'name': 'negatively_correlates_with'},
+            {'foodatlas_id': 'r5', 'name': 'has_flavor'},
         ],
     ).to_csv(
         "outputs/kg/relationships.tsv",
