@@ -371,7 +371,7 @@ def adjust_FA_chemicals_data(
 
 
 def load_pubchem_to_ctd(
-        output_dir: str = "./output") -> pd.DataFrame:
+        output_dir: str = "./outputs") -> pd.DataFrame:
     """
     Load the PubChem to CTD data from the output directory.
 
@@ -393,7 +393,7 @@ def load_pubchem_to_ctd(
 
 
 def load_pubchem_to_ctd_mapping(
-        output_dir: str = "./output",
+        output_dir: str = "./outputs",
         logger: logging.Logger = None) -> pd.DataFrame:
     """
     Load the mapping from PubChem to CTD data from the output directory.
@@ -424,7 +424,7 @@ def load_pubchem_to_ctd_mapping(
 def create_pmid_to_pmcid_mapping(
         email: str,
         tool: str,
-        output_dir: str = "./output",
+        output_dir: str = "./outputs",
         logger: logging.Logger = None) -> pd.DataFrame:
     """
     Create a mapping from PMID to PMCID.
@@ -487,7 +487,7 @@ def create_pmid_to_pmcid_mapping(
 
 
 def load_pmid_to_pmcid_mapping(
-        output_dir: str = "./output") -> pd.DataFrame:
+        output_dir: str = "./outputs") -> pd.DataFrame:
     """
     Load the mapping from PMID to PMCID data from the output directory.
 
@@ -575,7 +575,7 @@ def load_tvd_data(
 
 
 def load_pubchem_to_cas(
-        output_dir: str = "./output",
+        output_dir: str = "./outputs",
         logger: logging.Logger = None) -> pd.DataFrame:
     """
     Load the PubChem to CAS data from the output directory.
@@ -605,7 +605,7 @@ def load_pubchem_to_cas(
 
 
 def load_pubchem_to_cas_mapping(
-        output_dir: str = "./output",
+        output_dir: str = "./outputs",
         logger: logging.Logger = None) -> pd.DataFrame:
     """
     Load the mapping from PubChem to CAS data from the output directory.
