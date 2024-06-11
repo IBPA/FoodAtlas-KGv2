@@ -1,15 +1,18 @@
-# Project Title
+# FoodAtlas
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-## 0. Progress (Only for myself)
+FoodAtlas is a project that aims to construct the most comprehensive food knowledge graph. Using the technology of large language models, FoodAtlas provides relationships among food, chemical, and disease entities.
 
 ## 1. Directories
+
+- [`data`](./data): X.
+- [`outputs`](./outputs): X.
+- [`food_atlas`](./food_atlas): X.
+- [`scripts`](./scripts): X.
 
 ## 2. Getting Started
 
 The project has been tested to work in the following environments:
-- Python XXX
+- Python 3.11.5
 - Ubuntu XXX
 - CUDA XXX
 
