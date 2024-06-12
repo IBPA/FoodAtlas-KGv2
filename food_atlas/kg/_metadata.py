@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+
+Metadata Class.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+"""
 from ast import literal_eval
 
 import pandas as pd
