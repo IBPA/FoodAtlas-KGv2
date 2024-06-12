@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+
+Initialize food entities based on FoodOn.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+"""
 import pandas as pd
 from pandarallel import pandarallel
 

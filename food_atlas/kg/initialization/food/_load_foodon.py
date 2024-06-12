@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+
+Load functions for FoodOn.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+"""
 import os
 from ast import literal_eval
 
@@ -12,8 +21,16 @@ if not os.path.exists("outputs/kg/initialization/foodon_cleaned.tsv"):
     pandarallel.initialize(progress_bar=True)
 
 
-def _clean(foodon_synonyms):
+def _clean(foodon_synonyms: pd.DataFrame) -> pd.DataFrame:
+    """Clean the raw FoodOn synonyms.
 
+    Args:
+        foodon_synonyms (pd.DataFrame): The raw FoodOn synonyms.
+
+    Returns:
+        pd.DataFrame: The cleaned FoodOn synonyms.
+
+    """
     def _remove_brackets(x):
         if pd.isna(x):
             return x
@@ -62,7 +79,16 @@ def _clean(foodon_synonyms):
     return entities
 
 
-def _label_is_food(foodon):
+def _label_is_food(foodon: pd.DataFrame) -> pd.DataFrame:
+    """Label FoodOn entry as food if has an ancestor of `food product by organism`.
+
+    Args:
+        foodon (pd.DataFrame): The FoodOn entries.
+
+    Returns:
+        pd.DataFrame: The FoodOn entries with the `is_food` label.
+
+    """
     root = 'http://www.w3.org/2002/07/owl#Thing'
     food = 'http://purl.obolibrary.org/obo/FOODON_00002381'  # food by organism
     # food = '<http://purl.obolibrary.org/obo/FOODON_00001002>' # food product
@@ -70,6 +96,8 @@ def _label_is_food(foodon):
     visited[food] = True
 
     def _is_food(row):
+        """Deapth-first search to label FoodOn entry as food."""
+
         nonlocal visited
 
         def dfs(foodon_id):
@@ -102,7 +130,16 @@ def _label_is_food(foodon):
     return foodon
 
 
-def _label_is_organism(foodon):
+def _label_is_organism(foodon: pd.DataFrame) -> pd.DataFrame:
+    """Label FoodOn entry as organism if has an ancestor of `organism`.
+
+    Args:
+        foodon (pd.DataFrame): The FoodOn entries.
+
+    Returns:
+        pd.DataFrame: The FoodOn entries with the `is_organism` label.
+
+    """
     root = 'http://www.w3.org/2002/07/owl#Thing'
     organism = 'http://purl.obolibrary.org/obo/OBI_0100026'
 
@@ -110,6 +147,8 @@ def _label_is_organism(foodon):
     visited[organism] = True
 
     def _is_organism(row):
+        """Deapth-first search to label FoodOn entry as organism."""
+
         nonlocal visited
 
         def dfs(foodon_id):
@@ -142,8 +181,16 @@ def _label_is_organism(foodon):
     return foodon
 
 
-def _append_additional_relationships(foodon):
+def _append_additional_relationships(foodon: pd.DataFrame) -> pd.DataFrame:
+    """Derive additional relationships for convenience of downstream tasks.
 
+    Args:
+        foodon (pd.DataFrame): The FoodOn entries.
+
+    Returns:
+        pd.DataFrame: The FoodOn entries with additional relationships.
+
+    """
     def _parse_derives_from_relationship(row):
 
         def _rename_foodon_id(foodon_id: str):
@@ -234,6 +281,12 @@ def _append_additional_relationships(foodon):
 
 
 def load_foodon():
+    """Load the FoodOn ontology if exists. Otherwise, clean the raw FoodOn synonyms.
+
+    Returns:
+        pd.DataFrame: The FoodOn ontology.
+
+    """
     if os.path.exists("outputs/kg/initialization/foodon_cleaned.tsv"):
         foodon = pd.read_csv(
             "outputs/kg/initialization/foodon_cleaned.tsv",
