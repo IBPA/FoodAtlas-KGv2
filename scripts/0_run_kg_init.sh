@@ -2,8 +2,14 @@
 
 set -e
 
-python -m food_atlas.kg.initialization.init_kg.create_empty_files
-python -m food_atlas.kg.initialization.init_kg.init_food_entities
-python -m food_atlas.kg.initialization.init_kg.init_chemical_entities
+# Create empty files.
+python -m food_atlas.kg.initialization.create_empty_files
+
+# Initialize food entities and taxonomical tripltes.
+python -m food_atlas.kg.initialization.food.init_entities
+python -m food_atlas.kg.initialization.food.init_triplets
+
+# Initialize chemical entities.
+python -m food_atlas.kg.initialization.chemical.init_entities
 
 python -m food_atlas.kg.merge_dbs.merge_fdc

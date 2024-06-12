@@ -1,3 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+
+A run script for knowledge graph expansion.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+TODO:
+    * Move standardizing chemical names to another file.
+
+"""
 import csv
 
 import pandas as pd
@@ -144,6 +156,15 @@ def main(
     # Stndardize the chemical concentration.
     metadata = standardize_chemical_conc(metadata)
 
+    # TODO: Improve.
+    # For now, just assign FoodOn IDs by exact matching for foods.
+    lut_food = pd.read_csv(
+        "outputs/kg/lookup_table_food.tsv",
+        sep='\t',
+    )
+    lut_food = dict(zip(lut_food['name'], lut_food['foodatlas_id']))
+
+    metadata = metadata[metadata['_food_name'].apply(lambda x: x in lut_food)]
     metadata.to_csv(
         f"{path_output_dir}/_metadata_new.tsv",
         sep='\t',

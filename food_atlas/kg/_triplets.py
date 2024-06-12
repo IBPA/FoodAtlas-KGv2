@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+
+Class for triplets.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+"""
 from ast import literal_eval
 
 import pandas as pd
@@ -144,3 +153,20 @@ class Triplets:
             ],
             axis=1,
         )
+
+    def get_by_relationship_id(
+        self,
+        relationship_id: str,
+    ) -> pd.DataFrame:
+        """Get triplets by relationship ID.
+
+        Args:
+            relationship_id (str): Relationship ID.
+
+        Returns:
+            pd.DataFrame: Triplets.
+
+        """
+        return self._triplets[
+            self._triplets['relationship_id'] == relationship_id
+        ].copy()

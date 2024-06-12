@@ -270,6 +270,12 @@ def standardize_chemical_conc(
     metadata[['conc_value', 'conc_unit']] \
         = metadata.progress_apply(convert_conc_unit, axis=1).apply(pd.Series)
 
+    # Also convert the concentration strings to mg/100g.
+    metadata['conc_unit'] = metadata['conc_unit'].str.replace(
+        'mg/100ml',
+        'mg/100g (converted)',
+    )
+
     print(f"# metadata entries: {len(metadata)}")
     print(f"# metadata entries with conc: {len(metadata.dropna(subset=['conc_unit']))}")
 
