@@ -1,3 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+
+Initialize chemical entities.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+TODO:
+    * Based on ChEBI.
+
+"""
 from ast import literal_eval
 
 import pandas as pd
