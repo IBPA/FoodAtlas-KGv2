@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
-"""A run script for XXX.
+"""
 
-More detailed description.
-
-Attributes:
-    attr1 (type): Description of attr1.
+A run script for knowledge graph expansion.
 
 Authors:
     Fangzhou Li - fzli@ucdavis.edu
-
-Todo:
-    * TODOs
 
 """
 import pandas as pd

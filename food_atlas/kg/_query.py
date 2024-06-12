@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+
+Methods for query the database.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+"""
 import os
 import logging
 from ast import literal_eval

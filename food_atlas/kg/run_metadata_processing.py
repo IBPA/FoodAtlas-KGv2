@@ -1,3 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+
+A run script for knowledge graph expansion.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+TODO:
+    * Move standardizing chemical names to another file.
+
+"""
 import csv
 
 import pandas as pd

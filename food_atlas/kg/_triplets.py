@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+
+Class for triplets.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+"""
 from ast import literal_eval
 
 import pandas as pd

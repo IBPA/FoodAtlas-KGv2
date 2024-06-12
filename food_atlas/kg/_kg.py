@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-"""One line summary.
+"""
 
-More detailed description.
-
-Attributes:
-    attr1 (type): Description of attr1.
+Knowledge Graph Class.
 
 Authors:
     Fangzhou Li - fzli@ucdavis.edu
