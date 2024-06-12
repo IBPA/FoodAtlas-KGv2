@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+
+Merge FDC entries.
+
+Authors:
+    Fangzhou Li - fzli@ucdavis.edu
+
+"""
 from ast import literal_eval
 from collections import OrderedDict
 
@@ -17,7 +26,14 @@ pandarallel.initialize(progress_bar=True)
 def _load_contains(
     path_data_dir: str,
 ) -> pd.DataFrame:
-    """
+    """Load and process the content of FDC.
+
+    Args:
+        path_data_dir (str): The path to the directory containing FDC data.
+
+    Returns:
+        pd.DataFrame: The content of FDC.
+
     """
     # Load relevant files.
     food_nutrient = pd.read_csv(
@@ -36,7 +52,14 @@ def _load_contains(
 def _load_foods(
     path_data_dir: str,
 ) -> pd.DataFrame:
-    """
+    """Load and process the food entities in FDC.
+
+    Args:
+        path_data_dir (str): The path to the directory containing FDC data.
+
+    Returns:
+        pd.DataFrame: The food entities in FDC.
+
     """
     fdc_ids_ff = pd.read_csv(
         f"{path_data_dir}/foundation_food.csv"
@@ -103,6 +126,17 @@ def _load_foods(
 def _load_chemicals(
     path_data_dir: str,
 ) -> pd.DataFrame:
+    """Load and process the chemical entities in FDC.
+
+    Args:
+        path_data_dir (str): The path to the directory containing FDC data. Defined for
+            consistency, unused.
+
+    Returns:
+        pd.DataFrame: The chemical entities in FDC.
+
+    """
+    # Load the manually annotated FDC entries with PubChem CIDs.
     chemicals = pd.read_csv(
         "outputs/kg/initialization/_pubchem_cids_fdc_manual.tsv", sep='\t',
     )
@@ -154,11 +188,20 @@ def _load_chemicals(
     return chemicals
 
 
-def load_fdc_data(PATH_FDC_DATA_DIR):
+def load_fdc_data(path_fdc_data_dir: str) -> tuple:
+    """Load and process FDC data.
+
+    Args:
+        path_fdc_data_dir (str): The path to the directory containing FDC data.
+
+    Returns:
+        tuple: The processed FDC data.
+
+    """
     # Load relevant files.
-    contains = _load_contains(PATH_FDC_DATA_DIR)
-    foods = _load_foods(PATH_FDC_DATA_DIR)
-    chemicals = _load_chemicals(PATH_FDC_DATA_DIR)
+    contains = _load_contains(path_fdc_data_dir)
+    foods = _load_foods(path_fdc_data_dir)
+    chemicals = _load_chemicals(path_fdc_data_dir)
 
     return contains, foods, chemicals
 
