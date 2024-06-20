@@ -9,6 +9,9 @@
 # # Download the data from FooDB.
 # https://foodb.ca/public/system/downloads/foodb_2020_04_07_json.zip
 
+echo 'Downloading CDNO.zip...'
+curl -L https://ucdavis.box.com/shared/static/o0hlh3p27a7hsn936v5y2421xmsvja92.zip --output CDNO.zip
+
 echo 'Downloading ChEBI.zip...'
 curl -L  https://ucdavis.box.com/shared/static/u6fbnqwc40qjvzhl3wozvjqcvuzndwzf --output ChEBI.zip
 

@@ -7,7 +7,7 @@ cd data
 ```
 
 ## Step II. Check the data
-There should be four folders: ChEBI, FDC, FoodOn, Lit2KG, MeSH, and PubChem.
+There should be four folders: CDNO, ChEBI, FDC, FoodOn, Lit2KG, MeSH, and PubChem.
 ```console
 ls
 ```
