@@ -72,7 +72,6 @@ if __name__ == '__main__':
             # Otherwise, try to return the ChEBI ID that is the parent manually.
             cdno_cleaned_row = cdno_fdc.dropna(subset=['chebi_id'])
             if len(cdno_cleaned_row) == 1:
-                print(cdno_cleaned_row)
                 cdno_cleaned_rows += [cdno_cleaned_row.iloc[0]]
             else:
                 if fdc_id == '1162':
@@ -104,4 +103,7 @@ if __name__ == '__main__':
             print(fdc_id, chebi_ids)
             raise ValueError(fdc_id)
 
-    cdno_cleaned.to_csv('outputs/data_processing/cdno_cleaned.csv')
+    cdno_cleaned.to_csv(
+        "outputs/data_processing/cdno_cleaned.tsv",
+        sep='\t',
+    )
