@@ -53,6 +53,12 @@ if __name__ == '__main__':
     cdno = cdno[cdno['fdc_nutrient_ids'].apply(len) > 0]
     cdno['chebi_id'] = cdno['chebi_ids'].apply(lambda x: x[0] if x else None)
 
+    # Manually correct ChEBI IDs.
+    cdno['chebi_id'] = cdno['chebi_id'].replace({
+        'http://purl.obolibrary.org/obo/CHEBI_80096':
+            'http://purl.obolibrary.org/obo/CHEBI_166888'
+    })
+
     # Disambiguate FDC IDs such that each FDC ID can only be associated to one ChEBI ID.
     fdc_ids = set()
     for fdc_nutrient_ids in cdno['fdc_nutrient_ids']:
