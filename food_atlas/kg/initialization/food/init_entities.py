@@ -23,8 +23,12 @@ if __name__ == '__main__':
 
     entities = foodon_food.reset_index()
     columns = [
-        'foodatlas_id', 'entity_type', 'common_name', 'scientific_name', 'synonyms',
-        'external_ids'
+        'foodatlas_id',
+        'entity_type',
+        'common_name',
+        'scientific_name',
+        'synonyms',
+        'external_ids',
     ]
     entities[columns] = None
 

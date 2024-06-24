@@ -13,7 +13,7 @@ from ast import literal_eval
 import pandas as pd
 from inflection import singularize, pluralize
 
-if not os.path.exists("outputs/kg/initialization/foodon_cleaned.tsv"):
+if not os.path.exists("data/FoodOn/foodon_cleaned.tsv"):
     from owlready2 import get_ontology
     from pandarallel import pandarallel
     from tqdm import tqdm
@@ -287,9 +287,9 @@ def load_foodon():
         pd.DataFrame: The FoodOn ontology.
 
     """
-    if os.path.exists("outputs/kg/initialization/foodon_cleaned.tsv"):
+    if os.path.exists("data/FoodOn/foodon_cleaned.tsv"):
         foodon = pd.read_csv(
-            "outputs/kg/initialization/foodon_cleaned.tsv",
+            "data/FoodOn/foodon_cleaned.tsv",
             sep='\t',
             converters={
                 'parents': literal_eval,
@@ -309,7 +309,7 @@ def load_foodon():
         foodon = foodon[foodon['is_food'] | foodon['is_organism']]
         foodon = _append_additional_relationships(foodon)
         foodon.to_csv(
-            "outputs/kg/initialization/foodon_cleaned.tsv",
+            "data/FoodOn/foodon_cleaned.tsv",
             sep='\t',
         )
 
