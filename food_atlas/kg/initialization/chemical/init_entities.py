@@ -1,42 +1,35 @@
-# -*- coding: utf-8 -*-
-"""
-
-Initialize chemical entities.
-
-Authors:
-    Fangzhou Li - fzli@ucdavis.edu
-
-TODO:
-    * Based on ChEBI.
-
-"""
-from ast import literal_eval
-
 import pandas as pd
+from pandarallel import pandarallel
+from tqdm import tqdm
 
-from ... import KnowledgeGraph
-from ...entities._chemical import _create_chemical_entities_from_pubchem_compound
-from ....tests import unit_test_kg
+from ._load_chebi import load_mapper_name_2_chebi_id
+
+tqdm.pandas()
 
 
-def initialize_chemical_entities_from_pubchem_compound(kg):
-    records = pd.read_csv(
-        "outputs/kg/initialization/_pubchem_compound.tsv",
-        sep='\t',
-        converters={'SynonymList': literal_eval},
-    )
-    records['iupac_name'] = records['IUPACName'].str.strip().str.lower()
-    records['synonyms'] = records['SynonymList'].apply(
-        lambda x: [s.strip().lower() for s in x]
-    )
+def _get_entities_from_chebi():
 
-    _create_chemical_entities_from_pubchem_compound(kg.entities, records)
+    mapper = load_mapper_name_2_chebi_id()
+    print(mapper)
 
 
 if __name__ == '__main__':
-    kg = KnowledgeGraph(path_kg="outputs/kg")
-    initialize_chemical_entities_from_pubchem_compound(kg)
-    kg._disambiguate_synonyms()
-    kg.save("outputs/kg")
+    # We initialize chemical entities by using ChEBI, CDNO, and FDC Nutrients. The
+    # primary ID is ChEBI, followed by CDNO and FDC.
+    _get_entities_from_chebi()
+    exit()
+    mapper_name2chebi_id = load_mapper_name2chebi_id()
+    mapper_name2chebi_id['_chebi_id'] = mapper_name2chebi_id['CHEBI_ID'].apply(
+        lambda x: str(sorted(x))
+    )
 
-    unit_test_kg.test_all(kg)
+    def get_new_row(group):
+        return pd.Series({
+            'CHEBI_ID': group['CHEBI_ID'].values[0],
+            'NAME': group['NAME'].tolist(),
+        })
+    chebi2names = mapper_name2chebi_id.groupby('_chebi_id').progress_apply(get_new_row)\
+        .reset_index(drop=True)
+    chebi2names = chebi2names.sort_values('CHEBI_ID', key=lambda x: len(x))
+
+    print(chebi2names)
