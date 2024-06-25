@@ -39,8 +39,13 @@ if __name__ == '__main__':
                 if 'CHEBI_' in desc.attrs.get('rdf:about'):
                     chebi_ids += [desc.attrs.get('rdf:about')]
 
+        # Extract label.
+        label = class_.find('rdfs:label')
+        label = label.text if label else None
+
         cdno_rows += [{
             'id': cdno_id,
+            'label': label,
             'parents': parents,
             'fdc_nutrient_ids': fdc_nutrient_ids,
             'chebi_ids': chebi_ids,
