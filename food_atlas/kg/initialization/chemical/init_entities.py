@@ -10,6 +10,7 @@ from ._load_chebi import (
     load_mapper_chebi_id_to_names,
 )
 from ._load_cdno import load_cdno
+from ._load_fdc import load_fdc_nutrient
 
 logger = logging.getLogger(__name__)
 tqdm.pandas()
@@ -60,7 +61,7 @@ def _append_entities_from_chebi(kg) -> KnowledgeGraph:
             'scientific_name': None,  # TODO: map to IUPAC name.
             'synonyms': row['NAME'],
             'external_ids': {
-                'chebi': row['CHEBI_ID'],
+                'chebi': [row['CHEBI_ID']],
             },
         })
         kg.entities._curr_eid += 1
@@ -72,7 +73,7 @@ def _append_entities_from_chebi(kg) -> KnowledgeGraph:
     # Add placeholder entities.
     chebi2fa = {}
     for _, row in entities_new.iterrows():
-        chebi_id = row['external_ids']['chebi']
+        chebi_id = row['external_ids']['chebi'][0]
         chebi2fa[chebi_id] = row.name
 
     entities_new_rows = []
@@ -114,7 +115,7 @@ def _append_entities_from_cdno(kg) -> KnowledgeGraph:
     chebi2fa = {}
     for _, row in kg.entities._entities.iterrows():
         if row['entity_type'] == 'chemical' and 'chebi' in row['external_ids']:
-            chebi_id = row['external_ids']['chebi']
+            chebi_id = row['external_ids']['chebi'][0]
             chebi2fa[chebi_id] = row.name
 
     # Add CDNO to existing entities while recording new entities.
@@ -124,7 +125,7 @@ def _append_entities_from_cdno(kg) -> KnowledgeGraph:
         chebi_id = row['chebi_id']
         if chebi_id in chebi2fa:
             fa_id = chebi2fa[chebi_id]
-            kg.entities._entities.at[fa_id, 'external_ids']['cdno'] = row['cdno_id']
+            kg.entities._entities.at[fa_id, 'external_ids']['cdno'] = [row['cdno_id']]
             if row['fdc_nutrient_ids']:
                 kg.entities._entities.at[fa_id, 'external_ids']['fdc_nutrient'] \
                     = row['fdc_nutrient_ids']
@@ -140,8 +141,8 @@ def _append_entities_from_cdno(kg) -> KnowledgeGraph:
     for _, row in entities_not_added.iterrows():
         external_ids = {}
         if pd.notna(row['chebi_id']):
-            external_ids['chebi'] = row['chebi_id']
-        external_ids['cdno'] = row['cdno_id']
+            external_ids['chebi'] = [row['chebi_id']]
+        external_ids['cdno'] = [row['cdno_id']]
         external_ids['fdc_nutrient'] = row['fdc_nutrient_ids']
 
         entities_new_rows += [{
@@ -164,7 +165,7 @@ def _append_entities_from_cdno(kg) -> KnowledgeGraph:
 def _append_entities_from_fdc(kg) -> KnowledgeGraph:
     """Prepare chemical entities from FDC Nutrients. This is done because CDNO only
     links to half of FDC Nutrient IDs covered by Foundation food. Each of the newly
-    generated entities will have a unique FDC Nutrient ID as primary ID.
+    generated entities will have a unique FDC Nutrient ID as primary ID. FDC Nutrient
 
     Returns:
         KnowledgeGraph: KG with updated chemical entities.
@@ -172,7 +173,51 @@ def _append_entities_from_fdc(kg) -> KnowledgeGraph:
     """
     logger.info("Initializing chemical entities from FDC.")
 
-    raise NotImplementedError
+    # Collect FDC NIDs in FoodAtlas.
+    fdc2fa = {}
+    def get_fdc2fa(row):
+        if row['entity_type'] != 'chemical':
+            return
+        if 'fdc_nutrient' in row['external_ids']:
+            fdc_ids = row['external_ids']['fdc_nutrient']
+            for fdc_id in fdc_ids:
+                if fdc_id in fdc2fa:
+                    raise ValueError(f"Duplicate FDC ID: {fdc_id}")
+                fdc2fa[fdc_id] = row.name
+    kg.entities._entities.progress_apply(get_fdc2fa, axis=1)
+
+    # Recording new entities.
+    fdc = load_fdc_nutrient()
+    n_linked = 0
+    entities_not_added = []
+    for _, row in fdc.iterrows():
+        if row.name in fdc2fa:
+            n_linked += 1
+        else:
+            entities_not_added.append(row)
+
+    logger.info(f"Linked {n_linked} FDC Nutrient IDs to the entities in the KG.")
+
+    # Add new FDC entities.
+    entities_not_added = pd.DataFrame(entities_not_added)
+    entities_new_rows = []
+    for _, row in entities_not_added.iterrows():
+        entities_new_rows += [{
+            'foodatlas_id': f"e{kg.entities._curr_eid}",
+            'entity_type': 'chemical',
+            'common_name': row['name'],
+            'scientific_name': None,
+            'synonyms': [row['name']],
+            'external_ids': {
+                'fdc_nutrient': [row.name],
+            },
+        }]
+        kg.entities._curr_eid += 1
+    entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
+    kg.entities._entities = pd.concat([kg.entities._entities, entities_new])
+
+    return kg
+
 
 if __name__ == '__main__':
     kg = KnowledgeGraph()
@@ -181,6 +226,10 @@ if __name__ == '__main__':
     # primary ID is ChEBI, followed by CDNO and FDC.
     kg = _append_entities_from_chebi(kg)
     kg = _append_entities_from_cdno(kg)
+    kg = _append_entities_from_fdc(kg)
+
+    # Map PubChem and MeSH IDs.
+    
     kg.entities._entities.to_csv('check_entities.tsv', sep='\t')
     exit()
     mapper_name2chebi_id = load_mapper_name2chebi_id()
