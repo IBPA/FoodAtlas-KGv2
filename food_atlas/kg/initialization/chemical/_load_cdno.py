@@ -19,7 +19,7 @@ def load_cdno() -> pd.DataFrame:
     )
 
     # Further clean the data.
-    cdno = cdno.rename(columns={'Unnamed: 0': 'cdno_id'})
+    cdno = cdno.rename(columns={'index': 'cdno_id'})
     cdno['cdno_id'] = cdno['cdno_id'].apply(lambda x: x.split('/')[-1])
     cdno['chebi_id'] = cdno['chebi_id'].apply(
         lambda x: int(x.split('/')[-1].split('_')[-1]) if isinstance(x, str) else None
