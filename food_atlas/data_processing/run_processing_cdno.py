@@ -114,6 +114,10 @@ if __name__ == '__main__':
             print(fdc_id, chebi_ids)
             raise ValueError(fdc_id)
 
+    cdno_cleaned = cdno_cleaned.reset_index()
+    cdno_cleaned = cdno_cleaned.drop_duplicates(subset='index', keep='first')
+    cdno_cleaned = cdno_cleaned.set_index('index')
+
     cdno_cleaned.to_csv(
         "outputs/data_processing/cdno_cleaned.tsv",
         sep='\t',
