@@ -13,7 +13,7 @@ def test_entities(kg):
         except AssertionError:
             print(k, v)
 
-    # Test 2: Each entity should neither be a "placeholding" or a "placeholden".
+    # Test 2: Each entity should either be a "placeholding" or a "placeholden".
     entities = kg.entities._entities
     for _, row in entities.iterrows():
         assert (
@@ -21,18 +21,37 @@ def test_entities(kg):
             and '_placeholder_from' in row['external_ids']
         ) is False
 
-    # Test 3: Each food and chemical should have at most one unique primary ID.
-    entities_food = entities[entities['entity_type'] == 'food'].copy()
-    entities_food['primary_id'] = entities_food['external_ids'].apply(
-        lambda x: x['foodon_id'] if 'foodon_id' in x else None
-    )
-    entities_chemical = entities[entities['entity_type'] == 'chemical'].copy()
-    entities_chemical['primary_id'] = entities_chemical['external_ids'].apply(
-        lambda x: x['pubchem_cid'] if 'pubchem_cid' in x else None
+    # Test 3: Each food and chemical should have exactly one unique primary ID,
+    # except placeholders.
+    def assign_primary_id(row):
+        if '_placeholder_to' in row['external_ids']:
+            row['primary_id'] += ['PH']
+            return row
+
+        if row['entity_type'] == 'food':
+            row['primary_id'] += row['external_ids']['foodon']
+        elif row['entity_type'] == 'chemical':
+            if 'chebi' in row['external_ids']:
+                row['primary_id'] += [f"CHEBI:{row['external_ids']['chebi']}"]
+            elif 'cdno' in row['external_ids']:
+                row['primary_id'] += [f"CDNO:{row['external_ids']['cdno']}"]
+            elif 'fdc_nutrient' in row['external_ids']:
+                row['primary_id'] += [f"FDCN:{row['external_ids']['fdc_nutrient']}"]
+        else:
+            raise NotImplementedError
+    entities_ = entities.copy()
+    entities_['primary_id'] = [[] for _ in range(len(entities_))]
+    entities_.apply(assign_primary_id, axis=1)
+
+    def assert_primary_id_uniqueness(primary_id):
+        assert len(primary_id) == 1
+        return primary_id[0]
+
+    entities_['primary_id'] = entities_['primary_id'].apply(
+        assert_primary_id_uniqueness
     )
 
-    assert entities_food['primary_id'].value_counts().max() <= 1
-    assert entities_chemical['primary_id'].value_counts().max() <= 1
+    assert entities_['primary_id'].value_counts().drop('PH').max() == 1
 
 
 def test_triplets(kg):
