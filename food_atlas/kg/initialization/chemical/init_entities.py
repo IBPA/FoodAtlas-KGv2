@@ -263,18 +263,25 @@ if __name__ == '__main__':
     kg = _append_entities_from_fdc(kg)
 
     # Map ChEBI to PubChem CID.
+    n_mapped = 0
     chebi2cid = load_mapper_chebi_id_to_pubchem_cid()
     def map_chebi_id_to_pubchem_cid(row):
+        global n_mapped
+
         if row['entity_type'] != 'chemical':
             return
         if 'chebi' not in row['external_ids']:
             return
         chebi_id = row['external_ids']['chebi'][0]
-        if chebi_id in chebi2cid:
-            row['external_ids']['pubchem_compound'] = [chebi2cid[chebi_id]]
+        if chebi_id in chebi2cid.index:
+            row['external_ids']['pubchem_compound'] = [chebi2cid.loc[chebi_id]]
+            n_mapped += 1
     kg.entities._entities.progress_apply(map_chebi_id_to_pubchem_cid, axis=1)
 
+    logger.info(f"Mapped {n_mapped} ChEBI IDs to PubChem CID.")
+
     # Map PubChem CID to MeSH ID.
+    
     # pd.DataFrame(
     #     kg.entities._lut_chemical.items(),
     #     columns=['synonym', 'entity_ids']
