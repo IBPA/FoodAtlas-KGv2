@@ -31,6 +31,7 @@ class Entities:
         'scientific_name',
         'synonyms',
         'external_ids',
+        '_synonyms_display',
     ]
     FAID_PREFIX = 'e'
 
@@ -61,6 +62,7 @@ class Entities:
             converters={
                 'synonyms': literal_eval,
                 'external_ids': literal_eval,
+                '_synonyms_display': literal_eval,
             },
         ).set_index('foodatlas_id')
 
