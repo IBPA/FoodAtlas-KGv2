@@ -77,24 +77,24 @@ if __name__ == '__main__':
         # the terms before it. If the first term is available for pluralization, e.g.,
         # parantheses, we use the second term.
         if len(synonyms) == 1:
-            return synonyms
+            return {'foodon': synonyms}
 
         for i, s in enumerate(synonyms):
             sp = pluralize(s)
             try:
                 i_end = synonyms[i + 1:].index(sp) + i + 1
-                return synonyms[:i_end]
+                return {'foodon': synonyms[:i_end]}
             except ValueError:
                 pass
 
             ss = singularize(s)
             try:
                 i_end = synonyms[i + 1:].index(ss) + i + 1
-                return synonyms[:i_end]
+                return {'foodon': synonyms[:i_end]}
             except ValueError:
                 continue
 
-        return synonyms
+        return {'foodon': synonyms}
     entities['_synonyms_display'] = entities['_synonyms_display'].progress_apply(
         remove_plural
     )
