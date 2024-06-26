@@ -14,7 +14,8 @@ from ._load_pubchem import (
     load_mapper_chebi_id_to_pubchem_cid,
     load_mapper_pubchem_cid_to_mesh_id,
 )
-from ._load_mesh import load_mesh
+from ._load_mesh import load_mesh  # TODO.
+from ....tests import unit_test_kg
 
 logger = logging.getLogger(__name__)
 tqdm.pandas()
@@ -265,6 +266,30 @@ if __name__ == '__main__':
     kg = _append_entities_from_cdno(kg)
     kg = _append_entities_from_fdc(kg)
 
+    # Import IUPAC name as scientific name using ChEBI.
+    chebi_synonyms = pd.read_csv("data/ChEBI/names.tsv", sep='\t')
+    chebi_synonyms = chebi_synonyms.query("LANGUAGE == 'en'").copy()
+    chebi_synonyms['NAME'] = chebi_synonyms['NAME'].str.lower().str.strip()
+    chebi_synonyms = chebi_synonyms.groupby(['COMPOUND_ID', 'TYPE'])['NAME'].apply(list)
+    def add_scientific_name(row):
+        if row['entity_type'] != 'chemical':
+            return row
+        if 'chebi' not in row['external_ids']:
+            return row
+
+        chebi_id = row['external_ids']['chebi'][0]
+        if chebi_id not in chebi_synonyms.index:
+            return row
+
+        synonyms = chebi_synonyms.loc[chebi_id]
+        if 'IUPAC NAME' in synonyms.index:
+            row['scientific_name'] = synonyms.loc['IUPAC NAME'][0]
+
+        return row
+    kg.entities._entities = kg.entities._entities.progress_apply(
+        add_scientific_name, axis=1
+    )
+
     # Map ChEBI to PubChem CID.
     n_mapped = 0
     chebi2cid = load_mapper_chebi_id_to_pubchem_cid()
@@ -301,4 +326,19 @@ if __name__ == '__main__':
 
     logger.info(f"Mapped {n_mapped} PubChem CID to MeSH ID.")
 
+    # Add synonyms for display.
+    mesh = load_mesh()
+    def add_synonyms_display(row):
+        if row['entity_type'] != 'chemical':
+            return row
+        row['_synonyms_display'] = {}
+        row['_synonyms_display']['chebi'] = row['synonyms']
+        if 'mesh' in row['external_ids']:
+            mesh_id = row['external_ids']['mesh'][0]
+            if mesh_id in mesh.index:
+                row['_synonyms_display']['mesh'] = mesh.loc[mesh_id]
+        return row
+    kg.entities._entities = kg.entities._entities.apply(add_synonyms_display, axis=1)
+
     kg.save("outputs/kg")
+    unit_test_kg.test_all(kg)
