@@ -25,6 +25,10 @@ def load_mapper_name_to_chebi_id() -> pd.DataFrame:
         converters={'CHEBI_ID': literal_eval},
     )
 
+    # Manual correction: Remove 'ash' due to ambiguity.
+    names_remove = ['ash']
+    name2chebi_id = name2chebi_id[~name2chebi_id['NAME'].isin(names_remove)].copy()
+
     return name2chebi_id
 
 

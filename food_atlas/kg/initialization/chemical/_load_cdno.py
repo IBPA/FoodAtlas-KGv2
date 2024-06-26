@@ -31,6 +31,7 @@ def load_cdno() -> pd.DataFrame:
         lambda x: x.split('concentration of ')[-1].split(' in material entity')[0]
     )
 
-    cdno = cdno[['cdno_id', 'label', 'chebi_id', 'fdc_nutrient_ids']].copy()
+    # Manual correction: 'nitrogen atom' is ambiguous, assign to another ChEBI ID.
+    cdno.loc[cdno['label'] == 'nitrogen atom', 'chebi_id'] = 29351
 
-    return cdno
+    return cdno[['cdno_id', 'label', 'chebi_id', 'fdc_nutrient_ids']].copy()
