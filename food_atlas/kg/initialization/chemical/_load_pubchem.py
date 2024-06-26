@@ -2,28 +2,7 @@ from itertools import chain
 
 import pandas as pd
 
-
-def _load_mapper_name_to_mesh_id() -> pd.Series:
-    """Load mapper from MeSH name to MeSH ID.
-
-    Returns:
-        pd.Series: Mapper from MeSH name to MeSH ID.
-
-    """
-    mesh_desc = pd.read_json(
-        "outputs/data_processing/mesh_desc2024.json",
-        orient='records',
-        lines=True,
-    ).set_index('name')
-    mesh_supp = pd.read_json(
-        "outputs/data_processing/mesh_supp2024.json",
-        orient='records',
-        lines=True,
-    ).set_index('name')
-
-    mapper_name_2_mesh_id = pd.concat([mesh_desc, mesh_supp])['id']
-
-    return mapper_name_2_mesh_id
+from ._load_mesh import load_mapper_name_to_mesh_id
 
 
 def load_mapper_pubchem_cid_to_mesh_id() -> pd.Series:
@@ -33,12 +12,11 @@ def load_mapper_pubchem_cid_to_mesh_id() -> pd.Series:
         pd.Series: Mapper from PubChem CID to MeSH ID.
 
     """
-    mapper_name_2_mesh_id = _load_mapper_name_to_mesh_id()
+    mapper_name_2_mesh_id = load_mapper_name_to_mesh_id()
 
     mapper_cid_to_mash_name = pd.read_csv(
-        "data/MeSH/CID-MeSH.txt",
+        "data/PubChem/CID-MeSH.txt",
         sep='\t',
-        # header=None,
         names=['cid', 'mesh_term', 'mesh_term_alt'],
     ).set_index('cid')
 
@@ -51,61 +29,61 @@ def load_mapper_pubchem_cid_to_mesh_id() -> pd.Series:
     return mapper_cid_to_mash_id
 
 
-def load_mapper_mention_to_pubchem_cid() -> pd.DataFrame:
-    """Load mapper from mention to PubChem CID.
+# def load_mapper_mention_to_pubchem_cid() -> pd.DataFrame:
+#     """Load mapper from mention to PubChem CID.
 
-    Returns:
-        pd.DataFrame: Mapper from mention to PubChem CID and MeSH ID.
+#     Returns:
+#         pd.DataFrame: Mapper from mention to PubChem CID and MeSH ID.
 
-    """
-    mapper_cid_2_mesh_id = load_mapper_pubchem_cid_to_mesh_id()
-    mapper_mention_2_cid = pd.read_csv(
-        "data/PubChem/mention_to_cid.txt",
-        sep='\t',
-        header=None,
-        names=['mention', 'cid'],
-        dtype={'cid': 'Int64'},
-    )
-    mapper_cid_2_chebi_id = pd.read_csv(
-        "data/PubChem/cid_to_chebi.txt",
-        sep='\t',
-        header=None,
-        names=['cid', 'chebi_id'],
-        dtype={'cid': 'Int64'},
-    )
-    mapper_cid_2_chebi_id = mapper_cid_2_chebi_id.dropna(subset=['chebi_id'])
-    mapper_cid_2_chebi_id = mapper_cid_2_chebi_id.groupby('cid')['chebi_id'].apply(list)
-    mapper_cid_2_chebi_id = mapper_cid_2_chebi_id.apply(
-        lambda x: [int(xx.split(':')[-1]) for xx in x]
-    )
-    mapper_mention_2_cid['mesh_id'] = mapper_mention_2_cid['cid'].map(
-        mapper_cid_2_mesh_id
-    )
-    mapper_mention_2_cid['chebi_id'] = mapper_mention_2_cid['cid'].map(
-        mapper_cid_2_chebi_id
-    )
-    mapper_mention_2_cid = mapper_mention_2_cid.dropna(subset=['cid'])
+#     """
+#     mapper_cid_2_mesh_id = load_mapper_pubchem_cid_to_mesh_id()
+#     mapper_mention_2_cid = pd.read_csv(
+#         "data/PubChem/mention_to_cid.txt",
+#         sep='\t',
+#         header=None,
+#         names=['mention', 'cid'],
+#         dtype={'cid': 'Int64'},
+#     )
+#     mapper_cid_2_chebi_id = pd.read_csv(
+#         "data/PubChem/cid_to_chebi.txt",
+#         sep='\t',
+#         header=None,
+#         names=['cid', 'chebi_id'],
+#         dtype={'cid': 'Int64'},
+#     )
+#     mapper_cid_2_chebi_id = mapper_cid_2_chebi_id.dropna(subset=['chebi_id'])
+#     mapper_cid_2_chebi_id = mapper_cid_2_chebi_id.groupby('cid')['chebi_id'].apply(list)
+#     mapper_cid_2_chebi_id = mapper_cid_2_chebi_id.apply(
+#         lambda x: [int(xx.split(':')[-1]) for xx in x]
+#     )
+#     mapper_mention_2_cid['mesh_id'] = mapper_mention_2_cid['cid'].map(
+#         mapper_cid_2_mesh_id
+#     )
+#     mapper_mention_2_cid['chebi_id'] = mapper_mention_2_cid['cid'].map(
+#         mapper_cid_2_chebi_id
+#     )
+#     mapper_mention_2_cid = mapper_mention_2_cid.dropna(subset=['cid'])
 
-    def group_ids(group):
-        mention = group['mention'].iloc[0]
-        cid = group['cid'].tolist()
-        mesh_id = group['mesh_id'].dropna().unique().tolist()
-        chebi_id = list(set(chain(*group['chebi_id'].dropna().tolist())))
+#     def group_ids(group):
+#         mention = group['mention'].iloc[0]
+#         cid = group['cid'].tolist()
+#         mesh_id = group['mesh_id'].dropna().unique().tolist()
+#         chebi_id = list(set(chain(*group['chebi_id'].dropna().tolist())))
 
-        result = {
-            'mention': mention,
-            'cid': cid,
-            'mesh_id': mesh_id,
-            'chebi_id': chebi_id,
-        }
-        result = pd.DataFrame([result])
+#         result = {
+#             'mention': mention,
+#             'cid': cid,
+#             'mesh_id': mesh_id,
+#             'chebi_id': chebi_id,
+#         }
+#         result = pd.DataFrame([result])
 
-        return result
+#         return result
 
-    mapper_mention_2_cid \
-        = mapper_mention_2_cid.groupby('mention').apply(group_ids).set_index('mention')
+#     mapper_mention_2_cid \
+#         = mapper_mention_2_cid.groupby('mention').apply(group_ids).set_index('mention')
 
-    return mapper_mention_2_cid
+#     return mapper_mention_2_cid
 
 
 def load_mapper_chebi_id_to_pubchem_cid() -> pd.DataFrame:
