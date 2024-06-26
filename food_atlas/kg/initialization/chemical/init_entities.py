@@ -326,6 +326,23 @@ if __name__ == '__main__':
 
     logger.info(f"Mapped {n_mapped} PubChem CID to MeSH ID.")
 
+    # Add '_placeholder_from' to external IDs.
+    def add_placeholder_from(row):
+        if '_placeholder_to' in row['external_ids']:
+            for fa_id in row['external_ids']['_placeholder_to']:
+                if '_placeholder_from' not in kg.entities._entities.at[
+                    fa_id, 'external_ids'
+                ]:
+                    kg.entities._entities.at[
+                        fa_id, 'external_ids'
+                    ]['_placeholder_from'] = []
+                kg.entities._entities.at[fa_id, 'external_ids']['_placeholder_from'] \
+                    += [row.name]
+        return row
+    kg.entities._entities = kg.entities._entities.progress_apply(
+        add_placeholder_from, axis=1
+    )
+
     # Add synonyms for display.
     mesh = load_mesh()
     def add_synonyms_display(row):
