@@ -1,7 +1,6 @@
 import logging
 
 import pandas as pd
-from pandarallel import pandarallel
 from tqdm import tqdm
 
 from ... import KnowledgeGraph
@@ -11,7 +10,11 @@ from ._load_chebi import (
 )
 from ._load_cdno import load_cdno
 from ._load_fdc import load_fdc_nutrient
-from ._load_pubchem import load_mapper_chebi_id_to_pubchem_cid
+from ._load_pubchem import (
+    load_mapper_chebi_id_to_pubchem_cid,
+    load_mapper_pubchem_cid_to_mesh_id,
+)
+from ._load_mesh import load_mesh
 
 logger = logging.getLogger(__name__)
 tqdm.pandas()
@@ -281,27 +284,26 @@ if __name__ == '__main__':
     logger.info(f"Mapped {n_mapped} ChEBI IDs to PubChem CID.")
 
     # Map PubChem CID to MeSH ID.
-    
+    cid2mesh = load_mapper_pubchem_cid_to_mesh_id()
+    n_mapped = 0
+    def map_pubchem_cid_to_mesh_id(row):
+        global n_mapped
+
+        if row['entity_type'] != 'chemical':
+            return
+        if 'pubchem_compound' not in row['external_ids']:
+            return
+        cid = row['external_ids']['pubchem_compound'][0]
+        if cid in cid2mesh:
+            row['external_ids']['mesh'] = [cid2mesh.loc[cid]]
+            n_mapped += 1
+    kg.entities._entities.progress_apply(map_pubchem_cid_to_mesh_id, axis=1)
+
+    logger.info(f"Mapped {n_mapped} PubChem CID to MeSH ID.")
+
     # pd.DataFrame(
     #     kg.entities._lut_chemical.items(),
     #     columns=['synonym', 'entity_ids']
     # ).to_csv('chemical_lut.tsv', index=False, sep='\t')
     kg.entities._entities.to_csv('check_entities.tsv', sep='\t')
     exit()
-
-
-    mapper_name2chebi_id = load_mapper_name2chebi_id()
-    mapper_name2chebi_id['_chebi_id'] = mapper_name2chebi_id['CHEBI_ID'].apply(
-        lambda x: str(sorted(x))
-    )
-
-    def get_new_row(group):
-        return pd.Series({
-            'CHEBI_ID': group['CHEBI_ID'].values[0],
-            'NAME': group['NAME'].tolist(),
-        })
-    chebi2names = mapper_name2chebi_id.groupby('_chebi_id').progress_apply(get_new_row)\
-        .reset_index(drop=True)
-    chebi2names = chebi2names.sort_values('CHEBI_ID', key=lambda x: len(x))
-
-    print(chebi2names)
