@@ -123,7 +123,8 @@ def load_mapper_chebi_id_to_pubchem_cid() -> pd.DataFrame:
         lambda x: int(x.split(':')[-1])
     )
     chebi2cid['cid'] = chebi2cid['cid'].astype('Int64')
+    chebi2cid = chebi2cid.dropna(subset=['cid'])
     chebi2cid = chebi2cid[['chebi_id', 'cid']]
-    chebi2cid = chebi2cid.set_index('chebi_id')
+    chebi2cid = chebi2cid.set_index('chebi_id')['cid']
 
     return chebi2cid
