@@ -11,9 +11,19 @@ from ._load_chebi import (
 )
 from ._load_cdno import load_cdno
 from ._load_fdc import load_fdc_nutrient
+from ._load_pubchem import load_mapper_chebi_id_to_pubchem_cid
 
 logger = logging.getLogger(__name__)
 tqdm.pandas()
+
+
+def _add_to_lut(row, lut_chemical):
+    if row['entity_type'] != 'chemical':
+        return
+    for syn in row['synonyms']:
+        if syn in lut_chemical:
+            raise ValueError(f"Duplicate synonym: {syn}")
+        lut_chemical[syn] = [row.name]
 
 
 def _append_entities_from_chebi(kg) -> KnowledgeGraph:
@@ -67,6 +77,11 @@ def _append_entities_from_chebi(kg) -> KnowledgeGraph:
         kg.entities._curr_eid += 1
     entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
     kg.entities._entities = pd.concat([kg.entities._entities, entities_new])
+    kg.entities._lut_chemical = {}
+    entities_new.progress_apply(
+        lambda row: _add_to_lut(row, kg.entities._lut_chemical),
+        axis=1,
+    )
 
     logger.info(f"Added {len(entities_new)} unique chemical entities from ChEBI.")
 
@@ -91,7 +106,10 @@ def _append_entities_from_chebi(kg) -> KnowledgeGraph:
         kg.entities._curr_eid += 1
     entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
     kg.entities._entities = pd.concat([kg.entities._entities, entities_new])
-
+    entities_new.progress_apply(
+        lambda row: _add_to_lut(row, kg.entities._lut_chemical),
+        axis=1,
+    )
     logger.info(f"Added {len(entities_new)} placeholder chemical entities.")
 
     return kg
@@ -155,7 +173,12 @@ def _append_entities_from_cdno(kg) -> KnowledgeGraph:
         }]
         kg.entities._curr_eid += 1
     entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
+
     kg.entities._entities = pd.concat([kg.entities._entities, entities_new])
+    entities_new.progress_apply(
+        lambda row: _add_to_lut(row, kg.entities._lut_chemical),
+        axis=1,
+    )
 
     logger.info(f"Added {len(entities_new)} unique chemical entities from CDNO.")
 
@@ -186,12 +209,17 @@ def _append_entities_from_fdc(kg) -> KnowledgeGraph:
                 fdc2fa[fdc_id] = row.name
     kg.entities._entities.progress_apply(get_fdc2fa, axis=1)
 
-    # Recording new entities.
+    # Link FDC to existing entities while recording new entities.
     fdc = load_fdc_nutrient()
     n_linked = 0
     entities_not_added = []
     for _, row in fdc.iterrows():
         if row.name in fdc2fa:
+            n_linked += 1
+        elif row['name'] in kg.entities._lut_chemical:
+            fa_id = kg.entities._lut_chemical[row['name']][0]
+            kg.entities._entities.at[fa_id, 'external_ids']['fdc_nutrient'] \
+                = [row.name]
             n_linked += 1
         else:
             entities_not_added.append(row)
@@ -215,6 +243,12 @@ def _append_entities_from_fdc(kg) -> KnowledgeGraph:
         kg.entities._curr_eid += 1
     entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
     kg.entities._entities = pd.concat([kg.entities._entities, entities_new])
+    entities_new.progress_apply(
+        lambda row: _add_to_lut(row, kg.entities._lut_chemical),
+        axis=1,
+    )
+
+    logger.info(f"Added {len(entities_new)} unique chemical entities from FDC.")
 
     return kg
 
@@ -228,10 +262,27 @@ if __name__ == '__main__':
     kg = _append_entities_from_cdno(kg)
     kg = _append_entities_from_fdc(kg)
 
-    # Map PubChem and MeSH IDs.
-    
+    # Map ChEBI to PubChem CID.
+    chebi2cid = load_mapper_chebi_id_to_pubchem_cid()
+    def map_chebi_id_to_pubchem_cid(row):
+        if row['entity_type'] != 'chemical':
+            return
+        if 'chebi' not in row['external_ids']:
+            return
+        chebi_id = row['external_ids']['chebi'][0]
+        if chebi_id in chebi2cid:
+            row['external_ids']['pubchem_compound'] = [chebi2cid[chebi_id]]
+    kg.entities._entities.progress_apply(map_chebi_id_to_pubchem_cid, axis=1)
+
+    # Map PubChem CID to MeSH ID.
+    # pd.DataFrame(
+    #     kg.entities._lut_chemical.items(),
+    #     columns=['synonym', 'entity_ids']
+    # ).to_csv('chemical_lut.tsv', index=False, sep='\t')
     kg.entities._entities.to_csv('check_entities.tsv', sep='\t')
     exit()
+
+
     mapper_name2chebi_id = load_mapper_name2chebi_id()
     mapper_name2chebi_id['_chebi_id'] = mapper_name2chebi_id['CHEBI_ID'].apply(
         lambda x: str(sorted(x))
