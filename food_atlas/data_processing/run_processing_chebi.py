@@ -126,6 +126,7 @@ if __name__ == '__main__':
     assert chebi['NAME'].duplicated().sum() == 0
 
     chebi_synonyms = pd.read_csv("data/ChEBI/names.tsv", sep='\t')
+    chebi_synonyms = chebi_synonyms.dropna(subset=['NAME'])
     chebi_synonyms = chebi_synonyms.query("LANGUAGE == 'en'").copy()
     chebi_synonyms['NAME'] = chebi_synonyms['NAME'].str.lower().str.strip()
     chebi_synonyms = chebi_synonyms[chebi_synonyms['COMPOUND_ID'].isin(chebi.index)]
