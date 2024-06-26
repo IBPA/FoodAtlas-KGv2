@@ -301,9 +301,4 @@ if __name__ == '__main__':
 
     logger.info(f"Mapped {n_mapped} PubChem CID to MeSH ID.")
 
-    # pd.DataFrame(
-    #     kg.entities._lut_chemical.items(),
-    #     columns=['synonym', 'entity_ids']
-    # ).to_csv('chemical_lut.tsv', index=False, sep='\t')
-    kg.entities._entities.to_csv('check_entities.tsv', sep='\t')
-    exit()
+    kg.save("outputs/kg")
