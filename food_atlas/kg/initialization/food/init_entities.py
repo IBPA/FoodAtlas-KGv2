@@ -103,15 +103,13 @@ def _append_foods_from_foodon(kg: KnowledgeGraph) -> KnowledgeGraph:
     for _, row in entities_new.iterrows():
         foodon2fa[row['external_ids']['foodon'][0]] = row.name
     lut_food_df['foodatlas_id'] = lut_food_df['foodon_id'].apply(
-        lambda foodon_id: [str(
-            foodon2fa[foodon_id]
-        )]
+        lambda foodon_id: [str(foodon2fa[foodon_id])]
     )
 
     kg.entities._lut_food = {}
     lut_food_df.apply(
         lambda row: kg.entities._lut_food.update(
-            {row['name']: [row['foodatlas_id']]}
+            {row['name']: row['foodatlas_id']}
         ),
         axis=1
     )
