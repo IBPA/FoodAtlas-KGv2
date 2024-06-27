@@ -29,7 +29,10 @@ def test_entities(kg):
             return row
 
         if row['entity_type'] == 'food':
-            row['primary_id'] += row['external_ids']['foodon']
+            if 'foodon' in row['external_ids']:
+                row['primary_id'] += [f"FOODON:{row['external_ids']['foodon']}"]
+            elif 'fdc' in row['external_ids']:
+                row['primary_id'] += [f"FDC:{row['external_ids']['fdc']}"]
         elif row['entity_type'] == 'chemical':
             if 'chebi' in row['external_ids']:
                 row['primary_id'] += [f"CHEBI:{row['external_ids']['chebi']}"]
@@ -51,7 +54,7 @@ def test_entities(kg):
         assert_primary_id_uniqueness
     )
 
-    assert entities_['primary_id'].value_counts().drop('PH').max() == 1
+    assert entities_['primary_id'].value_counts().drop('PH', errors='ignore').max() == 1
 
 
 def test_triplets(kg):
