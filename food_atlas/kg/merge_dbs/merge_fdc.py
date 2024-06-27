@@ -7,15 +7,12 @@ Authors:
     Fangzhou Li - fzli@ucdavis.edu
 
 """
-from ast import literal_eval
-from collections import OrderedDict
 
 import pandas as pd
 from pandarallel import pandarallel
 from tqdm import tqdm
 
 from .. import KnowledgeGraph
-from ..utils import constants
 from ..preprocessing import standardize_chemical_conc
 from ...tests.unit_test_kg import test_all
 
