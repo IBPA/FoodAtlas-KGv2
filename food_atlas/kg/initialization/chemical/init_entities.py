@@ -14,7 +14,7 @@ from ._load_pubchem import (
     load_mapper_chebi_id_to_pubchem_cid,
     load_mapper_pubchem_cid_to_mesh_id,
 )
-from ._load_mesh import load_mesh  # TODO.
+from ._load_mesh import load_mesh
 from ....tests import unit_test_kg
 
 logger = logging.getLogger(__name__)
@@ -30,10 +30,13 @@ def _add_to_lut(row, lut_chemical):
         lut_chemical[syn] = [row.name]
 
 
-def _append_entities_from_chebi(kg) -> KnowledgeGraph:
+def _append_entities_from_chebi(kg: KnowledgeGraph) -> KnowledgeGraph:
     """Prepare chemical entities from ChEBI. Each entity should have unique set of
     synonyms. Original ChEBI chemical entities with ambiguous synonyms were isolated
     and stored as placeholder entities.
+
+    Args:
+        kg (KnowledgeGraph): The knowledge graph.
 
     Returns:
         KnowledgeGraph: KG with updated chemical entities.
