@@ -111,13 +111,13 @@ def generate_food_groups(kg):
             groups.remove('mammalian meat')
 
         if len(groups) != 1:
-            return 'unclassified'
+            return ['unclassified']
         else:
-            return groups[0]
+            return [groups[0]]
 
-    entities['group'] = entities.index.map(ht)
-    entities['group'] = entities['group'].apply(clean_groups)
-    entities['group'].to_csv("outputs/kg/food_groups.tsv", sep='\t')
+    entities['foodon'] = entities.index.map(ht)
+    entities['foodon'] = entities['foodon'].apply(clean_groups)
+    entities['foodon'].to_csv("outputs/kg/food_groups.tsv", sep='\t')
 
 
 def generate_chemical_groups(kg):
@@ -178,7 +178,7 @@ def generate_chemical_groups(kg):
                 queue.extend(ht_is_a[current])
 
         row['chebi'] = list(set(sorted(
-            entities.loc[groups_matched]['common_name'].str.capitalize().tolist()
+            entities.loc[groups_matched]['common_name'].tolist()
         )))
 
         return row
