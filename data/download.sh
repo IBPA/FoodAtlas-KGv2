@@ -9,7 +9,9 @@
 # # Download the data from FooDB.
 # https://foodb.ca/public/system/downloads/foodb_2020_04_07_json.zip
 
-# ChEBI.
+echo 'Downloading CDNO.zip...'
+curl -L https://ucdavis.box.com/shared/static/o0hlh3p27a7hsn936v5y2421xmsvja92.zip --output CDNO.zip
+
 echo 'Downloading ChEBI.zip...'
 curl -L  https://ucdavis.box.com/shared/static/u6fbnqwc40qjvzhl3wozvjqcvuzndwzf --output ChEBI.zip
 
@@ -21,6 +23,12 @@ curl -L https://ucdavis.box.com/shared/static/5qflnk36xeyvnmfokwzbiedbik1tpjdy.z
 
 echo 'Downloading Lit2KG.zip...'
 curl -L https://ucdavis.box.com/shared/static/3jtujehzeefxrztyhz9pmksbg1w8cxja.zip --output Lit2KG.zip
+
+echo 'Downloading MeSH.zip...'
+curl -L https://ucdavis.box.com/shared/static/ec2wlws59y46rewh9y1hrht3tluehmdq.zip --output MeSH.zip
+
+echo 'Downloading PubChem.zip...'
+curl -L https://ucdavis.box.com/shared/static/2l8phdwcd6zjkm94urskqo33w76o35fv.zip --output PubChem.zip
 
 echo 'Unzipping all files...'
 unzip "*.zip"

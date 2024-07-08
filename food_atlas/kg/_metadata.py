@@ -32,6 +32,7 @@ class Metadata:
         'food_processing',
         'source',
         'reference',
+        'entity_linking_method',
         'quality_score',
         '_food_name',
         '_chemical_name',

@@ -23,14 +23,16 @@ if __name__ == '__main__':
         converters={'external_ids': literal_eval}
     ).set_index('foodatlas_id')
 
-    map_foodon_to_faid = {}
+    foodon2fa = {}
     for faid, row in entities.iterrows():
-        map_foodon_to_faid[row['external_ids']['foodon_id']] = faid
+        if 'foodon' not in row['external_ids']:
+            continue
+        foodon2fa[row['external_ids']['foodon'][0]] = faid
 
     foodon_ids = foodon_food.index.tolist()
 
     # Traverse the FoodOn hierarchy to generate is_a triplets
-    triplets_isa_rows = []
+    food_ontology_rows = []
     visited = set()
     curr_miid = 1
     for foodon_id in foodon_ids:
@@ -44,17 +46,17 @@ if __name__ == '__main__':
             for parent in foodon_food.loc[current, 'parents']:
                 if parent in foodon_food.index:
                     queue.append(parent)
-                    triplets_isa_rows += [{
+                    food_ontology_rows += [{
                         'foodatlas_id': None,
-                        'head_id': map_foodon_to_faid[current],
+                        'head_id': foodon2fa[current],
                         'relationship_id': 'r2',
-                        'tail_id': map_foodon_to_faid[parent],
-                        'metadata_ids': [],
+                        'tail_id': foodon2fa[parent],
+                        'source': 'foodon',
                     }]
 
-    triplets_isa = pd.DataFrame(triplets_isa_rows)
-    triplets_isa['foodatlas_id'] = [
-        f"t{i}" for i in list(range(1, 1 + len(triplets_isa)))
+    food_ontology = pd.DataFrame(food_ontology_rows)
+    food_ontology['foodatlas_id'] = [
+        f"fo{i}" for i in list(range(1, 1 + len(food_ontology)))
     ]
 
-    triplets_isa.to_csv("outputs/kg/triplets.tsv", sep='\t', index=False)
+    food_ontology.to_csv("outputs/kg/food_ontology.tsv", sep='\t', index=False)
