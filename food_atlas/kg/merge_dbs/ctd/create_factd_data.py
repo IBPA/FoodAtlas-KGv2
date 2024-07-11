@@ -16,7 +16,7 @@ import re
 import logging
 
 
-from fadisease.utils.data import (
+from .utils.data import (
     load_ctd_data,
     load_foodatlas_data,
     load_pubchem_to_ctd_mapping,
@@ -39,7 +39,7 @@ from fadisease.utils.data import (
     CTD_REVERSE_ALTID_MAPPING,
     CTD_DIRECTEVIDENCE_MAPPING,
 )
-from fadisease.utils.logging import get_logger, log_data
+from .utils.logging import get_logger, log_data
 
 
 def add_mesh_ids_to_fa_chemicals(

@@ -52,14 +52,14 @@ CAS_ID = "CAS"
 OFT_CAS_ID = "CASNumber"
 TVD_CAS_ID = "casrn"
 CTD_ALTID_MAPPING = {
-    "DO": "diseaseontology_ids",
-    "MESH": "mesh_ids",
-    "OMIM": "omim_ids",
+    "DO": "diseaseontology",
+    "MESH": "mesh",
+    "OMIM": "omim",
 }
 CTD_REVERSE_ALTID_MAPPING = {
-    "diseaseontology_ids": "DO",
-    "mesh_ids": "MESH",
-    "omim_ids": "OMIM",
+    "diseaseontology": "DO",
+    "mesh": "MESH",
+    "omim": "OMIM",
 }
 CTD_DIRECTEVIDENCE_MAPPING = {
     "marker/mechanism": "r3",
