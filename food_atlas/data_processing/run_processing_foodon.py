@@ -50,7 +50,7 @@ def _clean(foodon_synonyms: pd.DataFrame) -> pd.DataFrame:
             'synonym': [],
             'synonym (narrow)': [],
             'synonym (broad)': [],
-            # 'taxon': [],
+            'taxon': [],
         }
         group.dropna(subset=['?type']).apply(
             lambda row: synonyms[row['?type']].append(_remove_suffix(row['?label'])),
@@ -282,6 +282,6 @@ if __name__ == '__main__':
     foodon = foodon[foodon['is_food'] | foodon['is_organism']]
     foodon = _append_additional_relationships(foodon)
     foodon.to_csv(
-        "outputs/data_processing/foodon_cleaned.tsv",
+        "outputs/data_processing/foodon_cleaned_2.tsv",
         sep='\t',
     )
