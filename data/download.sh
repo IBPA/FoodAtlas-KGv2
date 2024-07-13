@@ -18,8 +18,14 @@ curl -L  https://ucdavis.box.com/shared/static/u6fbnqwc40qjvzhl3wozvjqcvuzndwzf 
 echo 'Downloading FDC.zip...'
 curl -L https://ucdavis.box.com/shared/static/lqab5272bsvch6qq3mkbejzryp9itvzn.zip --output FDC.zip
 
+echo 'Downloading FlavorDB.zip...'
+curl -L https://ucdavis.box.com/shared/static/ucrnph5uwdkbdn55t7onamdfcf981zee.zip --output FlavorDB.zip
+
 echo 'Downloading FoodOn.zip...'
 curl -L https://ucdavis.box.com/shared/static/5qflnk36xeyvnmfokwzbiedbik1tpjdy.zip --output FoodOn.zip
+
+echo 'Downloading HSDB.zip...'
+curl -L https://ucdavis.box.com/shared/static/n71t5k1rs8xcwjojtzvehxng2euxvpm0.zip --output HSDB.zip
 
 echo 'Downloading Lit2KG.zip...'
 curl -L https://ucdavis.box.com/shared/static/3jtujehzeefxrztyhz9pmksbg1w8cxja.zip --output Lit2KG.zip
