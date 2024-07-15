@@ -26,7 +26,7 @@ from .utils.logging import get_logger
 @click.command()
 @click.argument("email", type=str)
 @click.option("--log_level", default="debug", help="The level at which to log.")
-@click.option("--output_dir", default="./outputs", help="The directory to save the output.")
+@click.option("--output_dir", default="./outputs/data_processing", help="The directory to save the output.")
 def main(
     email: str,
     log_level: str,

@@ -27,6 +27,6 @@ if __name__ == '__main__':
     with open("outputs/data_processing/CTD_pubmed_ids.txt", 'w') as f:
         pubmed_ids = set()
         for pubmed_id in ctd_chemdis['PubMedIDs']:
-            pubmed_ids.add(pubmed_id)
+            pubmed_ids.update(pubmed_id)
         for pubmed_id in list(pubmed_ids):
             f.write(f"{pubmed_id}\n")

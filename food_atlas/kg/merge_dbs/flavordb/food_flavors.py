@@ -225,8 +225,8 @@ triplets_without_flavor_path = "outputs/kg/triplets.tsv"
 
 # Output paths to tsv files that will be generated
 flavor_meta_out = "outputs/kg/metadata_flavor.tsv"
-entities_flavor_out = "check_entities.tsv"
-triplets_flavor_out = "check_triplets.tsv"
+entities_flavor_out = "outputs/kg/entities.tsv"
+triplets_flavor_out = "outputs/kg/triplets.tsv"
 
 # Paths to data used to generate flavor data
 flavordb_data_path = "data/FlavorDB/flavordb_scrape.pt"
