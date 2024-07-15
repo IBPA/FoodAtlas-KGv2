@@ -276,6 +276,19 @@ def standardize_chemical_conc(
         'mg/100g (converted)',
     )
 
+    # A simple check to remove the concentration values that are obviously wrong.
+    def _check_conc_value(conc_value, conc_unit):
+        if conc_unit in ['mg/100g', 'mg/100g (converted)']:
+            if conc_value > 1e5:
+                return pd.Series([np.nan, np.nan])
+
+        return pd.Series([conc_value, conc_unit])
+
+    metadata[['conc_value', 'conc_unit']] = metadata[['conc_value', 'conc_unit']].apply(
+        lambda x: _check_conc_value(x['conc_value'], x['conc_unit']),
+        axis=1,
+    )
+
     print(f"# metadata entries: {len(metadata)}")
     print(f"# metadata entries with conc: {len(metadata.dropna(subset=['conc_unit']))}")
 
