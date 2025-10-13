@@ -7,6 +7,7 @@ Authors:
     Fangzhou Li - fzli@ucdavis.edu
 
 """
+
 import logging
 
 import pandas as pd
@@ -14,10 +15,10 @@ from inflection import pluralize, singularize
 from pandarallel import pandarallel
 from tqdm import tqdm
 
-from ... import KnowledgeGraph
-from ._load_foodon import load_foodon, load_lut_food
-from ._load_fdc import load_fdc
 from ....tests import unit_test_kg
+from ... import KnowledgeGraph
+from ._load_fdc import load_fdc
+from ._load_foodon import load_foodon, load_lut_food
 
 logger = logging.getLogger(__name__)
 pandarallel.initialize(progress_bar=True)
@@ -25,9 +26,9 @@ tqdm.pandas()
 
 
 def _add_to_lut(row, lut_food):
-    if row['entity_type'] != 'food':
+    if row["entity_type"] != "food":
         return
-    for syn in row['synonyms']:
+    for syn in row["synonyms"]:
         if syn in lut_food:
             raise ValueError(f"Duplicate synonym: {syn}")
         lut_food[syn] = [row.name]
@@ -47,25 +48,27 @@ def _append_foods_from_foodon(kg: KnowledgeGraph) -> KnowledgeGraph:
     logger.info("Initializing food entities from FoodOn.")
 
     foodon = load_foodon()
-    foodon_food = foodon[foodon['is_food']]
+    foodon_food = foodon[foodon["is_food"]]
     lut_food = load_lut_food()
-    lut_food_df = pd.DataFrame(lut_food.items(), columns=['name', 'foodon_id'])
-    names_grouped = lut_food_df.groupby('foodon_id')['name'].apply(list)
+    lut_food_df = pd.DataFrame(lut_food.items(), columns=["name", "foodon_id"])
+    names_grouped = lut_food_df.groupby("foodon_id")["name"].apply(list)
 
     entities_new_rows = []
-    for foodon_id, row in foodon_food.iterrows():
+    for foodon_id, _ in foodon_food.iterrows():
         synonyms = names_grouped[foodon_id]
-        entities_new_rows += [{
-            'foodatlas_id': f"e{kg.entities._curr_eid}",
-            'entity_type': 'food',
-            'common_name': synonyms[0],
-            'scientific_name': None,
-            'synonyms': synonyms,
-            'external_ids': {'foodon': [foodon_id]},
-            '_synonyms_display': synonyms,
-        }]
+        entities_new_rows += [
+            {
+                "foodatlas_id": f"e{kg.entities._curr_eid}",
+                "entity_type": "food",
+                "common_name": synonyms[0],
+                "scientific_name": None,
+                "synonyms": synonyms,
+                "external_ids": {"foodon": [foodon_id]},
+                "_synonyms_display": synonyms,
+            }
+        ]
         kg.entities._curr_eid += 1
-    entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
+    entities_new = pd.DataFrame(entities_new_rows).set_index("foodatlas_id")
 
     # Create synonyms for display.
     def remove_plural(synonyms):
@@ -74,44 +77,43 @@ def _append_foods_from_foodon(kg: KnowledgeGraph) -> KnowledgeGraph:
         # the terms before it. If the first term is available for pluralization, e.g.,
         # parantheses, we use the second term.
         if len(synonyms) == 1:
-            return {'foodon': synonyms}
+            return {"foodon": synonyms}
 
         for i, s in enumerate(synonyms):
             sp = pluralize(s)
             try:
-                i_end = synonyms[i + 1:].index(sp) + i + 1
-                return {'foodon': synonyms[:i_end]}
+                i_end = synonyms[i + 1 :].index(sp) + i + 1
+                return {"foodon": synonyms[:i_end]}
             except ValueError:
                 pass
 
             ss = singularize(s)
             try:
-                i_end = synonyms[i + 1:].index(ss) + i + 1
-                return {'foodon': synonyms[:i_end]}
+                i_end = synonyms[i + 1 :].index(ss) + i + 1
+                return {"foodon": synonyms[:i_end]}
             except ValueError:
                 continue
 
-        return {'foodon': synonyms}
+        return {"foodon": synonyms}
 
-    entities_new['_synonyms_display'] = entities_new['_synonyms_display']\
-        .progress_apply(remove_plural)
+    entities_new["_synonyms_display"] = entities_new[
+        "_synonyms_display"
+    ].progress_apply(remove_plural)
     kg.entities._entities = pd.concat([kg.entities._entities, entities_new])
 
     logger.info(f"Added {len(entities_new)} unique food entities from FoodOn.")
 
     foodon2fa = {}
     for _, row in entities_new.iterrows():
-        foodon2fa[row['external_ids']['foodon'][0]] = row.name
-    lut_food_df['foodatlas_id'] = lut_food_df['foodon_id'].apply(
+        foodon2fa[row["external_ids"]["foodon"][0]] = row.name
+    lut_food_df["foodatlas_id"] = lut_food_df["foodon_id"].apply(
         lambda foodon_id: [str(foodon2fa[foodon_id])]
     )
 
     kg.entities._lut_food = {}
     lut_food_df.apply(
-        lambda row: kg.entities._lut_food.update(
-            {row['name']: row['foodatlas_id']}
-        ),
-        axis=1
+        lambda row: kg.entities._lut_food.update({row["name"]: row["foodatlas_id"]}),
+        axis=1,
     )
 
     return kg
@@ -132,23 +134,23 @@ def _append_foods_from_fdc(kg: KnowledgeGraph) -> KnowledgeGraph:
     # Create FoodOn ID to entity ID lookup table.
     foodon2fa = {}
     for _, row in kg.entities._entities.iterrows():
-        if 'foodon' in row['external_ids']:
-            if row['external_ids']['foodon'][0] in foodon2fa:
+        if "foodon" in row["external_ids"]:
+            if row["external_ids"]["foodon"][0] in foodon2fa:
                 raise ValueError("Duplicate FoodOn ID.")
-            foodon2fa[row['external_ids']['foodon'][0]] = row.name
+            foodon2fa[row["external_ids"]["foodon"][0]] = row.name
 
     # Link FDC foods to existing entities using FoodOn IDs.
     n_linked = 0
     entities_not_added = []
     for fdc_id, row in fdc.iterrows():
-        foodon_id = row['foodon_url']
+        foodon_id = row["foodon_url"]
         if foodon_id not in foodon2fa:
             entities_not_added += [row]
             continue
         fa_id = foodon2fa[foodon_id]
-        if 'fdc' not in kg.entities._entities.at[fa_id, 'external_ids']:
-            kg.entities._entities.at[fa_id, 'external_ids']['fdc'] = []
-        kg.entities._entities.at[fa_id, 'external_ids']['fdc'] += [fdc_id]
+        if "fdc" not in kg.entities._entities.at[fa_id, "external_ids"]:
+            kg.entities._entities.at[fa_id, "external_ids"]["fdc"] = []
+        kg.entities._entities.at[fa_id, "external_ids"]["fdc"] += [fdc_id]
         n_linked += 1
 
     logger.info(f"Linked {n_linked} FDC foods to existing entities.")
@@ -157,21 +159,23 @@ def _append_foods_from_fdc(kg: KnowledgeGraph) -> KnowledgeGraph:
     entities_not_added = pd.DataFrame(entities_not_added)
     entities_new_rows = []
     for fdc_id, row in entities_not_added.iterrows():
-        entities_new_rows += [{
-            'foodatlas_id': f"e{kg.entities._curr_eid}",
-            'entity_type': 'food',
-            'common_name': row['description'],
-            'scientific_name': None,
-            'synonyms': [row['description']],
-            'external_ids': {'fdc': [fdc_id]},
-            '_synonyms_display': {'fdc': [row['description']]},
-        }]
+        entities_new_rows += [
+            {
+                "foodatlas_id": f"e{kg.entities._curr_eid}",
+                "entity_type": "food",
+                "common_name": row["description"],
+                "scientific_name": None,
+                "synonyms": [row["description"]],
+                "external_ids": {"fdc": [fdc_id]},
+                "_synonyms_display": {"fdc": [row["description"]]},
+            }
+        ]
         kg.entities._curr_eid += 1
-    entities_new_rows = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
+    entities_new_rows = pd.DataFrame(entities_new_rows).set_index("foodatlas_id")
     kg.entities._entities = pd.concat([kg.entities._entities, entities_new_rows])
     entities_new_rows.apply(
-        lambda row: kg.entities._lut_food.update({row['common_name']: [row.name]}),
-        axis=1
+        lambda row: kg.entities._lut_food.update({row["common_name"]: [row.name]}),
+        axis=1,
     )
 
     logger.info(f"Added {len(entities_new_rows)} new food entities from FDC.")
@@ -179,7 +183,7 @@ def _append_foods_from_fdc(kg: KnowledgeGraph) -> KnowledgeGraph:
     return kg
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     kg = KnowledgeGraph()
 
     kg = _append_foods_from_foodon(kg)

@@ -7,27 +7,25 @@ Authors:
     Fangzhou Li - fzli@ucdavis.edu
 
 """
+
 from ast import literal_eval
 
 import pandas as pd
 
 from ._load_foodon import load_foodon
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     foodon = load_foodon()
-    foodon_food = foodon[foodon['is_food']]
+    foodon_food = foodon[foodon["is_food"]]
     entities = pd.read_csv(
-        "outputs/kg/entities.tsv",
-        sep='\t',
-        converters={'external_ids': literal_eval}
-    ).set_index('foodatlas_id')
+        "outputs/kg/entities.tsv", sep="\t", converters={"external_ids": literal_eval}
+    ).set_index("foodatlas_id")
 
     foodon2fa = {}
     for faid, row in entities.iterrows():
-        if 'foodon' not in row['external_ids']:
+        if "foodon" not in row["external_ids"]:
             continue
-        foodon2fa[row['external_ids']['foodon'][0]] = faid
+        foodon2fa[row["external_ids"]["foodon"][0]] = faid
 
     foodon_ids = foodon_food.index.tolist()
 
@@ -43,20 +41,22 @@ if __name__ == '__main__':
                 continue
 
             visited.add(current)
-            for parent in foodon_food.loc[current, 'parents']:
+            for parent in foodon_food.loc[current, "parents"]:
                 if parent in foodon_food.index:
                     queue.append(parent)
-                    food_ontology_rows += [{
-                        'foodatlas_id': None,
-                        'head_id': foodon2fa[current],
-                        'relationship_id': 'r2',
-                        'tail_id': foodon2fa[parent],
-                        'source': 'foodon',
-                    }]
+                    food_ontology_rows += [
+                        {
+                            "foodatlas_id": None,
+                            "head_id": foodon2fa[current],
+                            "relationship_id": "r2",
+                            "tail_id": foodon2fa[parent],
+                            "source": "foodon",
+                        }
+                    ]
 
     food_ontology = pd.DataFrame(food_ontology_rows)
-    food_ontology['foodatlas_id'] = [
+    food_ontology["foodatlas_id"] = [
         f"fo{i}" for i in list(range(1, 1 + len(food_ontology)))
     ]
 
-    food_ontology.to_csv("outputs/kg/food_ontology.tsv", sep='\t', index=False)
+    food_ontology.to_csv("outputs/kg/food_ontology.tsv", sep="\t", index=False)
