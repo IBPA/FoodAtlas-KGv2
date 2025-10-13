@@ -36,6 +36,9 @@ curl -L https://ucdavis.box.com/shared/static/ec2wlws59y46rewh9y1hrht3tluehmdq.z
 echo 'Downloading PubChem.zip...'
 curl -L https://ucdavis.box.com/shared/static/2l8phdwcd6zjkm94urskqo33w76o35fv.zip --output PubChem.zip
 
+echo 'Downloading FlavorGraph.zip...'
+curl -L https://ucdavis.box.com/s/yvhb00n2l5jzdr2uiz5jkehvpugw3z35 --output FlavorGraph.zip
+
 echo 'Unzipping all files...'
 unzip "*.zip"
 
