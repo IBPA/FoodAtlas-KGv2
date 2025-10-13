@@ -1,6 +1,9 @@
 from ast import literal_eval
 
 import pandas as pd
+from pandarallel import pandarallel
+
+pandarallel.initialize(progress_bar=True)
 
 
 def load_entities(with_connections=True):
@@ -39,35 +42,6 @@ def load_entities(with_connections=True):
     return entities
 
 
-# def print_stats():
-#     triplets = pd.read_csv(
-#         "outputs/kg/triplets.tsv",
-#         sep='\t',
-#         converters={
-#             'metadata_ids': literal_eval,
-#         }
-#     )
-#     metadata_pos_disease = set()
-#     metadata_neg_disease = set()
-#     for _, row in triplets.query("relationship_id in ['r3', 'r4']").iterrows():
-#         if row['relationship_id'] == 'r3':
-#             metadata_pos_disease.update(row['metadata_ids'])
-#         else:
-#             metadata_neg_disease.update(row['metadata_ids'])
-
-#     print("Disease:")
-#     print(f"Metadata (Pos): {len(metadata_pos_disease)}")
-#     print(f"Metadata (Neg): {len(metadata_neg_disease)}")
-#     print()
-
-#     metadata_flavor = set()
-#     for _, row in triplets.query("relationship_id == 'r5'").iterrows():
-#         metadata_flavor.update(row['metadata_ids'])
-
-#     print("Flavor:")
-#     print(f"Metadata: {len(metadata_flavor)}")
-
-
 def print_stats_with_connections():
     """Print various statistics for entities with connections.
 
@@ -84,12 +58,10 @@ def print_stats_with_connections():
         "outputs/kg/food_ontology.tsv",
         sep='\t',
     )
-    print(f"Ontologies: {len(food_ontologies)}")
     chemical_ontologies = pd.read_csv(
         "outputs/kg/chemical_ontology.tsv",
         sep='\t',
     )
-    print(f"Ontologies: {len(chemical_ontologies)}")
     entities.query("entity_type == 'food'").sort_values(
         'count',
         ascending=False,
@@ -180,5 +152,50 @@ def print_stats_with_connections():
 
     print(f"Total: {len(triplets_r1) + n_triplets_r2 + len(triplets_r3) + len(triplets_r4) + len(triplets_r5)}")
 
+
+def print_entities_db_coverage():
+    entities = load_entities(False)
+    triplets = pd.read_csv(
+        "outputs/kg/triplets.tsv",
+        sep='\t',
+        converters={
+            'external_ids': literal_eval,
+        }
+    )
+    print(entities)
+
+    # Food entities.
+    triplets_r1 = triplets[triplets['relationship_id'] == 'r1']
+    food_entities = entities.loc[triplets_r1['head_id'].unique()]
+    food_ids = food_entities['external_ids'].parallel_apply(pd.Series)
+    print(len(food_ids))
+    print(food_ids.notnull().sum(), food_ids.notnull().sum() / len(food_ids))
+
+    # Chemical entities.
+    chemical_entities = entities.loc[triplets_r1['tail_id'].unique()]
+    chemical_ids = chemical_entities['external_ids'].parallel_apply(pd.Series)
+    print(len(chemical_ids))
+    print(chemical_ids.notnull().sum(), chemical_ids.notnull().sum() / len(chemical_ids))
+
+    # Disease entities.
+    triplets_r3 = triplets[triplets['relationship_id'] == 'r3']
+    triplets_r4 = triplets[triplets['relationship_id'] == 'r4']
+    disease_ids = set(triplets_r3['tail_id'].unique()) & set(triplets_r4['tail_id'].unique())
+    disease_entities = entities.loc[list(disease_ids)]
+    disease_ids = disease_entities['external_ids'].parallel_apply(pd.Series)
+    print(len(disease_ids))
+    print(disease_ids.notnull().sum(), disease_ids.notnull().sum() / len(disease_ids))
+
+    # Flavor entities.
+    triplets_r5 = triplets[(triplets['relationship_id'] == 'r5') & (triplets['head_id'].isin(chemical_entities.index))]
+    flavordb_ids = list(set(triplets_r5['tail_id'].unique()))
+    flavor_entities = entities.loc[entities.index.isin(flavordb_ids)]
+    flavor_ids = flavor_entities['external_ids'].parallel_apply(pd.Series)
+    print(flavor_ids)
+    print(len(flavor_ids))
+    print(flavor_ids.notnull().sum(), flavor_ids.notnull().sum() / len(flavor_ids))
+
+
 if __name__ == '__main__':
-    print_stats_with_connections()
+    # print_stats_with_connections()
+    print_entities_db_coverage()
