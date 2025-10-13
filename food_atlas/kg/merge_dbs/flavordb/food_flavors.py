@@ -7,6 +7,8 @@ from fuzzywuzzy import process
 
 from ._load_hsdb import load_hsdb
 
+from pandarallel import pandarallel
+pandarallel.initialize(progress_bar=True)
 
 # Takes in data scraped from FlavorDB and pubchem, outputs flavor metadata entries
 def generate_flavor_metadata(flavordb_data_path, entities):
@@ -76,11 +78,25 @@ def generate_flavor_metadata(flavordb_data_path, entities):
     # The pubchem flavor data is quite noisy, so I filter by using fuzzy
     # matching to match to our existing descriptors
     flavor_descriptors = flavor_metadata['_flavor'].explode().drop_duplicates().reset_index(drop=True)
-    string_matches = pubchem_flavor['_flavor'].map(lambda x: (x, process.extract(x, flavor_descriptors, limit=1)))
+    string_matches = pubchem_flavor['_flavor'].parallel_apply(lambda x: (x, process.extract(x, flavor_descriptors, limit=1)))
     close_matches = string_matches.apply(lambda x: x[1][0][1] >= 90)
+
+    # Dump data to csv for inspection.
+    print(len(string_matches))
+    data_matched = string_matches[close_matches]
+    print(len(data_matched))
+    original = data_matched.apply(lambda x: x[0])
+    matched = data_matched.apply(lambda x: x[1][0][0])
+    similarity_scores = data_matched.apply(lambda x: x[1][0][1])
+    data_to_dump = pd.DataFrame({
+        'original': original,
+        'matched': matched,
+        'similarity_scores': similarity_scores,
+    })
+    data_to_dump.to_csv("outputs/additional_analysis/flavor_fuzz_matches.tsv", sep='\t')
+
     pubchem_flavor = pubchem_flavor[close_matches]
     pubchem_flavor['_flavor'] = string_matches[close_matches].apply(lambda x: x[1][0][0])
-
     # Combine pubchem and FlavorDB flavor data
     flavor_metadata = pd.concat([flavor_metadata, pubchem_flavor], ignore_index=True)
 
@@ -218,24 +234,26 @@ def generate_and_merge_flavor_data(entities_without_flavor_path,
     entities.to_csv(entities_flavor_out, sep='\t', index=False)
     triplets.to_csv(triplets_flavor_out, sep='\t', index=False)
 
-# Paths to input entity and triplet data without flavor.
-# I am using the entities/triplets with disease data from Arielle
-entities_without_flavor_path = "outputs/kg/entities.tsv"
-triplets_without_flavor_path = "outputs/kg/triplets.tsv"
 
-# Output paths to tsv files that will be generated
-flavor_meta_out = "outputs/kg/metadata_flavor.tsv"
-entities_flavor_out = "outputs/kg/entities.tsv"
-triplets_flavor_out = "outputs/kg/triplets.tsv"
+if __name__ == "__main__":
+    # Paths to input entity and triplet data without flavor.
+    # I am using the entities/triplets with disease data from Arielle
+    entities_without_flavor_path = "outputs/kg/entities.tsv"
+    triplets_without_flavor_path = "outputs/kg/triplets.tsv"
 
-# Paths to data used to generate flavor data
-flavordb_data_path = "data/FlavorDB/flavordb_scrape.pt"
+    # Output paths to tsv files that will be generated
+    flavor_meta_out = "outputs/kg/metadata_flavor.tsv"
+    entities_flavor_out = "outputs/kg/entities.tsv"
+    triplets_flavor_out = "outputs/kg/triplets.tsv"
 
-generate_and_merge_flavor_data(
-    entities_without_flavor_path,
-    triplets_without_flavor_path,
-    flavordb_data_path,
-    flavor_meta_out,
-    entities_flavor_out,
-    triplets_flavor_out,
-)
+    # Paths to data used to generate flavor data
+    flavordb_data_path = "data/FlavorDB/flavordb_scrape.pt"
+
+    generate_and_merge_flavor_data(
+        entities_without_flavor_path,
+        triplets_without_flavor_path,
+        flavordb_data_path,
+        flavor_meta_out,
+        entities_flavor_out,
+        triplets_flavor_out,
+    )
