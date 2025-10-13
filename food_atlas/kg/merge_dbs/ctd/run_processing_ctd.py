@@ -1,10 +1,9 @@
-from .utils.data import load_ctd_data
 from ... import KnowledgeGraph
+from .utils.data import load_ctd_data
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     kg = KnowledgeGraph()
-    ctd_chemdis = load_ctd_data(data_dir="data/CTD", type='chemdis')
+    ctd_chemdis = load_ctd_data(data_dir="data/CTD", type="chemdis")
 
     # Filter out those without correlations.
     ctd_chemdis = ctd_chemdis[ctd_chemdis["DirectEvidence"].notnull()]
@@ -12,21 +11,21 @@ if __name__ == '__main__':
     # Filter out those not in FA.
     mesh_fa = set()
     for _, row in kg.entities._entities.iterrows():
-        if 'mesh' in row['external_ids']:
-            mesh_fa.update(row['external_ids']['mesh'])
-    ctd_chemdis = ctd_chemdis[ctd_chemdis['ChemicalID'].isin(mesh_fa)]
+        if "mesh" in row["external_ids"]:
+            mesh_fa.update(row["external_ids"]["mesh"])
+    ctd_chemdis = ctd_chemdis[ctd_chemdis["ChemicalID"].isin(mesh_fa)]
 
     # Dump the cleaned CTD dataset.
     ctd_chemdis.to_csv(
         "outputs/data_processing/ctd_chemdis_cleaned.tsv",
-        sep='\t',
+        sep="\t",
         index=False,
     )
 
     # Map PubMed IDs to PMCID
-    with open("outputs/data_processing/CTD_pubmed_ids.txt", 'w') as f:
+    with open("outputs/data_processing/CTD_pubmed_ids.txt", "w") as f:
         pubmed_ids = set()
-        for pubmed_id in ctd_chemdis['PubMedIDs']:
+        for pubmed_id in ctd_chemdis["PubMedIDs"]:
             pubmed_ids.update(pubmed_id)
         for pubmed_id in list(pubmed_ids):
             f.write(f"{pubmed_id}\n")

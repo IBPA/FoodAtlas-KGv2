@@ -1,5 +1,5 @@
 """
-    Logging module for setting up loggers.
+Logging module for setting up loggers.
 """
 
 import logging
@@ -20,8 +20,7 @@ def get_logger(logger_name="name", log_level="debug", output_file=None):
     logger = logging.getLogger(logger_name)
     logger.setLevel(getattr(logging, log_level.upper()))
 
-    formatter = logging.Formatter(
-        '%(asctime)s %(name)s %(levelname)s:%(message)s')
+    formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s:%(message)s")
 
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(formatter)

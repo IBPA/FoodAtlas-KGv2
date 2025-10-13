@@ -11,27 +11,26 @@ Author:
 """
 
 import os
-import pandas as pd
-import numpy as np
-import logging
+
 import click
 
 from .utils.data import (
-    create_pmid_to_pmcid_mapping,
     CTD_PUBMED_IDS_TO_PMCID_FILENAME,
-    load_pmid_to_pmcid_mapping)
+    create_pmid_to_pmcid_mapping,
+    load_pmid_to_pmcid_mapping,
+)
 from .utils.logging import get_logger
 
 
 @click.command()
 @click.argument("email", type=str)
 @click.option("--log_level", default="debug", help="The level at which to log.")
-@click.option("--output_dir", default="./outputs/data_processing", help="The directory to save the output.")
-def main(
-    email: str,
-    log_level: str,
-    output_dir: str
-):
+@click.option(
+    "--output_dir",
+    default="./outputs/data_processing",
+    help="The directory to save the output.",
+)
+def main(email: str, log_level: str, output_dir: str):
     logger = get_logger("test_pmid_to_pmcid", log_level)
 
     file_name = os.path.join(output_dir, CTD_PUBMED_IDS_TO_PMCID_FILENAME)
@@ -41,7 +40,7 @@ def main(
         logger.info(f"df shape: {df.shape}")
         logger.info(f"df head: {df.head()}")
     else:
-        logger.info(f"Creating the mapping from PMID to PMCID.")
+        logger.info("Creating the mapping from PMID to PMCID.")
         df = create_pmid_to_pmcid_mapping(email, "test", output_dir, logger)
     return
 

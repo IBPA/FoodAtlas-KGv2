@@ -4,16 +4,16 @@ This module contains functions for loading data from the data directory.
 Authors:
     Arielle Yoo - asmyoo@ucdavis.edu
 """
-import os
-import pandas as pd
-import numpy as np
+
 import logging
+import os
+from ast import literal_eval
+
+import numpy as np
+import openpyxl
+import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from ast import literal_eval
-import openpyxl
-import re
-
 
 CTD_CHEMDIS_DATA_FILENAME = "CTD_chemicals_diseases.csv"
 CTD_CHEM_DATA_FILENAME = "CTD_chemicals.csv"
@@ -75,7 +75,8 @@ OFT_COLUMN_MAPPING = {
     "Endpoint": "toxicity_endpoint",
     "qualifier": "qualifier",
     "value": "value",
-    "unit": "unit"}
+    "unit": "unit",
+}
 OFT_MAP_VALUES = {
     "Not reported": None,
     "unspecified": None,
@@ -129,17 +130,24 @@ TOXICITY_METADATA_LOWERCASE_COLUMNS = [
     "exposure_route",
     "exposure_method",
     "toxicity_endpoint",
-    "source"]
-CTD_COLUMNS_WITH_LISTS = ["OmimIDs", "PubMedIDs", "ParentIDs",
-                          "TreeNumbers", "ParentTreeNumbers",
-                          "Synonyms", "AltDiseaseIDs", "SlimMappings"]
+    "source",
+]
+CTD_COLUMNS_WITH_LISTS = [
+    "OmimIDs",
+    "PubMedIDs",
+    "ParentIDs",
+    "TreeNumbers",
+    "ParentTreeNumbers",
+    "Synonyms",
+    "AltDiseaseIDs",
+    "SlimMappings",
+]
 PMID_PMCID_REQUEST_URL = "https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/"
 
 
 def change_content_to_list(
-        df: pd.DataFrame,
-        splitby: str = '|',
-        columns_tosplit: list = CTD_COLUMNS_WITH_LISTS) -> pd.DataFrame:
+    df: pd.DataFrame, splitby: str = "|", columns_tosplit: list = CTD_COLUMNS_WITH_LISTS
+) -> pd.DataFrame:
     """
     Change the content of the columns in the DataFrame to lists.
 
@@ -154,18 +162,18 @@ def change_content_to_list(
     for column in columns_tosplit:
         if column in df.columns:
             df[column] = df[column].apply(
-                lambda x: x.split(splitby) if pd.notnull(x) else [])
+                lambda x: x.split(splitby) if pd.notnull(x) else []
+            )
             # change to list of integers if possible
             df[column] = df[column].apply(
-                lambda x: [int(i) if i.isdigit() else i for i in x])
+                lambda x: [int(i) if i.isdigit() else i for i in x]
+            )
     return df
 
 
 def split_column_into_length(
-        df: pd.DataFrame,
-        column: str,
-        splitby: str = '|',
-        length: int = 2) -> pd.DataFrame:
+    df: pd.DataFrame, column: str, splitby: str = "|", length: int = 2
+) -> pd.DataFrame:
     """
     Split the content of a column into a new columns based on the length.
 
@@ -178,6 +186,7 @@ def split_column_into_length(
     Returns:
         The DataFrame with the content of the column split into new columns.
     """
+
     def split_column(x, i):
         if pd.notnull(x) and len(x.split(splitby)) > i:
             return x.split(splitby)[i]
@@ -197,17 +206,13 @@ def split_column_into_length(
     for i in range(length):
         # if last column, add the rest
         if i == length - 1:
-            df[f"{column}_{i}"] = df[column].apply(
-                lambda x: split_last_column(x, i))
+            df[f"{column}_{i}"] = df[column].apply(lambda x: split_last_column(x, i))
         else:
-            df[f"{column}_{i}"] = df[column].apply(
-                lambda x: split_column(x, i))
+            df[f"{column}_{i}"] = df[column].apply(lambda x: split_column(x, i))
     return df
 
 
-def load_ctd_data(
-        data_dir: str = "./data",
-        type: str = "chemdis") -> pd.DataFrame:
+def load_ctd_data(data_dir: str = "./data", type: str = "chemdis") -> pd.DataFrame:
     """
     Load the CTD data from the data directory.
 
@@ -221,30 +226,31 @@ def load_ctd_data(
     file_path_dict = {
         "chemdis": CTD_CHEMDIS_DATA_FILENAME,
         "chem": CTD_CHEM_DATA_FILENAME,
-        "disease": CTD_DISEASE_DATA_FILENAME
+        "disease": CTD_DISEASE_DATA_FILENAME,
     }
     file_path = os.path.join(data_dir, file_path_dict[type])
 
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         lines = file.readlines()
-        fields_line_index = next(i for i, line in enumerate(
-            lines) if line.strip() == '# Fields:')
+        fields_line_index = next(
+            i for i, line in enumerate(lines) if line.strip() == "# Fields:"
+        )
         header_line_index = fields_line_index + 1
-        header = lines[header_line_index].strip().replace("# ", "").split(',')
+        header = lines[header_line_index].strip().replace("# ", "").split(",")
 
-    df = pd.read_csv(file_path, comment='#',
-                     skiprows=range(1, header_line_index),
-                     names=header)
+    df = pd.read_csv(
+        file_path, comment="#", skiprows=range(1, header_line_index), names=header
+    )
     # drop if all values are NaN
-    df = df.dropna(how='all').reset_index(drop=True)
+    df = df.dropna(how="all").reset_index(drop=True)
     df = change_content_to_list(df)
 
     return df
 
 
 def load_foodatlas_data(
-        data_dir: str = "./data",
-        type: str = "entities") -> pd.DataFrame:
+    data_dir: str = "./data", type: str = "entities"
+) -> pd.DataFrame:
     """
     Load the food atlas data from the data directory.
 
@@ -263,16 +269,17 @@ def load_foodatlas_data(
         "folder_entities": FA_ENTITY_FILENAME,
         "folder_metadata": FA_METADATA_FILENAME,
         "folder_triplets": FA_TRIPLETS_FILENAME,
-        "folder_chem_lookup": FA_CHEM_LOOKUP_FILENAME
+        "folder_chem_lookup": FA_CHEM_LOOKUP_FILENAME,
     }
     file_path = os.path.join(data_dir, file_path_dict[type])
-    df = pd.read_csv(file_path, sep='\t')
+    df = pd.read_csv(file_path, sep="\t")
     # drop if all values are NaN
-    df = df.dropna(how='all').reset_index(drop=True)
+    df = df.dropna(how="all").reset_index(drop=True)
 
     if type == "entities":
         df[EXTERNAL_IDS] = df[EXTERNAL_IDS].apply(
-            lambda x: literal_eval(x) if pd.notnull(x) else {})
+            lambda x: literal_eval(x) if pd.notnull(x) else {}
+        )
 
     if type == "chem_lookup":
         df[FA_ID] = df[FA_ID].apply(lambda x: literal_eval(x))
@@ -280,7 +287,8 @@ def load_foodatlas_data(
         # check if length != 1
         if df[f"len_{FA_ID}"].sum() != df.shape[0]:
             raise ValueError(
-                "Error: The length of the FoodAtlas IDs is not 1 for all rows.")
+                "Error: The length of the FoodAtlas IDs is not 1 for all rows."
+            )
         df = df.drop(columns=[f"len_{FA_ID}"])
         df = df.explode(FA_ID).reset_index(drop=True)
         # check names are unique
@@ -294,7 +302,8 @@ def load_foodatlas_data(
             names = names[names > 1]
             if names.shape[0] > 0:
                 raise ValueError(
-                    f"Error: The following FoodAtlas {type} names are not unique: {names}")
+                    f"Error: The following FoodAtlas {type} names are not unique: {names}"
+                )
 
     return df
 
@@ -316,7 +325,8 @@ def adjust_FA_entities_data(
     # if string, convert using literal_eval
     if type(data[EXTERNAL_IDS][0]) == str:
         data[EXTERNAL_IDS] = data[EXTERNAL_IDS].apply(
-            lambda x: literal_eval(x) if pd.notnull(x) else {})
+            lambda x: literal_eval(x) if pd.notnull(x) else {}
+        )
     # get ids of chemicals for fa_chemicals from external_id
     check_ids = []
     for ids in data[EXTERNAL_IDS]:
@@ -325,16 +335,14 @@ def adjust_FA_entities_data(
     check_ids = list(set(check_ids))
     check_ids.sort()
     if logger:
-        logger.info(
-            f"Number of unique external_ids in FoodAtlas: {len(check_ids)}")
+        logger.info(f"Number of unique external_ids in FoodAtlas: {len(check_ids)}")
         logger.info(f"IDs in FA: {check_ids}")
 
     # add columns for each id in check_ids
     for id in check_ids:
-        data[id] = data[EXTERNAL_IDS].apply(
-            lambda x: x[id] if id in x else None)
+        data[id] = data[EXTERNAL_IDS].apply(lambda x: x[id] if id in x else None)
     if logger:
-        logger.info(f"Columns added for each id in check_ids")
+        logger.info("Columns added for each id in check_ids")
 
     # check_id = '_placeholder_to'
     for check_id in check_ids:
@@ -342,7 +350,8 @@ def adjust_FA_entities_data(
         num_with_id = data[check_id].notnull().sum()
         if logger:
             logger.info(
-                f"Number of entities with {check_id} in FoodAtlas: {num_with_id}")
+                f"Number of entities with {check_id} in FoodAtlas: {num_with_id}"
+            )
 
     return data, check_ids
 
@@ -365,13 +374,13 @@ def adjust_FA_chemicals_data(
     data = data[data[ENTITY_TYPE] == "chemical"].reset_index(drop=True)
     if logger:
         logger.info(
-            f"Number of chemicals in FoodAtlas: {data['foodatlas_id'].nunique()}")
+            f"Number of chemicals in FoodAtlas: {data['foodatlas_id'].nunique()}"
+        )
 
     return adjust_FA_entities_data(data, logger)
 
 
-def load_pubchem_to_ctd(
-        output_dir: str = "./outputs") -> pd.DataFrame:
+def load_pubchem_to_ctd(output_dir: str = "./outputs") -> pd.DataFrame:
     """
     Load the PubChem to CTD data from the output directory.
 
@@ -384,17 +393,18 @@ def load_pubchem_to_ctd(
     file_path = os.path.join(output_dir, PUBCHEM_TO_CTD_FILENAME)
     if not os.path.exists(file_path):
         raise FileNotFoundError(
-            f"File {file_path} does not exist. Please make sure to follow commented instructions in compare_factd_chem.")
-    df = pd.read_csv(file_path, sep='\t', header=None)
+            f"File {file_path} does not exist. Please make sure to follow commented instructions in compare_factd_chem."
+        )
+    df = pd.read_csv(file_path, sep="\t", header=None)
     df.columns = [PUBCHEM_CID, CTD_CHEMICAL_ID]
-    df = df.dropna(how='all').reset_index(drop=True)
+    df = df.dropna(how="all").reset_index(drop=True)
 
     return df
 
 
 def load_pubchem_to_ctd_mapping(
-        output_dir: str = "./outputs",
-        logger: logging.Logger = None) -> pd.DataFrame:
+    output_dir: str = "./outputs", logger: logging.Logger = None
+) -> pd.DataFrame:
     """
     Load the mapping from PubChem to CTD data from the output directory.
 
@@ -406,26 +416,30 @@ def load_pubchem_to_ctd_mapping(
         A pandas DataFrame containing the mapping from PubChem to CTD data.
     """
     df = load_pubchem_to_ctd(output_dir)
-    df_mapping = df.groupby(PUBCHEM_CID)[CTD_CHEMICAL_ID].apply(
-        list).reset_index(name=CTD_CHEMICAL_ID)
+    df_mapping = (
+        df.groupby(PUBCHEM_CID)[CTD_CHEMICAL_ID]
+        .apply(list)
+        .reset_index(name=CTD_CHEMICAL_ID)
+    )
     if logger:
         logger.info(
-            f"Number of unique chemicals in PubChemToCTD: {df_mapping.shape[0]}")
+            f"Number of unique chemicals in PubChemToCTD: {df_mapping.shape[0]}"
+        )
     # drop where ChemicalID is not [NaN]
-    df_mapping = df_mapping[~df_mapping[CTD_CHEMICAL_ID].apply(
-        lambda x: x == [np.nan])].reset_index(drop=True)
+    df_mapping = df_mapping[
+        ~df_mapping[CTD_CHEMICAL_ID].apply(lambda x: x == [np.nan])
+    ].reset_index(drop=True)
     if logger:
         logger.info(
-            f"Number of unique chemicals in PubChemToCTD after dropping NaN: {df_mapping.shape[0]}")
+            f"Number of unique chemicals in PubChemToCTD after dropping NaN: {df_mapping.shape[0]}"
+        )
 
     return df_mapping
 
 
 def create_pmid_to_pmcid_mapping(
-        email: str,
-        tool: str,
-        output_dir: str = "./outputs",
-        logger: logging.Logger = None) -> pd.DataFrame:
+    email: str, tool: str, output_dir: str = "./outputs", logger: logging.Logger = None
+) -> pd.DataFrame:
     """
     Create a mapping from PMID to PMCID.
 
@@ -440,7 +454,7 @@ def create_pmid_to_pmcid_mapping(
     """
     file_path = os.path.join(output_dir, CTD_PUBMED_IDS_FILENAME)
     df = pd.read_csv(file_path, header=None)
-    df = df.dropna(how='all').reset_index(drop=True)
+    df = df.dropna(how="all").reset_index(drop=True)
     df.columns = [CTD_PUBMED_ID]
 
     middle_url = "?tool={}&email={}&ids=".format(tool, email)
@@ -455,7 +469,7 @@ def create_pmid_to_pmcid_mapping(
         if i + 200 > len(df):
             test_ids = df[CTD_PUBMED_ID].tolist()[i:]
         else:
-            test_ids = df[CTD_PUBMED_ID].tolist()[i:i+200]
+            test_ids = df[CTD_PUBMED_ID].tolist()[i : i + 200]
         test_ids_str = ",".join([str(id) for id in test_ids])
         url = PMID_PMCID_REQUEST_URL + middle_url + test_ids_str
         response = requests.get(url)
@@ -463,7 +477,8 @@ def create_pmid_to_pmcid_mapping(
         if status_code != 200:
             if logger:
                 logger.error(
-                    f"Error: Status code {status_code} for request with url {url}")
+                    f"Error: Status code {status_code} for request with url {url}"
+                )
         else:
             # if logger:
             #     logger.info(
@@ -472,8 +487,7 @@ def create_pmid_to_pmcid_mapping(
             records = soup.find_all("record")
             pmid_list = [record.get("pmid") for record in records]
             pmcid_list = [record.get("pmcid") for record in records]
-            pmid_pmcid_df = pd.DataFrame(
-                {PUBMED_IDS: pmid_list, PMCID: pmcid_list})
+            pmid_pmcid_df = pd.DataFrame({PUBMED_IDS: pmid_list, PMCID: pmcid_list})
             dfs.append(pmid_pmcid_df)
             # if logger:
             #     for i in range(len(pmid_list)):
@@ -481,13 +495,13 @@ def create_pmid_to_pmcid_mapping(
             #             f"PMCID for PubMedID {pmid_list[i]}: {pmcid_list[i]}")
     df_pmcid = pd.concat(dfs, ignore_index=True)
     df_pmcid = df_pmcid.sort_values(by=PUBMED_IDS).reset_index(drop=True)
-    df_pmcid.to_csv(os.path.join(output_dir, CTD_PUBMED_IDS_TO_PMCID_FILENAME),
-                    index=False)
+    df_pmcid.to_csv(
+        os.path.join(output_dir, CTD_PUBMED_IDS_TO_PMCID_FILENAME), index=False
+    )
     return df
 
 
-def load_pmid_to_pmcid_mapping(
-        output_dir: str = "./outputs") -> pd.DataFrame:
+def load_pmid_to_pmcid_mapping(output_dir: str = "./outputs") -> pd.DataFrame:
     """
     Load the mapping from PMID to PMCID data from the output directory.
 
@@ -500,13 +514,13 @@ def load_pmid_to_pmcid_mapping(
     file_path = os.path.join(output_dir, CTD_PUBMED_IDS_TO_PMCID_FILENAME)
     if not os.path.exists(file_path):
         raise FileNotFoundError(
-            f"File {file_path} does not exist. Please run make_pmid_to_pmcid first.")
+            f"File {file_path} does not exist. Please run make_pmid_to_pmcid first."
+        )
     df = pd.read_csv(file_path)
     # drop nan rows
-    df = df.dropna(how='all').reset_index(drop=True)
+    df = df.dropna(how="all").reset_index(drop=True)
     # only get number from pmcid
-    df[PMCID] = df[PMCID].apply(lambda x: x.split("PMC")[
-                                1] if pd.notnull(x) else x)
+    df[PMCID] = df[PMCID].apply(lambda x: x.split("PMC")[1] if pd.notnull(x) else x)
     # drop where PMCID is NaN
     df = df[~df[PMCID].isnull()].reset_index(drop=True)
     # change to integer
@@ -515,9 +529,7 @@ def load_pmid_to_pmcid_mapping(
     return df
 
 
-def load_oft_data(
-        data_dir: str = "./data",
-        type: str = "full") -> pd.DataFrame:
+def load_oft_data(data_dir: str = "./data", type: str = "full") -> pd.DataFrame:
     """
     Load the OpenFoodTox data from the data directory.
 
@@ -528,10 +540,7 @@ def load_oft_data(
     Returns:
         A pandas DataFrame containing the OpenFoodTox data.
     """
-    file_path_dict = {
-        "chemicals": OFT_CHEMICALS_FILENAME,
-        "tox": OFT_TOX_FILENAME
-    }
+    file_path_dict = {"chemicals": OFT_CHEMICALS_FILENAME, "tox": OFT_TOX_FILENAME}
     if "full" in type:
         df_chem = load_oft_data(data_dir, "chemicals")
         df_tox = load_oft_data(data_dir, "tox")
@@ -542,17 +551,16 @@ def load_oft_data(
         return df
     file_path = os.path.join(data_dir, file_path_dict[type])
     df = pd.read_excel(file_path)
-    df = df.map(lambda x: openpyxl.utils.escape.unescape(
-        x) if isinstance(x, str) else x)
+    df = df.map(
+        lambda x: openpyxl.utils.escape.unescape(x) if isinstance(x, str) else x
+    )
     # drop if all values are NaN
-    df = df.dropna(how='all').reset_index(drop=True)
+    df = df.dropna(how="all").reset_index(drop=True)
 
     return df
 
 
-def load_tvd_data(
-        data_dir: str = "./data",
-        type: str = "toxrefdb") -> pd.DataFrame:
+def load_tvd_data(data_dir: str = "./data", type: str = "toxrefdb") -> pd.DataFrame:
     """
     Load the ToxRefDB data from the data directory.
 
@@ -563,20 +571,18 @@ def load_tvd_data(
     Returns:
         A pandas DataFrame containing the ToxRefDB data.
     """
-    file_path_dict = {
-        "toxrefdb": TVD_TRF_FILENAME
-    }
+    file_path_dict = {"toxrefdb": TVD_TRF_FILENAME}
     file_path = os.path.join(data_dir, file_path_dict[type])
     df = pd.read_excel(file_path)
     # drop if all values are NaN
-    df = df.dropna(how='all').reset_index(drop=True)
+    df = df.dropna(how="all").reset_index(drop=True)
 
     return df
 
 
 def load_pubchem_to_cas(
-        output_dir: str = "./outputs",
-        logger: logging.Logger = None) -> pd.DataFrame:
+    output_dir: str = "./outputs", logger: logging.Logger = None
+) -> pd.DataFrame:
     """
     Load the PubChem to CAS data from the output directory.
 
@@ -590,23 +596,25 @@ def load_pubchem_to_cas(
     file_path = os.path.join(output_dir, PUBCHEM_TO_CAS_FILENAME)
     if not os.path.exists(file_path):
         raise FileNotFoundError(
-            f"File {file_path} does not exist. Please make sure to follow commented instructions in compare_factd_chem.")
-    df = pd.read_csv(file_path, sep='\t', header=None)
-    df = df.dropna(how='all').reset_index(drop=True)
+            f"File {file_path} does not exist. Please make sure to follow commented instructions in compare_factd_chem."
+        )
+    df = pd.read_csv(file_path, sep="\t", header=None)
+    df = df.dropna(how="all").reset_index(drop=True)
     df.columns = [PUBCHEM_CID, CAS_ID]
     # format CAS
     df = df.astype({CAS_ID: str})
     df[CAS_ID] = df[CAS_ID].apply(
-        lambda x: "-".join([x[:-3], x[-3:-1], x[-1]]) if x != "nan" else None)
+        lambda x: "-".join([x[:-3], x[-3:-1], x[-1]]) if x != "nan" else None
+    )
     # remove leading zeros from CAS
-    df[CAS_ID] = df[CAS_ID].replace(r'^0+', '', regex=True)
+    df[CAS_ID] = df[CAS_ID].replace(r"^0+", "", regex=True)
 
     return df
 
 
 def load_pubchem_to_cas_mapping(
-        output_dir: str = "./outputs",
-        logger: logging.Logger = None) -> pd.DataFrame:
+    output_dir: str = "./outputs", logger: logging.Logger = None
+) -> pd.DataFrame:
     """
     Load the mapping from PubChem to CAS data from the output directory.
 
@@ -618,16 +626,18 @@ def load_pubchem_to_cas_mapping(
         A pandas DataFrame containing the mapping from PubChem to CAS data.
     """
     df = load_pubchem_to_cas(output_dir, logger)
-    df_mapping = df.groupby(PUBCHEM_CID)[CAS_ID].apply(
-        list).reset_index(name=CAS_ID)
+    df_mapping = df.groupby(PUBCHEM_CID)[CAS_ID].apply(list).reset_index(name=CAS_ID)
     if logger:
         logger.info(
-            f"Number of unique chemicals in PubChemToCAS: {df_mapping.shape[0]}")
+            f"Number of unique chemicals in PubChemToCAS: {df_mapping.shape[0]}"
+        )
     # drop where CAS is not [None]
-    df_mapping = df_mapping[~df_mapping[CAS_ID].apply(
-        lambda x: x == [None])].reset_index(drop=True)
+    df_mapping = df_mapping[
+        ~df_mapping[CAS_ID].apply(lambda x: x == [None])
+    ].reset_index(drop=True)
     if logger:
         logger.info(
-            f"Number of unique chemicals in PubChemToCAS after dropping NaN: {df_mapping.shape[0]}")
+            f"Number of unique chemicals in PubChemToCAS after dropping NaN: {df_mapping.shape[0]}"
+        )
 
     return df_mapping
