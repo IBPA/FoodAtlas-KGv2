@@ -3,6 +3,8 @@ FoodAtlas is an open-source pipeline for building a high-quality knowledge graph
 
 FoodAtlas-KGv2 focuses on reproducible KG construction. It houses the transformation logic, data preparation scripts, and post-processing utilities that back the hosted demo, enabling other researchers to rebuild, audit, or extend the KG.
 
+![](./assets/FoodAtlas-KGv2.png)
+
 ## Directories
 - [`data`](./data): Source datasets and ontologies used to seed the KG. Run `./data/download.sh` to retrieve the public portions; some folders act as placeholders for restricted datasets you must supply separately.
 - [`food_atlas`](./food_atlas): Python package containing the KG data model, preprocessing utilities, ontology loaders, and post-processing jobs (`kg/`, `data_processing/`, `utils/`, `hotfixes/`, `additional_analysis/`).
