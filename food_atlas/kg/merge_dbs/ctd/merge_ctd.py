@@ -1,28 +1,26 @@
-from ast import literal_eval
 import re
+from ast import literal_eval
 
 import pandas as pd
 
+from .create_factd_data import create_disease_entities, get_max_fa_id
 from .utils.data import (
-    load_ctd_data,
-    load_pmid_to_pmcid_mapping,
     CTD_DIRECTEVIDENCE,
     CTD_DIRECTEVIDENCE_MAPPING,
     CTD_PUBMED_IDS,
     FA_ID,
-    PUBMED_IDS,
     PMCID,
-)
-from .create_factd_data import (
-    create_disease_entities, get_max_fa_id
+    PUBMED_IDS,
+    load_ctd_data,
+    load_pmid_to_pmcid_mapping,
 )
 
 
 def create_disease_triplets_metadata(
-        fa_triplets: pd.DataFrame,
-        ctd_chemdis: pd.DataFrame,
-        fa_entities: pd.DataFrame,
-        fa_max_triplet_id: int,
+    fa_triplets: pd.DataFrame,
+    ctd_chemdis: pd.DataFrame,
+    fa_entities: pd.DataFrame,
+    fa_max_triplet_id: int,
 ) -> tuple:
     """TODO.
     Create disease triplets and metadata in FoodAtlas.
@@ -47,7 +45,7 @@ def create_disease_triplets_metadata(
     fa_entities_chemicals = fa_entities.query("entity_type == 'chemical'")
     ctd2fa_chem = {}
     for _, row in fa_entities_chemicals.iterrows():
-        for mesh_id in row['external_ids'].get('mesh', []):
+        for mesh_id in row["external_ids"].get("mesh", []):
             if mesh_id not in ctd2fa_chem:
                 ctd2fa_chem[mesh_id] = []
             ctd2fa_chem[mesh_id] += [row[FA_ID]]
@@ -56,21 +54,21 @@ def create_disease_triplets_metadata(
     ctd2fa_disease = {}
     for _, row in fa_entities_diseases.iterrows():
         # MeSH and OMIM are enough to uniquely identify disease entities.
-        if 'mesh' in row['external_ids']:
-            for mesh_id in row['external_ids']['mesh']:
+        if "mesh" in row["external_ids"]:
+            for mesh_id in row["external_ids"]["mesh"]:
                 if f"MESH:{mesh_id}" in ctd2fa_disease:
                     raise ValueError(f"mesh_id {mesh_id} already in ctd2fa_disease")
                 ctd2fa_disease[f"MESH:{mesh_id}"] = [row[FA_ID]]
-        elif 'omim' in row['external_ids']:
-            for omim_id in row['external_ids']['omim']:
+        elif "omim" in row["external_ids"]:
+            for omim_id in row["external_ids"]["omim"]:
                 if f"OMIM:{omim_id}" in ctd2fa_disease:
                     raise ValueError(f"omim_id {omim_id} already in ctd2fa_disease")
                 ctd2fa_disease[f"OMIM:{omim_id}"] = [row[FA_ID]]
 
-    ctd_chemdis['head_id'] = ctd_chemdis['ChemicalID'].apply(
+    ctd_chemdis["head_id"] = ctd_chemdis["ChemicalID"].apply(
         lambda x: ctd2fa_chem.get(x, [])
     )
-    ctd_chemdis['tail_id'] = ctd_chemdis['DiseaseID'].apply(
+    ctd_chemdis["tail_id"] = ctd_chemdis["DiseaseID"].apply(
         lambda x: ctd2fa_disease.get(x, [])
     )
     print(f"# rows with matching IDs: {len(ctd_chemdis)}")
@@ -99,14 +97,15 @@ def create_disease_triplets_metadata(
     # ctd_chemdis["head_id"] = ctd_chemdis.apply(
     #     lambda x: x["head_id"] if pd.notnull(x["head_id"]) else x["head_id_name"], axis=1)
 
-    ctd_chemdis = ctd_chemdis.explode('head_id').explode('tail_id')
+    ctd_chemdis = ctd_chemdis.explode("head_id").explode("tail_id")
     print(f"# triplets: {len(ctd_chemdis)}")
     # ctd_chemdis["head_id"] = ctd_chemdis["head_id"].combine_first(
     #     ctd_chemdis["head_id_name"])
     # # ctd_chemdis["head_id"] = ctd_chemdis["head_id_name"].combine_first(
     # #     ctd_chemdis["head_id"])
     ctd_chemdis["relationship_id"] = ctd_chemdis[CTD_DIRECTEVIDENCE].apply(
-        lambda x: CTD_DIRECTEVIDENCE_MAPPING[x])
+        lambda x: CTD_DIRECTEVIDENCE_MAPPING[x]
+    )
     # ctd_chemdis["tail_id"] = ctd_chemdis[CTD_DISEASE_ID].apply(
     #     lambda x: mesh_ids_to_fa_id_diseases[x])
     # if logger:
@@ -131,7 +130,8 @@ def create_disease_triplets_metadata(
     print(f"# metadata rows: {len(ctd_chemdis)}")
 
     ctd_chemdis["metadata_ids"] = ctd_chemdis.apply(
-        lambda x: [f"md{x.name + 1}"], axis=1)
+        lambda x: [f"md{x.name + 1}"], axis=1
+    )
 
     # create metadata for triplets
     ctd_chemdis_metadata = pd.DataFrame()
@@ -144,26 +144,37 @@ def create_disease_triplets_metadata(
     # pubmed_to_pmcid = {key: [re.search(r'\d+', value).group() if pd.notnull(value) else None]
     #                    for key, value in pubmed_to_pmcid.items()}
     ctd_chemdis_metadata["reference"] = ctd_chemdis[CTD_PUBMED_IDS].apply(
-        lambda x: {PUBMED_IDS: x, PMCID: pubmed_to_pmcid[x] if x in pubmed_to_pmcid else None})
+        lambda x: {
+            PUBMED_IDS: x,
+            PMCID: pubmed_to_pmcid[x] if x in pubmed_to_pmcid else None,
+        }
+    )
     # remove keys in reference that are None
     ctd_chemdis_metadata["reference"] = ctd_chemdis_metadata["reference"].apply(
-        lambda x: {key: value for key, value in x.items() if value is not None})
-    ctd_chemdis_metadata['entity_linking_method'] = 'id_matching'
-    ctd_chemdis_metadata['_chemical_name'] = ctd_chemdis['ChemicalID'].apply(
+        lambda x: {key: value for key, value in x.items() if value is not None}
+    )
+    ctd_chemdis_metadata["entity_linking_method"] = "id_matching"
+    ctd_chemdis_metadata["_chemical_name"] = ctd_chemdis["ChemicalID"].apply(
         lambda x: f"MESH:{x}"
     )
-    ctd_chemdis_metadata['_disease_name'] = ctd_chemdis['DiseaseID']
+    ctd_chemdis_metadata["_disease_name"] = ctd_chemdis["DiseaseID"]
 
     # combine unique triplets and combine metadata id list
-    ctd_chemdis = ctd_chemdis.groupby(["head_id", "relationship_id", "tail_id"]).agg(
-        metadata_ids=("metadata_ids", lambda x: sum(x, []))).reset_index()
+    ctd_chemdis = (
+        ctd_chemdis.groupby(["head_id", "relationship_id", "tail_id"])
+        .agg(metadata_ids=("metadata_ids", lambda x: sum(x, [])))
+        .reset_index()
+    )
     # sort by lowest value of int within list of strings in metadata_ids
     ctd_chemdis["metadata_ids_min"] = ctd_chemdis["metadata_ids"].apply(
-        lambda x: min([int(re.search(r'\d+', i).group()) for i in x]))
-    ctd_chemdis = ctd_chemdis.sort_values(
-        by=["metadata_ids_min"]).reset_index(drop=True)
+        lambda x: min([int(re.search(r"\d+", i).group()) for i in x])
+    )
+    ctd_chemdis = ctd_chemdis.sort_values(by=["metadata_ids_min"]).reset_index(
+        drop=True
+    )
     ctd_chemdis[FA_ID] = ctd_chemdis.apply(
-        lambda x: f"t{fa_max_triplet_id + x.name + 1}", axis=1)
+        lambda x: f"t{fa_max_triplet_id + x.name + 1}", axis=1
+    )
     # if logger:
     #     # should be equal to number of unique triplets
     #     # logger.info(
@@ -177,25 +188,24 @@ def create_disease_triplets_metadata(
     #     logger.info(
     #         f"ctd_chemdis metadata_ids_len: {ctd_chemdis['metadata_ids_len'].value_counts()}")
     # add triplets and metadata to fa_triplets and fa_metadata
-    fa_triplets = pd.concat([fa_triplets, ctd_chemdis],
-                            join="inner", ignore_index=True)
+    fa_triplets = pd.concat([fa_triplets, ctd_chemdis], join="inner", ignore_index=True)
 
     return fa_triplets, ctd_chemdis_metadata
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Prepare FoodAtlas entities.
-    fa_entities = pd.read_csv("outputs/kg/entities.tsv", sep='\t')
-    fa_entities['external_ids'] = fa_entities['external_ids'].apply(
+    fa_entities = pd.read_csv("outputs/kg/entities.tsv", sep="\t")
+    fa_entities["external_ids"] = fa_entities["external_ids"].apply(
         lambda x: literal_eval(x) if pd.notnull(x) else {}
     )
     # Prepare CTD data.
-    ctd_diseases = load_ctd_data(data_dir="data/CTD", type='disease')
+    ctd_diseases = load_ctd_data(data_dir="data/CTD", type="disease")
     ctd_chemdis = pd.read_csv(
         "outputs/data_processing/ctd_chemdis_cleaned.tsv",
-        sep='\t',
+        sep="\t",
         converters={
-            'PubMedIDs': literal_eval,
+            "PubMedIDs": literal_eval,
         },
     )
 
@@ -210,11 +220,11 @@ if __name__ == '__main__':
     # update triplets and create new metadata
     fa_triplets = pd.read_csv(
         "outputs/kg/triplets.tsv",
-        sep='\t',
+        sep="\t",
     )
     fa_chem_lookup = pd.read_csv(
         "outputs/kg/lookup_table_chemical.tsv",
-        sep='\t',
+        sep="\t",
     )
     fa_max_triplet_id = get_max_fa_id(fa_triplets)
     fa_triplets, fa_metadata = create_disease_triplets_metadata(
@@ -223,16 +233,16 @@ if __name__ == '__main__':
 
     fa_entities.to_csv(
         "outputs/kg/entities.tsv",
-        sep='\t',
+        sep="\t",
         index=False,
     )
     fa_triplets.to_csv(
         "outputs/kg/triplets.tsv",
-        sep='\t',
+        sep="\t",
         index=False,
     )
     fa_metadata.to_csv(
         "outputs/kg/metadata_diseases.tsv",
-        sep='\t',
+        sep="\t",
         index=False,
     )

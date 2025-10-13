@@ -6,6 +6,7 @@ Authors:
     Fangzhou Li - fzli@ucdavis.edu
 
 """
+
 from tqdm import tqdm
 
 
@@ -19,6 +20,7 @@ def merge_sets(sets: list[list[str]]) -> list[str]:
         list[str]: The merged set.
 
     """
+
     def get_islands(graph: dict[int, set[int]]) -> list[set[int]]:
         """Apply DFS to get the islands, i.e., connected nodes, in the graph.
 

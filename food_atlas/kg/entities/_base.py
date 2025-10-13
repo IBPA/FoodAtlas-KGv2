@@ -4,8 +4,8 @@ from collections import OrderedDict
 
 import pandas as pd
 
-from ._food import create_food_entities
 from ._chemical import create_chemical_entities
+from ._food import create_food_entities
 
 logger = logging.getLogger(__name__)
 
@@ -24,16 +24,17 @@ class Entities:
         path_cache_dir (str): Path to the cache directory.
 
     """
+
     COLUMNS = [
-        'foodatlas_id',
-        'entity_type',
-        'common_name',
-        'scientific_name',
-        'synonyms',
-        'external_ids',
-        '_synonyms_display',
+        "foodatlas_id",
+        "entity_type",
+        "common_name",
+        "scientific_name",
+        "synonyms",
+        "external_ids",
+        "_synonyms_display",
     ]
-    FAID_PREFIX = 'e'
+    FAID_PREFIX = "e"
 
     def __init__(
         self,
@@ -52,32 +53,30 @@ class Entities:
         self._load()
 
     def _load(self):
-        """Helper for loading.
-
-        """
+        """Helper for loading."""
         # Load entities.
         self._entities = pd.read_csv(
             self.path_entities,
-            sep='\t',
+            sep="\t",
             converters={
-                'synonyms': literal_eval,
-                'external_ids': literal_eval,
-                '_synonyms_display': literal_eval,
+                "synonyms": literal_eval,
+                "external_ids": literal_eval,
+                "_synonyms_display": literal_eval,
             },
-        ).set_index('foodatlas_id')
+        ).set_index("foodatlas_id")
 
         # Load lookup tables.
         luts = []
         for path_lut in [self.path_lut_food, self.path_lut_chemical]:
             lut_df = pd.read_csv(
                 path_lut,
-                sep='\t',
+                sep="\t",
                 converters={
-                    'foodatlas_id': lambda x: literal_eval(x),
-                    'name': str,
+                    "foodatlas_id": lambda x: literal_eval(x),
+                    "name": str,
                 },
             )
-            lut = dict(zip(lut_df['name'], lut_df['foodatlas_id']))
+            lut = dict(zip(lut_df["name"], lut_df["foodatlas_id"], strict=False))
             luts += [lut]
 
         self._lut_food = luts[0]
@@ -98,18 +97,15 @@ class Entities:
 
         """
         self._entities.to_csv(
-            f"{path_output_dir}/entities.tsv", sep='\t',
+            f"{path_output_dir}/entities.tsv",
+            sep="\t",
+        )
+        pd.DataFrame(self._lut_food.items(), columns=["name", "foodatlas_id"]).to_csv(
+            f"{path_output_dir}/lookup_table_food.tsv", sep="\t", index=False
         )
         pd.DataFrame(
-            self._lut_food.items(), columns=['name', 'foodatlas_id']
-        ).to_csv(
-            f"{path_output_dir}/lookup_table_food.tsv", sep='\t', index=False
-        )
-        pd.DataFrame(
-            self._lut_chemical.items(), columns=['name', 'foodatlas_id']
-        ).to_csv(
-            f"{path_output_dir}/lookup_table_chemical.tsv", sep='\t', index=False
-        )
+            self._lut_chemical.items(), columns=["name", "foodatlas_id"]
+        ).to_csv(f"{path_output_dir}/lookup_table_chemical.tsv", sep="\t", index=False)
 
     def _update_entity_synonyms(
         self,
@@ -125,7 +121,7 @@ class Entities:
 
         """
         entity = self.get_entity(entity_id)
-        synonyms = OrderedDict.fromkeys(entity['synonyms'])
+        synonyms = OrderedDict.fromkeys(entity["synonyms"])
         updated = False
         for synonym in synonyms_new:
             if synonym not in synonyms:
@@ -138,7 +134,7 @@ class Entities:
                 updated = True
 
         if updated:
-            self._entities.at[entity_id, 'synonyms'] = list(synonyms.keys())
+            self._entities.at[entity_id, "synonyms"] = list(synonyms.keys())
             self._update_lut(self._entities.loc[[entity_id]])
 
     def _update_lut(
@@ -151,16 +147,17 @@ class Entities:
             entities (pd.DataFrame): Entities to be updated.
 
         """
+
         def _add_to_lut(row):
-            if row['entity_type'] == 'food':
+            if row["entity_type"] == "food":
                 lut = self._lut_food
-            elif row['entity_type'] == 'chemical':
+            elif row["entity_type"] == "chemical":
                 lut = self._lut_chemical
             else:
                 raise ValueError(f"Invalid entity type: {row['entity_type']}")
 
             # Add synonyms to the lookup table.
-            for synonym in row['synonyms']:
+            for synonym in row["synonyms"]:
                 if synonym not in lut:
                     lut[synonym] = []
                 lut[synonym] += [row.name] if row.name not in lut[synonym] else []
@@ -179,9 +176,9 @@ class Entities:
             entity_names_new (list[str]): Names of the entities.
 
         """
-        if entity_type == 'food':
+        if entity_type == "food":
             create_food_entities(self, entity_names_new)
-        elif entity_type == 'chemical':
+        elif entity_type == "chemical":
             create_chemical_entities(self, entity_names_new)
         else:
             raise ValueError(f"Invalid entity type: {entity_type}.")
@@ -201,12 +198,12 @@ class Entities:
             list[str]: List of FAIDs.
 
         """
-        if entity_type == 'food':
+        if entity_type == "food":
             lut = self._lut_food
-        elif entity_type == 'chemical':
+        elif entity_type == "chemical":
             lut = self._lut_chemical
         else:
-            raise ValueError(f'Invalid entity_type: {entity_type}')
+            raise ValueError(f"Invalid entity_type: {entity_type}")
 
         return lut[entity_name] if entity_name in lut else []
 

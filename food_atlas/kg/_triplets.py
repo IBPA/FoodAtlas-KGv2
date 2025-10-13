@@ -7,6 +7,7 @@ Authors:
     Fangzhou Li - fzli@ucdavis.edu
 
 """
+
 from ast import literal_eval
 
 import pandas as pd
@@ -23,14 +24,15 @@ class Triplets:
         FAID_PREFIX (str): Prefix for the foodatlas_id.
 
     """
+
     COLUMNS = [
-        'foodatlas_id',
-        'head_id',
-        'relationship_id',
-        'tail_id',
-        'metadata_ids',
+        "foodatlas_id",
+        "head_id",
+        "relationship_id",
+        "tail_id",
+        "metadata_ids",
     ]
-    FAID_PREFIX = 't'
+    FAID_PREFIX = "t"
 
     def __init__(
         self,
@@ -41,14 +43,12 @@ class Triplets:
         self._load()
 
     def _load(self):
-        """Helper for loading the triplets.
-
-        """
+        """Helper for loading the triplets."""
         self._triplets = pd.read_csv(
             self.path_triplets,
-            sep='\t',
-            converters={'metadata_ids': literal_eval},
-        ).set_index('foodatlas_id')
+            sep="\t",
+            converters={"metadata_ids": literal_eval},
+        ).set_index("foodatlas_id")
 
         # Record the current maximum foodatlas_id.
         tid = self._triplets.index.str.slice(1).astype(int).max()
@@ -57,10 +57,13 @@ class Triplets:
         # Create a hash table for existing triplets.
         self._ht_t2m = {}
         self._triplets.apply(
-            lambda row: self._ht_t2m.update({
-                f"{row['head_id']}_{row['relationship_id']}_{row['tail_id']}":
-                    row['metadata_ids']
-            }),
+            lambda row: self._ht_t2m.update(
+                {
+                    f"{row['head_id']}_{row['relationship_id']}_{row['tail_id']}": row[
+                        "metadata_ids"
+                    ]
+                }
+            ),
             axis=1,
         )
 
@@ -73,7 +76,7 @@ class Triplets:
         """
         self._triplets.to_csv(
             f"{path_output_dir}/triplets.tsv",
-            sep='\t',
+            sep="\t",
         )
 
     # def get(
@@ -113,37 +116,41 @@ class Triplets:
             pd.Series: Added triplets.
 
         """
-        head_ids = metadata['head_id'].tolist()
-        relationship_ids = metadata['relationship_id'].tolist()
-        tail_ids = metadata['tail_id'].tolist()
+        head_ids = metadata["head_id"].tolist()
+        relationship_ids = metadata["relationship_id"].tolist()
+        tail_ids = metadata["tail_id"].tolist()
         metadata_ids = metadata.index.tolist()
 
         triplets_new_rows = []
         for head_id, relationship_id, tail_id, metadata_id in zip(
-            head_ids, relationship_ids, tail_ids, metadata_ids
+            head_ids, relationship_ids, tail_ids, metadata_ids, strict=False
         ):
             if f"{head_id}_{relationship_id}_{tail_id}" in self._ht_t2m:
                 self._ht_t2m[f"{head_id}_{relationship_id}_{tail_id}"] += [metadata_id]
                 continue
-            triplets_new_rows += [{
-                'foodatlas_id': f"{self.FAID_PREFIX}{self._curr_tid}",
-                'head_id': head_id,
-                'relationship_id': relationship_id,
-                'tail_id': tail_id,
-                'metadata_ids': None,
-            }]
+            triplets_new_rows += [
+                {
+                    "foodatlas_id": f"{self.FAID_PREFIX}{self._curr_tid}",
+                    "head_id": head_id,
+                    "relationship_id": relationship_id,
+                    "tail_id": tail_id,
+                    "metadata_ids": None,
+                }
+            ]
             self._curr_tid += 1
             self._ht_t2m[f"{head_id}_{relationship_id}_{tail_id}"] = [metadata_id]
 
-        triplets_new = pd.DataFrame(triplets_new_rows).set_index('foodatlas_id')
+        triplets_new = pd.DataFrame(triplets_new_rows).set_index("foodatlas_id")
 
-        self._triplets = pd.concat(
-            [self._triplets, triplets_new]
-        )
-        self._triplets['metadata_ids'] = self._triplets.apply(
-            lambda row: list(set(self._ht_t2m[
-                f"{row['head_id']}_{row['relationship_id']}_{row['tail_id']}"
-            ])),
+        self._triplets = pd.concat([self._triplets, triplets_new])
+        self._triplets["metadata_ids"] = self._triplets.apply(
+            lambda row: list(
+                set(
+                    self._ht_t2m[
+                        f"{row['head_id']}_{row['relationship_id']}_{row['tail_id']}"
+                    ]
+                )
+            ),
             axis=1,
         )
 
@@ -168,5 +175,5 @@ class Triplets:
 
         """
         return self._triplets[
-            self._triplets['relationship_id'] == relationship_id
+            self._triplets["relationship_id"] == relationship_id
         ].copy()

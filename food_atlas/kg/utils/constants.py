@@ -1,10 +1,8 @@
 ID_PREFIX_MAPPER = {
-    'foodon_id': 'FOODON_ID',
-    'pubchem_cid': 'PubChem_Compound_ID',
-    'fdc_nutrient_ids': 'FDC_Nutrient_ID',
-    'fdc_ids': 'FDC_ID',
-    # 'ncbi_taxon_id': 'NCBI_Taxonomy_ID',
-    # 'foodb_ids': 'FooDB_Food_ID',
+    "foodon_id": "FOODON_ID",
+    "pubchem_cid": "PubChem_Compound_ID",
+    "fdc_nutrient_ids": "FDC_Nutrient_ID",
+    "fdc_ids": "FDC_ID",
 }
 
 
