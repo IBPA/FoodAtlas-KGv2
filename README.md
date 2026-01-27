@@ -105,11 +105,12 @@ Questions, bug reports, and collaboration ideas are welcome at Fangzhou Li (`fzl
 ## Citation
 If you use FoodAtlas or build upon the KG in your research, please cite:
 ```bibtex
-@article{li2025foodatlas,
-  title={A Unified Knowledge Graph Integrating Foodomics, Chemical-Disease Networks, and Flavor Profiles},
+@article{li2026unified,
+  title={A unified knowledge graph linking foodomics to chemical-disease networks and flavor profiles},
   author={Li, Fangzhou and Youn, Jason and Xie, Kaichi and Chan, Trevor and Gupta, Pranav and Yoo, Arielle and Gunning, Michael and Ni, Keer and Tagkopoulos, Ilias},
-  journal={Under revision},
-  year={2025},
+  journal={npj Science of Food},
+  year={2026},
+  publisher={Nature Publishing Group UK London}
 }
 
 @article{youn2024foodatlas,
