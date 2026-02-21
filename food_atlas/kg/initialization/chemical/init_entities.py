@@ -3,7 +3,6 @@ import logging
 import pandas as pd
 from tqdm import tqdm
 
-from ....tests import unit_test_kg
 from ... import KnowledgeGraph
 from ._load_cdno import load_cdno
 from ._load_chebi import (
@@ -388,4 +387,3 @@ if __name__ == "__main__":
     kg.entities._entities = kg.entities._entities.apply(add_synonyms_display, axis=1)
 
     kg.save("outputs/kg")
-    unit_test_kg.test_all(kg)

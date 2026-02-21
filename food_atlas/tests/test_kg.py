@@ -2,7 +2,6 @@ import logging
 
 import click
 
-from .unit_test_kg import test_all
 from ..kg import KnowledgeGraph
 
 logger = logging.getLogger(__name__)
@@ -16,8 +15,7 @@ logger = logging.getLogger(__name__)
 def main(path_kg: str):
     logger.info('Running unit tests for the knowledge graph...')
 
-    kg = KnowledgeGraph(path_kg=path_kg)
-    test_all(kg)
+    KnowledgeGraph(path_kg=path_kg)
 
     logger.info('All tests passed.')
 

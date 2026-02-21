@@ -22,6 +22,7 @@ filelock==3.13.1
 fonttools==4.49.0
 frozenlist==1.4.0
 fsspec==2023.10.0
+fuzzywuzzy==0.18.0
 huggingface-hub==0.19.4
 idna==3.4
 inflect==7.0.0
@@ -86,5 +87,6 @@ triton==2.1.0
 typing_extensions==4.8.0
 tzdata==2023.3
 urllib3==2.1.0
+xmltodict==1.0.3
 xxhash==3.4.1
 yarl==1.9.2

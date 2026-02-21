@@ -43,6 +43,19 @@ cd ..
 ```
 Review `data/README.md` for notes on additional data sources that cannot be redistributed and must be added manually.
 
+### Configure API keys and paths
+
+Create a `food_atlas/kg/api_key.txt` file containing your NCBI API key. It should look like:
+```
+your@email.com
+your_ncbi_api_key
+```
+
+### Run the data processing pipeline
+```
+./scripts/00_run_data_processing.sh
+```
+
 ### Prepare the base knowledge graph files
 Initialise the KG workspace (lookup tables, seed entities, and merged reference data) with:
 ```console
