@@ -7,9 +7,10 @@ Authors:
     Fangzhou Li - fzli@ucdavis.edu
 
 """
+
 import pandas as pd
-from pandarallel import pandarallel
 from owlready2 import get_ontology
+from pandarallel import pandarallel
 from tqdm import tqdm
 
 tqdm.pandas()
@@ -26,50 +27,51 @@ def _clean(foodon_synonyms: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: The cleaned FoodOn synonyms.
 
     """
+
     def _remove_brackets(x):
         if pd.isna(x):
             return x
-        if x.startswith('<') and x.endswith('>'):
+        if x.startswith("<") and x.endswith(">"):
             return x[1:-1]
         else:
             return x
 
     def _remove_suffix(x):
-        if '@' in x:
-            return x.split('@')[0]
-        if '^^' in x:
-            return x.split('^^')[0]
+        if "@" in x:
+            return x.split("@")[0]
+        if "^^" in x:
+            return x.split("^^")[0]
         return x
 
     def _parse_entity(group):
-        parents = group['?parent'].dropna().tolist()
+        parents = group["?parent"].dropna().tolist()
         synonyms = {
-            'label': [],
-            'label (alternative)': [],
-            'synonym (exact)': [],
-            'synonym': [],
-            'synonym (narrow)': [],
-            'synonym (broad)': [],
-            'taxon': [],
+            "label": [],
+            "label (alternative)": [],
+            "synonym (exact)": [],
+            "synonym": [],
+            "synonym (narrow)": [],
+            "synonym (broad)": [],
+            "taxon": [],
         }
-        group.dropna(subset=['?type']).apply(
-            lambda row: synonyms[row['?type']].append(_remove_suffix(row['?label'])),
+        group.dropna(subset=["?type"]).apply(
+            lambda row: synonyms[row["?type"]].append(_remove_suffix(row["?label"])),
             axis=1,
         )
 
         row = {
-            'parents': parents,
-            'synonyms': synonyms,
+            "parents": parents,
+            "synonyms": synonyms,
         }
 
         return row
 
-    foodon_synonyms['?class'] = foodon_synonyms['?class'].apply(_remove_brackets)
-    foodon_synonyms['?parent'] = foodon_synonyms['?parent'].apply(_remove_brackets)
-    entities = foodon_synonyms.groupby("?class").parallel_apply(
-        _parse_entity
-    ).apply(pd.Series)
-    entities.index.name = 'foodon_id'
+    foodon_synonyms["?class"] = foodon_synonyms["?class"].apply(_remove_brackets)
+    foodon_synonyms["?parent"] = foodon_synonyms["?parent"].apply(_remove_brackets)
+    entities = (
+        foodon_synonyms.groupby("?class").parallel_apply(_parse_entity).apply(pd.Series)
+    )
+    entities.index.name = "foodon_id"
 
     return entities
 
@@ -84,8 +86,8 @@ def _label_is_food(foodon: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: The FoodOn entries with the `is_food` label.
 
     """
-    root = 'http://www.w3.org/2002/07/owl#Thing'
-    food = 'http://purl.obolibrary.org/obo/FOODON_00002381'  # food by organism
+    root = "http://www.w3.org/2002/07/owl#Thing"
+    food = "http://purl.obolibrary.org/obo/FOODON_00002381"  # food by organism
     visited = {}
     visited[food] = True
 
@@ -106,7 +108,7 @@ def _label_is_food(foodon: pd.DataFrame) -> pd.DataFrame:
                 return True
             else:
                 results = []
-                for parent in foodon.loc[foodon_id, 'parents']:
+                for parent in foodon.loc[foodon_id, "parents"]:
                     results += [dfs(parent)]
 
                 if any(results):
@@ -119,7 +121,7 @@ def _label_is_food(foodon: pd.DataFrame) -> pd.DataFrame:
         dfs(row.name)
 
     foodon.progress_apply(_is_food, axis=1)
-    foodon['is_food'] = foodon.index.map(visited)
+    foodon["is_food"] = foodon.index.map(visited)
 
     return foodon
 
@@ -134,8 +136,8 @@ def _label_is_organism(foodon: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: The FoodOn entries with the `is_organism` label.
 
     """
-    root = 'http://www.w3.org/2002/07/owl#Thing'
-    organism = 'http://purl.obolibrary.org/obo/OBI_0100026'
+    root = "http://www.w3.org/2002/07/owl#Thing"
+    organism = "http://purl.obolibrary.org/obo/OBI_0100026"
 
     visited = {}
     visited[organism] = True
@@ -157,7 +159,7 @@ def _label_is_organism(foodon: pd.DataFrame) -> pd.DataFrame:
                 return True
             else:
                 results = []
-                for parent in foodon.loc[foodon_id, 'parents']:
+                for parent in foodon.loc[foodon_id, "parents"]:
                     results += [dfs(parent)]
 
                 if any(results):
@@ -170,7 +172,7 @@ def _label_is_organism(foodon: pd.DataFrame) -> pd.DataFrame:
         dfs(row.name)
 
     foodon.progress_apply(_is_organism, axis=1)
-    foodon['is_organism'] = foodon.index.map(visited)
+    foodon["is_organism"] = foodon.index.map(visited)
 
     return foodon
 
@@ -185,50 +187,50 @@ def _append_additional_relationships(foodon: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: The FoodOn entries with additional relationships.
 
     """
-    def _parse_derives_from_relationship(row):
 
+    def _parse_derives_from_relationship(row):
         def _rename_foodon_id(foodon_id: str):
             # "obo.NCBITaxon_7460" => "<http://purl.obolibrary.org/obo/NCBITaxon_7460>"
-            if foodon_id.startswith('obo.'):
+            if foodon_id.startswith("obo."):
                 return f"http://purl.obolibrary.org/obo/{foodon_id[4:]}"
             else:
                 raise ValueError(f"Unknown foodon_id: {foodon_id}")
 
         result = {
-            'derives_from': [],
-            'in_taxon': [],
+            "derives_from": [],
+            "in_taxon": [],
         }
 
-        foodon_id = row.name.split('/')[-1]
+        foodon_id = row.name.split("/")[-1]
         entity = obo[str(foodon_id)]
         relationships = entity.is_a
 
         for relationship in relationships:
-            if not hasattr(relationship, 'property'):
+            if not hasattr(relationship, "property"):
                 continue
 
-            if relationship.property in [obo['RO_0001000'], obo['RO_0002162']]:
+            if relationship.property in [obo["RO_0001000"], obo["RO_0002162"]]:
                 property_ = relationship.property
                 relationships_ = [str(relationship.value)]
 
-                if ' | ' in relationships_[0]:
-                    relationships_ = relationships_[0].split(' | ')
+                if " | " in relationships_[0]:
+                    relationships_ = relationships_[0].split(" | ")
 
-                if ' ' in str(relationship.value):
+                if " " in str(relationship.value):
                     continue
 
                 relationships_ = list(map(_rename_foodon_id, relationships_))
-                if property_ == obo['RO_0001000']:
-                    result['derives_from'] += relationships_
-                elif property_ == obo['RO_0002162']:
-                    result['in_taxon'] += relationships_
+                if property_ == obo["RO_0001000"]:
+                    result["derives_from"] += relationships_
+                elif property_ == obo["RO_0002162"]:
+                    result["in_taxon"] += relationships_
 
         return result
 
     onto = get_ontology("data/FoodOn/foodon.owl").load()
     obo = onto.get_namespace("http://purl.obolibrary.org/obo/")
 
-    foodon[['derives_from', 'in_taxon']] = foodon.progress_apply(
+    foodon[["derives_from", "in_taxon"]] = foodon.progress_apply(
         _parse_derives_from_relationship,
         axis=1,
     ).apply(pd.Series)
@@ -237,10 +239,10 @@ def _append_additional_relationships(foodon: pd.DataFrame) -> pd.DataFrame:
     def _traverse_derives_from_relationship(row):
         nonlocal derives
 
-        if not row['is_food']:
+        if not row["is_food"]:
             return
 
-        derives_from = row['derives_from']
+        derives_from = row["derives_from"]
         for e in derives_from:
             if e not in derives:
                 derives[e] = []
@@ -248,7 +250,7 @@ def _append_additional_relationships(foodon: pd.DataFrame) -> pd.DataFrame:
 
     derives = {}
     foodon.progress_apply(_traverse_derives_from_relationship, axis=1)
-    foodon['derives'] = foodon.index.map(
+    foodon["derives"] = foodon.index.map(
         lambda x: derives.get(x, []),
     )
 
@@ -256,10 +258,10 @@ def _append_additional_relationships(foodon: pd.DataFrame) -> pd.DataFrame:
     def _traverse_in_taxon_relationship(row):
         nonlocal has_part
 
-        if not row['is_food']:
+        if not row["is_food"]:
             return
 
-        in_taxon = row['in_taxon']
+        in_taxon = row["in_taxon"]
         for e in in_taxon:
             if e not in has_part:
                 has_part[e] = []
@@ -267,21 +269,21 @@ def _append_additional_relationships(foodon: pd.DataFrame) -> pd.DataFrame:
 
     has_part = {}
     foodon.progress_apply(_traverse_in_taxon_relationship, axis=1)
-    foodon['has_part'] = foodon.index.map(
+    foodon["has_part"] = foodon.index.map(
         lambda x: has_part.get(x, []),
     )
 
     return foodon
 
 
-if __name__ == '__main__':
-    foodon_synonyms = pd.read_csv("data/FoodOn/foodon-synonyms.tsv", sep='\t')
+if __name__ == "__main__":
+    foodon_synonyms = pd.read_csv("data/FoodOn/foodon-synonyms.tsv", sep="\t")
     foodon = _clean(foodon_synonyms)
     foodon = _label_is_food(foodon)
     foodon = _label_is_organism(foodon)
-    foodon = foodon[foodon['is_food'] | foodon['is_organism']]
+    foodon = foodon[foodon["is_food"] | foodon["is_organism"]]
     foodon = _append_additional_relationships(foodon)
     foodon.to_csv(
-        "outputs/data_processing/foodon_cleaned_2.tsv",
-        sep='\t',
+        "outputs/data_processing/foodon_cleaned.tsv",
+        sep="\t",
     )

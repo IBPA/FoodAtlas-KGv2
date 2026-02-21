@@ -7,22 +7,17 @@ Authors:
     Fangzhou Li - fzli@ucdavis.edu
 
 """
-import pandas as pd
+
 import click
+import pandas as pd
 
 from . import KnowledgeGraph
 
 
 @click.command()
-@click.argument(
-    'path-input-metadata', type=click.Path(exists=True)
-)
-@click.option(
-    '--path-input-kg', type=click.Path(exists=True), default="outputs/kg"
-)
-@click.option(
-    '--path-output-dir', type=click.Path(exists=True), default="outputs/kg"
-)
+@click.argument("path-input-metadata", type=click.Path(exists=True))
+@click.option("--path-input-kg", type=click.Path(exists=True), default="outputs/kg")
+@click.option("--path-output-dir", type=click.Path(exists=True), default="outputs/kg")
 def main(
     path_input_metadata: str,
     path_input_kg: str,
@@ -32,14 +27,14 @@ def main(
 
     metadata = pd.read_csv(
         path_input_metadata,
-        sep='\t',
+        sep="\t",
     )
-    metadata['_conc'] = metadata['_conc'].fillna('')
-    metadata['_food_part'] = metadata['_food_part'].fillna('')
+    metadata["_conc"] = metadata["_conc"].fillna("")
+    metadata["_food_part"] = metadata["_food_part"].fillna("")
 
     kg.add_triplets_from_metadata(metadata)
     kg.save(path_output_dir)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

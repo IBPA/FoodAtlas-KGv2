@@ -7,10 +7,11 @@ Authors:
     Fangzhou Li - fzli@ucdavis.edu
 
 """
+
 from ast import literal_eval
 
 import pandas as pd
-from inflection import singularize, pluralize
+from inflection import pluralize, singularize
 
 
 def load_foodon():
@@ -22,16 +23,16 @@ def load_foodon():
     """
     foodon = pd.read_csv(
         "outputs/data_processing/foodon_cleaned.tsv",
-        sep='\t',
+        sep="\t",
         converters={
-            'parents': literal_eval,
-            'synonyms': literal_eval,
-            'derives_from': literal_eval,
-            'in_taxon': literal_eval,
-            'derives': literal_eval,
-            'has_part': literal_eval,
+            "parents": literal_eval,
+            "synonyms": literal_eval,
+            "derives_from": literal_eval,
+            "in_taxon": literal_eval,
+            "derives": literal_eval,
+            "has_part": literal_eval,
         },
-    ).set_index('foodon_id')
+    ).set_index("foodon_id")
 
     return foodon
 
@@ -57,36 +58,39 @@ def load_lut_food(
     def _update_lut_for_food(row, level):
         nonlocal lut_food
 
-        if not row['is_food']:
+        if not row["is_food"]:
             return
 
-        for syn in row['synonyms'][level]:
+        for syn in row["synonyms"][level]:
             syn = syn.lower()
             if syn not in lut_food:
                 lut_food[syn] = row.name
 
     lut_food = {}
     for syn_level in [
-        'label',
-        'label (alternative)',
-        'synonym (exact)',
-        'synonym',
-        'synonym (narrow)',
-        'synonym (broad)',
+        "label",
+        "label (alternative)",
+        "synonym (exact)",
+        "synonym",
+        "synonym (narrow)",
+        "synonym (broad)",
     ]:
-        foodon.apply(lambda row: _update_lut_for_food(row, syn_level), axis=1)
+        foodon.apply(
+            lambda row, syn_level=syn_level: _update_lut_for_food(row, syn_level),
+            axis=1
+        )
 
     if resolve_organisms:
         # Resolve organisms.
         def _update_lut_for_organism(row, level):
             nonlocal lut_food
 
-            if row['is_food']:
+            if row["is_food"]:
                 return
 
-            candidates = list(set(row['derives'] + row['has_part']))
+            candidates = list(set(row["derives"] + row["has_part"]))
             if len(candidates) == 1:
-                for syn in row['synonyms'][level]:
+                for syn in row["synonyms"][level]:
                     syn = syn.lower()
                     if syn not in lut_food:
                         lut_food[syn] = candidates[0]
@@ -94,14 +98,19 @@ def load_lut_food(
                 return candidates
 
         for syn_level in [
-            'label',
-            'label (alternative)',
-            'synonym (exact)',
-            'synonym',
-            'synonym (narrow)',
-            'synonym (broad)',
+            "label",
+            "label (alternative)",
+            "synonym (exact)",
+            "synonym",
+            "synonym (narrow)",
+            "synonym (broad)",
         ]:
-            foodon.apply(lambda row: _update_lut_for_organism(row, syn_level), axis=1)
+            foodon.apply(
+                lambda row, syn_level=syn_level: _update_lut_for_organism(
+                    row, syn_level
+                ),
+                axis=1,
+            )
 
     if resolve_singular_plural_forms:
         lut_food_to_add = {}

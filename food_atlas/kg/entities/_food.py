@@ -2,11 +2,10 @@ import logging
 from collections import OrderedDict
 
 import pandas as pd
-from inflection import singularize, pluralize
-from tqdm import tqdm
+from inflection import pluralize, singularize
 
-from ..utils import constants, merge_sets
 from .._query import query_ncbi_taxonomy
+from ..utils import constants, merge_sets
 
 logger = logging.getLogger(__name__)
 
@@ -60,75 +59,74 @@ def _create_food_entities_from_ncbi_taxonomy(
     logger.info("Start creating entities with NCBI Taxonomy IDs...")
 
     def _parse_names(row):
-        scientific_name = row['ScientificName']
-        other_names = row['OtherNames']
+        scientific_name = row["ScientificName"]
+        other_names = row["OtherNames"]
 
         synonyms_scientific = [scientific_name]
         synonyms_common = []
         synonyms_others = []
-        if row['OtherNames'] is not None:
-            synonyms_scientific += other_names['Synonym']
-            synonyms_scientific += other_names['EquivalentName']
-            if other_names['Name']:
-                for name in other_names['Name']:
-                    if name['ClassCDE'] in ['misspelling', 'authority']:
-                        synonyms_scientific += [name['DispName']]
+        if row["OtherNames"] is not None:
+            synonyms_scientific += other_names["Synonym"]
+            synonyms_scientific += other_names["EquivalentName"]
+            if other_names["Name"]:
+                for name in other_names["Name"]:
+                    if name["ClassCDE"] in ["misspelling", "authority"]:
+                        synonyms_scientific += [name["DispName"]]
 
-            synonyms_common += other_names['CommonName']
-            if 'GenbankCommonName' in other_names:
-                synonyms_common += [other_names['GenbankCommonName']]
-            if 'BlastName' in other_names:
-                synonyms_common += [other_names['BlastName']]
+            synonyms_common += other_names["CommonName"]
+            if "GenbankCommonName" in other_names:
+                synonyms_common += [other_names["GenbankCommonName"]]
+            if "BlastName" in other_names:
+                synonyms_common += [other_names["BlastName"]]
 
-            synonyms_others += other_names['Includes']
+            synonyms_others += other_names["Includes"]
 
-        row['scientific_name'] = scientific_name.strip().lower()
+        row["scientific_name"] = scientific_name.strip().lower()
 
         if synonyms_common:
             synonyms_common_sp = []
             for name in synonyms_common:
                 synonyms_common_sp += [singularize(name), pluralize(name)]
             synonyms_common += synonyms_common_sp
-            row['common_name'] = min(synonyms_common, key=len).strip().lower()
+            row["common_name"] = min(synonyms_common, key=len).strip().lower()
         else:
-            row['common_name'] = row['scientific_name']
+            row["common_name"] = row["scientific_name"]
 
         # Include abbreviations for scientific names.
-        if len(scientific_name.split(' ')) > 1:
+        if len(scientific_name.split(" ")) > 1:
             # Consider only species or lower.
             synonyms_scientific_abbr = []
             for name in synonyms_scientific:
-                terms = name.split(' ')
-                terms[0] = terms[0][0] + '.'
-                synonyms_scientific_abbr += [' '.join(terms)]
+                terms = name.split(" ")
+                terms[0] = terms[0][0] + "."
+                synonyms_scientific_abbr += [" ".join(terms)]
             synonyms_scientific += synonyms_scientific_abbr
 
         synonyms = synonyms_common + synonyms_others + synonyms_scientific
         synonyms = list(OrderedDict.fromkeys(synonyms).keys())
         synonyms = [x.strip().lower() for x in synonyms]
-        row['synonyms'] = synonyms + [constants.get_lookup_key_by_id(
-            'ncbi_taxon_id', row['TaxId']
-        )]
+        row["synonyms"] = synonyms + [
+            constants.get_lookup_key_by_id("ncbi_taxon_id", row["TaxId"])
+        ]
 
         return row
 
     entities_new = records.copy()
     entities_new[entities.COLUMNS] = None
     entities_new = entities_new.apply(_parse_names, axis=1)
-    entities_new = entities_new.rename(columns={'TaxId': 'ncbi_taxon_id'})
-    entities_new['external_ids'] \
-        = entities_new['ncbi_taxon_id'].apply(
-            lambda x: {'ncbi_taxon_id': x}
-        )
+    entities_new = entities_new.rename(columns={"TaxId": "ncbi_taxon_id"})
+    entities_new["external_ids"] = entities_new["ncbi_taxon_id"].apply(
+        lambda x: {"ncbi_taxon_id": x}
+    )
 
-    entities_new['foodatlas_id'] = [
+    entities_new["foodatlas_id"] = [
         f"e{i}"
         for i in range(entities._curr_eid, entities._curr_eid + len(entities_new))
     ]
     entities._curr_eid += len(entities_new)
 
-    entities_new['entity_type'] = 'food'
-    entities_new = entities_new[entities.COLUMNS].set_index('foodatlas_id')
+    entities_new["entity_type"] = "food"
+    entities_new = entities_new[entities.COLUMNS].set_index("foodatlas_id")
     entities._entities = pd.concat([entities._entities, entities_new])
     entities._update_lut(entities_new)
 
@@ -152,26 +150,29 @@ def _create_food_entities_from_synonym_groups(
     for synonyms in synonym_groups:
         found = False
         for name in synonyms:
-            if entities.get_entity_ids('food', name):
+            if entities.get_entity_ids("food", name):
                 found = True
                 break
 
         if not found:
-            entities_new_rows += [{
-                'foodatlas_id': f"e{entities._curr_eid}",
-                'entity_type': 'food',
-                'common_name': min(synonyms, key=len),
-                'scientific_name': '',
-                'synonyms': synonyms,
-                'external_ids': {},
-            }]
+            entities_new_rows += [
+                {
+                    "foodatlas_id": f"e{entities._curr_eid}",
+                    "entity_type": "food",
+                    "common_name": min(synonyms, key=len),
+                    "scientific_name": "",
+                    "synonyms": synonyms,
+                    "external_ids": {},
+                }
+            ]
             entities._curr_eid += 1
 
-    entities_new = pd.DataFrame(entities_new_rows).set_index('foodatlas_id')
+    entities_new = pd.DataFrame(entities_new_rows).set_index("foodatlas_id")
     entities._entities = pd.concat([entities._entities, entities_new])
     entities._update_lut(entities_new)
 
     logger.info("Completed!")
+
 
 def create_food_entities(
     entities,
@@ -191,8 +192,7 @@ def create_food_entities(
         list(set([name, singularize(name), pluralize(name)]))
         for name in entity_names_new
     ]
-    entity_names_all \
-        = list(set([name for names in entity_synonyms for name in names]))
+    entity_names_all = list(set([name for names in entity_synonyms for name in names]))
 
     # Step 1. Query NCBI Taxonomy to see if there is an ID.
     records_ncbi_taxonomy = query_ncbi_taxonomy(
@@ -210,7 +210,7 @@ def create_food_entities(
     for synonyms in entity_synonyms_grouped:
         found = False
         for name in synonyms:
-            eids = entities.get_entity_ids('food', name)
+            eids = entities.get_entity_ids("food", name)
             for eid in eids:
                 entities._update_entity_synonyms(eid, synonyms)
                 found = True
