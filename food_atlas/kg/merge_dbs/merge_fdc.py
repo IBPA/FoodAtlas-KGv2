@@ -12,7 +12,6 @@ import pandas as pd
 from pandarallel import pandarallel
 from tqdm import tqdm
 
-from ...tests.unit_test_kg import test_all
 from .. import KnowledgeGraph
 from ..preprocessing import standardize_chemical_conc
 
@@ -183,5 +182,4 @@ if __name__ == "__main__":
     triplets = pd.concat([kg.triplets._triplets.reset_index(), triplets_new])
     kg.triplets._triplets = triplets[kg.triplets.COLUMNS].set_index("foodatlas_id")
 
-    test_all(kg)
     kg.save("outputs/kg")

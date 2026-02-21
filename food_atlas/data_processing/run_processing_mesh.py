@@ -106,3 +106,8 @@ def parse_mesh_supp():
     mesh_supp.to_json(
         "outputs/data_processing/mesh_supp_cleaned.json", orient="records", lines=True
     )
+
+
+if __name__ == "__main__":
+    parse_mesh_desc()
+    parse_mesh_supp()

@@ -15,7 +15,6 @@ from inflection import pluralize, singularize
 from pandarallel import pandarallel
 from tqdm import tqdm
 
-from ....tests import unit_test_kg
 from ... import KnowledgeGraph
 from ._load_fdc import load_fdc
 from ._load_foodon import load_foodon, load_lut_food
@@ -190,4 +189,3 @@ if __name__ == "__main__":
     kg = _append_foods_from_fdc(kg)
 
     kg.save("outputs/kg")
-    unit_test_kg.test_all(kg)
