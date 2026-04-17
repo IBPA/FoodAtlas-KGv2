@@ -12,6 +12,7 @@ FoodAtlas-KGv2 focuses on reproducible KG construction. It houses the transforma
 - [`food_atlas`](./food_atlas): Python package containing the KG data model, preprocessing utilities, ontology loaders, and post-processing jobs (`kg/`, `data_processing/`, `utils/`, `hotfixes/`, `additional_analysis/`).
 - [`outputs`](./outputs): Workspace for generated lookup tables, metadata, triplets, cache files, and final KG exports. The `0_run_kg_init.sh` script seeds this directory.
 - [`scripts`](./scripts): Orchestrated CLI wrappers for the major pipeline stages (initialisation, metadata parsing, KG expansion, and post-processing). Edit the path variables inside each script before running.
+- [`manuscript-repro`](./manuscript-repro): Reproducibility package for the npj Science of Food manuscript analyses, including paper-linked audit scripts and artifact collection helpers.
 - [`logs`](./logs): Example log output and templates for long-running jobs.
 - [`requirements.txt`](./requirements.txt) & [`pyproject.toml`](./pyproject.toml): Python dependencies and linting configuration.
 
