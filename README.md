@@ -1,3 +1,5 @@
+# Note: For the latest code repository, please vitit https://github.com/AI-Institute-Food-Systems/foodatlas.
+
 # FoodAtlas
 FoodAtlas is an open-source pipeline for building a high-quality knowledge graph (KG) that links foods, chemicals, diseases, and supporting metadata drawn from the scientific literature and public databases. Large language models extract candidate relationships, while curation code standardises entities, resolves synonyms, and fuses records from resources such as FoodOn, FooDB, ChEBI, PubChem, MeSH, CTD, and the FoodData Central (FDC) dataset. The resulting KG powers the public [FoodAtlas web experience](https://www.foodatlas.ai/) and continues to expand as new literature is processed.
 
