@@ -1,169 +1,127 @@
-# FoodAtlas — Manuscript reproduction
+# FoodAtlas — Manuscript reproduction (`manuscript-repro/`)
 
 [![Paper](https://img.shields.io/badge/npj%20Science%20of%20Food-Article-00796B?logo=readthedocs)](https://www.nature.com/articles/s41538-025-00680-9)
 [![DOI](https://img.shields.io/badge/DOI-10.1038%2Fs41538--025--00680--9-blue)](https://doi.org/10.1038/s41538-025-00680-9)
-[![CI](https://img.shields.io/badge/CI-validate.yml-2088FF?logo=githubactions&logoColor=white)](.github/workflows/validate.yml)
 
-Reproducibility package for the paper **“A unified knowledge graph linking foodomics to chemical-disease networks and flavor profiles”** ([Nature Portfolio](https://www.nature.com/articles/s41538-025-00680-9), open access).
+Reproducibility helpers for **“A unified knowledge graph linking foodomics to chemical-disease networks and flavor profiles”** ([article](https://www.nature.com/articles/s41538-025-00680-9)).
 
-This repository does **not** duplicate the full FoodAtlas build. It provides:
-
-- **Pinned workflows** to regenerate analysis outputs from sibling directories `pipeline/` and `visualization_bundle/`.
-- **Documentation** mapping [paper sections](#paper-to-reproduction-map) to code, figures, and tables.
-- **Verification scripts** that compare recomputed metrics to manuscript claims (exact match not required; directional consistency is validated).
+This folder lives **inside** [FoodAtlas-KGv2](https://github.com/IBPA/FoodAtlas-KGv2). **All paths are resolved within the repository clone** — there are no references to sibling directories such as `pipeline/` or `visualization_bundle/` outside this repo.
 
 ---
 
-## Paper (read online)
+## What runs where
 
-| Resource | Link |
-|----------|------|
-| Article (HTML) | [npj Science of Food](https://www.nature.com/articles/s41538-025-00680-9) |
-| DOI | [10.1038/s41538-025-00680-9](https://doi.org/10.1038/s41538-025-00680-9) |
-| Abstract | [Jump to abstract](https://www.nature.com/articles/s41538-025-00680-9#Abs1) |
-| Results | [Jump to Results](https://www.nature.com/articles/s41538-025-00680-9#Sec2) |
-| Methods | [Jump to Methods](https://www.nature.com/articles/s41538-025-00680-9#Sec9) |
-| Data availability | [Data availability](https://www.nature.com/articles/s41538-025-00680-9#data-availability) |
-| Code availability | [Code availability](https://www.nature.com/articles/s41538-025-00680-9#code-availability) |
-| Supplementary information | Linked from the [article page](https://www.nature.com/articles/s41538-025-00680-9) (“Supplementary information”) |
-
----
-
-## Repository layout
-
-```
-foodatlas-manuscript-repro/
-├── README.md                 # This file
-├── CITATION.cff              # Citation metadata (GitHub “Cite this repository”)
-├── LICENSE                   # MIT — this wrapper only (see below)
-├── CONTRIBUTING.md           # Issues, PRs, expectations
-├── .github/workflows/validate.yml   # CI: shell + Python syntax checks
-├── PAPER_SUPPORT_AUDIT.md    # Claim-level support summary (after `make audit`)
-├── MANUSCRIPT_CHECK_REPORT.md       # Numeric comparison table (after `make check`)
-├── Makefile
-├── scripts/
-│   ├── setup_env.sh          # Install Python deps from sibling projects
-│   ├── run_pipeline.sh       # End-to-end analysis + viz
-│   ├── collect_artifacts.py  # Copy key outputs into artifacts/
-│   ├── manuscript_check.py   # Compare metrics to manuscript numbers
-│   └── paper_support_audit.py
-├── artifacts/                # Generated; gitignored — populated by collect
-└── logs/                     # Run logs and JSON reports (gitignored)
-```
-
-**Sibling dependencies** (expected next to this repo):
-
-- `../pipeline` — preprocessing, cluster analysis, substitution analysis.
-- `../visualization_bundle` — circos and sunburst figures (Fig. 2–style outputs).
-
-Clone or arrange your workspace as:
-
-```text
-foodatlas/
-├── pipeline/
-├── visualization_bundle/
-└── foodatlas-manuscript-repro/   # this repository
-```
+| Component | Location in this repo |
+|-----------|------------------------|
+| **Knowledge graph files** | Expected under **`outputs/kg/`** (e.g. `entities.tsv`, `triplets.tsv`). You can **place existing exports** there or generate them via `./scripts/0_run_kg_init.sh` and follow-on stages (see root `README.md`). |
+| **Graph scale checks** (entities / triplets) | **`make revalidate`** reads whatever is already in **`outputs/kg/`** — no rebuild step; empty or missing files yield a skip message. Generated TSVs are **gitignored**—see [`outputs/README.md`](../outputs/README.md). |
+| **Downstream manuscript figures** (Fig. 2–5 style clustering, substitutions, circos) | **Not** produced by the KG construction code here. Supply outputs under `manuscript-repro/analysis_outputs/` (see `analysis_outputs/README.md`) or set `FOODATLAS_MANUSCRIPT_ANALYSIS_DIR` to another directory **inside your clone**. |
 
 ---
 
 ## Quick start
 
+From the **FoodAtlas-KGv2** repository root:
+
 ```bash
-cd foodatlas-manuscript-repro
+cd manuscript-repro
 
-# 1) Environment (installs from ../pipeline and ../visualization_bundle requirements)
-make setup
-
-# 2) Full reproduction run (long; requires FoodAtlas data in ../pipeline)
-make run
-
-# 3) Collect figures/tables into artifacts/, run checks, write support audit
-make audit
+make setup    # pip install -r ../requirements.txt
+make run      # KG sanity check + pointers to KG scripts (see scripts/run_pipeline.sh)
+make fig2     # generate Fig.2 circos/sunburst assets into analysis_outputs/visualization
+make collect  # copy assets into artifacts/ when analysis_outputs/ is populated
+make test     # reproducibility + optional paper scale test when outputs/kg has data
+make revalidate  # test + revalidate_paper.py (strict scale check vs manuscript)
+make clean    # remove generated logs/artifacts
 ```
 
-Individual steps:
+Run targets assume your current directory is **`manuscript-repro/`** (as with `make` elsewhere in the project).
 
-| Step | Command | Purpose |
-|------|---------|---------|
-| Install deps | `make setup` or `bash scripts/setup_env.sh` | `pip install` from sibling `requirements.txt` files |
-| Run analyses | `make run` or `bash scripts/run_pipeline.sh` | Preprocessing → clustering → substitutions → `run_all.py` viz |
-| Collect outputs | `python3 scripts/collect_artifacts.py` | Copy key SVG/CSV into `artifacts/` |
-| Numeric check | `python3 scripts/manuscript_check.py` | Writes `MANUSCRIPT_CHECK_REPORT.md` |
-| Full audit | `make audit` | Collect + check + `PAPER_SUPPORT_AUDIT.md` |
+### Reproducibility tests
+
+`make test` runs `unittest` against:
+
+1. **Fixture KG** (`tests/fixtures/kg/`) — asserts `_core_graph_metrics()` and **sources_scale** rows from `run_checks()` match **fixed expected counts**, and that metrics are **identical across repeated calls** (deterministic code path).
+
+2. **Paper revalidation** (optional) — if `../outputs/kg/triplets.tsv` exists and has **at least one data row**, `tests/test_paper_revalidation.py` runs and requires every **sources_scale** check to be **match** or **close** vs the npj manuscript (same tolerances as `manuscript_check.py`, e.g. chemical nodes within 8%). Uses graph files **already in** `outputs/kg/`; if that file is empty or absent, the test is **skipped**.
+
+### Fig.2 asset generation (circos + sunbursts)
+
+`make fig2` runs `scripts/generate_fig2_assets.py`, which wraps the existing visualization generator used in the analysis pipeline and copies the following outputs into `analysis_outputs/visualization/`:
+
+- `foodatlas_circos_cytoband.svg`
+- `foodatlas_cytobands.csv`
+- `food_sunburst_plot.svg`
+- `chemical_sunburst_plot.svg`
+- `disease_sunburst_plot.svg`
+- `flavor_sunburst_plot.svg`
+
+By default it looks for a sibling pipeline checkout at `../pipeline`; override with `FOODATLAS_PIPELINE_ROOT=/abs/path/to/pipeline`.
+
+**`make revalidate`** runs `make test` and then **`scripts/revalidate_paper.py`**, which reads **`outputs/kg/`** files and prints each scale metric (exits non-zero on **mismatch**/**missing**). If there are no triplets yet, it prints `SKIP` and exits 0 — you only need to **add** graph exports under `outputs/kg/`, not rerun the full build pipeline.
+
+Optional: set **`FOODATLAS_KG_DIR`** to point `manuscript_check` at a different KG directory (tests set this for the fixture; clear it for real `outputs/kg/`).
+
+---
+
+## Repository layout (this folder)
+
+```
+manuscript-repro/
+├── README.md
+├── CITATION.cff
+├── CONTRIBUTING.md
+├── LICENSE
+├── Makefile
+├── analysis_outputs/    # optional: downstream analysis tree (gitignored except README)
+├── tests/
+│   ├── test_reproducibility.py
+│   ├── test_paper_revalidation.py
+│   └── fixtures/kg/       # tiny KG TSVs for `make test`
+├── scripts/
+│   ├── lib_paths.py       # repo-internal paths only
+│   ├── setup_env.sh
+│   ├── run_pipeline.sh    # driver + docs (does not call external repos)
+│   ├── generate_fig2_assets.py
+│   ├── collect_artifacts.py
+│   └── revalidate_paper.py
+├── artifacts/             # gitignored — created by collect
+└── logs/                  # gitignored — runtime logs
+```
 
 ---
 
 ## Paper-to-reproduction map
 
-Use this table to jump from the **published paper** (stable section anchors on the [Nature HTML version](https://www.nature.com/articles/s41538-025-00680-9)) to **what to run** and **where outputs land**.
+| Paper (HTML) | Content | In this repo |
+|--------------|---------|----------------|
+| [**Abstract**](https://www.nature.com/articles/s41538-025-00680-9#Abs1) | Scale, extraction, analyses | KG: `outputs/kg/`; extraction: [Lit2KG](https://github.com/IBPA/Lit2KG) per [Code availability](https://www.nature.com/articles/s41538-025-00680-9#code-availability) |
+| [**Fig. 2**](https://www.nature.com/articles/s41538-025-00680-9#Fig2) | Circos / sunbursts | Place exports under `analysis_outputs/visualization/` → `collect_artifacts.py` |
+| [**Fig. 3–5**, **Tables 1–3**](https://www.nature.com/articles/s41538-025-00680-9#Fig3) | Clustering, BPM, substitutions | Populate `analysis_outputs/` per `analysis_outputs/README.md` |
 
-| Paper location | Main claim / content | Reproduction in this workflow |
-|----------------|----------------------|-------------------------------|
-| [**Abstract**](https://www.nature.com/articles/s41538-025-00680-9#Abs1) | Graph scale, extraction F₁, modules, BPM, substitutions | Scale/substitution checks in `manuscript_check.py`; full KG construction and extraction pipelines are in [FoodAtlas-KGv2](https://github.com/IBPA/FoodAtlas-KGv2) and [Lit2KG](https://github.com/IBPA/Lit2KG) per [Code availability](https://www.nature.com/articles/s41538-025-00680-9#code-availability) |
-| [**Fig. 1**](https://www.nature.com/articles/s41538-025-00680-9#Fig1) | Pipeline schematic | Conceptual; not generated by a single script in this package |
-| [**Sec. “FoodAtlas incorporates data…”**](https://www.nature.com/articles/s41538-025-00680-9#Sec3), [**Fig. 2**](https://www.nature.com/articles/s41538-025-00680-9#Fig2) | Composition of the KG, circos, sunbursts | `../visualization_bundle/run_all.py` → `artifacts/fig2/` after `collect_artifacts.py` |
-| [**Sec. “LLM-based information extraction…”**](https://www.nature.com/articles/s41538-025-00680-9#Sec4) | Extraction F₁, prompts | Upstream [Lit2KG](https://github.com/IBPA/Lit2KG); metrics referenced in `manuscript_check.py` where applicable |
-| [**Sec. “encoded meaningful food representation…”**](https://www.nature.com/articles/s41538-025-00680-9#Sec5), [**Fig. 3**](https://www.nature.com/articles/s41538-025-00680-9#Fig3), [**Table 1**](https://www.nature.com/articles/s41538-025-00680-9#Tab1) | t-SNE, clusters, chemistry/disease signatures | `cluster_analysis()` in `../pipeline` → `artifacts/fig3_table1/`; pinned run in `PAPER_SUPPORT_AUDIT.md` |
-| [**Sec. “predict food-level antioxidant capacity”**](https://www.nature.com/articles/s41538-025-00680-9#Sec6), [**Fig. 4**](https://www.nature.com/articles/s41538-025-00680-9#Fig4) | BPM, bioactivity t-SNE, evaluation curves | `cluster_analysis()` (bioactivity branch) → `artifacts/fig4/` |
-| [**Sec. “Holistic food substitutions…”**](https://www.nature.com/articles/s41538-025-00680-9#Sec7), [**Fig. 5**](https://www.nature.com/articles/s41538-025-00680-9#Fig5), [**Table 2**](https://www.nature.com/articles/s41538-025-00680-9#Tab2), [**Table 3**](https://www.nature.com/articles/s41538-025-00680-9#Tab3) | Substitution visuals and example tables | `substitution_analysis()` → `artifacts/fig5_table2_table3/` |
-| [**Methods**](https://www.nature.com/articles/s41538-025-00680-9#Sec9) — [BPM](https://www.nature.com/articles/s41538-025-00680-9#Sec17), [one-hop substitutions](https://www.nature.com/articles/s41538-025-00680-9#Sec18) | WWEIA meals, scoring, swap logic, Random Forest BPM | Implemented under `../pipeline/src/pipeline/` (`cluster_analysis.py`, `substitution_analysis.py`, …) |
-| [**Data availability**](https://www.nature.com/articles/s41538-025-00680-9#data-availability) | Public datasets and graph releases | [FoodAtlas-KGv2](https://github.com/IBPA/FoodAtlas-KGv2), [foodatlas.ai](https://foodatlas.ai/) |
-
-Figure/table shortcuts: [Fig. 2](https://www.nature.com/articles/s41538-025-00680-9#Fig2) · [Fig. 3](https://www.nature.com/articles/s41538-025-00680-9#Fig3) · [Fig. 4](https://www.nature.com/articles/s41538-025-00680-9#Fig4) · [Fig. 5](https://www.nature.com/articles/s41538-025-00680-9#Fig5) · [Tab. 1](https://www.nature.com/articles/s41538-025-00680-9#Tab1) · [Tab. 2](https://www.nature.com/articles/s41538-025-00680-9#Tab2) · [Tab. 3](https://www.nature.com/articles/s41538-025-00680-9#Tab3).
-
-Concrete output filenames are gathered by **`scripts/collect_artifacts.py`** into `artifacts/`; see that script and `scripts/run_pipeline.sh` for pipeline order.
+Figure shortcuts: [Fig. 2](https://www.nature.com/articles/s41538-025-00680-9#Fig2) · [Fig. 3](https://www.nature.com/articles/s41538-025-00680-9#Fig3) · [Fig. 4](https://www.nature.com/articles/s41538-025-00680-9#Fig4) · [Fig. 5](https://www.nature.com/articles/s41538-025-00680-9#Fig5)
 
 ---
 
-## Verification outputs
+## Data and licenses
 
-After `make audit` (or `make check` + `paper_support_audit.py`):
-
-| File | Description |
-|------|-------------|
-| `MANUSCRIPT_CHECK_REPORT.md` | Row-by-row metric vs manuscript |
-| `PAPER_SUPPORT_AUDIT.md` | Claim-level **supported / partially supported** + artifact checklist |
-| `logs/manuscript_check_report.json` | Machine-readable check results |
-| `logs/paper_support_audit.json` | Machine-readable claim audit |
-
-Reproduced numbers are intended to be **consistent with the paper’s conclusions** (same direction and significance); **exact** equality is not guaranteed across software versions and pinned runs. See **`PAPER_SUPPORT_AUDIT.md`** (from `make audit`) and **`MANUSCRIPT_CHECK_REPORT.md`** (from `make check`).
-
----
-
-## Data and third-party sources
-
-- FoodAtlas graph inputs live under `../pipeline/foodatlas/` and related paths as used by that codebase.
-- [CTD](https://ctdbase.org/) and other sources may impose **license restrictions**; this repo does not redistribute them. Follow [Data availability](https://www.nature.com/articles/s41538-025-00680-9#data-availability) and upstream repos: [FoodAtlas-KGv2](https://github.com/IBPA/FoodAtlas-KGv2), [Lit2KG](https://github.com/IBPA/Lit2KG).
+- KG construction may use restricted sources (e.g. [CTD](https://ctdbase.org/)); follow the paper [Data availability](https://www.nature.com/articles/s41538-025-00680-9#data-availability).
+- The journal article is [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 ---
 
 ## Citation
 
-If you use this reproduction package, cite the paper. GitHub will show a **Cite this repository** button from [`CITATION.cff`](CITATION.cff) once this repo is public. Update `repository-code` in `CITATION.cff` if the canonical URL is not `github.com/IBPA/foodatlas-manuscript-repro`.
-
-The manuscript itself is open access under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) (see the [article](https://www.nature.com/articles/s41538-025-00680-9)).
+See [`CITATION.cff`](CITATION.cff). Prefer citing the **npj** paper by DOI; the `repository-code` field points at this monorepo.
 
 ---
 
 ## License
 
-Scripts and documentation in **this** repository are released under the **MIT License** (`LICENSE`). The FoodAtlas dataset, upstream `pipeline/` code, and the journal article PDF/HTML remain under their respective licenses and copyright.
-
----
-
-## GitHub checklist
-
-When you publish this folder as its own repository:
-
-1. Place it beside `pipeline/` and `visualization_bundle/` as documented above, or document your layout in a short **Wiki** / README note.
-2. Set the default branch to **`main`** (the CI workflow is wired for `main` / `master`).
-3. Edit **`repository-code`** in [`CITATION.cff`](CITATION.cff) if the GitHub URL differs from `IBPA/foodatlas-manuscript-repro`.
-4. After the first push, you can swap the static CI badge for a **workflow status** badge from GitHub (Actions → validate workflow → “Create status badge”).
-5. From the paper’s [Code availability](https://www.nature.com/articles/s41538-025-00680-9#code-availability) section, add a sentence linking to this repo once the URL is final (coordinate with the journal if you amend the HTML statement).
+Scripts and docs in **`manuscript-repro/`** use the **MIT** [`LICENSE`](LICENSE). The rest of FoodAtlas-KGv2 uses **Apache-2.0** (see root `LICENSE`).
 
 ---
 
 ## Contributing
 
-See **`CONTRIBUTING.md`**.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md).

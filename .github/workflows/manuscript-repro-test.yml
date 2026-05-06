@@ -1,0 +1,29 @@
+name: manuscript-repro tests
+
+on:
+  push:
+    paths:
+      - 'manuscript-repro/**'
+      - '.github/workflows/manuscript-repro-test.yml'
+  pull_request:
+    paths:
+      - 'manuscript-repro/**'
+      - '.github/workflows/manuscript-repro-test.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install FoodAtlas-KGv2 dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run manuscript-repro reproducibility tests
+        working-directory: manuscript-repro
+        run: make test
