@@ -1,0 +1,59 @@
+cff-version: 1.2.0
+title: FoodAtlas manuscript reproduction
+message: >-
+  If you use this reproduction package, cite the FoodAtlas paper below.
+  To cite only the scripts in this repository, use the repository URL and
+  the commit hash you relied on.
+type: software
+authors:
+  - family-names: Li
+    given-names: Fangzhou
+  - family-names: Youn
+    given-names: Jason
+  - family-names: Xie
+    given-names: Kaichi
+  - family-names: Chan
+    given-names: Trevor
+  - family-names: Gupta
+    given-names: Pranav
+  - family-names: Yoo
+    given-names: Arielle
+  - family-names: Gunning
+    given-names: Michael
+  - family-names: Ni
+    given-names: Keer
+  - family-names: Tagkopoulos
+    given-names: Ilias
+repository-code: 'https://github.com/IBPA/FoodAtlas-KGv2'
+license: MIT
+date-released: '2026-04-15'
+
+preferred-citation:
+  type: article
+  title: >-
+    A unified knowledge graph linking foodomics to chemical-disease networks
+    and flavor profiles
+  authors:
+    - family-names: Li
+      given-names: Fangzhou
+    - family-names: Youn
+      given-names: Jason
+    - family-names: Xie
+      given-names: Kaichi
+    - family-names: Chan
+      given-names: Trevor
+    - family-names: Gupta
+      given-names: Pranav
+    - family-names: Yoo
+      given-names: Arielle
+    - family-names: Gunning
+      given-names: Michael
+    - family-names: Ni
+      given-names: Keer
+    - family-names: Tagkopoulos
+      given-names: Ilias
+  doi: 10.1038/s41538-025-00680-9
+  journal: npj Science of Food
+  year: 2026
+  volume: '10'
+  issue: '1'

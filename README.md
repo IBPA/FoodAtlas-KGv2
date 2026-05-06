@@ -10,8 +10,9 @@ FoodAtlas-KGv2 focuses on reproducible KG construction. It houses the transforma
 ## Directories
 - [`data`](./data): Source datasets and ontologies used to seed the KG. Run `./data/download.sh` to retrieve the public portions; some folders act as placeholders for restricted datasets you must supply separately.
 - [`food_atlas`](./food_atlas): Python package containing the KG data model, preprocessing utilities, ontology loaders, and post-processing jobs (`kg/`, `data_processing/`, `utils/`, `hotfixes/`, `additional_analysis/`).
-- [`outputs`](./outputs): Workspace for generated lookup tables, metadata, triplets, cache files, and final KG exports. The `0_run_kg_init.sh` script seeds this directory.
+- [`outputs`](./outputs): Workspace for generated lookup tables, metadata, triplets, cache files, and final KG exports. The `0_run_kg_init.sh` script seeds this directory. **Built KG files** (e.g. `outputs/kg/entities.tsv`, `outputs/kg/triplets.tsv`) are produced when you run the pipeline from the repo root; they are **gitignored** and are not part of the clone—see [`outputs/README.md`](./outputs/README.md).
 - [`scripts`](./scripts): Orchestrated CLI wrappers for the major pipeline stages (initialisation, metadata parsing, KG expansion, and post-processing). Edit the path variables inside each script before running.
+- [`manuscript-repro`](./manuscript-repro): Manuscript reproduction helpers (metric checks against `outputs/kg/`, optional `analysis_outputs/` for downstream figures). Run **`make revalidate`** when **`outputs/kg/`** already contains graph TSVs (copied in or from an earlier pipeline run) to assert Fig. 2 scale metrics vs the paper; optional tests: `cd manuscript-repro && PYTHONPATH=scripts python3 -m unittest discover -s tests -v`.
 - [`logs`](./logs): Example log output and templates for long-running jobs.
 - [`requirements.txt`](./requirements.txt) & [`pyproject.toml`](./pyproject.toml): Python dependencies and linting configuration.
 

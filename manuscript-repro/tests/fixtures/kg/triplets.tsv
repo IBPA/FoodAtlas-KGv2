@@ -1,0 +1,4 @@
+head_id	relationship_id	tail_id
+f1	r1	c1
+c1	r3	d1
+c1	r5	fl1
