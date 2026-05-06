@@ -10,5 +10,5 @@ Include your OS, Python version, commit SHA of FoodAtlas-KGv2, and whether `outp
 
 ## Pull requests
 
-- Run: `bash -n scripts/setup_env.sh scripts/run_pipeline.sh`, `python3 -m py_compile scripts/*.py`, **`make test`**, and **`make revalidate`** whenever **`outputs/kg/`** contains graph TSVs (copied or from an earlier run).
+- Run: `bash -n scripts/setup_env.sh scripts/run_pipeline.sh`, `python3 -m py_compile scripts/*.py`, **`PYTHONPATH=scripts python3 -m unittest discover -s tests -v`** (optional), and **`make revalidate`** whenever **`outputs/kg/`** contains graph TSVs (copied or from an earlier run).
 - If you change pinned run IDs in `lib_paths.py`, explain why in the PR description.

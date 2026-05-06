@@ -15,5 +15,5 @@ Test suite for manuscript reproduction utilities.
 From `manuscript-repro/`:
 
 ```bash
-make test
+PYTHONPATH=scripts python3 -m unittest discover -s tests -v
 ```

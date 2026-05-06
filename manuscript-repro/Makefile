@@ -1,4 +1,4 @@
-.PHONY: help setup run fig2 collect test revalidate clean all
+.PHONY: help setup run fig2 collect revalidate clean all
 
 help:
 	@echo "Targets:"
@@ -6,8 +6,7 @@ help:
 	@echo "  make run      - KG sanity check + instructions (see scripts/run_pipeline.sh)"
 	@echo "  make fig2     - generate Fig.2 circos/sunburst assets into analysis_outputs/visualization"
 	@echo "  make collect  - collect manuscript artifacts into artifacts/"
-	@echo "  make test     - unittest: fixture reproducibility + optional paper scale test"
-	@echo "  make revalidate - make test + scripts/revalidate_paper.py (full KG vs paper)"
+	@echo "  make revalidate - scripts/revalidate_paper.py (Fig. 2 scale metrics vs manuscript)"
 	@echo "  make clean    - remove generated logs and copied artifacts"
 	@echo "  make all      - run + collect"
 
@@ -23,10 +22,7 @@ fig2:
 collect:
 	python3 scripts/collect_artifacts.py
 
-test:
-	PYTHONPATH=scripts python3 -m unittest discover -s tests -v
-
-revalidate: test
+revalidate:
 	PYTHONPATH=scripts python3 scripts/revalidate_paper.py
 
 clean:

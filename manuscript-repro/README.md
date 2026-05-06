@@ -30,16 +30,21 @@ make setup    # pip install -r ../requirements.txt
 make run      # KG sanity check + pointers to KG scripts (see scripts/run_pipeline.sh)
 make fig2     # generate Fig.2 circos/sunburst assets into analysis_outputs/visualization
 make collect  # copy assets into artifacts/ when analysis_outputs/ is populated
-make test     # reproducibility + optional paper scale test when outputs/kg has data
-make revalidate  # test + revalidate_paper.py (strict scale check vs manuscript)
+make revalidate  # revalidate_paper.py (Fig. 2 scale metrics vs manuscript)
 make clean    # remove generated logs/artifacts
 ```
 
 Run targets assume your current directory is **`manuscript-repro/`** (as with `make` elsewhere in the project).
 
-### Reproducibility tests
+### Optional unit tests (local)
 
-`make test` runs `unittest` against:
+From `manuscript-repro/`:
+
+```bash
+PYTHONPATH=scripts python3 -m unittest discover -s tests -v
+```
+
+This runs `unittest` against:
 
 1. **Fixture KG** (`tests/fixtures/kg/`) — asserts `_core_graph_metrics()` and **sources_scale** rows from `run_checks()` match **fixed expected counts**, and that metrics are **identical across repeated calls** (deterministic code path).
 
@@ -58,7 +63,7 @@ Run targets assume your current directory is **`manuscript-repro/`** (as with `m
 
 By default it looks for a sibling pipeline checkout at `../pipeline`; override with `FOODATLAS_PIPELINE_ROOT=/abs/path/to/pipeline`.
 
-**`make revalidate`** runs `make test` and then **`scripts/revalidate_paper.py`**, which reads **`outputs/kg/`** files and prints each scale metric (exits non-zero on **mismatch**/**missing**). If there are no triplets yet, it prints `SKIP` and exits 0 — you only need to **add** graph exports under `outputs/kg/`, not rerun the full build pipeline.
+**`make revalidate`** runs **`scripts/revalidate_paper.py`**, which reads **`outputs/kg/`** files and prints each scale metric (exits non-zero on **mismatch**/**missing**). If there are no triplets yet, it prints `SKIP` and exits 0 — you only need to **add** graph exports under `outputs/kg/`, not rerun the full build pipeline.
 
 Optional: set **`FOODATLAS_KG_DIR`** to point `manuscript_check` at a different KG directory (tests set this for the fixture; clear it for real `outputs/kg/`).
 
@@ -77,7 +82,7 @@ manuscript-repro/
 ├── tests/
 │   ├── test_reproducibility.py
 │   ├── test_paper_revalidation.py
-│   └── fixtures/kg/       # tiny KG TSVs for `make test`
+│   └── fixtures/kg/       # tiny KG TSVs for local unittest
 ├── scripts/
 │   ├── lib_paths.py       # repo-internal paths only
 │   ├── setup_env.sh
